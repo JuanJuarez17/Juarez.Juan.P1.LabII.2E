@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "ENTITIES_APP/1.0.0": {
+        "runtime": {
+          "ENTITIES_APP.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ENTITIES_APP/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

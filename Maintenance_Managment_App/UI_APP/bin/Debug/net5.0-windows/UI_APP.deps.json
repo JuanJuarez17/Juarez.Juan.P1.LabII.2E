@@ -1,0 +1,49 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "UI_APP/1.0.0": {
+        "dependencies": {
+          "CONTROLLER_APP": "1.0.0"
+        },
+        "runtime": {
+          "UI_APP.dll": {}
+        }
+      },
+      "CONTROLLER_APP/1.0.0": {
+        "dependencies": {
+          "ENTITIES_APP": "1.0.0"
+        },
+        "runtime": {
+          "CONTROLLER_APP.dll": {}
+        }
+      },
+      "ENTITIES_APP/1.0.0": {
+        "runtime": {
+          "ENTITIES_APP.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "UI_APP/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CONTROLLER_APP/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ENTITIES_APP/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
