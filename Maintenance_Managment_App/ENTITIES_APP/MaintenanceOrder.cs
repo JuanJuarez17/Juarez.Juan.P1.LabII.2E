@@ -8,6 +8,7 @@ namespace ENTITIES_APP
 {
     public class MaintenanceOrder
     {
+        #region ATTRIBUTES
         private static int lastId;
         private readonly int id; // automatico
         private User maker;
@@ -16,18 +17,18 @@ namespace ENTITIES_APP
         private Machine faultyUnit;
         private Section faultyUnitSection;
         private Urgency failureUrgency;
+        #endregion
 
+        #region CONSTRUCTOR
         static MaintenanceOrder()
         {
-            lastId = 1;
+            lastId = 100;
         }
-
         private MaintenanceOrder()
         {
             this.id = lastId++;
         }
-
-        public MaintenanceOrder(User inputMaker, Machine inputMachine, Section inputSection, Urgency inputUrgency) 
+        public MaintenanceOrder(User inputMaker, Machine inputMachine, Section inputSection, Urgency inputUrgency)
                          : this()
         {
             this.maker = inputMaker;
@@ -36,10 +37,8 @@ namespace ENTITIES_APP
             this.failureUrgency = inputUrgency;
             this.creationDate = DateTime.Now;
         }
-
-        // Solo para uso en hardcodeo
         public MaintenanceOrder(User inputMaker, Machine inputMachine, Section inputSection, Urgency inputUrgency, DateTime inputDate)
-                 : this()
+                 : this() // Solo para uso en hardcodeo
         {
             this.maker = inputMaker;
             this.faultyUnit = inputMachine;
@@ -47,8 +46,10 @@ namespace ENTITIES_APP
             this.failureUrgency = inputUrgency;
             this.creationDate = inputDate;
         }
+        #endregion
 
-        public string ShowMaintenanceOrder()
+        #region METHODS
+        public string MaintenanceOrder_print()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"ID {this.id}");
@@ -59,5 +60,27 @@ namespace ENTITIES_APP
             sb.AppendLine($"Fecha de creacion: {this.creationDate.Date}");
             return sb.ToString();
         }
+
+        /*
+        public bool MaintenanceOrder_print(out string message) // Mismo metodo que el anterior pero con otra firma
+        {
+            bool rtn = false;
+            StringBuilder sb = new StringBuilder();
+            if (this is not null)
+            {
+                sb.AppendLine($"ID {this.id}");
+                sb.AppendLine($"Genero: {this.maker.Username}");
+                sb.AppendLine($"Maquina: {this.faultyUnit}");
+                sb.AppendLine($"Sector: {this.faultyUnitSection}");
+                sb.AppendLine($"Urgencia: {this.failureUrgency}");
+                sb.AppendLine($"Fecha de creacion: {this.creationDate.Date}");
+                rtn = true;
+            }
+            message = sb.ToString();
+            return rtn;
+        }
+        */ 
+        #endregion
     }
 }
+

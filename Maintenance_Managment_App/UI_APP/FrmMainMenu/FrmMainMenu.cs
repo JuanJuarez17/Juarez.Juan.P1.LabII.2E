@@ -36,11 +36,18 @@ namespace UI_APP
             {
                 smi_SeeWO.Visible = false;
                 smi_Operators.Visible = false;
-                // TODO: Enable = flase los desactiva peor no los oculta, Visible = false los oculta
+                // TODO: Enable = false los desactiva peor no los oculta, Visible = false los oculta
+            }
+            lbl_Test.Text = " Bienvenido " + this.inputUser.Username;
+            if (Controller.ListMaintenanceOrder(out string message))
+            {
+                rtb_Test.Text = message;
+            }
+            else
+            {
+                rtb_Test.Text = "NO SE PUDO CARGAR LA BASE DE DATOS";
             }
 
-            lbl_Test.Text = " Bienvenido " + this.inputUser.Username;
-            rtb_Test.Text = Controller.ShowMaintOrderList();
         }
     }
 }
