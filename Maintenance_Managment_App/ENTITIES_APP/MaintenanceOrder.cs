@@ -12,11 +12,13 @@ namespace ENTITIES_APP
         private static int lastId;
         private readonly int id; // automatico
         private User maker;
-        private DateTime creationDate; // Deberia autocompletarse con la fecha de carga
-        private string description; // Puede ser opcional
         private Machine faultyUnit;
         private Section faultyUnitSection;
         private Urgency failureUrgency;
+        private DateTime creationDate; // Deberia autocompletarse con la fecha de carga
+        // Sin usar
+        private string description; // Puede ser opcional
+        private bool completed;
         #endregion
 
         #region CONSTRUCTOR

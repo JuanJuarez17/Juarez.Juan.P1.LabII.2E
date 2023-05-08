@@ -53,8 +53,8 @@ namespace UI_APP
             string msbMensaje = "Se aucompletaran los campos usuario y contraseña";
             MessageBox.Show(msbMensaje, msbTitulo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-            txb_Username.Text = "Admin";
-            txb_Password.Text = "asd123";
+            txb_Username.Text = "JJuarez";
+            txb_Password.Text = "rty000";
         }
     }
 }

@@ -29,68 +29,98 @@
         private void InitializeComponent()
         {
             mst_MainMenuOpt=new System.Windows.Forms.MenuStrip();
-            smi_LoadWO=new System.Windows.Forms.ToolStripMenuItem();
-            smi_SeeWO=new System.Windows.Forms.ToolStripMenuItem();
-            smi_Operators=new System.Windows.Forms.ToolStripMenuItem();
-            lbl_Test=new System.Windows.Forms.Label();
-            rtb_Test=new System.Windows.Forms.RichTextBox();
+            smi_MaintOrder=new System.Windows.Forms.ToolStripMenuItem();
+            smi_AddMaintenanceOrder=new System.Windows.Forms.ToolStripMenuItem();
+            smi_EditMaintenanceOrder=new System.Windows.Forms.ToolStripMenuItem();
+            smi_ListMaintenanceOrder=new System.Windows.Forms.ToolStripMenuItem();
+            smi_Operator=new System.Windows.Forms.ToolStripMenuItem();
+            sts_Status=new System.Windows.Forms.StatusStrip();
+            tss_User=new System.Windows.Forms.ToolStripStatusLabel();
+            tss_Status=new System.Windows.Forms.ToolStripStatusLabel();
+            eliminarOMToolStripMenuItem=new System.Windows.Forms.ToolStripMenuItem();
             mst_MainMenuOpt.SuspendLayout();
+            sts_Status.SuspendLayout();
             SuspendLayout();
             // 
             // mst_MainMenuOpt
             // 
-            mst_MainMenuOpt.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { smi_LoadWO, smi_SeeWO, smi_Operators });
+            mst_MainMenuOpt.GripStyle=System.Windows.Forms.ToolStripGripStyle.Visible;
+            mst_MainMenuOpt.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { smi_MaintOrder, smi_Operator });
             mst_MainMenuOpt.Location=new System.Drawing.Point(0, 0);
             mst_MainMenuOpt.Name="mst_MainMenuOpt";
-            mst_MainMenuOpt.Size=new System.Drawing.Size(784, 24);
+            mst_MainMenuOpt.Size=new System.Drawing.Size(984, 24);
             mst_MainMenuOpt.TabIndex=0;
             mst_MainMenuOpt.Text="menuStrip1";
             // 
-            // smi_LoadWO
+            // smi_MaintOrder
             // 
-            smi_LoadWO.Font=new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            smi_LoadWO.Name="smi_LoadWO";
-            smi_LoadWO.Size=new System.Drawing.Size(71, 20);
-            smi_LoadWO.Text="Cargar OT";
+            smi_MaintOrder.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { smi_AddMaintenanceOrder, smi_EditMaintenanceOrder, eliminarOMToolStripMenuItem, smi_ListMaintenanceOrder });
+            smi_MaintOrder.Font=new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            smi_MaintOrder.Name="smi_MaintOrder";
+            smi_MaintOrder.Size=new System.Drawing.Size(137, 20);
+            smi_MaintOrder.Text="Orden Mantenimiento";
             // 
-            // smi_SeeWO
+            // smi_AddMaintenanceOrder
             // 
-            smi_SeeWO.Name="smi_SeeWO";
-            smi_SeeWO.Size=new System.Drawing.Size(52, 20);
-            smi_SeeWO.Text="Ver OT";
+            smi_AddMaintenanceOrder.Name="smi_AddMaintenanceOrder";
+            smi_AddMaintenanceOrder.Size=new System.Drawing.Size(148, 22);
+            smi_AddMaintenanceOrder.Text="Agregar OM";
+            smi_AddMaintenanceOrder.Click+=cargarToolStripMenuItem_Click;
             // 
-            // smi_Operators
+            // smi_EditMaintenanceOrder
             // 
-            smi_Operators.Name="smi_Operators";
-            smi_Operators.Size=new System.Drawing.Size(70, 20);
-            smi_Operators.Text="Operarios";
+            smi_EditMaintenanceOrder.Name="smi_EditMaintenanceOrder";
+            smi_EditMaintenanceOrder.Size=new System.Drawing.Size(148, 22);
+            smi_EditMaintenanceOrder.Text="Modificar OM";
             // 
-            // lbl_Test
+            // smi_ListMaintenanceOrder
             // 
-            lbl_Test.Font=new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            lbl_Test.Location=new System.Drawing.Point(199, 40);
-            lbl_Test.Name="lbl_Test";
-            lbl_Test.Size=new System.Drawing.Size(386, 30);
-            lbl_Test.TabIndex=1;
-            lbl_Test.Text="label1";
-            lbl_Test.TextAlign=System.Drawing.ContentAlignment.MiddleCenter;
+            smi_ListMaintenanceOrder.Name="smi_ListMaintenanceOrder";
+            smi_ListMaintenanceOrder.Size=new System.Drawing.Size(180, 22);
+            smi_ListMaintenanceOrder.Text="Ver";
+            smi_ListMaintenanceOrder.Click+=verToolStripMenuItem_Click;
             // 
-            // rtb_Test
+            // smi_Operator
             // 
-            rtb_Test.Location=new System.Drawing.Point(17, 98);
-            rtb_Test.Name="rtb_Test";
-            rtb_Test.Size=new System.Drawing.Size(750, 200);
-            rtb_Test.TabIndex=2;
-            rtb_Test.Text="";
+            smi_Operator.Name="smi_Operator";
+            smi_Operator.Size=new System.Drawing.Size(65, 20);
+            smi_Operator.Text="Operario";
+            // 
+            // sts_Status
+            // 
+            sts_Status.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { tss_User, tss_Status });
+            sts_Status.Location=new System.Drawing.Point(0, 539);
+            sts_Status.Name="sts_Status";
+            sts_Status.Size=new System.Drawing.Size(984, 22);
+            sts_Status.TabIndex=6;
+            sts_Status.Text="statusStrip1";
+            // 
+            // tss_User
+            // 
+            tss_User.Name="tss_User";
+            tss_User.Size=new System.Drawing.Size(49, 17);
+            tss_User.Text="tss_User";
+            // 
+            // tss_Status
+            // 
+            tss_Status.Name="tss_Status";
+            tss_Status.Size=new System.Drawing.Size(58, 17);
+            tss_Status.Text="tss_Status";
+            // 
+            // eliminarOMToolStripMenuItem
+            // 
+            eliminarOMToolStripMenuItem.Name="eliminarOMToolStripMenuItem";
+            eliminarOMToolStripMenuItem.Size=new System.Drawing.Size(148, 22);
+            eliminarOMToolStripMenuItem.Text="Eliminar OM";
             // 
             // FrmMainMenu
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode=System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize=new System.Drawing.Size(784, 461);
-            Controls.Add(rtb_Test);
-            Controls.Add(lbl_Test);
+            ClientSize=new System.Drawing.Size(984, 561);
+            Controls.Add(sts_Status);
             Controls.Add(mst_MainMenuOpt);
+            IsMdiContainer=true;
             Name="FrmMainMenu";
             StartPosition=System.Windows.Forms.FormStartPosition.CenterScreen;
             Text="Maintenance Management Assistant";
@@ -98,6 +128,8 @@
             Load+=FrmMainMenu_Load;
             mst_MainMenuOpt.ResumeLayout(false);
             mst_MainMenuOpt.PerformLayout();
+            sts_Status.ResumeLayout(false);
+            sts_Status.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -105,10 +137,14 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip mst_MainMenuOpt;
-        private System.Windows.Forms.ToolStripMenuItem smi_LoadWO;
-        private System.Windows.Forms.ToolStripMenuItem smi_SeeWO;
-        private System.Windows.Forms.ToolStripMenuItem smi_Operators;
-        private System.Windows.Forms.Label lbl_Test;
-        private System.Windows.Forms.RichTextBox rtb_Test;
+        private System.Windows.Forms.ToolStripMenuItem smi_MaintOrder;
+        private System.Windows.Forms.ToolStripMenuItem smi_Operator;
+        private System.Windows.Forms.ToolStripMenuItem smi_AddMaintenanceOrder;
+        private System.Windows.Forms.ToolStripMenuItem smi_EditMaintenanceOrder;
+        private System.Windows.Forms.ToolStripMenuItem smi_ListMaintenanceOrder;
+        private System.Windows.Forms.StatusStrip sts_Status;
+        private System.Windows.Forms.ToolStripStatusLabel tss_User;
+        private System.Windows.Forms.ToolStripStatusLabel tss_Status;
+        private System.Windows.Forms.ToolStripMenuItem eliminarOMToolStripMenuItem;
     }
 }
