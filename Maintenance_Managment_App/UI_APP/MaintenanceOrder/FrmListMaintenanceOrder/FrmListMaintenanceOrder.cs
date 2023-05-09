@@ -75,7 +75,10 @@ namespace UI_APP
         #region EVENT METHODS
         private void FrmListMaintenanceOrder_Load(object sender, EventArgs e)
         {
-            btn_AddMaintOrder.ImageIndex = 0;
+            this.btn_AddMaintOrder.ImageIndex = 0;
+            this.btn_EditMaintOrder.ImageIndex = 1;
+            this.btn_DeleteMaintOrder.ImageIndex = 2;
+            this.btn_Close.ImageIndex = 3;
             FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDB);
         }
         private void btn_AddMaintOrder_Click(object sender, EventArgs e)
