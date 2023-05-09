@@ -39,6 +39,11 @@ namespace ENTITIES_APP
             this.failureUrgency = inputUrgency;
             this.creationDate = DateTime.Now;
         }
+        public MaintenanceOrder(User inputMaker, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription)
+                 : this(inputMaker, inputMachine, inputSection, inputUrgency)
+        {
+            this.description = inputDescription;
+        }
         public MaintenanceOrder(User inputMaker, Machine inputMachine, Section inputSection, Urgency inputUrgency, DateTime inputDate)
                  : this() // Solo para uso en hardcodeo
         {
@@ -60,6 +65,10 @@ namespace ENTITIES_APP
             sb.AppendLine($"Sector: {this.faultyUnitSection}");
             sb.AppendLine($"Urgencia: {this.failureUrgency}");
             sb.AppendLine($"Fecha de creacion: {this.creationDate.Date}");
+            if (!string.IsNullOrWhiteSpace(this.description))
+            {
+                sb.AppendLine($"Descripcion: {this.description}");
+            }
             return sb.ToString();
         }
 

@@ -28,24 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btn_Close=new System.Windows.Forms.Button();
+            btn_Cancel=new System.Windows.Forms.Button();
             cbb_Machine=new System.Windows.Forms.ComboBox();
             cbb_Section=new System.Windows.Forms.ComboBox();
             cbb_Urgency=new System.Windows.Forms.ComboBox();
             richTextBox1=new System.Windows.Forms.RichTextBox();
+            lbl_Section=new System.Windows.Forms.Label();
+            lbl_Machine=new System.Windows.Forms.Label();
+            lbl_Urgency=new System.Windows.Forms.Label();
+            lbl_Description=new System.Windows.Forms.Label();
+            btn_Add=new System.Windows.Forms.Button();
             SuspendLayout();
             // 
-            // btn_Close
+            // btn_Cancel
             // 
-            btn_Close.Anchor=System.Windows.Forms.AnchorStyles.Bottom|System.Windows.Forms.AnchorStyles.Right;
-            btn_Close.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            btn_Close.Location=new System.Drawing.Point(838, 508);
-            btn_Close.Name="btn_Close";
-            btn_Close.Size=new System.Drawing.Size(100, 30);
-            btn_Close.TabIndex=2;
-            btn_Close.Text="Cerrar";
-            btn_Close.UseVisualStyleBackColor=true;
-            btn_Close.Click+=btn_Close_Click;
+            btn_Cancel.Anchor=System.Windows.Forms.AnchorStyles.Bottom|System.Windows.Forms.AnchorStyles.Right;
+            btn_Cancel.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btn_Cancel.Location=new System.Drawing.Point(838, 508);
+            btn_Cancel.Name="btn_Cancel";
+            btn_Cancel.Size=new System.Drawing.Size(100, 30);
+            btn_Cancel.TabIndex=2;
+            btn_Cancel.Text="Cancelar";
+            btn_Cancel.UseVisualStyleBackColor=true;
+            btn_Cancel.Click+=btn_Close_Click;
             // 
             // cbb_Machine
             // 
@@ -82,16 +87,75 @@
             richTextBox1.TabIndex=6;
             richTextBox1.Text="";
             // 
+            // lbl_Section
+            // 
+            lbl_Section.AutoSize=true;
+            lbl_Section.Font=new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            lbl_Section.Location=new System.Drawing.Point(60, 41);
+            lbl_Section.Name="lbl_Section";
+            lbl_Section.Size=new System.Drawing.Size(132, 19);
+            lbl_Section.TabIndex=7;
+            lbl_Section.Text="Seleccione Sector:";
+            // 
+            // lbl_Machine
+            // 
+            lbl_Machine.Anchor=System.Windows.Forms.AnchorStyles.Top;
+            lbl_Machine.AutoSize=true;
+            lbl_Machine.Font=new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            lbl_Machine.Location=new System.Drawing.Point(390, 41);
+            lbl_Machine.Name="lbl_Machine";
+            lbl_Machine.Size=new System.Drawing.Size(146, 19);
+            lbl_Machine.TabIndex=8;
+            lbl_Machine.Text="Seleccione Maquina:";
+            // 
+            // lbl_Urgency
+            // 
+            lbl_Urgency.Anchor=System.Windows.Forms.AnchorStyles.Top|System.Windows.Forms.AnchorStyles.Right;
+            lbl_Urgency.AutoSize=true;
+            lbl_Urgency.Font=new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            lbl_Urgency.Location=new System.Drawing.Point(720, 41);
+            lbl_Urgency.Name="lbl_Urgency";
+            lbl_Urgency.Size=new System.Drawing.Size(148, 19);
+            lbl_Urgency.TabIndex=9;
+            lbl_Urgency.Text="Seleccione Urgencia:";
+            // 
+            // lbl_Description
+            // 
+            lbl_Description.AutoSize=true;
+            lbl_Description.Font=new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            lbl_Description.Location=new System.Drawing.Point(60, 107);
+            lbl_Description.Name="lbl_Description";
+            lbl_Description.Size=new System.Drawing.Size(284, 19);
+            lbl_Description.TabIndex=10;
+            lbl_Description.Text="Ingrese una descripcion de ser necesario:";
+            // 
+            // btn_Add
+            // 
+            btn_Add.Anchor=System.Windows.Forms.AnchorStyles.Bottom|System.Windows.Forms.AnchorStyles.Right;
+            btn_Add.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btn_Add.Location=new System.Drawing.Point(732, 508);
+            btn_Add.Name="btn_Add";
+            btn_Add.Size=new System.Drawing.Size(100, 30);
+            btn_Add.TabIndex=11;
+            btn_Add.Text="Agregar";
+            btn_Add.UseVisualStyleBackColor=true;
+            btn_Add.Click+=btn_Add_Click;
+            // 
             // FrmAddMaintenanceOrder
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode=System.Windows.Forms.AutoScaleMode.Font;
             ClientSize=new System.Drawing.Size(950, 550);
+            Controls.Add(btn_Add);
+            Controls.Add(lbl_Description);
+            Controls.Add(lbl_Urgency);
+            Controls.Add(lbl_Machine);
+            Controls.Add(lbl_Section);
             Controls.Add(richTextBox1);
             Controls.Add(cbb_Urgency);
             Controls.Add(cbb_Section);
             Controls.Add(cbb_Machine);
-            Controls.Add(btn_Close);
+            Controls.Add(btn_Cancel);
             FormBorderStyle=System.Windows.Forms.FormBorderStyle.None;
             MaximizeBox=false;
             MinimizeBox=false;
@@ -100,14 +164,20 @@
             Text="FrmAddMaintenanceOrder";
             Load+=FrmAddMaintenanceOrder_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btn_Close;
+        private System.Windows.Forms.Button btn_Cancel;
         private System.Windows.Forms.ComboBox cbb_Machine;
         private System.Windows.Forms.ComboBox cbb_Section;
         private System.Windows.Forms.ComboBox cbb_Urgency;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label lbl_Section;
+        private System.Windows.Forms.Label lbl_Machine;
+        private System.Windows.Forms.Label lbl_Urgency;
+        private System.Windows.Forms.Label lbl_Description;
+        private System.Windows.Forms.Button btn_Add;
     }
 }

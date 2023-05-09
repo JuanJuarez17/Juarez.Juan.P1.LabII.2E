@@ -94,6 +94,13 @@ namespace CONTROLLER_APP
         // En este caso si se habla de la lista MO deberia ser public static List<MaintenanceOrder> ShowMain...
         */
 
+        public static bool AddMaintenanceOrder(User activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency)
+        {
+            bool rtn = false;
+            maintOrderDb.Add(new MaintenanceOrder(activeUser, inputMachine, inputSection, inputUrgency));
+            return rtn;
+        }
+
         public static bool ListMaintenanceOrder(out string message)
         {
             bool rtn = false;

@@ -1,4 +1,5 @@
-﻿using ENTITIES_APP;
+﻿using CONTROLLER_APP;
+using ENTITIES_APP;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,6 +32,14 @@ namespace UI_APP.MaintenanceOrder.FrmAddMaintenanceOrder
         private void btn_Close_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btn_Add_Click(object sender, EventArgs e)
+        {
+            Section inputSection = (Section)this.cbb_Section.SelectedItem;
+            Machine inputMachine = (Machine)this.cbb_Machine.SelectedItem;
+            Urgency inputUrgency = (Urgency)this.cbb_Urgency.SelectedItem;
+            Controller.AddMaintenanceOrder(this.activeUser, inputMachine, inputSection, inputUrgency);
         }
     }
 }
