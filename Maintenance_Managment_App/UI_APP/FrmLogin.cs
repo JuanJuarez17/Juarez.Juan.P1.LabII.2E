@@ -33,15 +33,11 @@ namespace UI_APP
             }
             else if (Controller.CheckUser(inputUsername, inputPassword) == 0)
             {
-                string msbTitulo = "Error";
-                string msbMensaje = "Usuario y/o contraseña incorrectos";
-                MessageBox.Show(msbMensaje, msbTitulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Usuario y/o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                string msbTitulo = "Error";
-                string msbMensaje = "Ingrese usuario y contraseña";
-                MessageBox.Show(msbMensaje, msbTitulo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ingrese usuario y contraseña", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         private void btn_Cancel_Click(object sender, EventArgs e)
@@ -50,10 +46,7 @@ namespace UI_APP
         }
         private void btn_Autocomplete_Click(object sender, EventArgs e)
         {
-            string msbTitulo = "Atencion";
-            string msbMensaje = "Se aucompletaran los campos usuario y contraseña";
-            MessageBox.Show(msbMensaje, msbTitulo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+            MessageBox.Show("Se aucompletaran los campos usuario y contraseña", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             txb_Username.Text = "JJuarez";
             txb_Password.Text = "rty000";
         } 

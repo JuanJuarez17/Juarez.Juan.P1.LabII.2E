@@ -36,10 +36,6 @@ namespace UI_APP.MaintenanceOrder.FrmAddMaintenanceOrder
             this.cbb_Machine.DataSource = Enum.GetValues(typeof(Machine));
             this.cbb_Urgency.DataSource = Enum.GetValues(typeof(Urgency));
         }
-        private void btn_Close_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-        }
         private void btn_Add_Click(object sender, EventArgs e)
         {
             Section inputSection = (Section)this.cbb_Section.SelectedItem;
@@ -64,6 +60,10 @@ namespace UI_APP.MaintenanceOrder.FrmAddMaintenanceOrder
                 MessageBox.Show("Campo ingresado incorrectamente!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         } 
+        private void btn_Close_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+        }
         #endregion
     }
 }

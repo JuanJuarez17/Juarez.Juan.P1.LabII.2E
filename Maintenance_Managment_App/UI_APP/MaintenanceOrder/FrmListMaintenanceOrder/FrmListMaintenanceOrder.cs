@@ -75,18 +75,19 @@ namespace UI_APP
         #region EVENT METHODS
         private void FrmListMaintenanceOrder_Load(object sender, EventArgs e)
         {
+            btn_AddMaintOrder.ImageIndex = 0;
             FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDB);
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_AddMaintOrder_Click(object sender, EventArgs e)
         {
-            ActivateForm(new FrmAddMaintenanceOrder(this.User),out DialogResult result);
+            ActivateForm(new FrmAddMaintenanceOrder(this.User), out DialogResult result);
             if (result == DialogResult.OK)
             {
                 FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDB);
             }
             else
             {
-                MessageBox.Show("Carga cancelada");
+                MessageBox.Show("Carga cancelada!", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         private void btn_Close_Click(object sender, EventArgs e)

@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components=new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmListMaintenanceOrder));
             btn_Close=new System.Windows.Forms.Button();
             dtg_MaintOrderDB=new System.Windows.Forms.DataGridView();
             btn_AddMaintOrder=new System.Windows.Forms.Button();
+            iml_ListMaintOrder=new System.Windows.Forms.ImageList(components);
             ((System.ComponentModel.ISupportInitialize)dtg_MaintOrderDB).BeginInit();
             SuspendLayout();
             // 
@@ -75,7 +78,7 @@
             dataGridViewCellStyle5.WrapMode=System.Windows.Forms.DataGridViewTriState.False;
             dtg_MaintOrderDB.DefaultCellStyle=dataGridViewCellStyle5;
             dtg_MaintOrderDB.EnableHeadersVisualStyles=false;
-            dtg_MaintOrderDB.Location=new System.Drawing.Point(13, 12);
+            dtg_MaintOrderDB.Location=new System.Drawing.Point(88, 12);
             dtg_MaintOrderDB.MultiSelect=false;
             dtg_MaintOrderDB.Name="dtg_MaintOrderDB";
             dtg_MaintOrderDB.ReadOnly=true;
@@ -90,7 +93,7 @@
             dtg_MaintOrderDB.RowHeadersVisible=false;
             dtg_MaintOrderDB.RowTemplate.Height=25;
             dtg_MaintOrderDB.SelectionMode=System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            dtg_MaintOrderDB.Size=new System.Drawing.Size(925, 400);
+            dtg_MaintOrderDB.Size=new System.Drawing.Size(850, 400);
             dtg_MaintOrderDB.TabIndex=2;
             dtg_MaintOrderDB.TabStop=false;
             dtg_MaintOrderDB.VirtualMode=true;
@@ -98,13 +101,20 @@
             // btn_AddMaintOrder
             // 
             btn_AddMaintOrder.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            btn_AddMaintOrder.Location=new System.Drawing.Point(13, 418);
+            btn_AddMaintOrder.ImageList=iml_ListMaintOrder;
+            btn_AddMaintOrder.Location=new System.Drawing.Point(12, 12);
             btn_AddMaintOrder.Name="btn_AddMaintOrder";
-            btn_AddMaintOrder.Size=new System.Drawing.Size(100, 30);
+            btn_AddMaintOrder.Size=new System.Drawing.Size(50, 50);
             btn_AddMaintOrder.TabIndex=3;
-            btn_AddMaintOrder.Text="Agregar";
             btn_AddMaintOrder.UseVisualStyleBackColor=true;
-            btn_AddMaintOrder.Click+=button1_Click;
+            btn_AddMaintOrder.Click+=btn_AddMaintOrder_Click;
+            // 
+            // iml_ListMaintOrder
+            // 
+            iml_ListMaintOrder.ColorDepth=System.Windows.Forms.ColorDepth.Depth8Bit;
+            iml_ListMaintOrder.ImageStream=(System.Windows.Forms.ImageListStreamer)resources.GetObject("iml_ListMaintOrder.ImageStream");
+            iml_ListMaintOrder.TransparentColor=System.Drawing.Color.Transparent;
+            iml_ListMaintOrder.Images.SetKeyName(0, "plus.png");
             // 
             // FrmListMaintenanceOrder
             // 
@@ -129,5 +139,6 @@
         private System.Windows.Forms.Button btn_Close;
         private System.Windows.Forms.DataGridView dtg_MaintOrderDB;
         private System.Windows.Forms.Button btn_AddMaintOrder;
+        private System.Windows.Forms.ImageList iml_ListMaintOrder;
     }
 }
