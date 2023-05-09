@@ -156,7 +156,7 @@
             Controls.Add(cbb_Section);
             Controls.Add(cbb_Machine);
             Controls.Add(btn_Cancel);
-            FormBorderStyle=System.Windows.Forms.FormBorderStyle.None;
+            FormBorderStyle=System.Windows.Forms.FormBorderStyle.FixedSingle;
             MaximizeBox=false;
             MinimizeBox=false;
             Name="FrmAddMaintenanceOrder";

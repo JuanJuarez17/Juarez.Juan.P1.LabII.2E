@@ -9,16 +9,18 @@ namespace ENTITIES_APP
     public class MaintenanceOrder
     {
         #region ATTRIBUTES
+
         private static int lastId;
-        private readonly int id; // automatico
+
+        private readonly int id;
         private User maker;
         private Machine faultyUnit;
         private Section faultyUnitSection;
         private Urgency failureUrgency;
-        private DateTime creationDate; // Deberia autocompletarse con la fecha de carga
-        // Sin usar
-        private string description; // Puede ser opcional
+        private DateTime creationDate;
+        private string description;
         private bool completed;
+        private DateTime endDate;
         #endregion
 
         #region CONSTRUCTOR
@@ -38,6 +40,7 @@ namespace ENTITIES_APP
             this.faultyUnitSection = inputSection;
             this.failureUrgency = inputUrgency;
             this.creationDate = DateTime.Now;
+            this.completed = false;
         }
         public MaintenanceOrder(User inputMaker, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription)
                  : this(inputMaker, inputMachine, inputSection, inputUrgency)
@@ -45,29 +48,81 @@ namespace ENTITIES_APP
             this.description = inputDescription;
         }
         public MaintenanceOrder(User inputMaker, Machine inputMachine, Section inputSection, Urgency inputUrgency, DateTime inputDate)
-                 : this() // Solo para uso en hardcodeo
+                 : this(inputMaker, inputMachine, inputSection, inputUrgency) // Solo para uso en hardcodeo
         {
-            this.maker = inputMaker;
-            this.faultyUnit = inputMachine;
-            this.faultyUnitSection = inputSection;
-            this.failureUrgency = inputUrgency;
             this.creationDate = inputDate;
         }
+        #endregion
+
+        #region READONLY PROPERTIES
+        public int Id
+        {
+            get { return this.id; }
+        }
+        public User User
+        {
+            get { return this.maker; }
+        }
+        public string Username
+        {
+            get { return this.maker.Username; }
+        }
+        public Section Section
+        {
+            get { return this.faultyUnitSection; }
+        }
+        public Machine Machine
+        {
+            get { return this.faultyUnit; }
+        }
+        public Urgency Urgency
+        {
+            get { return this.failureUrgency; }
+        }
+        public DateTime CreationDate
+        {
+            get { return this.creationDate.Date; }
+        }
+        public string Description
+        {
+            get { return this.description; }
+        }
+        public bool Completed
+        {
+            get { return this.completed; }
+        }
+        public DateTime EndDate
+        {
+            get { return this.endDate; }
+        }
+        #endregion
+
+
+        #region METHOD W/ EXCEPTION
+        public static bool SetDescription(string inputDescription)
+        {
+            bool rtn = false;
+            if (inputDescription.Length == 0 || (inputDescription.Length >= 10 && inputDescription.Length <= 50))
+            {
+                rtn = true;
+            }
+            return rtn;
+        } 
         #endregion
 
         #region METHODS
         public string MaintenanceOrder_print()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"ID {this.id}");
-            sb.AppendLine($"Genero: {this.maker.Username}");
-            sb.AppendLine($"Maquina: {this.faultyUnit}");
-            sb.AppendLine($"Sector: {this.faultyUnitSection}");
-            sb.AppendLine($"Urgencia: {this.failureUrgency}");
-            sb.AppendLine($"Fecha de creacion: {this.creationDate.Date}");
-            if (!string.IsNullOrWhiteSpace(this.description))
+            sb.AppendLine($"ID {this.Id}");
+            sb.AppendLine($"Genero: {this.Username}");
+            sb.AppendLine($"Sector: {this.Section}");
+            sb.AppendLine($"Maquina: {this.Machine}");
+            sb.AppendLine($"Urgencia: {this.Urgency}");
+            sb.AppendLine($"Fecha de creacion: {this.CreationDate}");
+            if (!string.IsNullOrWhiteSpace(this.Description))
             {
-                sb.AppendLine($"Descripcion: {this.description}");
+                sb.AppendLine($"Descripcion: {this.Description}");
             }
             return sb.ToString();
         }
@@ -90,7 +145,7 @@ namespace ENTITIES_APP
             message = sb.ToString();
             return rtn;
         }
-        */ 
+        */
         #endregion
     }
 }

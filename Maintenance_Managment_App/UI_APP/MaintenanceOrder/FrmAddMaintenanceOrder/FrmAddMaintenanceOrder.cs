@@ -14,7 +14,11 @@ namespace UI_APP.MaintenanceOrder.FrmAddMaintenanceOrder
 {
     public partial class FrmAddMaintenanceOrder : Form
     {
-        private User activeUser;
+        #region ATTRIBUTES
+        private User activeUser; 
+        #endregion
+
+        #region CONSTRUCTOR
         private FrmAddMaintenanceOrder()
         {
             InitializeComponent();
@@ -22,7 +26,10 @@ namespace UI_APP.MaintenanceOrder.FrmAddMaintenanceOrder
         public FrmAddMaintenanceOrder(User inputUser) : this()
         {
             this.activeUser = inputUser;
-        }
+        } 
+        #endregion
+
+        #region EVENT METHODS
         private void FrmAddMaintenanceOrder_Load(object sender, EventArgs e)
         {
             this.cbb_Section.DataSource = Enum.GetValues(typeof(Section));
@@ -31,15 +38,32 @@ namespace UI_APP.MaintenanceOrder.FrmAddMaintenanceOrder
         }
         private void btn_Close_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.DialogResult = DialogResult.Cancel;
         }
-
         private void btn_Add_Click(object sender, EventArgs e)
         {
             Section inputSection = (Section)this.cbb_Section.SelectedItem;
             Machine inputMachine = (Machine)this.cbb_Machine.SelectedItem;
             Urgency inputUrgency = (Urgency)this.cbb_Urgency.SelectedItem;
-            Controller.AddMaintenanceOrder(this.activeUser, inputMachine, inputSection, inputUrgency);
-        }
+            string inputDescription = this.richTextBox1.Text;
+            if (Controller.ParseMaintenanceOrder(inputDescription))
+            {
+                if (Controller.AddMaintenanceOrder(Controller.CreateMaintenanceOrder(this.activeUser, inputMachine, inputSection, inputUrgency, inputDescription), out int idAdded))
+                {
+                    MessageBox.Show($"Orden de mantenimiento {idAdded} creada.", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                    this.DialogResult= DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo agregar la orden a la base de datos!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Campo ingresado incorrectamente!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        } 
+        #endregion
     }
 }

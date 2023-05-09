@@ -24,7 +24,7 @@ namespace UI_APP
         private User User
         {
             get { return this.activeUser; }
-        } 
+        }
         #endregion
 
         #region CONSTRUCTOR
@@ -39,28 +39,27 @@ namespace UI_APP
         #endregion
 
         #region METHODS
-        private void ActivateForm(Form form)
-        {
-            try
-            {
-                HideForm();
-                activeForm = form;
-                activeForm.MdiParent = this;
-                activeForm.Dock = DockStyle.Fill;
-                activeForm.BringToFront();
-                activeForm.Show();
-                // TODO: Creo que no se puede usar DialogResul en forms MDI
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ocurrio un error {ex.Message}, Reiniciar la aplicacion");
-            }
-        }
         private void HideForm()
         {
             if (activeForm is not null)
             {
                 activeForm.Close();
+            }
+        }
+        private void ActivateForm(Form form)
+        {
+            try
+            {
+                HideForm();
+                this.activeForm = form;
+                this.activeForm.MdiParent = this;
+                this.activeForm.Dock = DockStyle.Fill;
+                this.activeForm.BringToFront();
+                this.activeForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrio un error {ex.Message}, Reiniciar la aplicacion");
             }
         }
         private void FrmMainMenu_Info()
@@ -109,13 +108,9 @@ namespace UI_APP
         {
             Application.Exit();
         }
-        private void cargarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void smi_MaintOrder_Click(object sender, EventArgs e)
         {
-            ActivateForm(new FrmAddMaintenanceOrder(this.User));
-        }
-        private void verToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ActivateForm(new FrmListMaintenanceOrder());
+            ActivateForm(new FrmListMaintenanceOrder(this.User));
         }
         #endregion
     }

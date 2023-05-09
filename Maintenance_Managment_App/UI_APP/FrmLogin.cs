@@ -13,11 +13,14 @@ namespace UI_APP
 {
     public partial class FrmLogin : Form
     {
+        #region ATTRIBUTES
         public FrmLogin()
         {
             InitializeComponent();
-        }
+        } 
+        #endregion
 
+        #region EVENT METHODS
         private void btn_Access_Click(object sender, EventArgs e)
         {
             string inputUsername = txb_Username.Text;
@@ -41,20 +44,19 @@ namespace UI_APP
                 MessageBox.Show(msbMensaje, msbTitulo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
         private void btn_Autocomplete_Click(object sender, EventArgs e)
-        {            
+        {
             string msbTitulo = "Atencion";
             string msbMensaje = "Se aucompletaran los campos usuario y contraseña";
             MessageBox.Show(msbMensaje, msbTitulo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             txb_Username.Text = "JJuarez";
             txb_Password.Text = "rty000";
-        }
+        } 
+        #endregion
     }
 }

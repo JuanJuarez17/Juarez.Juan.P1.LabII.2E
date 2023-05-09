@@ -28,18 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            rtb_Test=new System.Windows.Forms.RichTextBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             btn_Close=new System.Windows.Forms.Button();
+            dtg_MaintOrderDB=new System.Windows.Forms.DataGridView();
+            btn_AddMaintOrder=new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)dtg_MaintOrderDB).BeginInit();
             SuspendLayout();
-            // 
-            // rtb_Test
-            // 
-            rtb_Test.Anchor=System.Windows.Forms.AnchorStyles.Top|System.Windows.Forms.AnchorStyles.Bottom|System.Windows.Forms.AnchorStyles.Left|System.Windows.Forms.AnchorStyles.Right;
-            rtb_Test.Location=new System.Drawing.Point(35, 29);
-            rtb_Test.Name="rtb_Test";
-            rtb_Test.Size=new System.Drawing.Size(880, 327);
-            rtb_Test.TabIndex=0;
-            rtb_Test.Text="";
             // 
             // btn_Close
             // 
@@ -53,13 +49,71 @@
             btn_Close.UseVisualStyleBackColor=true;
             btn_Close.Click+=btn_Close_Click;
             // 
+            // dtg_MaintOrderDB
+            // 
+            dtg_MaintOrderDB.AllowUserToAddRows=false;
+            dtg_MaintOrderDB.AllowUserToDeleteRows=false;
+            dtg_MaintOrderDB.AllowUserToResizeColumns=false;
+            dtg_MaintOrderDB.AllowUserToResizeRows=false;
+            dtg_MaintOrderDB.Anchor=System.Windows.Forms.AnchorStyles.Top|System.Windows.Forms.AnchorStyles.Left|System.Windows.Forms.AnchorStyles.Right;
+            dtg_MaintOrderDB.AutoSizeColumnsMode=System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle4.Alignment=System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor=System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font=new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor=System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor=System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor=System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode=System.Windows.Forms.DataGridViewTriState.True;
+            dtg_MaintOrderDB.ColumnHeadersDefaultCellStyle=dataGridViewCellStyle4;
+            dtg_MaintOrderDB.ColumnHeadersHeightSizeMode=System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment=System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor=System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font=new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor=System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor=System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor=System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode=System.Windows.Forms.DataGridViewTriState.False;
+            dtg_MaintOrderDB.DefaultCellStyle=dataGridViewCellStyle5;
+            dtg_MaintOrderDB.EnableHeadersVisualStyles=false;
+            dtg_MaintOrderDB.Location=new System.Drawing.Point(13, 12);
+            dtg_MaintOrderDB.MultiSelect=false;
+            dtg_MaintOrderDB.Name="dtg_MaintOrderDB";
+            dtg_MaintOrderDB.ReadOnly=true;
+            dataGridViewCellStyle6.Alignment=System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor=System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font=new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor=System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor=System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor=System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode=System.Windows.Forms.DataGridViewTriState.True;
+            dtg_MaintOrderDB.RowHeadersDefaultCellStyle=dataGridViewCellStyle6;
+            dtg_MaintOrderDB.RowHeadersVisible=false;
+            dtg_MaintOrderDB.RowTemplate.Height=25;
+            dtg_MaintOrderDB.SelectionMode=System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            dtg_MaintOrderDB.Size=new System.Drawing.Size(925, 400);
+            dtg_MaintOrderDB.TabIndex=2;
+            dtg_MaintOrderDB.TabStop=false;
+            dtg_MaintOrderDB.VirtualMode=true;
+            // 
+            // btn_AddMaintOrder
+            // 
+            btn_AddMaintOrder.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btn_AddMaintOrder.Location=new System.Drawing.Point(13, 418);
+            btn_AddMaintOrder.Name="btn_AddMaintOrder";
+            btn_AddMaintOrder.Size=new System.Drawing.Size(100, 30);
+            btn_AddMaintOrder.TabIndex=3;
+            btn_AddMaintOrder.Text="Agregar";
+            btn_AddMaintOrder.UseVisualStyleBackColor=true;
+            btn_AddMaintOrder.Click+=button1_Click;
+            // 
             // FrmListMaintenanceOrder
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode=System.Windows.Forms.AutoScaleMode.Font;
             ClientSize=new System.Drawing.Size(950, 550);
+            Controls.Add(btn_AddMaintOrder);
+            Controls.Add(dtg_MaintOrderDB);
             Controls.Add(btn_Close);
-            Controls.Add(rtb_Test);
             FormBorderStyle=System.Windows.Forms.FormBorderStyle.None;
             MaximizeBox=false;
             MinimizeBox=false;
@@ -67,12 +121,13 @@
             StartPosition=System.Windows.Forms.FormStartPosition.CenterParent;
             Text="FrmListMaintenanceOrder";
             Load+=FrmListMaintenanceOrder_Load;
+            ((System.ComponentModel.ISupportInitialize)dtg_MaintOrderDB).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private System.Windows.Forms.RichTextBox rtb_Test;
         private System.Windows.Forms.Button btn_Close;
+        private System.Windows.Forms.DataGridView dtg_MaintOrderDB;
+        private System.Windows.Forms.Button btn_AddMaintOrder;
     }
 }

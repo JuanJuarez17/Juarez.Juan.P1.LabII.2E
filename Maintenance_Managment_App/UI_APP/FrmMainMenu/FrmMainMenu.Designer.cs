@@ -30,14 +30,10 @@
         {
             mst_MainMenuOpt=new System.Windows.Forms.MenuStrip();
             smi_MaintOrder=new System.Windows.Forms.ToolStripMenuItem();
-            smi_AddMaintenanceOrder=new System.Windows.Forms.ToolStripMenuItem();
-            smi_EditMaintenanceOrder=new System.Windows.Forms.ToolStripMenuItem();
-            smi_ListMaintenanceOrder=new System.Windows.Forms.ToolStripMenuItem();
             smi_Operator=new System.Windows.Forms.ToolStripMenuItem();
             sts_Status=new System.Windows.Forms.StatusStrip();
             tss_User=new System.Windows.Forms.ToolStripStatusLabel();
             tss_Status=new System.Windows.Forms.ToolStripStatusLabel();
-            eliminarOMToolStripMenuItem=new System.Windows.Forms.ToolStripMenuItem();
             mst_MainMenuOpt.SuspendLayout();
             sts_Status.SuspendLayout();
             SuspendLayout();
@@ -54,31 +50,11 @@
             // 
             // smi_MaintOrder
             // 
-            smi_MaintOrder.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { smi_AddMaintenanceOrder, smi_EditMaintenanceOrder, eliminarOMToolStripMenuItem, smi_ListMaintenanceOrder });
             smi_MaintOrder.Font=new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             smi_MaintOrder.Name="smi_MaintOrder";
             smi_MaintOrder.Size=new System.Drawing.Size(137, 20);
             smi_MaintOrder.Text="Orden Mantenimiento";
-            // 
-            // smi_AddMaintenanceOrder
-            // 
-            smi_AddMaintenanceOrder.Name="smi_AddMaintenanceOrder";
-            smi_AddMaintenanceOrder.Size=new System.Drawing.Size(148, 22);
-            smi_AddMaintenanceOrder.Text="Agregar OM";
-            smi_AddMaintenanceOrder.Click+=cargarToolStripMenuItem_Click;
-            // 
-            // smi_EditMaintenanceOrder
-            // 
-            smi_EditMaintenanceOrder.Name="smi_EditMaintenanceOrder";
-            smi_EditMaintenanceOrder.Size=new System.Drawing.Size(148, 22);
-            smi_EditMaintenanceOrder.Text="Modificar OM";
-            // 
-            // smi_ListMaintenanceOrder
-            // 
-            smi_ListMaintenanceOrder.Name="smi_ListMaintenanceOrder";
-            smi_ListMaintenanceOrder.Size=new System.Drawing.Size(180, 22);
-            smi_ListMaintenanceOrder.Text="Ver";
-            smi_ListMaintenanceOrder.Click+=verToolStripMenuItem_Click;
+            smi_MaintOrder.Click+=smi_MaintOrder_Click;
             // 
             // smi_Operator
             // 
@@ -107,12 +83,6 @@
             tss_Status.Size=new System.Drawing.Size(58, 17);
             tss_Status.Text="tss_Status";
             // 
-            // eliminarOMToolStripMenuItem
-            // 
-            eliminarOMToolStripMenuItem.Name="eliminarOMToolStripMenuItem";
-            eliminarOMToolStripMenuItem.Size=new System.Drawing.Size(148, 22);
-            eliminarOMToolStripMenuItem.Text="Eliminar OM";
-            // 
             // FrmMainMenu
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
@@ -139,12 +109,8 @@
         private System.Windows.Forms.MenuStrip mst_MainMenuOpt;
         private System.Windows.Forms.ToolStripMenuItem smi_MaintOrder;
         private System.Windows.Forms.ToolStripMenuItem smi_Operator;
-        private System.Windows.Forms.ToolStripMenuItem smi_AddMaintenanceOrder;
-        private System.Windows.Forms.ToolStripMenuItem smi_EditMaintenanceOrder;
-        private System.Windows.Forms.ToolStripMenuItem smi_ListMaintenanceOrder;
         private System.Windows.Forms.StatusStrip sts_Status;
         private System.Windows.Forms.ToolStripStatusLabel tss_User;
         private System.Windows.Forms.ToolStripStatusLabel tss_Status;
-        private System.Windows.Forms.ToolStripMenuItem eliminarOMToolStripMenuItem;
     }
 }

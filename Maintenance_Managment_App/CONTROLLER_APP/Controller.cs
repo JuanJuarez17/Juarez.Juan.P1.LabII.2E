@@ -8,7 +8,6 @@ namespace CONTROLLER_APP
     public static class Controller
     {
         #region ATTRIBUTES
-        // Deberian ser las bases de datos de User y MaintenanceOrder
         private static List<User> usersDataBase;
         private static List<MaintenanceOrder> maintOrderDb;
         #endregion
@@ -23,6 +22,17 @@ namespace CONTROLLER_APP
         }
         #endregion
 
+        #region READONLY PROPERTIES
+        public static List<MaintenanceOrder> MaintOrdersDB
+        {
+            get { return maintOrderDb; }
+        }
+        public static List<User> UsersDB
+        {
+            get { return usersDataBase; }
+        } 
+        #endregion
+
         #region HARDCODE METHODS
         private static void LoadUsers()
         {
@@ -32,18 +42,15 @@ namespace CONTROLLER_APP
             usersDataBase.Add(new Supervisor("JJuarez", "rty000"));
             usersDataBase.Add(new Supervisor("Admin", "asd123"));
         }
-
         private static void LoadMaintOrders()
         {
             maintOrderDb.Add(new MaintenanceOrder(ReturnUser("PRodriguez"), Machine.CentroCNC, Section.Mecanizado, Urgency.Normal, new DateTime(2022, 09, 13)));
-            maintOrderDb.Add(new MaintenanceOrder(ReturnUser("ETolosa"), Machine.Torno, Section.Matriceria, Urgency.Normal, new DateTime(2022, 11, 27)));
+            maintOrderDb.Add(new MaintenanceOrder(ReturnUser("ETolosa"), Machine.Torno, Section.Matriceria, Urgency.Urgente, new DateTime(2022, 11, 27)));
             maintOrderDb.Add(new MaintenanceOrder(ReturnUser("PRodriguez"), Machine.Fresadora, Section.Matriceria, Urgency.Normal, new DateTime(2022, 12, 03)));
-            maintOrderDb.Add(new MaintenanceOrder(ReturnUser("ETolosa"), Machine.Autoelevador02, Section.Almacen, Urgency.Normal, new DateTime(2022, 09, 23)));
-            maintOrderDb.Add(new MaintenanceOrder(ReturnUser("JPerez"), Machine.Brochadora, Section.Mecanizado, Urgency.Normal, new DateTime(2022, 10, 30)));
-            maintOrderDb.Add(new MaintenanceOrder(ReturnUser("JJuarez"), Machine.CentroCNC, Section.Mecanizado, Urgency.Normal, new DateTime(2023, 01, 13)));
-            MaintenanceOrder aux = null;
-            maintOrderDb.Add(aux);
-            maintOrderDb.Add(new MaintenanceOrder(ReturnUser("JJuarez"), Machine.GrabadoraLaser, Section.Ensamble, Urgency.Normal, new DateTime(2023, 02, 24)));
+            maintOrderDb.Add(new MaintenanceOrder(ReturnUser("ETolosa"), Machine.Autoelevador02, Section.Almacen, Urgency.Programable, new DateTime(2022, 09, 23)));
+            maintOrderDb.Add(new MaintenanceOrder(ReturnUser("JPerez"), Machine.Brochadora, Section.Mecanizado, Urgency.Programable, new DateTime(2022, 10, 30)));
+            maintOrderDb.Add(new MaintenanceOrder(ReturnUser("JJuarez"), Machine.CentroCNC, Section.Mecanizado, Urgency.Urgente, new DateTime(2023, 01, 13)));
+            maintOrderDb.Add(new MaintenanceOrder(ReturnUser("JJuarez"), Machine.GrabadoraLaser, Section.Ensamble, Urgency.Programable, new DateTime(2023, 02, 24)));
         }
         #endregion
 
@@ -94,14 +101,37 @@ namespace CONTROLLER_APP
         // En este caso si se habla de la lista MO deberia ser public static List<MaintenanceOrder> ShowMain...
         */
 
-        public static bool AddMaintenanceOrder(User activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency)
+        public static bool ParseMaintenanceOrder(string inputDescription)
         {
             bool rtn = false;
-            maintOrderDb.Add(new MaintenanceOrder(activeUser, inputMachine, inputSection, inputUrgency));
+            if (MaintenanceOrder.SetDescription(inputDescription)
+          /* && MaintenanceOrder.SetDateTIme --> Por ejemplo */)
+            {
+                rtn = true;
+            }
             return rtn;
         }
 
-        public static bool ListMaintenanceOrder(out string message)
+        public static MaintenanceOrder CreateMaintenanceOrder(User activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription)
+        {
+            MaintenanceOrder auxMO = new MaintenanceOrder(activeUser, inputMachine, inputSection, inputUrgency, inputDescription);
+            return auxMO;
+        }
+
+        public static bool AddMaintenanceOrder(MaintenanceOrder inputMaintenanceOrder, out int idAdded)
+        {
+            bool rtn = false;
+            idAdded = 0;
+            if (maintOrderDb.Count <= 100)
+            {
+                maintOrderDb.Add(inputMaintenanceOrder);
+                idAdded = inputMaintenanceOrder.Id;
+                rtn = true;
+            }
+            return rtn;
+        }
+
+        public static bool ListMaintenanceOrderDB(out string message)
         {
             bool rtn = false;
             StringBuilder sb = new StringBuilder();
@@ -112,7 +142,7 @@ namespace CONTROLLER_APP
                     if (item is not null) // Valido que un objeto de la lista no sea nulo
                     {
                         sb.AppendLine(item.MaintenanceOrder_print()); // Aqui no puedo ercibir objeto null sino hay excepcion
-                        
+
                     }
                     else
                     {
@@ -125,9 +155,6 @@ namespace CONTROLLER_APP
             return rtn;
 
         }
-
-
-
         #endregion
     }
 }
