@@ -25,3 +25,5 @@ C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\re
 C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.Properties.Resources.resources
 C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.FrmListMaintenanceOrder.resources
 C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.MaintenanceOrder.FrmAddMaintenanceOrder.FrmAddMaintenanceOrder.resources
+C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\bin\Debug\net5.0-windows\DATABASE_APP.dll
+C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\bin\Debug\net5.0-windows\DATABASE_APP.pdb

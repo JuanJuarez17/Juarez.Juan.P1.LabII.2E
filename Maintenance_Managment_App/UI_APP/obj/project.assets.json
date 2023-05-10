@@ -6,13 +6,26 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "ENTITIES_APP": "1.0.0"
+          "DATABASE_APP": "1.0.0"
         },
         "compile": {
           "bin/placeholder/CONTROLLER_APP.dll": {}
         },
         "runtime": {
           "bin/placeholder/CONTROLLER_APP.dll": {}
+        }
+      },
+      "DATABASE_APP/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "ENTITIES_APP": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DATABASE_APP.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DATABASE_APP.dll": {}
         }
       },
       "ENTITIES_APP/1.0.0": {
@@ -32,6 +45,11 @@
       "type": "project",
       "path": "../CONTROLLER_APP/CONTROLLER_APP.csproj",
       "msbuildProject": "../CONTROLLER_APP/CONTROLLER_APP.csproj"
+    },
+    "DATABASE_APP/1.0.0": {
+      "type": "project",
+      "path": "../DATABASE_APP/DATABASE_APP.csproj",
+      "msbuildProject": "../DATABASE_APP/DATABASE_APP.csproj"
     },
     "ENTITIES_APP/1.0.0": {
       "type": "project",

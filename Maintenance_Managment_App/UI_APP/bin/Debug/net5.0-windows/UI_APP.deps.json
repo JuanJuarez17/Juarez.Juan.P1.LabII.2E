@@ -16,10 +16,18 @@
       },
       "CONTROLLER_APP/1.0.0": {
         "dependencies": {
-          "ENTITIES_APP": "1.0.0"
+          "DATABASE_APP": "1.0.0"
         },
         "runtime": {
           "CONTROLLER_APP.dll": {}
+        }
+      },
+      "DATABASE_APP/1.0.0": {
+        "dependencies": {
+          "ENTITIES_APP": "1.0.0"
+        },
+        "runtime": {
+          "DATABASE_APP.dll": {}
         }
       },
       "ENTITIES_APP/1.0.0": {
@@ -36,6 +44,11 @@
       "sha512": ""
     },
     "CONTROLLER_APP/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DATABASE_APP/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

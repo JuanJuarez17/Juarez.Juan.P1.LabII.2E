@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ENTITIES_APP\ENTITIES_APP.csproj" />
+    <ProjectReference Include="..\DATABASE_APP\DATABASE_APP.csproj" />
   </ItemGroup>
 
 </Project>

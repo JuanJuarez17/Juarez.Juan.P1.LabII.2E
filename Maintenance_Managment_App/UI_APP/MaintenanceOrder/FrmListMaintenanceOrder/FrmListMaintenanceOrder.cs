@@ -55,10 +55,10 @@ namespace UI_APP
         }
         public static void FrmListMaintenanceOrder_LoadDataGrid(DataGridView dtg)
         {
-            if (Controller.MaintOrdersDB.Count > 0)
+            if (Controller.MaintOrderDb.Count > 0)
             {
                 dtg.DataSource = null;
-                dtg.DataSource = Controller.MaintOrdersDB;
+                dtg.DataSource = Controller.MaintOrderDb;
                 dtg.Columns["User"].Visible = false;
                 dtg.Columns["Description"].Visible = false;
                 dtg.Columns["Completed"].Visible = false;
@@ -102,7 +102,5 @@ namespace UI_APP
 
         }
         #endregion
-
-
     }
 }

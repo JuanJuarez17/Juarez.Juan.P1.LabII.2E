@@ -13,3 +13,5 @@ C:\Users\PC\Desktop\Maintenance_Managment_App\CONTROLLER_APP\obj\Debug\net5.0\CO
 C:\Users\PC\Desktop\Maintenance_Managment_App\CONTROLLER_APP\obj\Debug\net5.0\refint\CONTROLLER_APP.dll
 C:\Users\PC\Desktop\Maintenance_Managment_App\CONTROLLER_APP\obj\Debug\net5.0\CONTROLLER_APP.pdb
 C:\Users\PC\Desktop\Maintenance_Managment_App\CONTROLLER_APP\obj\Debug\net5.0\ref\CONTROLLER_APP.dll
+C:\Users\PC\Desktop\Maintenance_Managment_App\CONTROLLER_APP\bin\Debug\net5.0\DATABASE_APP.dll
+C:\Users\PC\Desktop\Maintenance_Managment_App\CONTROLLER_APP\bin\Debug\net5.0\DATABASE_APP.pdb
