@@ -85,7 +85,8 @@ namespace DATABASE_APP
         #endregion
 
         #region MAINT ORDER DB METHODS
-        public static bool ParseMaintenanceOrder(string inputDescription)
+        // ParseMaintOrder es static pues no necesita de una instancia de clase Database para ejecutar su logica
+        public static bool ParseMaintOrder(string inputDescription)
         {
             bool rtn = false;
             if (MaintenanceOrder.SetDescription(inputDescription)
@@ -96,13 +97,15 @@ namespace DATABASE_APP
             return rtn;
         }
 
-        public static MaintenanceOrder CreateMaintenanceOrder(User activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription)
+        // CreateMaintOrder es static pues no necesita de una instancia de clase Database para ejecutar su logica
+        public static MaintenanceOrder CreateMaintOrder(User activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription)
         {
             MaintenanceOrder auxMO = new MaintenanceOrder(activeUser, inputMachine, inputSection, inputUrgency, inputDescription);
             return auxMO;
         }
 
-        public bool AddMaintenanceOrder(MaintenanceOrder inputMaintenanceOrder, out int idAdded)
+        // AddMaintOrder no es static pues necesita de una instancia de clase Database para ejecutar su logica
+        public bool AddMaintOrder(MaintenanceOrder inputMaintenanceOrder, out int idAdded)
         {
             bool rtn = false;
             idAdded = 0;
@@ -115,7 +118,7 @@ namespace DATABASE_APP
             return rtn;
         }
 
-        public bool ListMaintenanceOrderDB(out string message)
+        public bool ListMaintOrderDB(out string message)
         {
             bool rtn = false;
             StringBuilder sb = new StringBuilder();
@@ -138,8 +141,38 @@ namespace DATABASE_APP
             message = sb.ToString();
             return rtn;
         }
+
+        public MaintenanceOrder FindById(int inputId)
+        {
+            if (this.maintOrdersDb != null && this.maintOrdersDb.Count > 0)
+            {
+                foreach (MaintenanceOrder item in this.maintOrdersDb)
+                {
+                    if (item.Id == inputId)
+                    {
+                        return item;
+                    }                    
+                }
+            }
+            return null;
+        }
+        public bool RemoveMaintOrder(int inputId)
+        {
+            bool rtn = false;
+            if (this.maintOrdersDb != null && this.maintOrdersDb.Count > 0)
+            {
+                foreach (MaintenanceOrder item in this.maintOrdersDb)
+                {
+                    if (item.Id == inputId)
+                    {
+                        this.maintOrdersDb.Remove(item);
+                        return true;
+                    }
+                }
+            }
+            return rtn;
+        }
+
         #endregion
-
-
     }
 }

@@ -42,9 +42,9 @@ namespace UI_APP.MaintenanceOrder.FrmAddMaintenanceOrder
             Machine inputMachine = (Machine)this.cbb_Machine.SelectedItem;
             Urgency inputUrgency = (Urgency)this.cbb_Urgency.SelectedItem;
             string inputDescription = this.richTextBox1.Text;
-            if (Controller.ParseMaintenanceOrder(inputDescription))
+            if (Controller.ParseMaintOrder(inputDescription))
             {
-                if (Controller.AddMaintenanceOrder(Controller.CreateMaintenanceOrder(this.activeUser, inputMachine, inputSection, inputUrgency, inputDescription), out int idAdded))
+                if (Controller.AddMaintOrder(Controller.CreateMaintOrder(this.activeUser, inputMachine, inputSection, inputUrgency, inputDescription), out int idAdded))
                 {
                     MessageBox.Show($"Orden de mantenimiento {idAdded} creada.", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();

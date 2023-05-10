@@ -44,24 +44,27 @@ namespace CONTROLLER_APP
         #endregion
 
         #region MO METHODS
-        public static bool ParseMaintenanceOrder(string inputDescription)
+        public static bool ParseMaintOrder(string inputDescription)
         {
-            return Database.ParseMaintenanceOrder(inputDescription);
+            return Database.ParseMaintOrder(inputDescription);
         }
-        public static MaintenanceOrder CreateMaintenanceOrder(User activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription)
+        public static MaintenanceOrder CreateMaintOrder(User activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription)
         {
-            return Database.CreateMaintenanceOrder(activeUser, inputMachine, inputSection, inputUrgency, inputDescription);
+            return Database.CreateMaintOrder(activeUser, inputMachine, inputSection, inputUrgency, inputDescription);
         }
-        public static bool AddMaintenanceOrder(MaintenanceOrder inputMaintenanceOrder, out int idAdded)
+        public static bool AddMaintOrder(MaintenanceOrder inputMaintenanceOrder, out int idAdded)
         {
-            bool rtn = appDb.AddMaintenanceOrder(inputMaintenanceOrder, out idAdded);
+            bool rtn = appDb.AddMaintOrder(inputMaintenanceOrder, out idAdded);
             return rtn;
         }
-        public static bool ListMaintenanceOrderDB(out string message)
+        public static bool ListMaintOrderDb(out string message)
         {
-            bool rtn = appDb.ListMaintenanceOrderDB(out message);
+            bool rtn = appDb.ListMaintOrderDB(out message);
             return rtn;
-
+        }
+        public static bool RemoveMaintOrder(int id)
+        {
+            return appDb.RemoveMaintOrder(id);
         }
         #endregion
     }

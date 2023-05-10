@@ -53,21 +53,27 @@ namespace UI_APP
             activeForm.BringToFront();
             result = activeForm.ShowDialog();
         }
-        public static void FrmListMaintenanceOrder_LoadDataGrid(DataGridView dtg)
+        public static void FrmListMaintenanceOrder_LoadDataGrid(DataGridView drv)
         {
             if (Controller.MaintOrderDb.Count > 0)
             {
-                dtg.DataSource = null;
-                dtg.DataSource = Controller.MaintOrderDb;
-                dtg.Columns["User"].Visible = false;
-                dtg.Columns["Description"].Visible = false;
-                dtg.Columns["Completed"].Visible = false;
-                dtg.Columns["EndDate"].Visible = false;
-                dtg.Visible = true;
+                drv.DataSource = null;
+                drv.DataSource = Controller.MaintOrderDb;
+                drv.Columns["User"].Visible = false;
+                drv.Columns["Description"].Visible = false;
+                drv.Columns["Completed"].Visible = false;
+                drv.Columns["EndDate"].Visible = false;
+                drv.Columns[0].HeaderText = "ID ORDEN";
+                drv.Columns[2].HeaderText = "GENERÓ";
+                drv.Columns[3].HeaderText = "SECCCIÓN";
+                drv.Columns[4].HeaderText = "UNIDAD";
+                drv.Columns[5].HeaderText = "URGENCIA";
+                drv.Columns[6].HeaderText = "FECHA DE INGRESO";
+                drv.Visible = true;
             }
             else
             {
-                dtg.Visible = false;
+                drv.Visible = false;
             }
         }
         #endregion
@@ -79,27 +85,33 @@ namespace UI_APP
             this.btn_EditMaintOrder.ImageIndex = 1;
             this.btn_DeleteMaintOrder.ImageIndex = 2;
             this.btn_Close.ImageIndex = 3;
-            FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDB);
+            FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
         }
         private void btn_AddMaintOrder_Click(object sender, EventArgs e)
         {
             ActivateForm(new FrmAddMaintenanceOrder(this.User), out DialogResult result);
             if (result == DialogResult.OK)
             {
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDB);
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
             }
             else
             {
                 MessageBox.Show("Carga cancelada!", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+        private void btn_DeleteMaintOrder_Click(object sender, EventArgs e)
+        {
+            int input = (int)dtg_MaintOrderDb.CurrentRow.Cells[0].Value;
+            DialogResult respuesta = MessageBox.Show($"¿Eliminar OM {input}?{Environment.NewLine}Esta accion es inrreversible", "Eliminar Orden de Mantenimiento", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+            if (respuesta == DialogResult.Yes)
+            {
+                Controller.RemoveMaintOrder(input);
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+            }
+        }
         private void btn_Close_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-        private void btn_DeleteMaintOrder_Click(object sender, EventArgs e)
-        {
-
         }
         #endregion
     }
