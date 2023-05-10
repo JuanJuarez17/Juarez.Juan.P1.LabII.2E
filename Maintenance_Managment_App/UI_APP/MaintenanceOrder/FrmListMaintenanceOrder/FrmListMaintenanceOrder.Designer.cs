@@ -130,6 +130,7 @@
             btn_DeleteMaintOrder.Size=new System.Drawing.Size(50, 50);
             btn_DeleteMaintOrder.TabIndex=4;
             btn_DeleteMaintOrder.UseVisualStyleBackColor=true;
+            btn_DeleteMaintOrder.Click+=btn_DeleteMaintOrder_Click;
             // 
             // btn_EditMaintOrder
             // 

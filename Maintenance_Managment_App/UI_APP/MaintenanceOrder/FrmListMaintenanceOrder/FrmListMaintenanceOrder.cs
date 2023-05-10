@@ -97,6 +97,12 @@ namespace UI_APP
         {
             this.Close();
         }
+        private void btn_DeleteMaintOrder_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
+
+
     }
 }
