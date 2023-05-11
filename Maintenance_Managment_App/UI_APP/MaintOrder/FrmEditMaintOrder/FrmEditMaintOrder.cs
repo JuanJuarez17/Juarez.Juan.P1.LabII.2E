@@ -27,15 +27,15 @@ namespace UI_APP
         {
             this.btn_Accept.ImageIndex = 3;
             this.btn_Cancel.ImageIndex = 4;
-            this.txb_MaintOrderId.Text = Controller.PrintMaintOrderId(this.maintOrderId);
-            this.txb_MaintOrderUser.Text = Controller.PrintMaintOrderUsername(this.maintOrderId);
+            this.txb_MaintOrderId.Text = Controller.MaintOrder_PrintId(this.maintOrderId);
+            this.txb_MaintOrderUser.Text = Controller.MaintOrder_PrintUsername(this.maintOrderId);
             this.cbb_Section.DataSource = Enum.GetValues(typeof(Section));
             this.cbb_Machine.DataSource = Enum.GetValues(typeof(Machine));
             this.cbb_Urgency.DataSource = Enum.GetValues(typeof(Urgency));
-            this.cbb_Section.Text = Controller.PrintMaintOrderSection(this.maintOrderId);
-            this.cbb_Machine.Text = Controller.PrintMaintOrderMachine(this.maintOrderId);
-            this.cbb_Urgency.Text = Controller.PrintMaintOrderUrgency(this.maintOrderId);
-            this.rtb_MaintOrderDesc.Text = Controller.PrintMaintOrderDescription(this.maintOrderId);
+            this.cbb_Section.Text = Controller.MaintOrder_PrintSection(this.maintOrderId);
+            this.cbb_Machine.Text = Controller.MaintOrder_PrintMachine(this.maintOrderId);
+            this.cbb_Urgency.Text = Controller.MaintOrder_PrintUrgency(this.maintOrderId);
+            this.rtb_MaintOrderDesc.Text = Controller.MaintOrder_PrintDescription(this.maintOrderId);
         }
         private void btn_Accept_Click(object sender, EventArgs e)
         {
@@ -48,9 +48,9 @@ namespace UI_APP
             {
                 inputStatus = true;
             }
-            if (Controller.ParseMaintOrder(inputDescription))
+            if (Controller.MaintOrder_Parse(inputDescription))
             {
-                if (Controller.EditMaintOrder(this.maintOrderId, inputMachine, inputSection, inputUrgency, inputDescription, inputStatus))
+                if (Controller.MaintOrder_Edit(this.maintOrderId, inputMachine, inputSection, inputUrgency, inputDescription, inputStatus))
                 {
                     MessageBox.Show($"Orden de mantenimiento {this.maintOrderId} modificada.", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();

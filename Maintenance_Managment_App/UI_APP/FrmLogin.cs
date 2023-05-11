@@ -29,13 +29,13 @@ namespace UI_APP
         {
             string inputUsername = txb_Username.Text;
             string inputPassword = txb_Password.Text;
-            if (Controller.CheckUser(inputUsername, inputPassword) == 1)
+            if (Controller.User_Check(inputUsername, inputPassword) == 1)
             {
-                FrmMainMenu frmMainMenu = new FrmMainMenu(Controller.ReturnUser(inputUsername));
+                FrmMainMenu frmMainMenu = new FrmMainMenu(Controller.User_Return(inputUsername));
                 frmMainMenu.Show();
                 this.Hide();
             }
-            else if (Controller.CheckUser(inputUsername, inputPassword) == 0)
+            else if (Controller.User_Check(inputUsername, inputPassword) == 0)
             {
                 MessageBox.Show("Usuario y/o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

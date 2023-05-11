@@ -32,8 +32,8 @@ namespace ENTITIES_APP
         {
             this.id = lastId++;
         }
-        public MaintenanceOrder(User inputMaker, Machine inputMachine, Section inputSection, Urgency inputUrgency)
-                         : this()
+        public MaintenanceOrder(User inputMaker, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription)
+                 : this()
         {
             this.maker = inputMaker;
             this.faultyUnit = inputMachine;
@@ -41,14 +41,10 @@ namespace ENTITIES_APP
             this.failureUrgency = inputUrgency;
             this.creationDate = DateTime.Now;
             this.completed = false;
-        }
-        public MaintenanceOrder(User inputMaker, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription)
-                 : this(inputMaker, inputMachine, inputSection, inputUrgency)
-        {
             this.description = inputDescription;
         }
-        public MaintenanceOrder(User inputMaker, Machine inputMachine, Section inputSection, Urgency inputUrgency, DateTime inputDate)
-                 : this(inputMaker, inputMachine, inputSection, inputUrgency) // Solo para uso en hardcodeo
+        public MaintenanceOrder(User inputMaker, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, DateTime inputDate)
+                 : this(inputMaker, inputMachine, inputSection, inputUrgency, inputDescription) // Solo para uso en hardcodeo
         {
             this.creationDate = inputDate;
         }
@@ -93,7 +89,7 @@ namespace ENTITIES_APP
                 string rtn = this.description;
                 if (rtn == null)
                 {
-                    rtn = "No se cargo descripcion";
+                    rtn = string.Empty;
                 }
                 return rtn; 
             }

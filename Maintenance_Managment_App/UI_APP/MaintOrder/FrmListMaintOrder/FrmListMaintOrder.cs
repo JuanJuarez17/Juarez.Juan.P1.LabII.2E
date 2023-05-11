@@ -124,7 +124,7 @@ namespace UI_APP
             DialogResult respuesta = MessageBox.Show($"¿Eliminar OM {selectedId}?{Environment.NewLine}Esta accion es inrreversible", "Eliminar Orden de Mantenimiento", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
             if (respuesta == DialogResult.Yes)
             {
-                Controller.RemoveMaintOrder(selectedId);
+                Controller.MaintOrder_Remove(selectedId);
                 FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
             }
         }

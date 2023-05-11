@@ -38,18 +38,18 @@ namespace DATABASE_APP
         }
         private void LoadMaintOrders()
         {
-            this.maintOrdersDb.Add(new MaintenanceOrder(ReturnUser("PRodriguez"), Machine.CentroCNC, Section.Mecanizado, Urgency.Normal, new DateTime(2022, 09, 13)));
-            this.maintOrdersDb.Add(new MaintenanceOrder(ReturnUser("ETolosa"), Machine.Torno, Section.Matriceria, Urgency.Urgente, new DateTime(2022, 11, 27)));
-            this.maintOrdersDb.Add(new MaintenanceOrder(ReturnUser("PRodriguez"), Machine.Fresadora, Section.Matriceria, Urgency.Normal, new DateTime(2022, 12, 03)));
-            this.maintOrdersDb.Add(new MaintenanceOrder(ReturnUser("ETolosa"), Machine.Autoelevador02, Section.Almacen, Urgency.Programable, new DateTime(2022, 09, 23)));
-            this.maintOrdersDb.Add(new MaintenanceOrder(ReturnUser("JPerez"), Machine.Brochadora, Section.Mecanizado, Urgency.Programable, new DateTime(2022, 10, 30)));
-            this.maintOrdersDb.Add(new MaintenanceOrder(ReturnUser("JJuarez"), Machine.CentroCNC, Section.Mecanizado, Urgency.Urgente, new DateTime(2023, 01, 13)));
-            this.maintOrdersDb.Add(new MaintenanceOrder(ReturnUser("JJuarez"), Machine.GrabadoraLaser, Section.Ensamble, Urgency.Programable, new DateTime(2023, 02, 24)));
+            this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("PRodriguez"), Machine.CentroCNC, Section.Mecanizado, Urgency.Normal, null, new DateTime(2022, 09, 13)));
+            this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("ETolosa"), Machine.Torno, Section.Matriceria, Urgency.Urgente, null, new DateTime(2022, 11, 27)));
+            this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("PRodriguez"), Machine.Fresadora, Section.Matriceria, Urgency.Normal, null, new DateTime(2022, 12, 03)));
+            this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("ETolosa"), Machine.Autoelevador02, Section.Almacen, Urgency.Programable, null, new DateTime(2022, 09, 23)));
+            this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("JPerez"), Machine.Brochadora, Section.Mecanizado, Urgency.Programable, null, new DateTime(2022, 10, 30)));
+            this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("JJuarez"), Machine.CentroCNC, Section.Mecanizado, Urgency.Urgente, null, new DateTime(2023, 01, 13)));
+            this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("JJuarez"), Machine.GrabadoraLaser, Section.Ensamble, Urgency.Programable, null, new DateTime(2023, 02, 24)));
         }
         #endregion
 
         #region USER DB METHODS
-        public User ReturnUser(string inputUsername)
+        public User User_Return(string inputUsername)
         {
             foreach (User item in usersDb)
             {
@@ -61,7 +61,7 @@ namespace DATABASE_APP
             // TODO: Revisar este retorno
             return null;
         }
-        public int CheckUser(string inputUsername, string inputPassword)
+        public int User_Check(string inputUsername, string inputPassword)
         {
             if (string.IsNullOrEmpty(inputUsername) || string.IsNullOrEmpty(inputPassword))
             {
@@ -86,7 +86,7 @@ namespace DATABASE_APP
 
         #region MAINT ORDER DB METHODS
         // ParseMaintOrder es static pues no necesita de una instancia de clase Database para ejecutar su logica
-        public static bool ParseMaintOrder(string inputDescription)
+        public static bool MaintOrder_Parse(string inputDescription)
         {
             bool rtn = false;
             if (MaintenanceOrder.SetDescription(inputDescription)
@@ -97,7 +97,7 @@ namespace DATABASE_APP
             return rtn;
         }
         // AddMaintOrder no es static pues necesita de una instancia de clase Database para ejecutar su logica
-        public bool AddMaintOrder(User activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, out int idAdded)
+        public bool MaintOrder_Add(User activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, out int idAdded)
         {
             bool rtn = false;
             idAdded = 0;
@@ -110,7 +110,7 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-        public bool FindById(int inputId, out int findedIndex)
+        public bool MaintOrder_FindById(int inputId, out int findedIndex)
         {
             bool rtn = false;
             findedIndex = -1;
@@ -127,11 +127,10 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-
-        public bool EditMaintOrder(int inputId, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, bool inputStatus)
+        public bool MaintOrder_Edit(int inputId, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, bool inputStatus)
         {
             bool rtn = false;
-            if (FindById(inputId, out int findedIndex))
+            if (MaintOrder_FindById(inputId, out int findedIndex))
             {
                 this.maintOrdersDb[findedIndex].Section = inputSection;
                 this.maintOrdersDb[findedIndex].Machine = inputMachine;
@@ -141,63 +140,50 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-        public bool RemoveMaintOrder(int inputId)
+        public bool MaintOrder_Remove(int inputId)
         {
             bool rtn = false;
-            if (FindById(inputId, out int findedIndex))
+            if (MaintOrder_FindById(inputId, out int findedIndex))
             {
                 this.maintOrdersDb.Remove(this.maintOrdersDb[findedIndex]);
                 return true;
             }
             return rtn;
         }
-        public string PrintMaintOrder(int inputId)
+        public string MaintOrder_PrintId(int inputId)
         {
-            if (FindById(inputId, out int findedIndex))
-            {
-                return this.maintOrdersDb[findedIndex].MaintenanceOrder_print();
-            }
-            return string.Empty;
-        }
-        public string PrintMaintOrderId(int inputId)
-        {
-            FindById(inputId, out int findedIndex);
+            MaintOrder_FindById(inputId, out int findedIndex);
             return this.maintOrdersDb[findedIndex].Id.ToString();
         }
-        public string PrintMaintOrderUsername(int inputId)
+        public string MaintOrder_PrintUsername(int inputId)
         {
-            FindById(inputId, out int findedIndex);
+            MaintOrder_FindById(inputId, out int findedIndex);
             return this.maintOrdersDb[findedIndex].Username.ToString();
         }
-        public string PrintMaintOrderSection(int inputId)
+        public string MaintOrder_PrintSection(int inputId)
         {
-            FindById(inputId, out int findedIndex);
+            MaintOrder_FindById(inputId, out int findedIndex);
             return this.maintOrdersDb[findedIndex].Section.ToString();
         }
-        public string PrintMaintOrderMachine(int inputId)
+        public string MaintOrder_PrintMachine(int inputId)
         {
-            FindById(inputId, out int findedIndex);
+            MaintOrder_FindById(inputId, out int findedIndex);
             return this.maintOrdersDb[findedIndex].Machine.ToString();
         }
-        public string PrintMaintOrderUrgency(int inputId)
+        public string MaintOrder_PrintUrgency(int inputId)
         {
-            FindById(inputId, out int findedIndex);
+            MaintOrder_FindById(inputId, out int findedIndex);
             return this.maintOrdersDb[findedIndex].Urgency.ToString();
         }
-        public string PrintMaintOrderAntiquity(int inputId)
+        public string MaintOrder_PrintAntiquity(int inputId)
         {
-            FindById(inputId, out int findedIndex);
+            MaintOrder_FindById(inputId, out int findedIndex);
             return this.maintOrdersDb[findedIndex].Antiquity.ToString();
         }
-        public string PrintMaintOrderDescription(int inputId)
+        public string MaintOrder_PrintDescription(int inputId)
         {
-            FindById(inputId, out int findedIndex);
-            string rtn = this.maintOrdersDb[findedIndex].Description.ToString();
-            if (rtn == null)
-            {
-                rtn = "No se agrego descripcion.";
-            }
-            return rtn;
+            MaintOrder_FindById(inputId, out int findedIndex);         
+            return this.maintOrdersDb[findedIndex].Description.ToString();
         }
         #endregion
     }

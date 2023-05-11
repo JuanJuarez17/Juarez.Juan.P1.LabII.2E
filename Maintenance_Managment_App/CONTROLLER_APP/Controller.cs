@@ -31,65 +31,61 @@ namespace CONTROLLER_APP
         #endregion
 
         #region USER METHODS
-        public static int CheckUser(string inputUsername, string inputPassword)
+        public static int User_Check(string inputUsername, string inputPassword)
         {
-            return appDb.CheckUser(inputUsername, inputPassword);
+            return appDb.User_Check(inputUsername, inputPassword);
         }
         // TODO: Se puede agregar una sobrecarga de ReturnUser que reciba un int legajo operario (Se puede hacer tambien con nombre y apellido)
-        public static User ReturnUser(string inputUsername)
+        public static User User_Return(string inputUsername)
         {
-            return appDb.ReturnUser(inputUsername);
+            return appDb.User_Return(inputUsername);
         }
         #endregion
 
         #region MO METHODS
-        public static bool ParseMaintOrder(string inputDescription)
+        public static bool MaintOrder_Parse(string inputDescription)
         {
-            return Database.ParseMaintOrder(inputDescription);
+            return Database.MaintOrder_Parse(inputDescription);
         }
-        public static bool AddMaintOrder(User activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, out int idAdded)
+        public static bool MaintOrder_Add(User activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, out int idAdded)
         {
-            return appDb.AddMaintOrder(activeUser, inputMachine, inputSection, inputUrgency, inputDescription, out idAdded);
+            return appDb.MaintOrder_Add(activeUser, inputMachine, inputSection, inputUrgency, inputDescription, out idAdded);
         }
-        public static bool EditMaintOrder(int id, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, bool inputStatus)
+        public static bool MaintOrder_Edit(int id, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, bool inputStatus)
         {
-            return appDb.EditMaintOrder(id, inputMachine, inputSection, inputUrgency, inputDescription, inputStatus);
+            return appDb.MaintOrder_Edit(id, inputMachine, inputSection, inputUrgency, inputDescription, inputStatus);
         }
-        public static bool RemoveMaintOrder(int id)
+        public static bool MaintOrder_Remove(int id)
         {
-            return appDb.RemoveMaintOrder(id);
+            return appDb.MaintOrder_Remove(id);
         }
-        public static string PrintMaintOrder(int inputId)
+        public static string MaintOrder_PrintId(int inputId)
         {
-            return appDb.PrintMaintOrder(inputId);
+            return appDb.MaintOrder_PrintId(inputId);
         }
-        public static string PrintMaintOrderId(int inputId)
+        public static string MaintOrder_PrintUsername(int inputId)
         {
-            return appDb.PrintMaintOrderId(inputId);
+            return appDb.MaintOrder_PrintUsername(inputId);
         }
-        public static string PrintMaintOrderUsername(int inputId)
+        public static string MaintOrder_PrintSection(int inputId)
         {
-            return appDb.PrintMaintOrderUsername(inputId);
+            return appDb.MaintOrder_PrintSection(inputId);
         }
-        public static string PrintMaintOrderSection(int inputId)
+        public static string MaintOrder_PrintMachine(int inputId)
         {
-            return appDb.PrintMaintOrderSection(inputId);
+            return appDb.MaintOrder_PrintMachine(inputId);
         }
-        public static string PrintMaintOrderMachine(int inputId)
+        public static string MaintOrder_PrintUrgency(int inputId)
         {
-            return appDb.PrintMaintOrderMachine(inputId);
+            return appDb.MaintOrder_PrintUrgency(inputId);
         }
-        public static string PrintMaintOrderUrgency(int inputId)
+        public static string MaintOrder_PrintAntiquity(int inputId)
         {
-            return appDb.PrintMaintOrderUrgency(inputId);
+            return appDb.MaintOrder_PrintAntiquity(inputId);
         }
-        public static string PrintMaintOrderAnquity(int inputId)
+        public static string MaintOrder_PrintDescription(int inputId)
         {
-            return appDb.PrintMaintOrderAntiquity(inputId);
-        }
-        public static string PrintMaintOrderDescription(int inputId)
-        {
-            return appDb.PrintMaintOrderDescription(inputId);
+            return appDb.MaintOrder_PrintDescription(inputId);
         }
         #endregion
     }
