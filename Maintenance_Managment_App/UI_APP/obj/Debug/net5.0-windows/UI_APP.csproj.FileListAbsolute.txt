@@ -23,7 +23,8 @@ C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI
 C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.genruntimeconfig.cache
 C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\ref\UI_APP.dll
 C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.Properties.Resources.resources
-C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.FrmListMaintenanceOrder.resources
-C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.MaintenanceOrder.FrmAddMaintenanceOrder.FrmAddMaintenanceOrder.resources
 C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\bin\Debug\net5.0-windows\DATABASE_APP.dll
 C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\bin\Debug\net5.0-windows\DATABASE_APP.pdb
+C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.FrmListMaintOrder.resources
+C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.FrmAddMaintOrder.resources
+C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.FrmInfoMaintOrder.resources

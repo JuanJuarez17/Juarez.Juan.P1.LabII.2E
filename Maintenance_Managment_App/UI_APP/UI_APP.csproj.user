@@ -7,10 +7,13 @@
     <Compile Update="FrmMainMenu\FrmMainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="MaintenanceOrder\FrmAddMaintenanceOrder\FrmAddMaintenanceOrder.cs">
+    <Compile Update="MaintOrder\FrmAddMaintOrder\FrmAddMaintOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="MaintenanceOrder\FrmListMaintenanceOrder\FrmListMaintenanceOrder.cs">
+    <Compile Update="MaintOrder\FrmInfoMaintOrder\FrmInfoMaintOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MaintOrder\FrmListMaintOrder\FrmListMaintOrder.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

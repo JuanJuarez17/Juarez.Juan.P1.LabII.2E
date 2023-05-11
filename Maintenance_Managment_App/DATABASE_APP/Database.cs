@@ -96,83 +96,90 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-
-        // CreateMaintOrder es static pues no necesita de una instancia de clase Database para ejecutar su logica
-        public static MaintenanceOrder CreateMaintOrder(User activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription)
-        {
-            MaintenanceOrder auxMO = new MaintenanceOrder(activeUser, inputMachine, inputSection, inputUrgency, inputDescription);
-            return auxMO;
-        }
-
         // AddMaintOrder no es static pues necesita de una instancia de clase Database para ejecutar su logica
-        public bool AddMaintOrder(MaintenanceOrder inputMaintenanceOrder, out int idAdded)
+        public bool AddMaintOrder(User activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, out int idAdded)
         {
             bool rtn = false;
             idAdded = 0;
             if (this.maintOrdersDb.Count <= 100)
             {
-                this.maintOrdersDb.Add(inputMaintenanceOrder);
-                idAdded = inputMaintenanceOrder.Id;
+                MaintenanceOrder auxMaintOrder = new MaintenanceOrder(activeUser, inputMachine, inputSection, inputUrgency, inputDescription);
+                this.maintOrdersDb.Add(auxMaintOrder);
+                idAdded = auxMaintOrder.Id;
                 rtn = true;
             }
             return rtn;
         }
-
-        public bool ListMaintOrderDB(out string message)
+        public bool FindById(int inputId, out int findedIndex)
         {
             bool rtn = false;
-            StringBuilder sb = new StringBuilder();
-            if (this.maintOrdersDb != null && this.maintOrdersDb.Count > 0) // Revisar si ambas condiciones son necesarias
-            {
-                foreach (MaintenanceOrder item in this.maintOrdersDb)
-                {
-                    if (item is not null) // Valido que un objeto de la lista no sea nulo
-                    {
-                        sb.AppendLine(item.MaintenanceOrder_print()); // Aqui no puedo ercibir objeto null sino hay excepcion
-
-                    }
-                    else
-                    {
-                        sb.AppendLine("ERROR! Null Exception.\n");
-                    }
-                }
-                rtn = true;
-            }
-            message = sb.ToString();
-            return rtn;
-        }
-
-        public MaintenanceOrder FindById(int inputId)
-        {
+            findedIndex = -1;
             if (this.maintOrdersDb != null && this.maintOrdersDb.Count > 0)
             {
                 foreach (MaintenanceOrder item in this.maintOrdersDb)
                 {
                     if (item.Id == inputId)
                     {
-                        return item;
-                    }                    
-                }
-            }
-            return null;
-        }
-        public bool RemoveMaintOrder(int inputId)
-        {
-            bool rtn = false;
-            if (this.maintOrdersDb != null && this.maintOrdersDb.Count > 0)
-            {
-                foreach (MaintenanceOrder item in this.maintOrdersDb)
-                {
-                    if (item.Id == inputId)
-                    {
-                        this.maintOrdersDb.Remove(item);
+                        findedIndex = this.maintOrdersDb.IndexOf(item);
                         return true;
                     }
                 }
             }
             return rtn;
         }
-
+        public bool RemoveMaintOrder(int inputId)
+        {
+            bool rtn = false;
+            if (FindById(inputId, out int findedIndex))
+            {
+                this.maintOrdersDb.Remove(this.maintOrdersDb[findedIndex]);
+                return true;
+            }
+            return rtn;
+        }
+        public string PrintMaintOrder(int inputId)
+        {
+            if (FindById(inputId, out int findedIndex))
+            {
+                return this.maintOrdersDb[findedIndex].MaintenanceOrder_print();
+            }
+            return string.Empty;
+        }
+        public string PrintMaintOrderId(int inputId)
+        {
+            FindById(inputId, out int findedIndex);
+            return this.maintOrdersDb[findedIndex].Id.ToString();
+        }
+        public string PrintMaintOrderUsername(int inputId)
+        {
+            FindById(inputId, out int findedIndex);
+            return this.maintOrdersDb[findedIndex].Username.ToString();
+        }
+        public string PrintMaintOrderSection(int inputId)
+        {
+            FindById(inputId, out int findedIndex);
+            return this.maintOrdersDb[findedIndex].Section.ToString();
+        }
+        public string PrintMaintOrderMachine(int inputId)
+        {
+            FindById(inputId, out int findedIndex);
+            return this.maintOrdersDb[findedIndex].Machine.ToString();
+        }
+        public string PrintMaintOrderUrgency(int inputId)
+        {
+            FindById(inputId, out int findedIndex);
+            return this.maintOrdersDb[findedIndex].Urgency.ToString();
+        }
+        public string PrintMaintOrderDescription(int inputId)
+        {
+            FindById(inputId, out int findedIndex);
+            string rtn = this.maintOrdersDb[findedIndex].Description.ToString();
+            if (rtn == null)
+            {
+                rtn = "No se agrego descripcion.";
+            }
+            return rtn;
+        }
         #endregion
     }
 }

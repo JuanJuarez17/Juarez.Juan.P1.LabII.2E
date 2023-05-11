@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UI_APP.MaintenanceOrder.FrmAddMaintenanceOrder;
 
 namespace UI_APP
 {
@@ -110,7 +109,7 @@ namespace UI_APP
         }
         private void smi_MaintOrder_Click(object sender, EventArgs e)
         {
-            ActivateForm(new FrmListMaintenanceOrder(this.User));
+            ActivateForm(new FrmListMaintOrder(this.User));
         }
         #endregion
     }

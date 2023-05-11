@@ -85,7 +85,15 @@ namespace ENTITIES_APP
         }
         public string Description
         {
-            get { return this.description; }
+            get 
+            {
+                string rtn = this.description;
+                if (rtn == null)
+                {
+                    rtn = "No se cargo descripcion";
+                }
+                return rtn; 
+            }
         }
         public bool Completed
         {
@@ -96,7 +104,6 @@ namespace ENTITIES_APP
             get { return this.endDate; }
         }
         #endregion
-
 
         #region METHOD W/ EXCEPTION
         public static bool SetDescription(string inputDescription)
