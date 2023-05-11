@@ -28,3 +28,4 @@ C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\bin\Debug\net5.0-windows\DA
 C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.FrmListMaintOrder.resources
 C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.FrmAddMaintOrder.resources
 C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.FrmInfoMaintOrder.resources
+C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.FrmEditMaintOrder.resources

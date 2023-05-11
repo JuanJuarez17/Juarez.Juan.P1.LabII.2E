@@ -10,6 +10,9 @@
     <Compile Update="MaintOrder\FrmAddMaintOrder\FrmAddMaintOrder.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="MaintOrder\FrmEditMaintOrder\FrmEditMaintOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="MaintOrder\FrmInfoMaintOrder\FrmInfoMaintOrder.cs">
       <SubType>Form</SubType>
     </Compile>

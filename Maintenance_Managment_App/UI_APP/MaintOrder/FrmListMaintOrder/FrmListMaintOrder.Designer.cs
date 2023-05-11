@@ -144,6 +144,7 @@
             btn_EditMaintOrder.Size=new System.Drawing.Size(50, 50);
             btn_EditMaintOrder.TabIndex=5;
             btn_EditMaintOrder.UseVisualStyleBackColor=true;
+            btn_EditMaintOrder.Click+=btn_EditMaintOrder_Click;
             // 
             // btn_InfoMaintOrder
             // 
@@ -156,7 +157,7 @@
             btn_InfoMaintOrder.UseVisualStyleBackColor=true;
             btn_InfoMaintOrder.Click+=btn_InfoMaintOrder_Click;
             // 
-            // FrmListMaintenanceOrder
+            // FrmListMaintOrder
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode=System.Windows.Forms.AutoScaleMode.Font;
@@ -170,7 +171,7 @@
             FormBorderStyle=System.Windows.Forms.FormBorderStyle.None;
             MaximizeBox=false;
             MinimizeBox=false;
-            Name="FrmListMaintenanceOrder";
+            Name="FrmListMaintOrder";
             StartPosition=System.Windows.Forms.FormStartPosition.CenterParent;
             Text="FrmListMaintenanceOrder";
             Load+=FrmListMaintenanceOrder_Load;

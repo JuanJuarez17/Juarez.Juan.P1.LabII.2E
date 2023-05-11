@@ -105,6 +105,19 @@ namespace UI_APP
             int selectedId = (int)dtg_MaintOrderDb.CurrentRow.Cells[0].Value;
             ActivateForm(new FrmInfoMaintOrder(selectedId), out DialogResult result);
         }
+        private void btn_EditMaintOrder_Click(object sender, EventArgs e)
+        {
+            int selectedId = (int)dtg_MaintOrderDb.CurrentRow.Cells[0].Value;
+            ActivateForm(new FrmEditMaintOrder(selectedId), out DialogResult result);
+            if (result == DialogResult.OK)
+            {
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+            }
+            else
+            {
+                MessageBox.Show("Modificacion cancelada!", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
         private void btn_DeleteMaintOrder_Click(object sender, EventArgs e)
         {
             int selectedId = (int)dtg_MaintOrderDb.CurrentRow.Cells[0].Value;

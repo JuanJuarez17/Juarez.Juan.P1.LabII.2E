@@ -51,6 +51,10 @@ namespace CONTROLLER_APP
         {
             return appDb.AddMaintOrder(activeUser, inputMachine, inputSection, inputUrgency, inputDescription, out idAdded);
         }
+        public static bool EditMaintOrder(int id, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, bool inputStatus)
+        {
+            return appDb.EditMaintOrder(id, inputMachine, inputSection, inputUrgency, inputDescription, inputStatus);
+        }
         public static bool RemoveMaintOrder(int id)
         {
             return appDb.RemoveMaintOrder(id);

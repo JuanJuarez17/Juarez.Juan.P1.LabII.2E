@@ -127,6 +127,20 @@ namespace DATABASE_APP
             }
             return rtn;
         }
+
+        public bool EditMaintOrder(int inputId, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, bool inputStatus)
+        {
+            bool rtn = false;
+            if (FindById(inputId, out int findedIndex))
+            {
+                this.maintOrdersDb[findedIndex].Section = inputSection;
+                this.maintOrdersDb[findedIndex].Machine = inputMachine;
+                this.maintOrdersDb[findedIndex].Urgency = inputUrgency;
+                this.maintOrdersDb[findedIndex].Description = inputDescription;
+                return true;
+            }
+            return rtn;
+        }
         public bool RemoveMaintOrder(int inputId)
         {
             bool rtn = false;

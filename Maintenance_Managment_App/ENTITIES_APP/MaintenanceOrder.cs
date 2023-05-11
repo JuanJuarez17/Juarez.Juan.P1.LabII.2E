@@ -70,14 +70,17 @@ namespace ENTITIES_APP
         public Section Section
         {
             get { return this.faultyUnitSection; }
+            set { this.faultyUnitSection = value; }
         }
         public Machine Machine
         {
             get { return this.faultyUnit; }
+            set { this.faultyUnit = value; }
         }
         public Urgency Urgency
         {
             get { return this.failureUrgency; }
+            set { this.failureUrgency = value; }
         }
         public DateTime CreationDate
         {
@@ -94,6 +97,7 @@ namespace ENTITIES_APP
                 }
                 return rtn; 
             }
+            set { this.description = value; }
         }
         public bool Completed
         {
