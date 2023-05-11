@@ -79,6 +79,10 @@ namespace CONTROLLER_APP
         {
             return appDb.PrintMaintOrderUrgency(inputId);
         }
+        public static string PrintMaintOrderAnquity(int inputId)
+        {
+            return appDb.PrintMaintOrderAntiquity(inputId);
+        }
         public static string PrintMaintOrderDescription(int inputId)
         {
             return appDb.PrintMaintOrderDescription(inputId);

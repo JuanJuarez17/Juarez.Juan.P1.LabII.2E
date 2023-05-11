@@ -31,6 +31,7 @@ namespace UI_APP
             this.txb_MaintOrderSector.Text = Controller.PrintMaintOrderSection(this.maintOrderId);
             this.txb_MaintOrderMachine.Text = Controller.PrintMaintOrderMachine(this.maintOrderId);
             this.txb_MaintOrderUrgency.Text = Controller.PrintMaintOrderUrgency(this.maintOrderId);
+            this.txb_MaintOrderAntiq.Text = Controller.PrintMaintOrderAnquity(this.maintOrderId);
             this.rtb_MaintOrderDesc.Text = Controller.PrintMaintOrderDescription(this.maintOrderId);
 
         }

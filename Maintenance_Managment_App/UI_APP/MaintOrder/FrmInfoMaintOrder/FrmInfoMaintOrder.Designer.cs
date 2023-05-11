@@ -44,6 +44,9 @@
             txb_MaintOrderSector=new System.Windows.Forms.TextBox();
             txb_MaintOrderUser=new System.Windows.Forms.TextBox();
             txb_MaintOrderId=new System.Windows.Forms.TextBox();
+            txb_MaintOrderAntiq=new System.Windows.Forms.TextBox();
+            lbl_Antiquity=new System.Windows.Forms.Label();
+            lbl_Days=new System.Windows.Forms.Label();
             SuspendLayout();
             // 
             // btn_Cancel
@@ -183,11 +186,44 @@
             txb_MaintOrderId.Size=new System.Drawing.Size(130, 23);
             txb_MaintOrderId.TabIndex=24;
             // 
+            // txb_MaintOrderAntiq
+            // 
+            txb_MaintOrderAntiq.Location=new System.Drawing.Point(304, 166);
+            txb_MaintOrderAntiq.Name="txb_MaintOrderAntiq";
+            txb_MaintOrderAntiq.ReadOnly=true;
+            txb_MaintOrderAntiq.Size=new System.Drawing.Size(50, 23);
+            txb_MaintOrderAntiq.TabIndex=27;
+            // 
+            // lbl_Antiquity
+            // 
+            lbl_Antiquity.Anchor=System.Windows.Forms.AnchorStyles.Top|System.Windows.Forms.AnchorStyles.Right;
+            lbl_Antiquity.AutoSize=true;
+            lbl_Antiquity.Font=new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lbl_Antiquity.Location=new System.Drawing.Point(223, 169);
+            lbl_Antiquity.Name="lbl_Antiquity";
+            lbl_Antiquity.Size=new System.Drawing.Size(75, 17);
+            lbl_Antiquity.TabIndex=26;
+            lbl_Antiquity.Text="Antiguedad";
+            // 
+            // lbl_Days
+            // 
+            lbl_Days.Anchor=System.Windows.Forms.AnchorStyles.Top|System.Windows.Forms.AnchorStyles.Right;
+            lbl_Days.AutoSize=true;
+            lbl_Days.Font=new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lbl_Days.Location=new System.Drawing.Point(356, 169);
+            lbl_Days.Name="lbl_Days";
+            lbl_Days.Size=new System.Drawing.Size(33, 17);
+            lbl_Days.TabIndex=28;
+            lbl_Days.Text="Dias";
+            // 
             // FrmInfoMaintOrder
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode=System.Windows.Forms.AutoScaleMode.Font;
             ClientSize=new System.Drawing.Size(634, 211);
+            Controls.Add(lbl_Days);
+            Controls.Add(txb_MaintOrderAntiq);
+            Controls.Add(lbl_Antiquity);
             Controls.Add(txb_MaintOrderUser);
             Controls.Add(txb_MaintOrderId);
             Controls.Add(lbl_Username);
@@ -230,5 +266,8 @@
         private System.Windows.Forms.TextBox txb_MaintOrderId;
         private System.Windows.Forms.ComboBox cbb_Urgency;
         private System.Windows.Forms.ComboBox cbb_Machine;
+        private System.Windows.Forms.TextBox txb_MaintOrderAntiq;
+        private System.Windows.Forms.Label lbl_Antiquity;
+        private System.Windows.Forms.Label lbl_Days;
     }
 }

@@ -62,6 +62,7 @@ namespace UI_APP
                 drv.Columns["Description"].Visible = false;
                 drv.Columns["Completed"].Visible = false;
                 drv.Columns["EndDate"].Visible = false;
+                drv.Columns["Antiquity"].Visible = false;
                 drv.Columns[0].HeaderText = "ID ORDEN";
                 drv.Columns[2].HeaderText = "GENERÓ";
                 drv.Columns[3].HeaderText = "SECCCIÓN";

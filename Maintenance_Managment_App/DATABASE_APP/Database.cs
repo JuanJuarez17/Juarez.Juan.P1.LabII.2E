@@ -170,6 +170,11 @@ namespace DATABASE_APP
             FindById(inputId, out int findedIndex);
             return this.maintOrdersDb[findedIndex].Urgency.ToString();
         }
+        public string PrintMaintOrderAntiquity(int inputId)
+        {
+            FindById(inputId, out int findedIndex);
+            return this.maintOrdersDb[findedIndex].Antiquity.ToString();
+        }
         public string PrintMaintOrderDescription(int inputId)
         {
             FindById(inputId, out int findedIndex);

@@ -103,6 +103,14 @@ namespace ENTITIES_APP
         {
             get { return this.endDate; }
         }
+
+        public int Antiquity
+        {
+            get
+            {
+                return (DateTime.Now - this.creationDate).Days;
+            }
+        }
         #endregion
 
         #region METHOD W/ EXCEPTION
