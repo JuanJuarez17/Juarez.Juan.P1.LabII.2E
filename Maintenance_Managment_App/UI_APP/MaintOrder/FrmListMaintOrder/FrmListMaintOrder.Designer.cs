@@ -40,6 +40,9 @@
             btn_DeleteMaintOrder=new System.Windows.Forms.Button();
             btn_EditMaintOrder=new System.Windows.Forms.Button();
             btn_InfoMaintOrder=new System.Windows.Forms.Button();
+            lbl_MaintOrderDb=new System.Windows.Forms.Label();
+            btn_ImportDb=new System.Windows.Forms.Button();
+            tlt_Help=new System.Windows.Forms.ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)dtg_MaintOrderDb).BeginInit();
             SuspendLayout();
             // 
@@ -66,6 +69,7 @@
             iml_ListMaintOrder.Images.SetKeyName(3, "boton-eliminar.png");
             iml_ListMaintOrder.Images.SetKeyName(4, "aceptar.png");
             iml_ListMaintOrder.Images.SetKeyName(5, "lupa.png");
+            iml_ListMaintOrder.Images.SetKeyName(6, "base-de-datos.png");
             // 
             // dtg_MaintOrderDb
             // 
@@ -117,7 +121,7 @@
             // 
             btn_AddMaintOrder.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btn_AddMaintOrder.ImageList=iml_ListMaintOrder;
-            btn_AddMaintOrder.Location=new System.Drawing.Point(18, 12);
+            btn_AddMaintOrder.Location=new System.Drawing.Point(18, 78);
             btn_AddMaintOrder.Name="btn_AddMaintOrder";
             btn_AddMaintOrder.Size=new System.Drawing.Size(50, 50);
             btn_AddMaintOrder.TabIndex=3;
@@ -128,7 +132,7 @@
             // 
             btn_DeleteMaintOrder.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btn_DeleteMaintOrder.ImageList=iml_ListMaintOrder;
-            btn_DeleteMaintOrder.Location=new System.Drawing.Point(18, 210);
+            btn_DeleteMaintOrder.Location=new System.Drawing.Point(18, 276);
             btn_DeleteMaintOrder.Name="btn_DeleteMaintOrder";
             btn_DeleteMaintOrder.Size=new System.Drawing.Size(50, 50);
             btn_DeleteMaintOrder.TabIndex=4;
@@ -139,7 +143,7 @@
             // 
             btn_EditMaintOrder.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btn_EditMaintOrder.ImageList=iml_ListMaintOrder;
-            btn_EditMaintOrder.Location=new System.Drawing.Point(18, 144);
+            btn_EditMaintOrder.Location=new System.Drawing.Point(18, 210);
             btn_EditMaintOrder.Name="btn_EditMaintOrder";
             btn_EditMaintOrder.Size=new System.Drawing.Size(50, 50);
             btn_EditMaintOrder.TabIndex=5;
@@ -150,24 +154,48 @@
             // 
             btn_InfoMaintOrder.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btn_InfoMaintOrder.ImageList=iml_ListMaintOrder;
-            btn_InfoMaintOrder.Location=new System.Drawing.Point(18, 78);
+            btn_InfoMaintOrder.Location=new System.Drawing.Point(18, 144);
             btn_InfoMaintOrder.Name="btn_InfoMaintOrder";
             btn_InfoMaintOrder.Size=new System.Drawing.Size(50, 50);
             btn_InfoMaintOrder.TabIndex=6;
             btn_InfoMaintOrder.UseVisualStyleBackColor=true;
             btn_InfoMaintOrder.Click+=btn_InfoMaintOrder_Click;
             // 
+            // lbl_MaintOrderDb
+            // 
+            lbl_MaintOrderDb.Font=new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            lbl_MaintOrderDb.Location=new System.Drawing.Point(308, 187);
+            lbl_MaintOrderDb.Name="lbl_MaintOrderDb";
+            lbl_MaintOrderDb.Size=new System.Drawing.Size(400, 100);
+            lbl_MaintOrderDb.TabIndex=7;
+            lbl_MaintOrderDb.Text="La base de datos de ordenes de mantenimiento se encuentra vacia.\r\nSeleccione \"Importar\" para traer una base de datos o ingrese una nueva orden.\r\n";
+            lbl_MaintOrderDb.TextAlign=System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btn_ImportDb
+            // 
+            btn_ImportDb.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btn_ImportDb.ImageList=iml_ListMaintOrder;
+            btn_ImportDb.Location=new System.Drawing.Point(18, 12);
+            btn_ImportDb.Name="btn_ImportDb";
+            btn_ImportDb.Size=new System.Drawing.Size(50, 50);
+            btn_ImportDb.TabIndex=8;
+            btn_ImportDb.UseVisualStyleBackColor=true;
+            btn_ImportDb.Click+=btn_ImportDb_Click;
+            btn_ImportDb.MouseHover+=btn_ImportDb_MouseHover;
+            // 
             // FrmListMaintOrder
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode=System.Windows.Forms.AutoScaleMode.Font;
             ClientSize=new System.Drawing.Size(950, 550);
+            Controls.Add(btn_ImportDb);
+            Controls.Add(lbl_MaintOrderDb);
             Controls.Add(btn_InfoMaintOrder);
             Controls.Add(btn_EditMaintOrder);
             Controls.Add(btn_DeleteMaintOrder);
             Controls.Add(btn_AddMaintOrder);
-            Controls.Add(dtg_MaintOrderDb);
             Controls.Add(btn_Close);
+            Controls.Add(dtg_MaintOrderDb);
             FormBorderStyle=System.Windows.Forms.FormBorderStyle.None;
             MaximizeBox=false;
             MinimizeBox=false;
@@ -187,5 +215,8 @@
         private System.Windows.Forms.Button btn_DeleteMaintOrder;
         private System.Windows.Forms.Button btn_EditMaintOrder;
         private System.Windows.Forms.Button btn_InfoMaintOrder;
+        private System.Windows.Forms.Label lbl_MaintOrderDb;
+        private System.Windows.Forms.Button btn_ImportDb;
+        private System.Windows.Forms.ToolTip tlt_Help;
     }
 }

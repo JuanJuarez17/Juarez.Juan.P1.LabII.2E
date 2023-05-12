@@ -12,13 +12,6 @@ namespace CONTROLLER_APP
         private static Database appDb;
         #endregion
 
-        #region CONSTRUCTOR
-        static Controller()
-        {
-            appDb = new Database();
-        }
-        #endregion
-
         #region READONLY PROPERTIES
         public static List<MaintenanceOrder> MaintOrderDb
         {
@@ -27,6 +20,13 @@ namespace CONTROLLER_APP
         public static List<User> UserDb
         {
             get { return appDb.UserDb; }
+        }
+        #endregion
+
+        #region CONSTRUCTOR
+        static Controller()
+        {
+            appDb = new Database();
         }
         #endregion
 
@@ -43,6 +43,10 @@ namespace CONTROLLER_APP
         #endregion
 
         #region MO METHODS
+        public static bool MaintOrder_HardcodeDb()
+        {
+            return appDb.LoadMaintOrders();
+        }
         public static bool MaintOrder_Parse(string inputDescription)
         {
             return Database.MaintOrder_Parse(inputDescription);

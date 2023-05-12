@@ -52,28 +52,30 @@ namespace UI_APP
             activeForm.BringToFront();
             result = activeForm.ShowDialog();
         }
-        public static void FrmListMaintenanceOrder_LoadDataGrid(DataGridView drv)
+        public static void FrmListMaintenanceOrder_LoadDataGrid(DataGridView inputDtg, Label inputLabel)
         {
             if (Controller.MaintOrderDb.Count > 0)
             {
-                drv.DataSource = null;
-                drv.DataSource = Controller.MaintOrderDb;
-                drv.Columns["User"].Visible = false;
-                drv.Columns["Description"].Visible = false;
-                drv.Columns["Completed"].Visible = false;
-                drv.Columns["EndDate"].Visible = false;
-                drv.Columns["Antiquity"].Visible = false;
-                drv.Columns[0].HeaderText = "ID ORDEN";
-                drv.Columns[2].HeaderText = "GENERÓ";
-                drv.Columns[3].HeaderText = "SECCCIÓN";
-                drv.Columns[4].HeaderText = "UNIDAD";
-                drv.Columns[5].HeaderText = "URGENCIA";
-                drv.Columns[6].HeaderText = "FECHA DE INGRESO";
-                drv.Visible = true;
+                inputDtg.DataSource = null;
+                inputDtg.DataSource = Controller.MaintOrderDb;
+                inputDtg.Columns["User"].Visible = false;
+                inputDtg.Columns["Description"].Visible = false;
+                inputDtg.Columns["Completed"].Visible = false;
+                inputDtg.Columns["EndDate"].Visible = false;
+                inputDtg.Columns["Antiquity"].Visible = false;
+                inputDtg.Columns[0].HeaderText = "ID ORDEN";
+                inputDtg.Columns[2].HeaderText = "GENERÓ";
+                inputDtg.Columns[3].HeaderText = "SECCCIÓN";
+                inputDtg.Columns[4].HeaderText = "UNIDAD";
+                inputDtg.Columns[5].HeaderText = "URGENCIA";
+                inputDtg.Columns[6].HeaderText = "FECHA DE INGRESO";
+                inputDtg.Visible = true;
+                inputLabel.Visible = false;
             }
             else
             {
-                drv.Visible = false;
+                inputDtg.Visible = false;
+                inputLabel.Visible = true;
             }
         }
         #endregion
@@ -81,19 +83,32 @@ namespace UI_APP
         #region EVENT METHODS
         private void FrmListMaintenanceOrder_Load(object sender, EventArgs e)
         {
+            this.btn_ImportDb.ImageIndex = 6;
             this.btn_AddMaintOrder.ImageIndex = 0;
             this.btn_InfoMaintOrder.ImageIndex = 5;
             this.btn_EditMaintOrder.ImageIndex = 1;
             this.btn_DeleteMaintOrder.ImageIndex = 2;
             this.btn_Close.ImageIndex = 3;
-            FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+            FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb, this.lbl_MaintOrderDb);
+        }
+        private void btn_ImportDb_Click(object sender, EventArgs e)
+        {
+            if (Controller.MaintOrder_HardcodeDb())
+            {
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb, this.lbl_MaintOrderDb);
+                MessageBox.Show("Base de datos importada con exito.", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Error al importar la base de datos.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
         private void btn_AddMaintOrder_Click(object sender, EventArgs e)
         {
             ActivateForm(new FrmAddMaintOrder(this.User), out DialogResult result);
             if (result == DialogResult.OK)
             {
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb, this.lbl_MaintOrderDb);
             }
             else
             {
@@ -111,7 +126,7 @@ namespace UI_APP
             ActivateForm(new FrmEditMaintOrder(selectedId), out DialogResult result);
             if (result == DialogResult.OK)
             {
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb, this.lbl_MaintOrderDb);
             }
             else
             {
@@ -125,7 +140,7 @@ namespace UI_APP
             if (respuesta == DialogResult.Yes)
             {
                 Controller.MaintOrder_Remove(selectedId);
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb, this.lbl_MaintOrderDb);
             }
         }
         private void btn_Close_Click(object sender, EventArgs e)
@@ -133,5 +148,10 @@ namespace UI_APP
             this.Close();
         }
         #endregion
+
+        private void btn_ImportDb_MouseHover(object sender, EventArgs e)
+        {
+            this.tlt_Help.Show("Importar base de datos", this.btn_ImportDb);
+        }
     }
 }
