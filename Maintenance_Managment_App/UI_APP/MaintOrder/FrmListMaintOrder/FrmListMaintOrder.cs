@@ -99,7 +99,7 @@ namespace UI_APP
         }
         private void btn_AddMaintOrder_MouseHover(object sender, EventArgs e)
         {
-            this.tlt_Help.Show("Crear Orden Mantenimiento", this.btn_ImportDb);
+            this.tlt_Help.Show("Crear Orden Mantenimiento", this.btn_AddMaintOrder);
         }
         private void btn_ImportDb_Click(object sender, EventArgs e)
         {

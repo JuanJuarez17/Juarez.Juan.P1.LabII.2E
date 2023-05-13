@@ -60,23 +60,6 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-        public bool MaintOrder_LoadActiveOrders()
-        {
-            bool rtn = false;
-            if (this.maintOrdersDb.Count > 0)
-            {
-                this.activeMaintOrders.Clear();
-                foreach (MaintenanceOrder item in this.maintOrdersDb)
-                {
-                    if (item.Active)
-                    {
-                        this.activeMaintOrders.Add(item);
-                        rtn = true;
-                    }
-                }
-            }
-            return rtn;
-        }
         #endregion
 
         #region USER DB METHODS
@@ -116,7 +99,7 @@ namespace DATABASE_APP
         #endregion
 
         #region MAINT ORDER DB METHODS
-        // ParseMaintOrder es static pues no necesita de una instancia de clase Database para ejecutar su logica
+        // MaintOrder_Parse es static pues no necesita de una instancia de clase Database para ejecutar su logica
         public static bool MaintOrder_Parse(string inputDescription)
         {
             bool rtn = false;
@@ -127,7 +110,24 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-        // AddMaintOrder no es static pues necesita de una instancia de clase Database para ejecutar su logica
+        public bool MaintOrder_LoadActiveOrders()
+        {
+            bool rtn = false;
+            if (this.maintOrdersDb.Count > 0)
+            {
+                this.activeMaintOrders.Clear();
+                foreach (MaintenanceOrder item in this.maintOrdersDb)
+                {
+                    if (item.Active)
+                    {
+                        this.activeMaintOrders.Add(item);
+                        rtn = true;
+                    }
+                }
+            }
+            return rtn;
+        }
+        // MaintOrder_Add no es static pues necesita de una instancia de clase Database para ejecutar su logica
         public bool MaintOrder_Add(User activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, out int idAdded)
         {
             bool rtn = false;
@@ -172,10 +172,10 @@ namespace DATABASE_APP
                 {
                     this.maintOrdersDb[findedIndex].EndDate = DateTime.Now.Date;
                 }
-                //else
-                //{
-                //    this.maintOrdersDb[findedIndex].EndDate = this.maintOrdersDb[findedIndex].EndDate;
-                //}
+                else
+                {
+                    this.maintOrdersDb[findedIndex].EndDate = new DateTime();
+                }
                 return true;
             }
             return rtn;
@@ -189,6 +189,11 @@ namespace DATABASE_APP
                 return true;
             }
             return rtn;
+        }
+        public bool MaintOrder_PrintStatus(int inputId) 
+        {
+            MaintOrder_FindById(inputId, out int findedIndex);
+            return this.maintOrdersDb[findedIndex].Completed;
         }
         public string MaintOrder_PrintId(int inputId)
         {

@@ -72,6 +72,10 @@ namespace CONTROLLER_APP
         {
             return appDb.MaintOrder_Remove(id);
         }
+        public static bool MaintOrder_PrintStatus(int inputId)
+        {
+            return appDb.MaintOrder_PrintStatus(inputId);
+        }
         public static string MaintOrder_PrintId(int inputId)
         {
             return appDb.MaintOrder_PrintId(inputId);

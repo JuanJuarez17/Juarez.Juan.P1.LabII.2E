@@ -82,7 +82,7 @@ namespace ENTITIES_APP
         public DateTime EndDate
         {
             get { return this.endDate.Date; }
-            set { this.endDate = DateTime.Now.Date; }
+            set { this.endDate = value; }
         }
         public int Antiquity
         {

@@ -36,6 +36,10 @@ namespace UI_APP
             this.cbb_Machine.Text = Controller.MaintOrder_PrintMachine(this.maintOrderId);
             this.cbb_Urgency.Text = Controller.MaintOrder_PrintUrgency(this.maintOrderId);
             this.rtb_MaintOrderDesc.Text = Controller.MaintOrder_PrintDescription(this.maintOrderId);
+            if (Controller.MaintOrder_PrintStatus(this.maintOrderId))
+            {
+                this.chb_Completed.Checked = true;
+            }
         }
         private void btn_Accept_Click(object sender, EventArgs e)
         {
