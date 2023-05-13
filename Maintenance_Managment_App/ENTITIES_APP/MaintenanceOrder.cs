@@ -17,43 +17,22 @@ namespace ENTITIES_APP
         private Machine faultyUnit;
         private Section faultyUnitSection;
         private Urgency failureUrgency;
-        private DateTime creationDate;
         private string description;
+        private bool active;
+        private DateTime creationDate;
         private bool completed;
         private DateTime endDate;
-        #endregion
-
-        #region CONSTRUCTOR
-        static MaintenanceOrder()
-        {
-            lastId = 100;
-        }
-        private MaintenanceOrder()
-        {
-            this.id = lastId++;
-        }
-        public MaintenanceOrder(User inputMaker, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription)
-                 : this()
-        {
-            this.maker = inputMaker;
-            this.faultyUnit = inputMachine;
-            this.faultyUnitSection = inputSection;
-            this.failureUrgency = inputUrgency;
-            this.creationDate = DateTime.Now;
-            this.completed = false;
-            this.description = inputDescription;
-        }
-        public MaintenanceOrder(User inputMaker, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, DateTime inputDate)
-                 : this(inputMaker, inputMachine, inputSection, inputUrgency, inputDescription) // Solo para uso en hardcodeo
-        {
-            this.creationDate = inputDate;
-        }
         #endregion
 
         #region READONLY PROPERTIES
         public int Id
         {
             get { return this.id; }
+        }
+        public bool Active
+        {
+            get { return this.active; }
+            set { this.active = value; }
         }
         public User User
         {
@@ -84,31 +63,66 @@ namespace ENTITIES_APP
         }
         public string Description
         {
-            get 
+            get
             {
                 string rtn = this.description;
                 if (rtn == null)
                 {
                     rtn = string.Empty;
                 }
-                return rtn; 
+                return rtn;
             }
             set { this.description = value; }
         }
         public bool Completed
         {
             get { return this.completed; }
+            set { this.completed = value; }
         }
         public DateTime EndDate
         {
-            get { return this.endDate; }
+            get { return this.endDate.Date; }
+            set { this.endDate = DateTime.Now.Date; }
         }
-
         public int Antiquity
         {
             get
             {
                 return (DateTime.Now - this.creationDate).Days;
+            }
+        }
+        #endregion
+
+        #region CONSTRUCTOR
+        static MaintenanceOrder()
+        {
+            lastId = 100;
+        }
+        private MaintenanceOrder()
+        {
+            this.id = lastId++;
+        }
+        public MaintenanceOrder(User inputMaker, Section inputSection, Machine inputMachine, Urgency inputUrgency, string inputDescription)
+                 : this()
+        {
+            this.maker = inputMaker; //
+            this.faultyUnit = inputMachine; //
+            this.faultyUnitSection = inputSection; //
+            this.failureUrgency = inputUrgency; //
+            this.description = inputDescription; //
+            this.active = true;
+            this.creationDate = DateTime.Now;
+            this.completed = false;
+        }
+        public MaintenanceOrder(User inputMaker, Section inputSection, Machine inputMachine, Urgency inputUrgency, string inputDescription, bool inputStatus, DateTime inputCreation, bool inputCompleted)
+                 : this(inputMaker, inputSection, inputMachine, inputUrgency, inputDescription) // Solo para uso en hardcodeo
+        {
+            this.active = inputStatus;
+            this.creationDate = inputCreation;
+            this.completed = inputCompleted;
+            if (inputCompleted)
+            {
+                this.endDate = DateTime.Now;
             }
         }
         #endregion
@@ -122,8 +136,9 @@ namespace ENTITIES_APP
                 rtn = true;
             }
             return rtn;
-        } 
+        }
         #endregion
+
 
         #region METHODS
         public string MaintenanceOrder_print()

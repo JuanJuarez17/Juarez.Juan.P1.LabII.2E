@@ -9,12 +9,14 @@ namespace DATABASE_APP
     {
         #region ATTRIBUTES
         private List<MaintenanceOrder> maintOrdersDb;
+        private List<MaintenanceOrder> activeMaintOrders;
         private List<User> usersDb;
         #endregion
 
         #region READONLY PROPERTIES
         public List<User> UserDb { get { return this.usersDb; } }
         public List<MaintenanceOrder> MaintOrderDb { get { return this.maintOrdersDb; } }
+        public List<MaintenanceOrder> ActiveMaintOrders { get { return this.activeMaintOrders; } }
         #endregion
 
         #region CONSTRUCTOR
@@ -22,35 +24,56 @@ namespace DATABASE_APP
         {
             this.usersDb = new List<User>();
             this.maintOrdersDb = new List<MaintenanceOrder>();
-            LoadUsers();
+            this.activeMaintOrders = new List<MaintenanceOrder>();
+            User_LoadDb();
         }
         #endregion
 
         #region HARDCODE METHODS
         // Es private ya que por defecto se cargara la db de user, no se podra taer de otro lado
-        private void LoadUsers()
+        private void User_LoadDb()
         {
             this.usersDb.Add(new Operator("JPerez", "qwe123"));
             this.usersDb.Add(new Operator("ETolosa", "asd456"));
             this.usersDb.Add(new Operator("PRodriguez", "zxc789"));
-            this.usersDb.Add(new Operator("Operario", "oper123"));
             this.usersDb.Add(new Supervisor("JJuarez", "rty000"));
+            this.usersDb.Add(new Operator("Operario", "oper123"));
             this.usersDb.Add(new Supervisor("Supervisor", "super456"));
         }
         // Es public pues voy a dar la opcion de hardcodear la db, en un futuro habra otro metodo que reciba una db
-        public bool LoadMaintOrders()
+        public bool MaintOrder_HardcodeDb()
         {
             bool rtn = false;
             if (this.maintOrdersDb.Count <= 100)
             {
-                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("PRodriguez"), Machine.CentroCNC, Section.Mecanizado, Urgency.Normal, null, new DateTime(2022, 09, 13)));
-                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("ETolosa"), Machine.Torno, Section.Matriceria, Urgency.Urgente, null, new DateTime(2022, 11, 27)));
-                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("PRodriguez"), Machine.Fresadora, Section.Matriceria, Urgency.Normal, null, new DateTime(2022, 12, 03)));
-                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("ETolosa"), Machine.Autoelevador02, Section.Almacen, Urgency.Programable, null, new DateTime(2022, 09, 23)));
-                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("JPerez"), Machine.Brochadora, Section.Mecanizado, Urgency.Programable, null, new DateTime(2022, 10, 30)));
-                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("JJuarez"), Machine.CentroCNC, Section.Mecanizado, Urgency.Urgente, null, new DateTime(2023, 01, 13)));
-                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("JJuarez"), Machine.GrabadoraLaser, Section.Ensamble, Urgency.Programable, null, new DateTime(2023, 02, 24)));
+                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("ETolosa"), Section.Otro, Machine.Agujereadora, Urgency.Normal, null, true, new DateTime(2022, 09, 13), true));
+                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("JPerez"), Section.Mecanizado, Machine.Autoelevador, Urgency.Programable, null, false, new DateTime(2023, 03, 22), false));
+                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("PRodriguez"), Section.Ensamble, Machine.Otro, Urgency.Urgente, null, true, new DateTime(2022, 10, 09), true));
+                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("JPerez"), Section.Otro, Machine.GrabadoraLaser, Urgency.Normal, null, true, new DateTime(2023, 01, 18), true));
+                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("JPerez"), Section.Ensamble, Machine.CentroCNC, Urgency.Programable, null, false, new DateTime(2022, 11, 30), false));
+                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("PRodriguez"), Section.Matriceria, Machine.CentroCNC, Urgency.Normal, null, true, new DateTime(2022, 10, 29), false));
+                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("JJuarez"), Section.Almacen, Machine.Brochadora, Urgency.Urgente, null, false, new DateTime(2022, 09, 03), false));
+                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("PRodriguez"), Section.Mecanizado, Machine.Otro, Urgency.Programable, null, true, new DateTime(2022, 09, 15), false));
+                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("ETolosa"), Section.Almacen, Machine.CentroCNC, Urgency.Normal, null, true, new DateTime(2023, 02, 20), true));
+                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("JJuarez"), Section.Ensamble, Machine.Otro, Urgency.Urgente, null, true, new DateTime(2023, 04, 10), false));
                 rtn = true;
+            }
+            return rtn;
+        }
+        public bool MaintOrder_LoadActiveOrders()
+        {
+            bool rtn = false;
+            if (this.maintOrdersDb.Count > 0)
+            {
+                this.activeMaintOrders.Clear();
+                foreach (MaintenanceOrder item in this.maintOrdersDb)
+                {
+                    if (item.Active)
+                    {
+                        this.activeMaintOrders.Add(item);
+                        rtn = true;
+                    }
+                }
             }
             return rtn;
         }
@@ -111,7 +134,7 @@ namespace DATABASE_APP
             idAdded = 0;
             if (this.maintOrdersDb.Count <= 100)
             {
-                MaintenanceOrder auxMaintOrder = new MaintenanceOrder(activeUser, inputMachine, inputSection, inputUrgency, inputDescription);
+                MaintenanceOrder auxMaintOrder = new MaintenanceOrder(activeUser, inputSection, inputMachine, inputUrgency, inputDescription);
                 this.maintOrdersDb.Add(auxMaintOrder);
                 idAdded = auxMaintOrder.Id;
                 rtn = true;
@@ -144,6 +167,15 @@ namespace DATABASE_APP
                 this.maintOrdersDb[findedIndex].Machine = inputMachine;
                 this.maintOrdersDb[findedIndex].Urgency = inputUrgency;
                 this.maintOrdersDb[findedIndex].Description = inputDescription;
+                this.maintOrdersDb[findedIndex].Completed = inputStatus;
+                if (this.maintOrdersDb[findedIndex].Completed)
+                {
+                    this.maintOrdersDb[findedIndex].EndDate = DateTime.Now.Date;
+                }
+                //else
+                //{
+                //    this.maintOrdersDb[findedIndex].EndDate = this.maintOrdersDb[findedIndex].EndDate;
+                //}
                 return true;
             }
             return rtn;
@@ -153,7 +185,7 @@ namespace DATABASE_APP
             bool rtn = false;
             if (MaintOrder_FindById(inputId, out int findedIndex))
             {
-                this.maintOrdersDb.Remove(this.maintOrdersDb[findedIndex]);
+                this.maintOrdersDb[findedIndex].Active = false;
                 return true;
             }
             return rtn;

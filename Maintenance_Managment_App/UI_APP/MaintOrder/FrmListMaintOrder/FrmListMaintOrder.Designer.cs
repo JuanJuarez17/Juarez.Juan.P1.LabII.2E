@@ -127,6 +127,7 @@
             btn_AddMaintOrder.TabIndex=3;
             btn_AddMaintOrder.UseVisualStyleBackColor=true;
             btn_AddMaintOrder.Click+=btn_AddMaintOrder_Click;
+            btn_AddMaintOrder.MouseHover+=btn_AddMaintOrder_MouseHover;
             // 
             // btn_DeleteMaintOrder
             // 

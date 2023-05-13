@@ -17,6 +17,10 @@ namespace CONTROLLER_APP
         {
             get { return appDb.MaintOrderDb; }
         }
+        public static List<MaintenanceOrder> ActiveMaintOrders
+        {
+            get { return appDb.ActiveMaintOrders; }
+        }
         public static List<User> UserDb
         {
             get { return appDb.UserDb; }
@@ -45,8 +49,13 @@ namespace CONTROLLER_APP
         #region MO METHODS
         public static bool MaintOrder_HardcodeDb()
         {
-            return appDb.LoadMaintOrders();
+            return appDb.MaintOrder_HardcodeDb();
         }
+        public static bool MaintOrder_LoadActiveOrders()
+        {
+            return appDb.MaintOrder_LoadActiveOrders();
+        }
+
         public static bool MaintOrder_Parse(string inputDescription)
         {
             return Database.MaintOrder_Parse(inputDescription);

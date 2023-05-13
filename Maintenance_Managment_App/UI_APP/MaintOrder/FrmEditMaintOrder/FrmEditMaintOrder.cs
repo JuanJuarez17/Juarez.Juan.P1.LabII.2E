@@ -44,10 +44,8 @@ namespace UI_APP
             Urgency inputUrgency = (Urgency)this.cbb_Urgency.SelectedItem;
             string inputDescription = this.rtb_MaintOrderDesc.Text;
             bool inputStatus = false;
-            if (this.chb_Completed.Checked)
-            {
-                inputStatus = true;
-            }
+            if (this.chb_Completed.Checked) { inputStatus = true; }
+            else { inputStatus = false; }
             if (Controller.MaintOrder_Parse(inputDescription))
             {
                 if (Controller.MaintOrder_Edit(this.maintOrderId, inputMachine, inputSection, inputUrgency, inputDescription, inputStatus))

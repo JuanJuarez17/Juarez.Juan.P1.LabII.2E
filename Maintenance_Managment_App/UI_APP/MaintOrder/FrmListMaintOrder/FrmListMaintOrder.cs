@@ -56,19 +56,21 @@ namespace UI_APP
         {
             if (Controller.MaintOrderDb.Count > 0)
             {
+                Controller.MaintOrder_LoadActiveOrders();
                 inputDtg.DataSource = null;
-                inputDtg.DataSource = Controller.MaintOrderDb;
+                inputDtg.DataSource = Controller.ActiveMaintOrders;
+                inputDtg.Columns["Active"].Visible = false;
                 inputDtg.Columns["User"].Visible = false;
                 inputDtg.Columns["Description"].Visible = false;
-                inputDtg.Columns["Completed"].Visible = false;
-                inputDtg.Columns["EndDate"].Visible = false;
                 inputDtg.Columns["Antiquity"].Visible = false;
                 inputDtg.Columns[0].HeaderText = "ID ORDEN";
-                inputDtg.Columns[2].HeaderText = "GENERÓ";
-                inputDtg.Columns[3].HeaderText = "SECCCIÓN";
-                inputDtg.Columns[4].HeaderText = "UNIDAD";
-                inputDtg.Columns[5].HeaderText = "URGENCIA";
-                inputDtg.Columns[6].HeaderText = "FECHA DE INGRESO";
+                inputDtg.Columns[3].HeaderText = "GENERÓ";
+                inputDtg.Columns[4].HeaderText = "SECCCIÓN";
+                inputDtg.Columns[5].HeaderText = "UNIDAD";
+                inputDtg.Columns[6].HeaderText = "URGENCIA";
+                inputDtg.Columns[7].HeaderText = "INGRESO";
+                inputDtg.Columns[9].HeaderText = "COMPLETADA";
+                inputDtg.Columns[10].HeaderText = "FINALIZADA";
                 inputDtg.Visible = true;
                 inputLabel.Visible = false;
             }
@@ -90,6 +92,14 @@ namespace UI_APP
             this.btn_DeleteMaintOrder.ImageIndex = 2;
             this.btn_Close.ImageIndex = 3;
             FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb, this.lbl_MaintOrderDb);
+        }
+        private void btn_ImportDb_MouseHover(object sender, EventArgs e)
+        {
+            this.tlt_Help.Show("Importar Base de Datos", this.btn_ImportDb);
+        }
+        private void btn_AddMaintOrder_MouseHover(object sender, EventArgs e)
+        {
+            this.tlt_Help.Show("Crear Orden Mantenimiento", this.btn_ImportDb);
         }
         private void btn_ImportDb_Click(object sender, EventArgs e)
         {
@@ -149,9 +159,5 @@ namespace UI_APP
         }
         #endregion
 
-        private void btn_ImportDb_MouseHover(object sender, EventArgs e)
-        {
-            this.tlt_Help.Show("Importar base de datos", this.btn_ImportDb);
-        }
     }
 }

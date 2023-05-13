@@ -18,22 +18,17 @@ namespace ENTITIES_APP
     // Enum para MaintenanceOrder
     public enum Machine
     {
-        Torno,
-        Fresadora,
         CentroCNC,
         Brochadora,
-        Agujereadora01,
-        Agujereadora02,
+        Agujereadora,
         GrabadoraLaser,
-        Autoelevador01,
-        Autoelevador02,
+        Autoelevador,
         Otro,
     }
     public enum Section
     {
         Matriceria,
         Mecanizado,
-        Pintura,
         Ensamble,
         Almacen,
         Otro,
