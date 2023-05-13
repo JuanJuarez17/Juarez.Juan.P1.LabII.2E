@@ -19,17 +19,17 @@ namespace DATABASE_APP
         public List<MaintenanceOrder> ActiveMaintOrders { get { return this.activeMaintOrders; } }
         public int FinishedOrders
         {
-            get 
+            get
             {
                 int count = 0;
                 foreach (MaintenanceOrder item in this.activeMaintOrders)
                 {
                     if (item.Completed == true)
                     {
-                        count ++;
+                        count++;
                     }
                 }
-                return count; 
+                return count;
             }
         }
         public int UnfinishedOrders
@@ -46,7 +46,7 @@ namespace DATABASE_APP
                 }
                 return count;
             }
-        }            
+        }
         #endregion
 
         #region CONSTRUCTOR
@@ -220,7 +220,7 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-        public bool MaintOrder_PrintStatus(int inputId) 
+        public bool MaintOrder_PrintStatus(int inputId)
         {
             MaintOrder_FindById(inputId, out int findedIndex);
             return this.maintOrdersDb[findedIndex].Completed;
@@ -260,6 +260,28 @@ namespace DATABASE_APP
             MaintOrder_FindById(inputId, out int findedIndex);
             return this.maintOrdersDb[findedIndex].Description.ToString();
         }
+
+        public void MaintOrder_Sort(int inputOrder)
+        {
+            if (inputOrder == 0)
+            {
+                this.maintOrdersDb.Sort(IdDecreasing);
+            }
+            else
+            {
+                this.maintOrdersDb.Sort(IdCreasing);
+            }
+
+        }
         #endregion
+
+        public static int IdDecreasing(MaintenanceOrder input1, MaintenanceOrder input2)
+        {
+            return input2.Id - input1.Id;
+        }
+        public static int IdCreasing(MaintenanceOrder input1, MaintenanceOrder input2)
+        {
+            return input1.Id - input2.Id;
+        }
     }
 }

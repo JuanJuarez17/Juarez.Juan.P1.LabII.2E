@@ -153,10 +153,28 @@ namespace UI_APP
                 FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb, this.lbl_MaintOrderDb);
             }
         }
+
+        int flagIdSort = 0;
+        private void btn_Sort_Click(object sender, EventArgs e)
+        {
+            if (this.flagIdSort == 0)
+            {
+                Controller.MaintOrder_Sort(this.flagIdSort);
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb, this.lbl_MaintOrderDb);
+                this.flagIdSort = 1;
+            }
+            else
+            {
+                Controller.MaintOrder_Sort(this.flagIdSort);
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb, this.lbl_MaintOrderDb);
+                this.flagIdSort = 0;
+            }
+        }
         private void btn_Close_Click(object sender, EventArgs e)
         {
             this.Close();
         }
         #endregion
+
     }
 }

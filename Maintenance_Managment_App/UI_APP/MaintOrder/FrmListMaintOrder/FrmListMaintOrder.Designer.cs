@@ -43,6 +43,7 @@
             lbl_MaintOrderDb=new System.Windows.Forms.Label();
             btn_ImportDb=new System.Windows.Forms.Button();
             tlt_Help=new System.Windows.Forms.ToolTip(components);
+            btn_Sort=new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)dtg_MaintOrderDb).BeginInit();
             SuspendLayout();
             // 
@@ -184,11 +185,23 @@
             btn_ImportDb.Click+=btn_ImportDb_Click;
             btn_ImportDb.MouseHover+=btn_ImportDb_MouseHover;
             // 
+            // btn_Sort
+            // 
+            btn_Sort.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btn_Sort.ImageList=iml_ListMaintOrder;
+            btn_Sort.Location=new System.Drawing.Point(673, 488);
+            btn_Sort.Name="btn_Sort";
+            btn_Sort.Size=new System.Drawing.Size(50, 50);
+            btn_Sort.TabIndex=9;
+            btn_Sort.UseVisualStyleBackColor=true;
+            btn_Sort.Click+=btn_Sort_Click;
+            // 
             // FrmListMaintOrder
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode=System.Windows.Forms.AutoScaleMode.Font;
             ClientSize=new System.Drawing.Size(950, 550);
+            Controls.Add(btn_Sort);
             Controls.Add(btn_ImportDb);
             Controls.Add(lbl_MaintOrderDb);
             Controls.Add(btn_InfoMaintOrder);
@@ -219,5 +232,6 @@
         private System.Windows.Forms.Label lbl_MaintOrderDb;
         private System.Windows.Forms.Button btn_ImportDb;
         private System.Windows.Forms.ToolTip tlt_Help;
+        private System.Windows.Forms.Button btn_Sort;
     }
 }

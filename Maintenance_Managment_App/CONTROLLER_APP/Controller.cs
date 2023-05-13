@@ -112,6 +112,11 @@ namespace CONTROLLER_APP
         {
             return appDb.MaintOrder_PrintDescription(inputId);
         }
+
+        public static void MaintOrder_Sort(int inputOrder)
+        {
+            appDb.MaintOrder_Sort(inputOrder);
+        }
         #endregion
     }
 }

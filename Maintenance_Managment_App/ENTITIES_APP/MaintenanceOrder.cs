@@ -139,44 +139,13 @@ namespace ENTITIES_APP
         }
         #endregion
 
-
         #region METHODS
-        public string MaintenanceOrder_print()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"ID {this.Id}");
-            sb.AppendLine($"Genero: {this.Username}");
-            sb.AppendLine($"Sector: {this.Section}");
-            sb.AppendLine($"Maquina: {this.Machine}");
-            sb.AppendLine($"Urgencia: {this.Urgency}");
-            sb.AppendLine($"Fecha de creacion: {this.CreationDate}");
-            if (!string.IsNullOrWhiteSpace(this.Description))
-            {
-                sb.AppendLine($"Descripcion: {this.Description}");
-            }
-            return sb.ToString();
-        }
 
-        /*
-        public bool MaintenanceOrder_print(out string message) // Mismo metodo que el anterior pero con otra firma
-        {
-            bool rtn = false;
-            StringBuilder sb = new StringBuilder();
-            if (this is not null)
-            {
-                sb.AppendLine($"ID {this.id}");
-                sb.AppendLine($"Genero: {this.maker.Username}");
-                sb.AppendLine($"Maquina: {this.faultyUnit}");
-                sb.AppendLine($"Sector: {this.faultyUnitSection}");
-                sb.AppendLine($"Urgencia: {this.failureUrgency}");
-                sb.AppendLine($"Fecha de creacion: {this.creationDate.Date}");
-                rtn = true;
-            }
-            message = sb.ToString();
-            return rtn;
-        }
-        */
         #endregion
+
+
+
+
     }
 }
 
