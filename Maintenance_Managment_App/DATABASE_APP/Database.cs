@@ -17,6 +17,36 @@ namespace DATABASE_APP
         public List<User> UserDb { get { return this.usersDb; } }
         public List<MaintenanceOrder> MaintOrderDb { get { return this.maintOrdersDb; } }
         public List<MaintenanceOrder> ActiveMaintOrders { get { return this.activeMaintOrders; } }
+        public int FinishedOrders
+        {
+            get 
+            {
+                int count = 0;
+                foreach (MaintenanceOrder item in this.activeMaintOrders)
+                {
+                    if (item.Completed == true)
+                    {
+                        count ++;
+                    }
+                }
+                return count; 
+            }
+        }
+        public int UnfinishedOrders
+        {
+            get
+            {
+                int count = 0;
+                foreach (MaintenanceOrder item in this.activeMaintOrders)
+                {
+                    if (item.Completed == false)
+                    {
+                        count++;
+                    }
+                }
+                return count;
+            }
+        }            
         #endregion
 
         #region CONSTRUCTOR

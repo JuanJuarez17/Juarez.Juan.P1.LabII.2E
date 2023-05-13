@@ -34,6 +34,7 @@
             sts_Status=new System.Windows.Forms.StatusStrip();
             tss_User=new System.Windows.Forms.ToolStripStatusLabel();
             tss_Status=new System.Windows.Forms.ToolStripStatusLabel();
+            smi_Home=new System.Windows.Forms.ToolStripMenuItem();
             mst_MainMenuOpt.SuspendLayout();
             sts_Status.SuspendLayout();
             SuspendLayout();
@@ -41,7 +42,7 @@
             // mst_MainMenuOpt
             // 
             mst_MainMenuOpt.GripStyle=System.Windows.Forms.ToolStripGripStyle.Visible;
-            mst_MainMenuOpt.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { smi_MaintOrder, smi_Operator });
+            mst_MainMenuOpt.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { smi_Home, smi_MaintOrder, smi_Operator });
             mst_MainMenuOpt.Location=new System.Drawing.Point(0, 0);
             mst_MainMenuOpt.Name="mst_MainMenuOpt";
             mst_MainMenuOpt.Size=new System.Drawing.Size(984, 24);
@@ -83,6 +84,13 @@
             tss_Status.Size=new System.Drawing.Size(58, 17);
             tss_Status.Text="tss_Status";
             // 
+            // smi_Home
+            // 
+            smi_Home.Name="smi_Home";
+            smi_Home.Size=new System.Drawing.Size(48, 20);
+            smi_Home.Text="Inicio";
+            smi_Home.Click+=smi_Home_Click;
+            // 
             // FrmMainMenu
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
@@ -112,5 +120,6 @@
         private System.Windows.Forms.StatusStrip sts_Status;
         private System.Windows.Forms.ToolStripStatusLabel tss_User;
         private System.Windows.Forms.ToolStripStatusLabel tss_Status;
+        private System.Windows.Forms.ToolStripMenuItem smi_Home;
     }
 }

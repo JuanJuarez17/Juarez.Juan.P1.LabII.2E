@@ -84,7 +84,7 @@ namespace UI_APP
             lblInfoTxt.Append(" / ");
             lblInfoTxt.Append(DateTime.Now.ToString("HH:mm"));
             lblInfoTxt.Append(" / ");
-            lblInfoTxt.Append("v1.02");
+            lblInfoTxt.Append("v4.05");
             tss_Status.Text = lblInfoTxt.ToString();
         }
         private void FrmMainMenu_AvailableFunctions()
@@ -102,14 +102,19 @@ namespace UI_APP
         {
             FrmMainMenu_Info();
             FrmMainMenu_AvailableFunctions();
+            ActivateForm(new FrmHome(this.User));
         }
-        private void FrmMainMenu_FormClosing(object sender, FormClosingEventArgs e)
+        private void smi_Home_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            ActivateForm(new FrmHome(this.User));
         }
         private void smi_MaintOrder_Click(object sender, EventArgs e)
         {
             ActivateForm(new FrmListMaintOrder(this.User));
+        }
+        private void FrmMainMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
         #endregion
     }

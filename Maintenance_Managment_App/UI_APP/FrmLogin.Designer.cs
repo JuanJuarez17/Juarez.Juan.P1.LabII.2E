@@ -110,7 +110,9 @@
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode=System.Windows.Forms.AutoScaleMode.Font;
+            BackColor=System.Drawing.SystemColors.ControlDarkDark;
             ClientSize=new System.Drawing.Size(384, 211);
+            Opacity = 0.9;
             Controls.Add(btn_Autocomplete);
             Controls.Add(lbl_Title);
             Controls.Add(txb_Password);

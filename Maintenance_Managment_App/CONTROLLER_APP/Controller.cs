@@ -3,6 +3,7 @@ using DATABASE_APP;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.CompilerServices;
 
 namespace CONTROLLER_APP
 {
@@ -47,6 +48,14 @@ namespace CONTROLLER_APP
         #endregion
 
         #region MO METHODS
+        public static int MaintOrder_ReturnFinished()
+        {
+            return appDb.FinishedOrders;
+        }
+        public static int MaintOrder_ReturnUnfinished()
+        {
+            return appDb.UnfinishedOrders;
+        }
         public static bool MaintOrder_HardcodeDb()
         {
             return appDb.MaintOrder_HardcodeDb();
@@ -55,7 +64,6 @@ namespace CONTROLLER_APP
         {
             return appDb.MaintOrder_LoadActiveOrders();
         }
-
         public static bool MaintOrder_Parse(string inputDescription)
         {
             return Database.MaintOrder_Parse(inputDescription);
