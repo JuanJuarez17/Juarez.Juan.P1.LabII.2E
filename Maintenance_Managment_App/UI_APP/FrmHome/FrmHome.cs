@@ -26,7 +26,7 @@ namespace UI_APP
 
         private void FrmHome_Load(object sender, EventArgs e)
         {
-            if (Controller.ActiveMaintOrders.Count <= 0)
+            if (Controller.MaintOrderDbLoaded == false)
             {
                 this.lbl_MaintOrderDb.Visible = true;
                 this.lbl_FinishedOrders.Visible = false;

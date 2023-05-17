@@ -33,7 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            btn_Close=new System.Windows.Forms.Button();
             iml_ListMaintOrder=new System.Windows.Forms.ImageList(components);
             dtg_MaintOrderDb=new System.Windows.Forms.DataGridView();
             btn_AddMaintOrder=new System.Windows.Forms.Button();
@@ -43,21 +42,18 @@
             lbl_MaintOrderDb=new System.Windows.Forms.Label();
             btn_ImportDb=new System.Windows.Forms.Button();
             tlt_Help=new System.Windows.Forms.ToolTip(components);
-            btn_Sort=new System.Windows.Forms.Button();
+            btn_SortByDate=new System.Windows.Forms.Button();
+            btn_SortBySector=new System.Windows.Forms.Button();
+            btn_SortByMachine=new System.Windows.Forms.Button();
+            btn_SortByUrgency=new System.Windows.Forms.Button();
+            gpb_ShowMaintOrders=new System.Windows.Forms.GroupBox();
+            btn_ShowMaintOrders=new System.Windows.Forms.Button();
+            rdb_UncompletedMaintOrders=new System.Windows.Forms.RadioButton();
+            rdb_CompletedMaintOrders=new System.Windows.Forms.RadioButton();
+            rdb_ActiveMaintOrders=new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)dtg_MaintOrderDb).BeginInit();
+            gpb_ShowMaintOrders.SuspendLayout();
             SuspendLayout();
-            // 
-            // btn_Close
-            // 
-            btn_Close.Anchor=System.Windows.Forms.AnchorStyles.Bottom|System.Windows.Forms.AnchorStyles.Right;
-            btn_Close.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            btn_Close.ImageList=iml_ListMaintOrder;
-            btn_Close.Location=new System.Drawing.Point(883, 488);
-            btn_Close.Name="btn_Close";
-            btn_Close.Size=new System.Drawing.Size(50, 50);
-            btn_Close.TabIndex=1;
-            btn_Close.UseVisualStyleBackColor=true;
-            btn_Close.Click+=btn_Close_Click;
             // 
             // iml_ListMaintOrder
             // 
@@ -71,6 +67,11 @@
             iml_ListMaintOrder.Images.SetKeyName(4, "aceptar.png");
             iml_ListMaintOrder.Images.SetKeyName(5, "lupa.png");
             iml_ListMaintOrder.Images.SetKeyName(6, "base-de-datos.png");
+            iml_ListMaintOrder.Images.SetKeyName(7, "fabrica.png");
+            iml_ListMaintOrder.Images.SetKeyName(8, "signo-de-exclamacion.png");
+            iml_ListMaintOrder.Images.SetKeyName(9, "ajustes-de-engranajes.png");
+            iml_ListMaintOrder.Images.SetKeyName(10, "calendario.png");
+            iml_ListMaintOrder.Images.SetKeyName(11, "sincronizar.png");
             // 
             // dtg_MaintOrderDb
             // 
@@ -185,30 +186,127 @@
             btn_ImportDb.Click+=btn_ImportDb_Click;
             btn_ImportDb.MouseHover+=btn_ImportDb_MouseHover;
             // 
-            // btn_Sort
+            // btn_SortByDate
             // 
-            btn_Sort.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            btn_Sort.ImageList=iml_ListMaintOrder;
-            btn_Sort.Location=new System.Drawing.Point(673, 488);
-            btn_Sort.Name="btn_Sort";
-            btn_Sort.Size=new System.Drawing.Size(50, 50);
-            btn_Sort.TabIndex=9;
-            btn_Sort.UseVisualStyleBackColor=true;
-            btn_Sort.Click+=btn_Sort_Click;
+            btn_SortByDate.Anchor=System.Windows.Forms.AnchorStyles.Bottom|System.Windows.Forms.AnchorStyles.Right;
+            btn_SortByDate.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btn_SortByDate.ImageList=iml_ListMaintOrder;
+            btn_SortByDate.Location=new System.Drawing.Point(715, 483);
+            btn_SortByDate.Name="btn_SortByDate";
+            btn_SortByDate.Size=new System.Drawing.Size(50, 50);
+            btn_SortByDate.TabIndex=10;
+            btn_SortByDate.UseVisualStyleBackColor=true;
+            btn_SortByDate.Click+=btn_SortByDate_Click;
+            // 
+            // btn_SortBySector
+            // 
+            btn_SortBySector.Anchor=System.Windows.Forms.AnchorStyles.Bottom|System.Windows.Forms.AnchorStyles.Right;
+            btn_SortBySector.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btn_SortBySector.ImageList=iml_ListMaintOrder;
+            btn_SortBySector.Location=new System.Drawing.Point(771, 483);
+            btn_SortBySector.Name="btn_SortBySector";
+            btn_SortBySector.Size=new System.Drawing.Size(50, 50);
+            btn_SortBySector.TabIndex=11;
+            btn_SortBySector.UseVisualStyleBackColor=true;
+            btn_SortBySector.Click+=btn_SortBySector_Click;
+            // 
+            // btn_SortByMachine
+            // 
+            btn_SortByMachine.Anchor=System.Windows.Forms.AnchorStyles.Bottom|System.Windows.Forms.AnchorStyles.Right;
+            btn_SortByMachine.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btn_SortByMachine.ImageList=iml_ListMaintOrder;
+            btn_SortByMachine.Location=new System.Drawing.Point(827, 483);
+            btn_SortByMachine.Name="btn_SortByMachine";
+            btn_SortByMachine.Size=new System.Drawing.Size(50, 50);
+            btn_SortByMachine.TabIndex=12;
+            btn_SortByMachine.UseVisualStyleBackColor=true;
+            btn_SortByMachine.Click+=btn_SortByMachine_Click;
+            // 
+            // btn_SortByUrgency
+            // 
+            btn_SortByUrgency.Anchor=System.Windows.Forms.AnchorStyles.Bottom|System.Windows.Forms.AnchorStyles.Right;
+            btn_SortByUrgency.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btn_SortByUrgency.ImageList=iml_ListMaintOrder;
+            btn_SortByUrgency.Location=new System.Drawing.Point(883, 483);
+            btn_SortByUrgency.Name="btn_SortByUrgency";
+            btn_SortByUrgency.Size=new System.Drawing.Size(50, 50);
+            btn_SortByUrgency.TabIndex=13;
+            btn_SortByUrgency.UseVisualStyleBackColor=true;
+            btn_SortByUrgency.Click+=btn_SortByUrgency_Click;
+            // 
+            // gpb_ShowMaintOrders
+            // 
+            gpb_ShowMaintOrders.Anchor=System.Windows.Forms.AnchorStyles.Bottom|System.Windows.Forms.AnchorStyles.Left;
+            gpb_ShowMaintOrders.Controls.Add(btn_ShowMaintOrders);
+            gpb_ShowMaintOrders.Controls.Add(rdb_UncompletedMaintOrders);
+            gpb_ShowMaintOrders.Controls.Add(rdb_CompletedMaintOrders);
+            gpb_ShowMaintOrders.Controls.Add(rdb_ActiveMaintOrders);
+            gpb_ShowMaintOrders.Location=new System.Drawing.Point(83, 467);
+            gpb_ShowMaintOrders.Name="gpb_ShowMaintOrders";
+            gpb_ShowMaintOrders.Size=new System.Drawing.Size(400, 75);
+            gpb_ShowMaintOrders.TabIndex=14;
+            gpb_ShowMaintOrders.TabStop=false;
+            gpb_ShowMaintOrders.Text="Mostrar";
+            // 
+            // btn_ShowMaintOrders
+            // 
+            btn_ShowMaintOrders.ImageList=iml_ListMaintOrder;
+            btn_ShowMaintOrders.Location=new System.Drawing.Point(344, 16);
+            btn_ShowMaintOrders.Name="btn_ShowMaintOrders";
+            btn_ShowMaintOrders.Size=new System.Drawing.Size(50, 50);
+            btn_ShowMaintOrders.TabIndex=17;
+            btn_ShowMaintOrders.UseVisualStyleBackColor=true;
+            btn_ShowMaintOrders.Click+=btn_ShowMaintOrders_Click;
+            // 
+            // rdb_UncompletedMaintOrders
+            // 
+            rdb_UncompletedMaintOrders.AutoSize=true;
+            rdb_UncompletedMaintOrders.Location=new System.Drawing.Point(231, 31);
+            rdb_UncompletedMaintOrders.Name="rdb_UncompletedMaintOrders";
+            rdb_UncompletedMaintOrders.Size=new System.Drawing.Size(90, 19);
+            rdb_UncompletedMaintOrders.TabIndex=16;
+            rdb_UncompletedMaintOrders.TabStop=true;
+            rdb_UncompletedMaintOrders.Text="Incompletas";
+            rdb_UncompletedMaintOrders.UseVisualStyleBackColor=true;
+            // 
+            // rdb_CompletedMaintOrders
+            // 
+            rdb_CompletedMaintOrders.AutoSize=true;
+            rdb_CompletedMaintOrders.Location=new System.Drawing.Point(116, 31);
+            rdb_CompletedMaintOrders.Name="rdb_CompletedMaintOrders";
+            rdb_CompletedMaintOrders.Size=new System.Drawing.Size(82, 19);
+            rdb_CompletedMaintOrders.TabIndex=15;
+            rdb_CompletedMaintOrders.TabStop=true;
+            rdb_CompletedMaintOrders.Text="Completas";
+            rdb_CompletedMaintOrders.UseVisualStyleBackColor=true;
+            // 
+            // rdb_ActiveMaintOrders
+            // 
+            rdb_ActiveMaintOrders.AutoSize=true;
+            rdb_ActiveMaintOrders.Location=new System.Drawing.Point(26, 31);
+            rdb_ActiveMaintOrders.Name="rdb_ActiveMaintOrders";
+            rdb_ActiveMaintOrders.Size=new System.Drawing.Size(55, 19);
+            rdb_ActiveMaintOrders.TabIndex=0;
+            rdb_ActiveMaintOrders.TabStop=true;
+            rdb_ActiveMaintOrders.Text="Todas";
+            rdb_ActiveMaintOrders.UseVisualStyleBackColor=true;
             // 
             // FrmListMaintOrder
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode=System.Windows.Forms.AutoScaleMode.Font;
             ClientSize=new System.Drawing.Size(950, 550);
-            Controls.Add(btn_Sort);
+            Controls.Add(gpb_ShowMaintOrders);
+            Controls.Add(btn_SortByUrgency);
+            Controls.Add(btn_SortByMachine);
+            Controls.Add(btn_SortBySector);
+            Controls.Add(btn_SortByDate);
             Controls.Add(btn_ImportDb);
             Controls.Add(lbl_MaintOrderDb);
             Controls.Add(btn_InfoMaintOrder);
             Controls.Add(btn_EditMaintOrder);
             Controls.Add(btn_DeleteMaintOrder);
             Controls.Add(btn_AddMaintOrder);
-            Controls.Add(btn_Close);
             Controls.Add(dtg_MaintOrderDb);
             FormBorderStyle=System.Windows.Forms.FormBorderStyle.None;
             MaximizeBox=false;
@@ -218,11 +316,12 @@
             Text="FrmListMaintenanceOrder";
             Load+=FrmListMaintenanceOrder_Load;
             ((System.ComponentModel.ISupportInitialize)dtg_MaintOrderDb).EndInit();
+            gpb_ShowMaintOrders.ResumeLayout(false);
+            gpb_ShowMaintOrders.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-        private System.Windows.Forms.Button btn_Close;
         private System.Windows.Forms.DataGridView dtg_MaintOrderDb;
         private System.Windows.Forms.Button btn_AddMaintOrder;
         private System.Windows.Forms.ImageList iml_ListMaintOrder;
@@ -232,6 +331,14 @@
         private System.Windows.Forms.Label lbl_MaintOrderDb;
         private System.Windows.Forms.Button btn_ImportDb;
         private System.Windows.Forms.ToolTip tlt_Help;
-        private System.Windows.Forms.Button btn_Sort;
+        private System.Windows.Forms.Button btn_SortByDate;
+        private System.Windows.Forms.Button btn_SortBySector;
+        private System.Windows.Forms.Button btn_SortByMachine;
+        private System.Windows.Forms.Button btn_SortByUrgency;
+        private System.Windows.Forms.GroupBox gpb_ShowMaintOrders;
+        private System.Windows.Forms.RadioButton rdb_UncompletedMaintOrders;
+        private System.Windows.Forms.RadioButton rdb_CompletedMaintOrders;
+        private System.Windows.Forms.RadioButton rdb_ActiveMaintOrders;
+        private System.Windows.Forms.Button btn_ShowMaintOrders;
     }
 }

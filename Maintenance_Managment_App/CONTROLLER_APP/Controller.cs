@@ -22,9 +22,21 @@ namespace CONTROLLER_APP
         {
             get { return appDb.ActiveMaintOrders; }
         }
+        public static List<MaintenanceOrder> CompletedMaintOrders
+        {
+            get { return appDb.CompletedMaintOrders; }
+        }
+        public static List<MaintenanceOrder> UncompletedMaintOrders
+        {
+            get { return appDb.UncompletedMaintOrders; }
+        }
         public static List<User> UserDb
         {
             get { return appDb.UserDb; }
+        }
+        public static bool MaintOrderDbLoaded
+        {
+            get {  return appDb.MaintOrderDbLoaded; }
         }
         #endregion
 
@@ -60,10 +72,6 @@ namespace CONTROLLER_APP
         {
             return appDb.MaintOrder_HardcodeDb();
         }
-        public static bool MaintOrder_LoadActiveOrders()
-        {
-            return appDb.MaintOrder_LoadActiveOrders();
-        }
         public static bool MaintOrder_Parse(string inputDescription)
         {
             return Database.MaintOrder_Parse(inputDescription);
@@ -80,42 +88,17 @@ namespace CONTROLLER_APP
         {
             return appDb.MaintOrder_Remove(id);
         }
-        public static bool MaintOrder_PrintStatus(int inputId)
+        public static bool MaintOrder_GetStatus(int inputId)
         {
-            return appDb.MaintOrder_PrintStatus(inputId);
+            return appDb.MaintOrder_GetStatus(inputId);
         }
-        public static string MaintOrder_PrintId(int inputId)
+        public static string MaintOrder_PrintParameter(string inputParameter, int inputId)
         {
-            return appDb.MaintOrder_PrintId(inputId);
+            return appDb.MaintOrder_PrintParameter(inputParameter, inputId);
         }
-        public static string MaintOrder_PrintUsername(int inputId)
+        public static void MaintOrder_Sort(string parameter, int inputOrder)
         {
-            return appDb.MaintOrder_PrintUsername(inputId);
-        }
-        public static string MaintOrder_PrintSection(int inputId)
-        {
-            return appDb.MaintOrder_PrintSection(inputId);
-        }
-        public static string MaintOrder_PrintMachine(int inputId)
-        {
-            return appDb.MaintOrder_PrintMachine(inputId);
-        }
-        public static string MaintOrder_PrintUrgency(int inputId)
-        {
-            return appDb.MaintOrder_PrintUrgency(inputId);
-        }
-        public static string MaintOrder_PrintAntiquity(int inputId)
-        {
-            return appDb.MaintOrder_PrintAntiquity(inputId);
-        }
-        public static string MaintOrder_PrintDescription(int inputId)
-        {
-            return appDb.MaintOrder_PrintDescription(inputId);
-        }
-
-        public static void MaintOrder_Sort(int inputOrder)
-        {
-            appDb.MaintOrder_Sort(inputOrder);
+            appDb.MaintOrder_Sort(parameter, inputOrder);
         }
         #endregion
     }

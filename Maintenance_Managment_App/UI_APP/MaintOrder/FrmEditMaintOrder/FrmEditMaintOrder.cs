@@ -27,16 +27,16 @@ namespace UI_APP
         {
             this.btn_Accept.ImageIndex = 3;
             this.btn_Cancel.ImageIndex = 4;
-            this.txb_MaintOrderId.Text = Controller.MaintOrder_PrintId(this.maintOrderId);
-            this.txb_MaintOrderUser.Text = Controller.MaintOrder_PrintUsername(this.maintOrderId);
+            this.txb_MaintOrderId.Text = Controller.MaintOrder_PrintParameter("ID", this.maintOrderId);
+            this.txb_MaintOrderUser.Text = Controller.MaintOrder_PrintParameter("USERNAME", this.maintOrderId);
             this.cbb_Section.DataSource = Enum.GetValues(typeof(Section));
             this.cbb_Machine.DataSource = Enum.GetValues(typeof(Machine));
             this.cbb_Urgency.DataSource = Enum.GetValues(typeof(Urgency));
-            this.cbb_Section.Text = Controller.MaintOrder_PrintSection(this.maintOrderId);
-            this.cbb_Machine.Text = Controller.MaintOrder_PrintMachine(this.maintOrderId);
-            this.cbb_Urgency.Text = Controller.MaintOrder_PrintUrgency(this.maintOrderId);
-            this.rtb_MaintOrderDesc.Text = Controller.MaintOrder_PrintDescription(this.maintOrderId);
-            if (Controller.MaintOrder_PrintStatus(this.maintOrderId))
+            this.cbb_Section.Text = Controller.MaintOrder_PrintParameter("SECTION", this.maintOrderId);
+            this.cbb_Machine.Text = Controller.MaintOrder_PrintParameter("MACHINE", this.maintOrderId);
+            this.cbb_Urgency.Text = Controller.MaintOrder_PrintParameter("URGENCY", this.maintOrderId);
+            this.rtb_MaintOrderDesc.Text =Controller.MaintOrder_PrintParameter("DESCRIPTION", this.maintOrderId);
+            if (Controller.MaintOrder_GetStatus(this.maintOrderId))
             {
                 this.chb_Completed.Checked = true;
             }

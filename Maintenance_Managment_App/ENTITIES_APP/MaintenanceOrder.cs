@@ -105,11 +105,11 @@ namespace ENTITIES_APP
         public MaintenanceOrder(User inputMaker, Section inputSection, Machine inputMachine, Urgency inputUrgency, string inputDescription)
                  : this()
         {
-            this.maker = inputMaker; //
-            this.faultyUnit = inputMachine; //
-            this.faultyUnitSection = inputSection; //
-            this.failureUrgency = inputUrgency; //
-            this.description = inputDescription; //
+            this.maker = inputMaker;
+            this.faultyUnit = inputMachine;
+            this.faultyUnitSection = inputSection;
+            this.failureUrgency = inputUrgency;
+            this.description = inputDescription;
             this.active = true;
             this.creationDate = DateTime.Now;
             this.completed = false;
@@ -138,14 +138,6 @@ namespace ENTITIES_APP
             return rtn;
         }
         #endregion
-
-        #region METHODS
-
-        #endregion
-
-
-
-
     }
 }
 

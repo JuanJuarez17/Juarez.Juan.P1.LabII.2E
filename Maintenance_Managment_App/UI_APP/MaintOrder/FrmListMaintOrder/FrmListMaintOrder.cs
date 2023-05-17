@@ -17,6 +17,11 @@ namespace UI_APP
         #region ATTRIBUTES
         private User activeUser;
         private Form activeForm;
+        int flagCreationDateSort = 0;
+        int flagSectionSort = 0;
+        int flagMachineSort = 0;
+        int flagPrioritySort = 0;
+
         #endregion
 
         #region CONSTRUCTOR
@@ -52,13 +57,65 @@ namespace UI_APP
             activeForm.BringToFront();
             result = activeForm.ShowDialog();
         }
-        public static void FrmListMaintenanceOrder_LoadDataGrid(DataGridView inputDtg, Label inputLabel)
+        private void FrmListMaintenanceOrder_AvailableFunctions()
+        {
+            // Users Permissions
+            if (!this.activeUser.Admin)
+            {
+                this.btn_EditMaintOrder.Visible = false;
+                this.btn_DeleteMaintOrder.Visible = false;
+            }
+            // Datagridview Permissions
+            if (Controller.MaintOrderDbLoaded)
+            {
+                this.dtg_MaintOrderDb.Visible = true;
+                this.lbl_MaintOrderDb.Visible = false;
+                this.btn_ImportDb.Enabled = false;
+                this.btn_AddMaintOrder.Enabled = true;
+                this.btn_InfoMaintOrder.Enabled = true;
+                this.btn_EditMaintOrder.Enabled = true;
+                this.btn_DeleteMaintOrder.Enabled = true;
+                this.gpb_ShowMaintOrders.Enabled = true;
+                this.rdb_ActiveMaintOrders.Checked = true;
+                if (Controller.ActiveMaintOrders.Count == 0)
+                {
+                    this.dtg_MaintOrderDb.Visible = false;
+                    this.lbl_MaintOrderDb.Visible = true;
+                    this.lbl_MaintOrderDb.Text = "No hay ordenes de mantenimiento activas.";
+                    this.btn_InfoMaintOrder.Enabled = false;
+                    this.btn_EditMaintOrder.Enabled = false;
+                    this.btn_DeleteMaintOrder.Enabled = false;
+                }
+            }
+            else
+            {
+                this.dtg_MaintOrderDb.Visible = false;
+                this.lbl_MaintOrderDb.Visible = true;
+                this.btn_ImportDb.Enabled = true;
+                this.btn_AddMaintOrder.Enabled = false;
+                this.btn_InfoMaintOrder.Enabled = false;
+                this.btn_EditMaintOrder.Enabled = false;
+                this.btn_DeleteMaintOrder.Enabled = false;
+                this.gpb_ShowMaintOrders.Enabled = false;
+            }
+        }
+        public void FrmListMaintenanceOrder_LoadDataGrid(DataGridView inputDtg)
         {
             if (Controller.MaintOrderDb.Count > 0)
             {
-                Controller.MaintOrder_LoadActiveOrders();
                 inputDtg.DataSource = null;
-                inputDtg.DataSource = Controller.ActiveMaintOrders;
+                if (this.rdb_ActiveMaintOrders.Checked)
+                {
+                    inputDtg.DataSource = Controller.ActiveMaintOrders;
+                }
+                else if (this.rdb_CompletedMaintOrders.Checked)
+                {
+                    inputDtg.DataSource = Controller.CompletedMaintOrders;
+                }
+                else if (this.rdb_UncompletedMaintOrders.Checked)
+                {
+                    inputDtg.DataSource = Controller.UncompletedMaintOrders;
+                }
                 inputDtg.Columns["Active"].Visible = false;
                 inputDtg.Columns["User"].Visible = false;
                 inputDtg.Columns["Description"].Visible = false;
@@ -71,13 +128,6 @@ namespace UI_APP
                 inputDtg.Columns[7].HeaderText = "INGRESO";
                 inputDtg.Columns[9].HeaderText = "COMPLETADA";
                 inputDtg.Columns[10].HeaderText = "FINALIZADA";
-                inputDtg.Visible = true;
-                inputLabel.Visible = false;
-            }
-            else
-            {
-                inputDtg.Visible = false;
-                inputLabel.Visible = true;
             }
         }
         #endregion
@@ -90,8 +140,13 @@ namespace UI_APP
             this.btn_InfoMaintOrder.ImageIndex = 5;
             this.btn_EditMaintOrder.ImageIndex = 1;
             this.btn_DeleteMaintOrder.ImageIndex = 2;
-            this.btn_Close.ImageIndex = 3;
-            FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb, this.lbl_MaintOrderDb);
+            this.btn_SortByDate.ImageIndex = 10;
+            this.btn_SortBySector.ImageIndex = 7;
+            this.btn_SortByMachine.ImageIndex = 9;
+            this.btn_SortByUrgency.ImageIndex = 8;
+            this.btn_ShowMaintOrders.ImageIndex = 11;
+            FrmListMaintenanceOrder_AvailableFunctions();
+            FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
         }
         private void btn_ImportDb_MouseHover(object sender, EventArgs e)
         {
@@ -105,7 +160,8 @@ namespace UI_APP
         {
             if (Controller.MaintOrder_HardcodeDb())
             {
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb, this.lbl_MaintOrderDb);
+                FrmListMaintenanceOrder_AvailableFunctions();
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
                 MessageBox.Show("Base de datos importada con exito.", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -118,7 +174,8 @@ namespace UI_APP
             ActivateForm(new FrmAddMaintOrder(this.User), out DialogResult result);
             if (result == DialogResult.OK)
             {
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb, this.lbl_MaintOrderDb);
+                FrmListMaintenanceOrder_AvailableFunctions();
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
             }
             else
             {
@@ -136,7 +193,7 @@ namespace UI_APP
             ActivateForm(new FrmEditMaintOrder(selectedId), out DialogResult result);
             if (result == DialogResult.OK)
             {
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb, this.lbl_MaintOrderDb);
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
             }
             else
             {
@@ -150,29 +207,73 @@ namespace UI_APP
             if (respuesta == DialogResult.Yes)
             {
                 Controller.MaintOrder_Remove(selectedId);
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb, this.lbl_MaintOrderDb);
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                FrmListMaintenanceOrder_AvailableFunctions();
             }
         }
-
-        int flagIdSort = 0;
-        private void btn_Sort_Click(object sender, EventArgs e)
+        private void btn_ShowMaintOrders_Click(object sender, EventArgs e)
         {
-            if (this.flagIdSort == 0)
+            FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+        }
+        private void btn_SortByDate_Click(object sender, EventArgs e)
+        {
+            if (this.flagCreationDateSort == 0)
             {
-                Controller.MaintOrder_Sort(this.flagIdSort);
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb, this.lbl_MaintOrderDb);
-                this.flagIdSort = 1;
+                Controller.MaintOrder_Sort("DATE", this.flagCreationDateSort);
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                this.flagCreationDateSort = 1;
             }
             else
             {
-                Controller.MaintOrder_Sort(this.flagIdSort);
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb, this.lbl_MaintOrderDb);
-                this.flagIdSort = 0;
+                Controller.MaintOrder_Sort("DATE", this.flagCreationDateSort);
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                this.flagCreationDateSort = 0;
             }
         }
-        private void btn_Close_Click(object sender, EventArgs e)
+        private void btn_SortBySector_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (this.flagSectionSort == 0)
+            {
+                Controller.MaintOrder_Sort("SECTION", this.flagSectionSort);
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                this.flagSectionSort = 1;
+            }
+            else
+            {
+                Controller.MaintOrder_Sort("SECTION", this.flagSectionSort);
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                this.flagSectionSort = 0;
+            }
+        }
+        private void btn_SortByMachine_Click(object sender, EventArgs e)
+        {
+            if (this.flagMachineSort == 0)
+            {
+                Controller.MaintOrder_Sort("MACHINE", this.flagMachineSort);
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                this.flagMachineSort = 1;
+            }
+            else
+            {
+                Controller.MaintOrder_Sort("MACHINE", this.flagMachineSort);
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                this.flagMachineSort = 0;
+            }
+        }
+        private void btn_SortByUrgency_Click(object sender, EventArgs e)
+        {
+            if (this.flagPrioritySort == 0)
+            {
+                Controller.MaintOrder_Sort("PRIORITY", this.flagPrioritySort);
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                this.flagPrioritySort = 1;
+            }
+            else
+            {
+                Controller.MaintOrder_Sort("PRIORITY", this.flagPrioritySort);
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                this.flagPrioritySort = 0;
+            }
         }
         #endregion
 
