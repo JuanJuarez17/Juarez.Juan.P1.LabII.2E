@@ -20,6 +20,11 @@ namespace UI_APP
         }
         #endregion
 
+        private void ActivateForm(Form form)
+        {
+            form.ShowDialog();
+        }
+
         #region EVENT METHODS
         private void FrmLogin_Load(object sender, EventArgs e)
         {
@@ -50,9 +55,13 @@ namespace UI_APP
         }
         private void btn_Autocomplete_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Se aucompletaran los campos usuario y contraseña", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            txb_Username.Text = "JJuarez";
-            txb_Password.Text = "rty000";
+            FrmAutocomplete frmAutocomplete = new FrmAutocomplete();
+            DialogResult result = frmAutocomplete.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                this.txb_Username.Text = frmAutocomplete.Username;
+                this.txb_Password.Text = frmAutocomplete.Password;
+            }
         }
         #endregion
     }

@@ -30,3 +30,4 @@ C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI
 C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.FrmInfoMaintOrder.resources
 C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.FrmEditMaintOrder.resources
 C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.FrmHome.resources
+C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.FrmAutocomplete.resources
