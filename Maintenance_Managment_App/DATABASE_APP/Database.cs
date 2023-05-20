@@ -17,9 +17,9 @@ namespace DATABASE_APP
         public List<User> UserDb { get { return this.usersDb; } }
         public List<MaintenanceOrder> MaintOrderDb { get { return this.maintOrdersDb; } }
         public bool MaintOrderDbLoaded { get { return this.maintOrderDbLoaded; } }
-        public List<MaintenanceOrder> ActiveMaintOrders 
-        { 
-            get 
+        public List<MaintenanceOrder> ActiveMaintOrders
+        {
+            get
             {
                 List<MaintenanceOrder> activeMaintOrders = new List<MaintenanceOrder>();
 
@@ -30,8 +30,8 @@ namespace DATABASE_APP
                         activeMaintOrders.Add(item);
                     }
                 }
-                return activeMaintOrders; 
-            } 
+                return activeMaintOrders;
+            }
         }
         public List<MaintenanceOrder> CompletedMaintOrders
         {
@@ -111,7 +111,7 @@ namespace DATABASE_APP
         private void User_LoadDb()
         {
             this.usersDb.Add(new Operator(203, "JPerez", "qwe123"));
-            this.usersDb.Add(new Operator(207,"ETolosa", "asd456"));
+            this.usersDb.Add(new Operator(207, "ETolosa", "asd456"));
             this.usersDb.Add(new Operator(201, "PRodriguez", "zxc789"));
             this.usersDb.Add(new Supervisor(206, "JJuarez", "rty000"));
             this.usersDb.Add(new Operator(001, "Operario", "oper123"));
@@ -185,7 +185,7 @@ namespace DATABASE_APP
             {
                 foreach (User item in this.UserDb)
                 {
-                    if (item.FileNumber == inputFileNumber)
+                    if (item.FileNumber == inputFileNumber && item.Active == true)
                     {
                         findedIndex = this.UserDb.IndexOf(item);
                         return true;
@@ -193,6 +193,39 @@ namespace DATABASE_APP
                 }
             }
             return rtn;
+        }
+        public bool User_FindInDb(string inputUsername, out int findedIndex)
+        {
+            bool rtn = false;
+            findedIndex = -1;
+            if (this.UserDb != null && this.UserDb.Count > 0)
+            {
+                foreach (User item in this.UserDb)
+                {
+                    if (item.Username == inputUsername && item.Active == true)
+                    {
+                        findedIndex = this.UserDb.IndexOf(item);
+                        return true;
+                    }
+                }
+            }
+            return rtn;
+        }
+        public List<string> User_LoadUsernameList()
+        {
+            List<string> usernamesList = new List<string>();
+            if (this.UserDb != null && this.UserDb.Count > 0)
+            {
+                foreach (User item in this.UserDb)
+                {
+                    if (!item.Admin && item.Username != "Operario")
+                    {
+                        usernamesList.Add(item.Username);
+                    }
+                }
+                usernamesList.Sort();
+            }
+            return usernamesList;
         }
         #endregion
 
@@ -371,7 +404,7 @@ namespace DATABASE_APP
         public static int PriorityCreasing(MaintenanceOrder input1, MaintenanceOrder input2)
         {
             return -PriorityDecreasing(input1, input2);
-        } 
+        }
         #endregion
     }
 }

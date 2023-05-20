@@ -15,6 +15,9 @@ namespace UI_APP
     public partial class FrmAccountDetails : Form
     {
         private User activeUser;
+        private User auxUser;
+        private bool modifyModeEnable = false;
+        private bool userSearchedEnable = false;
         private FrmAccountDetails()
         {
             InitializeComponent();
@@ -24,58 +27,174 @@ namespace UI_APP
             this.activeUser = inputUser;
         }
 
-        private void FrmAccountDetails_LoadDetails(User inputUser)
-        {
-            //string message = Controller.MaintOrder_PrintParameter("DESCRIPTION", this.maintOrderId);
-            //if (message == string.Empty)
-            //{
-            //    this.rtb_MaintOrderDesc.Text = "No se agrego descripcion.";
-            //}
-            //else
-            //{
-            //    this.rtb_MaintOrderDesc.Text = message;
-            //}
-            this.txb_UserFileNumber.Text = inputUser.FileNumber.ToString();
-            if (inputUser.Name == string.Empty)
-            {
-                this.txb_UserName.Text = "No ingresado";
-            }
-        }
+        #region METHODS
         private void FrmAccountDetails_AvailableFunctions()
         {
-            if (!activeUser.Admin)
+            if (!this.activeUser.Admin) { gpb_ControlPanel.Visible = false; }
+
+            if (this.userSearchedEnable) { this.btn_ModifyUser.Enabled = true; }
+            else { this.btn_ModifyUser.Enabled = false; }
+
+            if (this.modifyModeEnable)
             {
-                gpb_ControlPanel.Visible = false;
+                this.cbb_UsernameList.Enabled = false;
+                this.btn_SearchUser.Enabled = false;
+                this.btn_AddUser.Enabled = false;
+                this.btn_DeleteUser.Enabled = false;
+
+                this.btn_Accept.Visible = true;
+                this.btn_Cancel.Visible = true;
+
+                this.txb_UserName.ReadOnly = false;
+                this.txb_UserSurname.ReadOnly = false;
+                this.txb_UserAge.ReadOnly = false;
+                this.txb_EntryDate.ReadOnly = false;
+                this.cbb_UserDivision.Enabled = true;
+                this.cbb_UserShift.Enabled = true;
+                this.cbb_UserCategory.Enabled = true;
+
+            }
+            else
+            {
+                this.cbb_UsernameList.Enabled = true;
+                this.btn_SearchUser.Enabled = true;
+                this.btn_AddUser.Enabled = true;
+                this.btn_DeleteUser.Enabled = true;
+
+                this.btn_Accept.Visible = false;
+                this.btn_Cancel.Visible = false;
+
+                this.txb_UserName.ReadOnly = true;
+                this.txb_UserSurname.ReadOnly = true;
+                this.txb_UserAge.ReadOnly = true;
+                this.txb_EntryDate.ReadOnly = true;
+                this.cbb_UserDivision.Enabled = false;
+                this.cbb_UserShift.Enabled = false;
+                this.cbb_UserCategory.Enabled = false;
             }
         }
+        private void FrmAccountDetails_LoadDetails(User inputUser)
+        {
+            if (inputUser.Admin) { this.gpb_PositionDetails.Visible = false; }
+            else { this.gpb_PositionDetails.Visible = true; }
 
+            this.gpb_UserDetails.Text = $"Detalles del usuario {inputUser.Username}";
+            this.gpb_PositionDetails.Text = $"Detalles del puesto de {inputUser.Username}";
+
+            if (this.modifyModeEnable)
+            {
+                this.txb_UserFileNumber.Text = inputUser.FileNumber.ToString();
+                this.txb_UserName.Text = inputUser.Name;
+                this.txb_UserSurname.Text = inputUser.Surname;
+                this.txb_UserAge.Text = inputUser.Age.ToString();
+                this.txb_EntryDate.Text = inputUser.EntryDate.ToShortDateString();
+
+                if (this.gpb_PositionDetails.Visible == true)
+                {
+                    this.cbb_UserDivision.Text = ((Operator)inputUser).Division.ToString();
+                    this.cbb_UserShift.Text = ((Operator)inputUser).Shift.ToString();
+                    this.cbb_UserCategory.Text = ((Operator)inputUser).Category.ToString();
+                    this.txb_Antiquity.Text = ((Operator)inputUser).Antiquity.ToString();
+                    this.txb_Vacations.Text = ((Operator)inputUser).VacationDays.ToString();
+                }
+
+                this.btn_Accept.Visible = true;
+                this.btn_Cancel.Visible = true;
+            }
+            else
+            {
+                this.txb_UserFileNumber.Text = inputUser.FileNumber.ToString();
+                this.txb_UserName.Text = inputUser.Name;
+                this.txb_UserSurname.Text = inputUser.Surname;
+                this.txb_UserAge.Text = inputUser.Age.ToString();
+                this.txb_EntryDate.Text = inputUser.EntryDate.ToShortDateString();
+
+                if (string.IsNullOrWhiteSpace(txb_UserName.Text)) { this.txb_UserName.Text = "No ingresado"; }
+                if (string.IsNullOrWhiteSpace(txb_UserSurname.Text)) { this.txb_UserSurname.Text = "No ingresado"; }
+                if (txb_UserAge.Text == "0") { this.txb_UserAge.Text = "No ingresado"; }
+                if (txb_EntryDate.Text == "1/1/0001") { this.txb_EntryDate.Text = "No ingresado"; }
+
+                if (this.gpb_PositionDetails.Visible == true)
+                {
+                    this.cbb_UserDivision.Text = ((Operator)inputUser).Division.ToString();
+                    this.cbb_UserShift.Text = ((Operator)inputUser).Shift.ToString();
+                    this.cbb_UserCategory.Text = ((Operator)inputUser).Category.ToString();
+                    this.txb_Antiquity.Text = ((Operator)inputUser).Antiquity.ToString();
+                    this.txb_Vacations.Text = ((Operator)inputUser).VacationDays.ToString();
+                }
+                this.btn_Accept.Visible = false;
+                this.btn_Cancel.Visible = false;
+            }
+        }
+        #endregion
+
+        #region EVENT METHODS
         private void FrmAccountDetails_Load(object sender, EventArgs e)
         {
+            this.cbb_UsernameList.DataSource = Controller.User_LoadUsernameList();
+            this.cbb_UserDivision.DataSource = Enum.GetValues(typeof(Division));
+            this.cbb_UserShift.DataSource = Enum.GetValues(typeof(Shift));
+            this.cbb_UserCategory.DataSource = Enum.GetValues(typeof(Category));
             this.btn_SearchUser.ImageIndex = 5;
             this.btn_AddUser.ImageIndex = 0;
-            this.Btn_ModifyUser.ImageIndex = 1;
+            this.btn_ModifyUser.ImageIndex = 1;
             this.btn_DeleteUser.ImageIndex = 2;
+            this.btn_Cancel.ImageIndex = 3;
+            this.btn_Accept.ImageIndex = 4;
             FrmAccountDetails_AvailableFunctions();
             FrmAccountDetails_LoadDetails(this.activeUser);
         }
         private void btn_SearchUser_Click(object sender, EventArgs e)
         {
-            bool isInt = int.TryParse(this.txb_InputUserFileNumber.Text, out int inputFileNumber);
-            if (!isInt)
+            this.userSearchedEnable = true;
+            string selectedUsername = this.cbb_UsernameList.SelectedItem.ToString();
+            Controller.User_FindInDb(selectedUsername, out int findedIndex);
+            this.auxUser = Controller.User_Return(findedIndex);
+            FrmAccountDetails_AvailableFunctions();
+            FrmAccountDetails_LoadDetails(this.auxUser);
+        }
+        private void btn_ModifyUser_Click(object sender, EventArgs e)
+        {
+            this.modifyModeEnable = true;
+            FrmAccountDetails_AvailableFunctions();
+            FrmAccountDetails_LoadDetails(auxUser);
+        }
+        private void btn_Accept_Click(object sender, EventArgs e)
+        {
+            string inputName = this.txb_UserName.Text;
+            string inputSurname = this.txb_UserSurname.Text;
+            string inputAge = this.txb_UserAge.Text;
+            string inputDate = this.txb_EntryDate.Text;                
+
+            if (User.ValidateEntries(inputName, inputSurname, inputAge, inputDate))
             {
-                MessageBox.Show("Debe ingresar un numero de legajo!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                auxUser.Name = inputName;
+                auxUser.Surname = inputSurname;
+                auxUser.Age = int.Parse(inputAge);
+                auxUser.EntryDate = DateTime.Parse(inputDate);
+                ((Operator)auxUser).Division = (Division)this.cbb_UserDivision.SelectedItem;
+                ((Operator)auxUser).Shift = (Shift)this.cbb_UserShift.SelectedItem;
+                ((Operator)auxUser).Category = (Category)this.cbb_UserCategory.SelectedItem;
+
+                this.modifyModeEnable = false;
+                FrmAccountDetails_AvailableFunctions();
+                FrmAccountDetails_LoadDetails(this.auxUser);
             }
             else
             {
-                if (Controller.User_FindInDb(inputFileNumber, out int findedIndex))
-                {
-                    FrmAccountDetails_LoadDetails(Controller.User_Return(findedIndex));
-                }
-                else
-                {
-                    MessageBox.Show("No se ha encontrado al usuario", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+                MessageBox.Show("Informacion incompleta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Modificacion de usuario cancelada!", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            this.modifyModeEnable = false;
+            FrmAccountDetails_AvailableFunctions();
+            FrmAccountDetails_LoadDetails(this.auxUser);
+        }
+        #endregion
+
+
+
     }
 }

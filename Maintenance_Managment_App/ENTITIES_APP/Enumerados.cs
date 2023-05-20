@@ -9,6 +9,7 @@ namespace ENTITIES_APP
     // Enum para Operator
     public enum Division
     {
+        Indefinido,
         Mecanica,
         Electricidad,
         Electronica,
@@ -16,12 +17,14 @@ namespace ENTITIES_APP
     }
     public enum Shift
     {
+        Indefinido,
         Maniana,
         Tarde,
         Noche
     }
     public enum Category
     {
+        Indefinido,
         Peon,
         Operario,
         OperarioCalificado,

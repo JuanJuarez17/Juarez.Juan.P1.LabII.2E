@@ -65,6 +65,14 @@ namespace CONTROLLER_APP
         {
             return appDb.User_FindInDb(inputFileNumber, out findedIndex);
         }
+        public static bool User_FindInDb(string inputUsername, out int findedIndex)
+        {
+            return appDb.User_FindInDb(inputUsername, out findedIndex);
+        }
+        public static List<string> User_LoadUsernameList()
+        {
+            return appDb.User_LoadUsernameList();
+        }
         #endregion
 
         #region MAINT ORDER METHODS

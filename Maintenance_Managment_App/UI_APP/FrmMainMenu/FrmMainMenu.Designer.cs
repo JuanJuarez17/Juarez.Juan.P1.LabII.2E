@@ -31,11 +31,10 @@
             mst_MainMenuOpt=new System.Windows.Forms.MenuStrip();
             smi_Home=new System.Windows.Forms.ToolStripMenuItem();
             smi_MaintOrder=new System.Windows.Forms.ToolStripMenuItem();
-            smi_Operator=new System.Windows.Forms.ToolStripMenuItem();
+            smi_AccountDetail=new System.Windows.Forms.ToolStripMenuItem();
             sts_Status=new System.Windows.Forms.StatusStrip();
             tss_User=new System.Windows.Forms.ToolStripStatusLabel();
             tss_Status=new System.Windows.Forms.ToolStripStatusLabel();
-            smi_AccountDetail=new System.Windows.Forms.ToolStripMenuItem();
             mst_MainMenuOpt.SuspendLayout();
             sts_Status.SuspendLayout();
             SuspendLayout();
@@ -43,7 +42,7 @@
             // mst_MainMenuOpt
             // 
             mst_MainMenuOpt.GripStyle=System.Windows.Forms.ToolStripGripStyle.Visible;
-            mst_MainMenuOpt.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { smi_Home, smi_MaintOrder, smi_Operator, smi_AccountDetail });
+            mst_MainMenuOpt.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { smi_Home, smi_MaintOrder, smi_AccountDetail });
             mst_MainMenuOpt.Location=new System.Drawing.Point(0, 0);
             mst_MainMenuOpt.Name="mst_MainMenuOpt";
             mst_MainMenuOpt.Size=new System.Drawing.Size(984, 24);
@@ -65,11 +64,12 @@
             smi_MaintOrder.Text="Orden Mantenimiento";
             smi_MaintOrder.Click+=smi_MaintOrder_Click;
             // 
-            // smi_Operator
+            // smi_AccountDetail
             // 
-            smi_Operator.Name="smi_Operator";
-            smi_Operator.Size=new System.Drawing.Size(65, 20);
-            smi_Operator.Text="Operario";
+            smi_AccountDetail.Name="smi_AccountDetail";
+            smi_AccountDetail.Size=new System.Drawing.Size(96, 20);
+            smi_AccountDetail.Text="Detalle Cuenta";
+            smi_AccountDetail.Click+=smi_AccountDetail_Click;
             // 
             // sts_Status
             // 
@@ -92,13 +92,6 @@
             tss_Status.Size=new System.Drawing.Size(58, 17);
             tss_Status.Text="tss_Status";
             // 
-            // smi_AccountDetail
-            // 
-            smi_AccountDetail.Name="smi_AccountDetail";
-            smi_AccountDetail.Size=new System.Drawing.Size(96, 20);
-            smi_AccountDetail.Text="Detalle Cuenta";
-            smi_AccountDetail.Click+=smi_AccountDetail_Click;
-            // 
             // FrmMainMenu
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
@@ -107,6 +100,7 @@
             Controls.Add(sts_Status);
             Controls.Add(mst_MainMenuOpt);
             IsMdiContainer=true;
+            MinimumSize=new System.Drawing.Size(1000, 600);
             Name="FrmMainMenu";
             StartPosition=System.Windows.Forms.FormStartPosition.CenterScreen;
             Text="Maintenance Management Assistant";
@@ -124,7 +118,6 @@
 
         private System.Windows.Forms.MenuStrip mst_MainMenuOpt;
         private System.Windows.Forms.ToolStripMenuItem smi_MaintOrder;
-        private System.Windows.Forms.ToolStripMenuItem smi_Operator;
         private System.Windows.Forms.StatusStrip sts_Status;
         private System.Windows.Forms.ToolStripStatusLabel tss_User;
         private System.Windows.Forms.ToolStripStatusLabel tss_Status;

@@ -89,10 +89,7 @@ namespace UI_APP
         }
         private void FrmMainMenu_AvailableFunctions()
         {
-            if (!this.activeUser.Admin)
-            {
-                smi_Operator.Visible = false;
-            }
+
         }
         #endregion
 
@@ -120,7 +117,5 @@ namespace UI_APP
             Application.Exit();
         }
         #endregion
-
-
     }
 }
