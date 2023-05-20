@@ -12,7 +12,21 @@ namespace ENTITIES_APP
         Mecanica,
         Electricidad,
         Electronica,
-        Limpieza,
+        Limpieza
+    }
+    public enum Shift
+    {
+        Maniana,
+        Tarde,
+        Noche
+    }
+    public enum Category
+    {
+        Peon,
+        Operario,
+        OperarioCalificado,
+        Oficial,
+        OficialMultiple,
     }
 
     // Enum para MaintenanceOrder

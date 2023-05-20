@@ -92,7 +92,6 @@ namespace UI_APP
             if (!this.activeUser.Admin)
             {
                 smi_Operator.Visible = false;
-                // TODO: Enable = false los desactiva peor no los oculta, Visible = false los oculta
             }
         }
         #endregion
@@ -112,10 +111,16 @@ namespace UI_APP
         {
             ActivateForm(new FrmListMaintOrder(this.User));
         }
+        private void smi_AccountDetail_Click(object sender, EventArgs e)
+        {
+            ActivateForm(new FrmAccountDetails(this.User));
+        }
         private void FrmMainMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
         #endregion
+
+
     }
 }

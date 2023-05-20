@@ -110,12 +110,12 @@ namespace DATABASE_APP
         // Es private ya que por defecto se cargara la db de user, no se podra taer de otro lado
         private void User_LoadDb()
         {
-            this.usersDb.Add(new Operator("JPerez", "qwe123"));
-            this.usersDb.Add(new Operator("ETolosa", "asd456"));
-            this.usersDb.Add(new Operator("PRodriguez", "zxc789"));
-            this.usersDb.Add(new Supervisor("JJuarez", "rty000"));
-            this.usersDb.Add(new Operator("Operario", "oper123"));
-            this.usersDb.Add(new Supervisor("Supervisor", "super456"));
+            this.usersDb.Add(new Operator(203, "JPerez", "qwe123"));
+            this.usersDb.Add(new Operator(207,"ETolosa", "asd456"));
+            this.usersDb.Add(new Operator(201, "PRodriguez", "zxc789"));
+            this.usersDb.Add(new Supervisor(206, "JJuarez", "rty000"));
+            this.usersDb.Add(new Operator(001, "Operario", "oper123"));
+            this.usersDb.Add(new Supervisor(002, "Supervisor", "super456"));
         }
         // Es public pues voy a dar la opcion de hardcodear la db, en un futuro habra otro metodo que reciba una db
         public bool MaintOrder_HardcodeDb()
@@ -141,7 +141,7 @@ namespace DATABASE_APP
         #endregion
 
         #region USER DB METHODS
-        public User User_Return(string inputUsername)
+        public User User_Return(string inputUsername) // Usado en Login y Hardcodeo
         {
             foreach (User item in usersDb)
             {
@@ -150,8 +150,11 @@ namespace DATABASE_APP
                     return item;
                 }
             }
-            // TODO: Revisar este retorno
             return null;
+        }
+        public User User_Return(int inputFileNumber) // Usado en Gestion de usuario dentro del soft
+        {
+            return this.UserDb[inputFileNumber];
         }
         public int User_Check(string inputUsername, string inputPassword)
         {
@@ -173,6 +176,23 @@ namespace DATABASE_APP
                 }
                 return 0;
             }
+        } // Usado en Login
+        public bool User_FindInDb(int inputFileNumber, out int findedIndex)
+        {
+            bool rtn = false;
+            findedIndex = -1;
+            if (this.UserDb != null && this.UserDb.Count > 0)
+            {
+                foreach (User item in this.UserDb)
+                {
+                    if (item.FileNumber == inputFileNumber)
+                    {
+                        findedIndex = this.UserDb.IndexOf(item);
+                        return true;
+                    }
+                }
+            }
+            return rtn;
         }
         #endregion
 

@@ -57,9 +57,17 @@ namespace CONTROLLER_APP
         {
             return appDb.User_Return(inputUsername);
         }
+        public static User User_Return(int inputFileNumber)
+        {
+            return appDb.User_Return(inputFileNumber);
+        }
+        public static bool User_FindInDb(int inputFileNumber, out int findedIndex)
+        {
+            return appDb.User_FindInDb(inputFileNumber, out findedIndex);
+        }
         #endregion
 
-        #region MO METHODS
+        #region MAINT ORDER METHODS
         public static int MaintOrder_ReturnFinished()
         {
             return appDb.FinishedOrders;

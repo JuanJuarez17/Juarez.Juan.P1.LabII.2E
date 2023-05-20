@@ -100,19 +100,19 @@ namespace ENTITIES_APP
         }
         private MaintenanceOrder()
         {
+            this.active = true;
             this.id = lastId++;
+            this.creationDate = DateTime.Now;
+            this.completed = false;
         }
         public MaintenanceOrder(User inputMaker, Section inputSection, Machine inputMachine, Urgency inputUrgency, string inputDescription)
                  : this()
         {
             this.maker = inputMaker;
-            this.faultyUnit = inputMachine;
             this.faultyUnitSection = inputSection;
+            this.faultyUnit = inputMachine;
             this.failureUrgency = inputUrgency;
             this.description = inputDescription;
-            this.active = true;
-            this.creationDate = DateTime.Now;
-            this.completed = false;
         }
         public MaintenanceOrder(User inputMaker, Section inputSection, Machine inputMachine, Urgency inputUrgency, string inputDescription, bool inputStatus, DateTime inputCreation, bool inputCompleted)
                  : this(inputMaker, inputSection, inputMachine, inputUrgency, inputDescription) // Solo para uso en hardcodeo

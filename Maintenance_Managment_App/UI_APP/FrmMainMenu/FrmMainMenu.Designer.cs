@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             mst_MainMenuOpt=new System.Windows.Forms.MenuStrip();
+            smi_Home=new System.Windows.Forms.ToolStripMenuItem();
             smi_MaintOrder=new System.Windows.Forms.ToolStripMenuItem();
             smi_Operator=new System.Windows.Forms.ToolStripMenuItem();
             sts_Status=new System.Windows.Forms.StatusStrip();
             tss_User=new System.Windows.Forms.ToolStripStatusLabel();
             tss_Status=new System.Windows.Forms.ToolStripStatusLabel();
-            smi_Home=new System.Windows.Forms.ToolStripMenuItem();
+            smi_AccountDetail=new System.Windows.Forms.ToolStripMenuItem();
             mst_MainMenuOpt.SuspendLayout();
             sts_Status.SuspendLayout();
             SuspendLayout();
@@ -42,12 +43,19 @@
             // mst_MainMenuOpt
             // 
             mst_MainMenuOpt.GripStyle=System.Windows.Forms.ToolStripGripStyle.Visible;
-            mst_MainMenuOpt.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { smi_Home, smi_MaintOrder, smi_Operator });
+            mst_MainMenuOpt.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { smi_Home, smi_MaintOrder, smi_Operator, smi_AccountDetail });
             mst_MainMenuOpt.Location=new System.Drawing.Point(0, 0);
             mst_MainMenuOpt.Name="mst_MainMenuOpt";
             mst_MainMenuOpt.Size=new System.Drawing.Size(984, 24);
             mst_MainMenuOpt.TabIndex=0;
             mst_MainMenuOpt.Text="menuStrip1";
+            // 
+            // smi_Home
+            // 
+            smi_Home.Name="smi_Home";
+            smi_Home.Size=new System.Drawing.Size(48, 20);
+            smi_Home.Text="Inicio";
+            smi_Home.Click+=smi_Home_Click;
             // 
             // smi_MaintOrder
             // 
@@ -84,12 +92,12 @@
             tss_Status.Size=new System.Drawing.Size(58, 17);
             tss_Status.Text="tss_Status";
             // 
-            // smi_Home
+            // smi_AccountDetail
             // 
-            smi_Home.Name="smi_Home";
-            smi_Home.Size=new System.Drawing.Size(48, 20);
-            smi_Home.Text="Inicio";
-            smi_Home.Click+=smi_Home_Click;
+            smi_AccountDetail.Name="smi_AccountDetail";
+            smi_AccountDetail.Size=new System.Drawing.Size(96, 20);
+            smi_AccountDetail.Text="Detalle Cuenta";
+            smi_AccountDetail.Click+=smi_AccountDetail_Click;
             // 
             // FrmMainMenu
             // 
@@ -121,5 +129,6 @@
         private System.Windows.Forms.ToolStripStatusLabel tss_User;
         private System.Windows.Forms.ToolStripStatusLabel tss_Status;
         private System.Windows.Forms.ToolStripMenuItem smi_Home;
+        private System.Windows.Forms.ToolStripMenuItem smi_AccountDetail;
     }
 }

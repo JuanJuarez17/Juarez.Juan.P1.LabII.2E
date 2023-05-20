@@ -5,41 +5,44 @@ namespace ENTITIES_APP
     public abstract class User
     {
         #region USED ATTRIBUTES
+        private bool active;
+        protected int fileNumber;
         protected string username;
         protected string password;
         protected bool admin;
-        #endregion
-
-        #region UNUSED ATTRIBUTES
-        // TODO: Revisar cuales de estos atributos son utiles y como utilizarlos
-        protected int id; // Identificacion para uso sofware (No creo que sea necesario)
         protected string name;
         protected string surname;
-        protected int file; // Legajo (Identificacion para uso fabril
+        protected int age;
         protected DateTime entryDate;
         #endregion
 
         #region CONSTRUCTOR
-        protected User(string inputUser, string inputPassword, bool inputAdmin)
+        protected User(int inputFileNumber, string inputUser, string inputPassword, bool inputAdmin)
         {
-            username = inputUser;
-            password = inputPassword;
-            admin = inputAdmin;
+            this.active = true;
+            this.fileNumber = inputFileNumber;
+            this.username = inputUser;
+            this.password = inputPassword;
+            this.admin = inputAdmin;
         }
         #endregion
 
         #region READONLY PROPERTIES
-        public string Username
+        public string Username { get { return this.username; } }
+        public string Password { get { return this.password; } }
+        public bool Admin { get { return this.admin; } }
+        public int FileNumber { get { return this.fileNumber; } }
+        public string Name 
         {
-            get { return username; }
-        }
-        public string Password
-        {
-            get { return password; }
-        }
-        public bool Admin
-        {
-            get { return admin; }
+            get 
+            {
+                string rtn = this.name;
+                if (rtn == null)
+                {
+                    rtn = string.Empty;
+                }
+                return rtn;
+            } 
         }
         #endregion
 
