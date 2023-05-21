@@ -63,6 +63,8 @@
             lbl_Divison=new System.Windows.Forms.Label();
             btn_Cancel=new System.Windows.Forms.Button();
             btn_Accept=new System.Windows.Forms.Button();
+            btn_SaveUserDb=new System.Windows.Forms.Button();
+            btn_LoadUserDb=new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)pcb_UserImage).BeginInit();
             gpb_UserDetails.SuspendLayout();
             gpb_ControlPanel.SuspendLayout();
@@ -251,6 +253,7 @@
             btn_DeleteUser.Size=new System.Drawing.Size(40, 40);
             btn_DeleteUser.TabIndex=32;
             btn_DeleteUser.UseVisualStyleBackColor=true;
+            btn_DeleteUser.Click+=btn_DeleteUser_Click;
             // 
             // btn_ModifyUser
             // 
@@ -405,11 +408,33 @@
             btn_Accept.UseVisualStyleBackColor=true;
             btn_Accept.Click+=btn_Accept_Click;
             // 
+            // btn_SaveUserDb
+            // 
+            btn_SaveUserDb.Location=new System.Drawing.Point(244, 277);
+            btn_SaveUserDb.Name="btn_SaveUserDb";
+            btn_SaveUserDb.Size=new System.Drawing.Size(111, 23);
+            btn_SaveUserDb.TabIndex=35;
+            btn_SaveUserDb.Text="Save User DB";
+            btn_SaveUserDb.UseVisualStyleBackColor=true;
+            btn_SaveUserDb.Click+=btn_SaveOperatorDb_Click;
+            // 
+            // btn_LoadUserDb
+            // 
+            btn_LoadUserDb.Location=new System.Drawing.Point(361, 277);
+            btn_LoadUserDb.Name="btn_LoadUserDb";
+            btn_LoadUserDb.Size=new System.Drawing.Size(111, 23);
+            btn_LoadUserDb.TabIndex=36;
+            btn_LoadUserDb.Text="Load User DB";
+            btn_LoadUserDb.UseVisualStyleBackColor=true;
+            btn_LoadUserDb.Click+=btn_LoadUserDb_Click;
+            // 
             // FrmAccountDetails
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode=System.Windows.Forms.AutoScaleMode.Font;
             ClientSize=new System.Drawing.Size(950, 550);
+            Controls.Add(btn_LoadUserDb);
+            Controls.Add(btn_SaveUserDb);
             Controls.Add(btn_Accept);
             Controls.Add(btn_Cancel);
             Controls.Add(gpb_PositionDetails);
@@ -468,5 +493,7 @@
         private System.Windows.Forms.ComboBox cbb_UserCategory;
         private System.Windows.Forms.ComboBox cbb_UserShift;
         private System.Windows.Forms.ComboBox cbb_UserDivision;
+        private System.Windows.Forms.Button btn_SaveUserDb;
+        private System.Windows.Forms.Button btn_LoadUserDb;
     }
 }

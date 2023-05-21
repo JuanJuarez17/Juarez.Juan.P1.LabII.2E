@@ -59,5 +59,33 @@ namespace ENTITIES_APP
         // TODO: Agregar atributos propio de Operator
         public Operator(int inputFileNumber, string inputUsername, string inputPassword) 
                  : base(inputFileNumber, inputUsername, inputPassword, false) { }
+
+        // Operador de conversion para pasar de un objeto a un text (No usado)
+        public static explicit operator string(Operator inputOperator)
+        {
+            string[] attributes = new string[9];
+
+            attributes[0] = inputOperator.Active.ToString();
+            attributes[1] = inputOperator.FileNumber.ToString();
+            attributes[2] = inputOperator.Username;
+            attributes[3] = inputOperator.Password;
+            attributes[4] = inputOperator.Admin.ToString();
+            attributes[5] = inputOperator.Name;
+            attributes[6] = inputOperator.Surname;
+            attributes[7] = inputOperator.Age.ToString();
+            attributes[8] = inputOperator.EntryDate.ToString("yyyy/MM/dd");
+
+            return $"{attributes[0]},{attributes[1]},{attributes[2]},{attributes[3]},{attributes[4]},{attributes[5]},{attributes[6]},{attributes[7]},{attributes[8]}";
+        }
+
+        public override string WriteAsText()
+        {
+            string baseParse = base.WriteAsText();
+            string[] attributes = new string[3];
+            attributes[0] = this.Division.ToString();
+            attributes[1] = this.Shift.ToString();
+            attributes[2] = this.Category.ToString();
+            return baseParse + $",{attributes[0]},{attributes[1]},{attributes[2]}";
+        }
     }
 }

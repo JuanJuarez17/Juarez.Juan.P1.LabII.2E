@@ -110,10 +110,10 @@ namespace DATABASE_APP
         // Es private ya que por defecto se cargara la db de user, no se podra taer de otro lado
         private void User_LoadDb()
         {
-            this.usersDb.Add(new Operator(203, "JPerez", "qwe123"));
-            this.usersDb.Add(new Operator(207, "ETolosa", "asd456"));
-            this.usersDb.Add(new Operator(201, "PRodriguez", "zxc789"));
-            this.usersDb.Add(new Supervisor(206, "JJuarez", "rty000"));
+            //this.usersDb.Add(new Operator(203, "JPerez", "qwe123"));
+            //this.usersDb.Add(new Operator(207, "ETolosa", "asd456"));
+            //this.usersDb.Add(new Operator(201, "PRodriguez", "zxc789"));
+            //this.usersDb.Add(new Supervisor(206, "JJuarez", "rty000"));
             this.usersDb.Add(new Operator(001, "Operario", "oper123"));
             this.usersDb.Add(new Supervisor(002, "Supervisor", "super456"));
         }
@@ -218,7 +218,7 @@ namespace DATABASE_APP
             {
                 foreach (User item in this.UserDb)
                 {
-                    if (!item.Admin && item.Username != "Operario")
+                    if (item is Operator && item.Active == true && item.Username != "Operario")
                     {
                         usernamesList.Add(item.Username);
                     }
@@ -227,6 +227,51 @@ namespace DATABASE_APP
             }
             return usernamesList;
         }
+
+        public bool User_ReadFromText(string inputFile)
+        {
+            bool rtn = false;
+            if (!string.IsNullOrEmpty(inputFile))
+            {
+                string[] line = inputFile.Split(Environment.NewLine);
+                foreach (string item in line)
+                {
+                    if (!string.IsNullOrEmpty(item))
+                    {
+                        this.UserDb.Add(User.ReadFromText(item));
+                        rtn = true;
+                    }
+                }
+            }
+            return rtn;
+        }
+
+
+
+        public string User_OperatorDBSaveAsText()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("active,fileNumber,username,password,admin,name,surname,age,entryDate,divison,shift,category");
+            if (this.UserDb != null && this.UserDb.Count > 0)
+            {
+                foreach (User item in this.UserDb)
+                {
+                    if (item.Username != "Operario" && item.Username != "Supervisor")
+                    {
+                        if (item is Operator auxOperator)
+                        {
+                            sb.AppendLine(auxOperator.WriteAsText());
+                        }
+                        else
+                        {
+                            sb.AppendLine(item.WriteAsText());
+                        }
+                    }
+                }
+            }
+            return sb.ToString();
+        }
+
         #endregion
 
         #region MAINT ORDER DB METHODS

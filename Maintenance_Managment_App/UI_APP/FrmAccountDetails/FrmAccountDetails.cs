@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ENTITIES_APP;
 using CONTROLLER_APP;
+using System.IO;
 
 namespace UI_APP
 {
@@ -121,6 +122,11 @@ namespace UI_APP
                     this.cbb_UserCategory.Text = ((Operator)inputUser).Category.ToString();
                     this.txb_Antiquity.Text = ((Operator)inputUser).Antiquity.ToString();
                     this.txb_Vacations.Text = ((Operator)inputUser).VacationDays.ToString();
+                    if (txb_EntryDate.Text == "No ingresado")
+                    {
+                        this.txb_Antiquity.Text = "No ingresado";
+                        this.txb_Vacations.Text = "No ingresado";
+                    }
                 }
                 this.btn_Accept.Visible = false;
                 this.btn_Cancel.Visible = false;
@@ -159,12 +165,19 @@ namespace UI_APP
             FrmAccountDetails_AvailableFunctions();
             FrmAccountDetails_LoadDetails(auxUser);
         }
+        private void btn_DeleteUser_Click(object sender, EventArgs e)
+        {
+            this.auxUser.Active = false;
+            this.cbb_UsernameList.DataSource = Controller.User_LoadUsernameList();
+            FrmAccountDetails_AvailableFunctions();
+            FrmAccountDetails_LoadDetails(this.activeUser);
+        }
         private void btn_Accept_Click(object sender, EventArgs e)
         {
             string inputName = this.txb_UserName.Text;
             string inputSurname = this.txb_UserSurname.Text;
             string inputAge = this.txb_UserAge.Text;
-            string inputDate = this.txb_EntryDate.Text;                
+            string inputDate = this.txb_EntryDate.Text;
 
             if (User.ValidateEntries(inputName, inputSurname, inputAge, inputDate))
             {
@@ -192,9 +205,67 @@ namespace UI_APP
             FrmAccountDetails_AvailableFunctions();
             FrmAccountDetails_LoadDetails(this.auxUser);
         }
+        private void btn_LoadUserDb_Click(object sender, EventArgs e)
+        {
+            if (LoadUserDbFromText())
+            {
+                MessageBox.Show("Se cargo correctamente");
+                this.cbb_UsernameList.DataSource = Controller.User_LoadUsernameList();
+            }
+            else
+            {
+                MessageBox.Show("No se pudo cargar");
+            }       
+        }
+        private void btn_SaveOperatorDb_Click(object sender, EventArgs e)
+        {
+            if (SaveUserDbAsText())
+            {
+                MessageBox.Show("Se guardo correctamente");
+            }
+            else
+            {
+                MessageBox.Show("No se pudo cargar");
+            }
+        }
         #endregion
 
 
-
+        private bool LoadUserDbFromText()
+        {
+            bool rtn = false;
+            string route = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Test", "OperatorDb.txt");
+            if (File.Exists(route))
+            {
+                StringBuilder sb = new StringBuilder();
+                string[] readFile = File.ReadAllLines(route);
+                for (int i = 0; i < readFile.Length; i++)
+                {
+                    if (i != 0)
+                    {
+                        sb.AppendLine(readFile[i]);
+                    }
+                }
+                rtn = Controller.User_ReadFromText(sb.ToString());
+            }
+            return rtn;
+        }
+        private bool SaveUserDbAsText()
+        {
+            bool rtn = false;
+            string route = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Test");
+            if (!Directory.Exists(route))
+            {
+                Directory.CreateDirectory(route);
+            }
+            route = Path.Combine(route, "OperatorDb.txt");
+            if (File.Exists(route))
+            {
+                File.Delete(route);
+                rtn = true;
+            }
+            File.WriteAllText(route, Controller.User_OperatorDBSaveAsText());
+            return rtn;
+        }
     }
 }

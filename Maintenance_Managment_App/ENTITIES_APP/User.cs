@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 
 namespace ENTITIES_APP
@@ -31,11 +32,31 @@ namespace ENTITIES_APP
         #region READONLY PROPERTIES
 
         // No sobreescribo el get porque son atributos con los que creo un usuario "siempre van a estar bien"
-        public bool Active { get { return active; } }
-        public int FileNumber { get { return this.fileNumber; } }
-        public string Username { get { return this.username; } }
-        public string Password { get { return this.password; } }
-        public bool Admin { get { return this.admin; } }
+        public bool Active
+        {
+            get { return active; }
+            set { active = value; }
+        }
+        public int FileNumber
+        {
+            get { return this.fileNumber; }
+            set { this.fileNumber = value; }
+        }
+        public string Username
+        {
+            get { return this.username; }
+            set { this.username = value; }
+        }
+        public string Password
+        {
+            get { return this.password; }
+            set { this.password = value; }
+        }
+        public bool Admin
+        {
+            get { return this.admin; }
+            set { this.admin = value; }
+        }
 
         // Estos atributos "pueden no estar bien"
         public string Name
@@ -84,7 +105,6 @@ namespace ENTITIES_APP
         {
             return Password.Equals(inputPassword);
         }
-
         public static bool ValidateEntries(string inputName, string inputSurname, string inputAge, string inputDate)
         {
             bool isInt = int.TryParse(inputAge, out int value);
@@ -94,7 +114,6 @@ namespace ENTITIES_APP
             }
             return true;
         }
-
         private static bool ValidateDate(string inputDate)
         {
             if (DateTime.TryParse(inputDate, out DateTime auxDate))
@@ -107,7 +126,6 @@ namespace ENTITIES_APP
             }
             return false;
         }
-
         private static bool ValidateName(string inputName)
         {
             if (inputName == "")
@@ -130,6 +148,70 @@ namespace ENTITIES_APP
                 }
             }
             return true;
+        }
+
+        public static User ReadFromText(string inputLine)
+        {
+            User auxUser = new Operator(0, null, null);
+            if (!string.IsNullOrEmpty(inputLine))
+            {
+                string[] buffer = inputLine.Split(',');
+
+                bool.TryParse(buffer[0], out bool inputActive);
+                int.TryParse(buffer[1], out int inputFileNumber);
+                string inputUsername = buffer[2];
+                string inputPassword = buffer[3];
+                bool.TryParse(buffer[4], out bool inputAdmin);
+                string inputName = buffer[5];
+                string inputSurname = buffer[6];
+                int.TryParse(buffer[7], out int inputAge);
+                DateTime.TryParse(buffer[8], out DateTime inputEntryDate);
+
+                if (inputAdmin)
+                {
+                    auxUser = new Supervisor(inputFileNumber, inputUsername, inputPassword);
+                    auxUser.Active = inputActive;
+                    auxUser.Name = inputName;
+                    auxUser.Surname = inputSurname;
+                    auxUser.Age = inputAge;
+                    auxUser.EntryDate = inputEntryDate;
+                    return auxUser;
+                }
+                else
+                {
+                    Enum.TryParse(buffer[9], out Division inputDivision);
+                    Enum.TryParse(buffer[10], out Shift inputShift);
+                    Enum.TryParse(buffer[11], out Category inputCategory);
+                    auxUser = new Operator(inputFileNumber, inputUsername, inputPassword);
+                    auxUser.Active = inputActive;
+                    auxUser.Name = inputName;
+                    auxUser.Surname = inputSurname;
+                    auxUser.Age = inputAge;
+                    auxUser.EntryDate = inputEntryDate;
+                    ((Operator)auxUser).Division = inputDivision;
+                    ((Operator)auxUser).Shift = inputShift;
+                    ((Operator)auxUser).Category = inputCategory;
+                    return auxUser;
+                }
+            }
+            return auxUser;
+        }
+
+        public virtual string WriteAsText()
+        {
+            string[] attributes = new string[9];
+
+            attributes[0] = this.Active.ToString();
+            attributes[1] = this.FileNumber.ToString();
+            attributes[2] = this.Username;
+            attributes[3] = this.Password;
+            attributes[4] = this.Admin.ToString();
+            attributes[5] = this.Name;
+            attributes[6] = this.Surname;
+            attributes[7] = this.Age.ToString();
+            attributes[8] = this.EntryDate.ToString("yyyy/MM/dd");
+
+            return $"{attributes[0]},{attributes[1]},{attributes[2]},{attributes[3]},{attributes[4]},{attributes[5]},{attributes[6]},{attributes[7]},{attributes[8]}";
         }
         #endregion
     }

@@ -73,6 +73,14 @@ namespace CONTROLLER_APP
         {
             return appDb.User_LoadUsernameList();
         }
+        public static bool User_ReadFromText(string inputFile)
+        {
+            return appDb.User_ReadFromText(inputFile);
+        }
+        public static string User_OperatorDBSaveAsText()
+        {
+            return appDb.User_OperatorDBSaveAsText();
+        }
         #endregion
 
         #region MAINT ORDER METHODS
