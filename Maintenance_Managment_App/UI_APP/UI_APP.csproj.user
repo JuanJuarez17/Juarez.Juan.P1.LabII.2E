@@ -1,31 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="FrmAccountDetails\FrmAccountDetails.cs">
+    <Compile Update="05 User\FrmAddUser\FrmAddUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FrmAutocomplete\FrmAutocomplete.cs">
+    <Compile Update="05 User\FrmListUser\FrmListUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FrmHome\FrmHome.cs">
+    <Compile Update="01 FrmAutocomplete\FrmAutocomplete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="03 FrmHome\FrmHome.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FrmMainMenu\FrmMainMenu.cs">
+    <Compile Update="02 FrmMainMenu\FrmMainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="MaintOrder\FrmAddMaintOrder\FrmAddMaintOrder.cs">
+    <Compile Update="04 MaintOrder\FrmAddMaintOrder\FrmAddMaintOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="MaintOrder\FrmEditMaintOrder\FrmEditMaintOrder.cs">
+    <Compile Update="04 MaintOrder\FrmEditMaintOrder\FrmEditMaintOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="MaintOrder\FrmInfoMaintOrder\FrmInfoMaintOrder.cs">
+    <Compile Update="04 MaintOrder\FrmInfoMaintOrder\FrmInfoMaintOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="MaintOrder\FrmListMaintOrder\FrmListMaintOrder.cs">
+    <Compile Update="04 MaintOrder\FrmListMaintOrder\FrmListMaintOrder.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

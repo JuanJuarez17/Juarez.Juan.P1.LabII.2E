@@ -1,11 +1,11 @@
+C:\Users\PC\Desktop\Maintenance_Managment_App\ENTITIES_APP\bin\Debug\net5.0\ENTITIES_APP.deps.json
+C:\Users\PC\Desktop\Maintenance_Managment_App\ENTITIES_APP\bin\Debug\net5.0\ENTITIES_APP.dll
+C:\Users\PC\Desktop\Maintenance_Managment_App\ENTITIES_APP\bin\Debug\net5.0\ENTITIES_APP.pdb
 C:\Users\PC\Desktop\Maintenance_Managment_App\ENTITIES_APP\obj\Debug\net5.0\ENTITIES_APP.csproj.AssemblyReference.cache
 C:\Users\PC\Desktop\Maintenance_Managment_App\ENTITIES_APP\obj\Debug\net5.0\ENTITIES_APP.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\PC\Desktop\Maintenance_Managment_App\ENTITIES_APP\obj\Debug\net5.0\ENTITIES_APP.AssemblyInfoInputs.cache
 C:\Users\PC\Desktop\Maintenance_Managment_App\ENTITIES_APP\obj\Debug\net5.0\ENTITIES_APP.AssemblyInfo.cs
 C:\Users\PC\Desktop\Maintenance_Managment_App\ENTITIES_APP\obj\Debug\net5.0\ENTITIES_APP.csproj.CoreCompileInputs.cache
-C:\Users\PC\Desktop\Maintenance_Managment_App\ENTITIES_APP\bin\Debug\net5.0\ENTITIES_APP.deps.json
-C:\Users\PC\Desktop\Maintenance_Managment_App\ENTITIES_APP\bin\Debug\net5.0\ENTITIES_APP.dll
-C:\Users\PC\Desktop\Maintenance_Managment_App\ENTITIES_APP\bin\Debug\net5.0\ENTITIES_APP.pdb
 C:\Users\PC\Desktop\Maintenance_Managment_App\ENTITIES_APP\obj\Debug\net5.0\ENTITIES_APP.dll
 C:\Users\PC\Desktop\Maintenance_Managment_App\ENTITIES_APP\obj\Debug\net5.0\refint\ENTITIES_APP.dll
 C:\Users\PC\Desktop\Maintenance_Managment_App\ENTITIES_APP\obj\Debug\net5.0\ENTITIES_APP.pdb

@@ -1,6 +1,7 @@
 ﻿using ENTITIES_APP;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace DATABASE_APP
@@ -14,16 +15,20 @@ namespace DATABASE_APP
         #endregion
 
         #region READONLY PROPERTIES
+
+        // UserDb Properties
         public List<User> UserDb { get { return this.usersDb; } }
-        public List<MaintenanceOrder> MaintOrderDb { get { return this.maintOrdersDb; } }
+
+        // MaintOrderDb Properties
         public bool MaintOrderDbLoaded { get { return this.maintOrderDbLoaded; } }
+        public List<MaintenanceOrder> MaintOrderDb { get { return this.maintOrdersDb; } }
         public List<MaintenanceOrder> ActiveMaintOrders
         {
             get
             {
                 List<MaintenanceOrder> activeMaintOrders = new List<MaintenanceOrder>();
 
-                foreach (MaintenanceOrder item in this.maintOrdersDb)
+                foreach (MaintenanceOrder item in this.MaintOrderDb)
                 {
                     if (item.Active)
                     {
@@ -65,7 +70,7 @@ namespace DATABASE_APP
                 return uncompletedMaintOrders;
             }
         }
-        public int FinishedOrders
+        public int NumberCompletedOrders
         {
             get
             {
@@ -80,7 +85,7 @@ namespace DATABASE_APP
                 return count;
             }
         }
-        public int UnfinishedOrders
+        public int NumberUncompletedOrders
         {
             get
             {
@@ -102,22 +107,11 @@ namespace DATABASE_APP
         {
             this.usersDb = new List<User>();
             this.maintOrdersDb = new List<MaintenanceOrder>();
-            User_LoadDb();
+            User_LoadGenericUsers();
         }
         #endregion
 
         #region HARDCODE METHODS
-        // Es private ya que por defecto se cargara la db de user, no se podra taer de otro lado
-        private void User_LoadDb()
-        {
-            //this.usersDb.Add(new Operator(203, "JPerez", "qwe123"));
-            //this.usersDb.Add(new Operator(207, "ETolosa", "asd456"));
-            //this.usersDb.Add(new Operator(201, "PRodriguez", "zxc789"));
-            //this.usersDb.Add(new Supervisor(206, "JJuarez", "rty000"));
-            this.usersDb.Add(new Operator(001, "Operario", "oper123"));
-            this.usersDb.Add(new Supervisor(002, "Supervisor", "super456"));
-        }
-        // Es public pues voy a dar la opcion de hardcodear la db, en un futuro habra otro metodo que reciba una db
         public bool MaintOrder_HardcodeDb()
         {
             bool rtn = false;
@@ -141,21 +135,15 @@ namespace DATABASE_APP
         #endregion
 
         #region USER DB METHODS
-        public User User_Return(string inputUsername) // Usado en Login y Hardcodeo
+
+        // Aplication Run
+        private void User_LoadGenericUsers()
         {
-            foreach (User item in usersDb)
-            {
-                if (item.CheckUsername(inputUsername))
-                {
-                    return item;
-                }
-            }
-            return null;
+            this.usersDb.Add(new Operator(001, "Operario", "oper123"));
+            this.usersDb.Add(new Supervisor(002, "Supervisor", "super456"));
         }
-        public User User_Return(int inputFileNumber) // Usado en Gestion de usuario dentro del soft
-        {
-            return this.UserDb[inputFileNumber];
-        }
+
+        // UserDb Methods
         public int User_Check(string inputUsername, string inputPassword)
         {
             if (string.IsNullOrEmpty(inputUsername) || string.IsNullOrEmpty(inputPassword))
@@ -164,9 +152,9 @@ namespace DATABASE_APP
             }
             else
             {
-                foreach (User item in this.usersDb)
+                foreach (User item in this.UserDb)
                 {
-                    if (item.CheckUsername(inputUsername))
+                    if (item.CheckUsername(inputUsername) && item.Active == true)
                     {
                         if (item.CheckPassword(inputPassword))
                         {
@@ -211,7 +199,22 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-        public List<string> User_LoadUsernameList()
+        public User User_Return(string inputUsername) // Usado en Login y Hardcodeo
+        {
+            foreach (User item in this.UserDb)
+            {
+                if (item.CheckUsername(inputUsername))
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+        public User User_Return(int inputIndex) // Usado en Gestion de usuario dentro del soft
+        {
+            return this.UserDb[inputIndex];
+        }
+        public List<string> User_GetActiveUsernameList()
         {
             List<string> usernamesList = new List<string>();
             if (this.UserDb != null && this.UserDb.Count > 0)
@@ -228,7 +231,8 @@ namespace DATABASE_APP
             return usernamesList;
         }
 
-        public bool User_ReadFromText(string inputFile)
+        // Write & Read Db
+        public bool User_ReadDbFromText(string inputFile)
         {
             bool rtn = false;
             if (!string.IsNullOrEmpty(inputFile))
@@ -245,15 +249,13 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-
-
-
-        public string User_OperatorDBSaveAsText()
+        public bool User_WriteDbAsText(out string text)
         {
+            bool rtn = false;
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("active,fileNumber,username,password,admin,name,surname,age,entryDate,divison,shift,category");
             if (this.UserDb != null && this.UserDb.Count > 0)
             {
+                sb.AppendLine("active,fileNumber,username,password,admin,name,surname,age,entryDate,divison,shift,category");
                 foreach (User item in this.UserDb)
                 {
                     if (item.Username != "Operario" && item.Username != "Supervisor")
@@ -261,40 +263,79 @@ namespace DATABASE_APP
                         if (item is Operator auxOperator)
                         {
                             sb.AppendLine(auxOperator.WriteAsText());
+                            rtn = true;
                         }
                         else
                         {
                             sb.AppendLine(item.WriteAsText());
+                            rtn = true;
                         }
                     }
                 }
             }
-            return sb.ToString();
+            text = sb.ToString();
+            return rtn;
         }
-
-        #endregion
-
-        #region MAINT ORDER DB METHODS
-        // MaintOrder_Parse es static pues no necesita de una instancia de clase Database para ejecutar su logica
-        public static bool MaintOrder_Parse(string inputDescription)
+        public bool User_LoadDbFromText()
         {
             bool rtn = false;
-            if (MaintenanceOrder.SetDescription(inputDescription)
-          /* && MaintenanceOrder.SetDateTIme --> Por ejemplo */)
+            //string route = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Test", "OperatorDb.txt");
+            string route = Path.Combine(Path.GetFullPath("."), "OperatorDb.txt");
+            if (File.Exists(route))
             {
+                StringBuilder sb = new StringBuilder();
+                string[] readFile = File.ReadAllLines(route);
+                for (int i = 0; i < readFile.Length; i++)
+                {
+                    if (i != 0)
+                    {
+                        sb.AppendLine(readFile[i]);
+                    }
+                }
+                rtn = User_ReadDbFromText(sb.ToString());
+            }
+            else
+            {
+                throw new Exception("Error al cargar la base de datos.");
+            }
+            return rtn;
+        }
+        public bool User_SaveDbAsText()
+        {
+            bool rtn = false;
+            /*
+            string route = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Test");
+            if (!Directory.Exists(route))
+            {
+                Directory.CreateDirectory(route);
+            }
+            route = Path.Combine(route, "OperatorDb.txt");
+            */
+            string route = Path.Combine(Path.GetFullPath("."), "OperatorDb.txt");
+            if (File.Exists(route))
+            {
+                File.Delete(route);
+            }
+            if (User_WriteDbAsText(out string text))
+            {
+                File.WriteAllText(route, text);
                 rtn = true;
             }
             return rtn;
         }
-        // MaintOrder_Add no es static pues necesita de una instancia de clase Database para ejecutar su logica
+        #endregion
+
+        #region MAINT ORDER DB METHODS
+        // MaintOrderDb Methods
         public bool MaintOrder_Add(User activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, out int idAdded)
         {
+            // MaintOrder_Add no es static pues necesita de una instancia de clase Database para ejecutar su logica
             bool rtn = false;
             idAdded = 0;
-            if (this.maintOrdersDb.Count <= 100)
+            if (this.MaintOrderDb.Count <= 100)
             {
                 MaintenanceOrder auxMaintOrder = new MaintenanceOrder(activeUser, inputSection, inputMachine, inputUrgency, inputDescription);
-                this.maintOrdersDb.Add(auxMaintOrder);
+                this.MaintOrderDb.Add(auxMaintOrder);
                 idAdded = auxMaintOrder.Id;
                 rtn = true;
             }
@@ -304,13 +345,13 @@ namespace DATABASE_APP
         {
             bool rtn = false;
             findedIndex = -1;
-            if (this.maintOrdersDb != null && this.maintOrdersDb.Count > 0)
+            if (this.MaintOrderDb != null && this.MaintOrderDb.Count > 0)
             {
-                foreach (MaintenanceOrder item in this.maintOrdersDb)
+                foreach (MaintenanceOrder item in this.MaintOrderDb)
                 {
                     if (item.Id == inputId)
                     {
-                        findedIndex = this.maintOrdersDb.IndexOf(item);
+                        findedIndex = this.MaintOrderDb.IndexOf(item);
                         return true;
                     }
                 }
@@ -322,18 +363,18 @@ namespace DATABASE_APP
             bool rtn = false;
             if (MaintOrder_FindById(inputId, out int findedIndex))
             {
-                this.maintOrdersDb[findedIndex].Section = inputSection;
-                this.maintOrdersDb[findedIndex].Machine = inputMachine;
-                this.maintOrdersDb[findedIndex].Urgency = inputUrgency;
-                this.maintOrdersDb[findedIndex].Description = inputDescription;
-                this.maintOrdersDb[findedIndex].Completed = inputStatus;
-                if (this.maintOrdersDb[findedIndex].Completed)
+                this.MaintOrderDb[findedIndex].Section = inputSection;
+                this.MaintOrderDb[findedIndex].Machine = inputMachine;
+                this.MaintOrderDb[findedIndex].Urgency = inputUrgency;
+                this.MaintOrderDb[findedIndex].Description = inputDescription;
+                this.MaintOrderDb[findedIndex].Completed = inputStatus;
+                if (this.MaintOrderDb[findedIndex].Completed)
                 {
-                    this.maintOrdersDb[findedIndex].EndDate = DateTime.Now.Date;
+                    this.MaintOrderDb[findedIndex].EndDate = DateTime.Now.Date;
                 }
                 else
                 {
-                    this.maintOrdersDb[findedIndex].EndDate = new DateTime();
+                    this.MaintOrderDb[findedIndex].EndDate = new DateTime();
                 }
                 return true;
             }
@@ -344,15 +385,56 @@ namespace DATABASE_APP
             bool rtn = false;
             if (MaintOrder_FindById(inputId, out int findedIndex))
             {
-                this.maintOrdersDb[findedIndex].Active = false;
+                this.MaintOrderDb[findedIndex].Active = false;
                 return true;
+            }
+            return rtn;
+        }
+        public void MaintOrder_Sort(string parameter, int inputOrder)
+        {
+            switch (parameter)
+            {
+                case "ID":
+                    if (inputOrder == 0) { this.maintOrdersDb.Sort(IdDecreasing); }
+                    else { this.MaintOrderDb.Sort(IdCreasing); }
+                    break;
+                case "DATE":
+                    if (inputOrder == 0) { this.maintOrdersDb.Sort(CreationDateDecreasing); }
+                    else { this.MaintOrderDb.Sort(CreationDateCreasing); }
+                    break;
+                case "SECTION":
+                    if (inputOrder == 0) { this.maintOrdersDb.Sort(SectionDecreasing); }
+                    else { this.MaintOrderDb.Sort(SectionCreasing); }
+                    break;
+                case "MACHINE":
+                    if (inputOrder == 0) { this.maintOrdersDb.Sort(MachineDecreasing); }
+                    else { this.MaintOrderDb.Sort(MachineCreasing); }
+                    break;
+                case "PRIORITY":
+                    if (inputOrder == 0) { this.maintOrdersDb.Sort(PriorityDecreasing); }
+                    else { this.MaintOrderDb.Sort(PriorityCreasing); }
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        // Generic Method
+        public static bool MaintOrder_Parse(string inputDescription)
+        {
+            // MaintOrder_Parse es static pues no necesita de una instancia de clase Database para ejecutar su logica
+            bool rtn = false;
+            if (MaintenanceOrder.SetDescription(inputDescription)
+          /* && MaintenanceOrder.SetDateTIme --> Por ejemplo */)
+            {
+                rtn = true;
             }
             return rtn;
         }
         public bool MaintOrder_GetStatus(int inputId)
         {
             MaintOrder_FindById(inputId, out int findedIndex);
-            return this.maintOrdersDb[findedIndex].Completed;
+            return this.MaintOrderDb[findedIndex].Completed;
         }
         public string MaintOrder_PrintParameter(string inputParameter, int inputId)
         {
@@ -376,36 +458,6 @@ namespace DATABASE_APP
                 default:
                     return string.Empty;
             }
-        }
-        public void MaintOrder_Sort(string parameter, int inputOrder)
-        {
-            switch (parameter)
-            {
-                case "ID":
-                    if (inputOrder == 0) { this.maintOrdersDb.Sort(IdDecreasing); }
-                    else { this.maintOrdersDb.Sort(IdCreasing); }
-                    break;
-                case "DATE":
-                    if (inputOrder == 0) { this.maintOrdersDb.Sort(CreationDateDecreasing); }
-                    else { this.maintOrdersDb.Sort(CreationDateCreasing); }
-                    break;
-                case "SECTION":
-                    if (inputOrder == 0) { this.maintOrdersDb.Sort(SectionDecreasing); }
-                    else { this.maintOrdersDb.Sort(SectionCreasing); }
-                    break;
-                case "MACHINE":
-                    if (inputOrder == 0) { this.maintOrdersDb.Sort(MachineDecreasing); }
-                    else { this.maintOrdersDb.Sort(MachineCreasing); }
-                    break;
-                case "PRIORITY":
-                    if (inputOrder == 0) { this.maintOrdersDb.Sort(PriorityDecreasing); }
-                    else { this.maintOrdersDb.Sort(PriorityCreasing); }
-                    break;
-                default:
-                    break;
-            }
-
-
         }
         #endregion
 

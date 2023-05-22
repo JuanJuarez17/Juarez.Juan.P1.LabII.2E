@@ -57,9 +57,9 @@ namespace CONTROLLER_APP
         {
             return appDb.User_Return(inputUsername);
         }
-        public static User User_Return(int inputFileNumber)
+        public static User User_Return(int inputIndex)
         {
-            return appDb.User_Return(inputFileNumber);
+            return appDb.User_Return(inputIndex);
         }
         public static bool User_FindInDb(int inputFileNumber, out int findedIndex)
         {
@@ -71,26 +71,26 @@ namespace CONTROLLER_APP
         }
         public static List<string> User_LoadUsernameList()
         {
-            return appDb.User_LoadUsernameList();
+            return appDb.User_GetActiveUsernameList();
         }
-        public static bool User_ReadFromText(string inputFile)
+        public static bool User_LoadDbFromText()
         {
-            return appDb.User_ReadFromText(inputFile);
+            return appDb.User_LoadDbFromText();
         }
-        public static string User_OperatorDBSaveAsText()
+        public static bool User_SaveDbAsText()
         {
-            return appDb.User_OperatorDBSaveAsText();
+            return appDb.User_SaveDbAsText();
         }
         #endregion
 
         #region MAINT ORDER METHODS
         public static int MaintOrder_ReturnFinished()
         {
-            return appDb.FinishedOrders;
+            return appDb.NumberCompletedOrders;
         }
         public static int MaintOrder_ReturnUnfinished()
         {
-            return appDb.UnfinishedOrders;
+            return appDb.NumberUncompletedOrders;
         }
         public static bool MaintOrder_HardcodeDb()
         {

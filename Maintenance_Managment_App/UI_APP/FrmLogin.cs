@@ -29,6 +29,16 @@ namespace UI_APP
         private void FrmLogin_Load(object sender, EventArgs e)
         {
             this.btn_Autocomplete.ImageIndex = 0;
+            try
+            {
+                Controller.User_LoadDbFromText();
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message + "\nReinicie la aplicacion.";
+                MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
         }
         private void btn_Access_Click(object sender, EventArgs e)
         {
