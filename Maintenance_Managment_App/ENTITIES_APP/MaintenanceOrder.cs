@@ -8,10 +8,8 @@ namespace ENTITIES_APP
 {
     public class MaintenanceOrder
     {
-        #region ATTRIBUTES
         private static int lastId;
         private readonly int id;
-
         private bool active;
         private string maker;
         private Machine faultyUnit;
@@ -21,9 +19,7 @@ namespace ENTITIES_APP
         private DateTime creationDate;
         private bool completed;
         private DateTime endDate;
-        #endregion
 
-        #region READONLY PROPERTIES
         public int Id
         {
             get { return this.id; }
@@ -88,9 +84,7 @@ namespace ENTITIES_APP
                 return (DateTime.Now - this.creationDate).Days;
             }
         }
-        #endregion
 
-        #region CONSTRUCTOR
         static MaintenanceOrder()
         {
             lastId = 100;
@@ -122,8 +116,7 @@ namespace ENTITIES_APP
                 this.endDate = DateTime.Now;
             }
         }
-        #endregion
-
+        
         public static bool SetDescription(string inputDescription)
         {
             bool rtn = false;

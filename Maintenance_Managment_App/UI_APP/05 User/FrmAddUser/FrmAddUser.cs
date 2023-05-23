@@ -116,7 +116,5 @@ namespace UI_APP
         {
             this.DialogResult = DialogResult.Cancel;
         }
-
-
     }
 }

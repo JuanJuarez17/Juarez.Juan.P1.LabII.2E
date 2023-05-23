@@ -27,13 +27,11 @@ namespace UI_APP
         {
             get { return this.selectedUser.Password; }
         }
-
         private void btn_Operator_Click(object sender, EventArgs e)
         {
             this.selectedUser = Controller.User_Return("Operario");
             this.DialogResult = DialogResult.OK;
         }
-
         private void btn_Supervisor_Click(object sender, EventArgs e)
         {
             this.selectedUser = Controller.User_Return("Supervisor");

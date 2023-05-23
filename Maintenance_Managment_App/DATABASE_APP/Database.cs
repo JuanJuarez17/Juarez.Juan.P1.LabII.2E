@@ -8,18 +8,10 @@ namespace DATABASE_APP
 {
     public class Database
     {
-        #region ATTRIBUTES
         private bool maintOrderDbLoaded = false;
         private List<MaintenanceOrder> maintOrdersDb;
         private List<User> usersDb;
-        #endregion
-
-        #region READONLY PROPERTIES
-
-        // UserDb Properties
         public List<User> UserDb { get { return this.usersDb; } }
-
-        // MaintOrderDb Properties
         public bool MaintOrderDbLoaded { get { return this.maintOrderDbLoaded; } }
         public List<MaintenanceOrder> MaintOrderDb { get { return this.maintOrdersDb; } }
         public List<MaintenanceOrder> ActiveMaintOrders
@@ -100,27 +92,17 @@ namespace DATABASE_APP
                 return count;
             }
         }
-        #endregion
-
-        #region CONSTRUCTOR
         public Database()
         {
             this.usersDb = new List<User>();
             this.maintOrdersDb = new List<MaintenanceOrder>();
             User_LoadGenericUsers();
         }
-        #endregion
-
-
-        #region USER DB METHODS
-        // Aplication Run
         private void User_LoadGenericUsers()
         {
             this.usersDb.Add(new Operator(001, "Operario", "oper123"));
             this.usersDb.Add(new Supervisor(002, "Supervisor", "super456"));
         }
-
-        // UserDb Methods
         public int User_CheckExist(string inputUsername, string inputPassword)
         {
             if (string.IsNullOrEmpty(inputUsername) || string.IsNullOrEmpty(inputPassword))
@@ -141,7 +123,7 @@ namespace DATABASE_APP
                 }
                 return 0;
             }
-        } // Usado en Login
+        }
         public bool User_CheckFileNumberAvailable(int inputFileNumber)
         {
             bool rtn = true;
@@ -191,7 +173,7 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-        public User User_Return(string inputUsername) // Usado en Login y Hardcodeo
+        public User User_Return(string inputUsername)
         {
             foreach (User item in this.UserDb)
             {
@@ -202,7 +184,7 @@ namespace DATABASE_APP
             }
             return null;
         }
-        public User User_Return(int inputIndex) // Usado en Gestion de usuario dentro del soft
+        public User User_Return(int inputIndex)
         {
             return this.UserDb[inputIndex];
         }
@@ -242,8 +224,6 @@ namespace DATABASE_APP
             }
             return usernamesList;
         }
-
-        // Write & Read Db
         public bool User_ReadDbFromText(string inputFile)
         {
             bool rtn = false;
@@ -335,10 +315,6 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-        #endregion
-
-        #region MAINT ORDER DB METHODS
-        // MaintOrderDb Methods
         public bool MaintOrder_Add(string activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, out int idAdded)
         {
             // MaintOrder_Add no es static pues necesita de una instancia de clase Database para ejecutar su logica
@@ -434,8 +410,6 @@ namespace DATABASE_APP
                     break;
             }
         }
-
-        // Generic Method
         public static bool MaintOrder_Parse(string inputDescription)
         {
             // MaintOrder_Parse es static pues no necesita de una instancia de clase Database para ejecutar su logica
@@ -475,8 +449,6 @@ namespace DATABASE_APP
                     return string.Empty;
             }
         }
-
-        // Write & Read Methods
         public bool MaintOrder_ReadBdFromText(string inputFile)
         {
             bool rtn = false;
@@ -552,9 +524,6 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-        #endregion
-
-        #region MAINT ORDER SORT METHODS
         public static int IdDecreasing(MaintenanceOrder input1, MaintenanceOrder input2)
         {
             return input2.Id - input1.Id;
@@ -595,6 +564,5 @@ namespace DATABASE_APP
         {
             return -PriorityDecreasing(input1, input2);
         }
-        #endregion
     }
 }

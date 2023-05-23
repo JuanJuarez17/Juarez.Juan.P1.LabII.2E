@@ -14,18 +14,10 @@ namespace UI_APP
 {
     public partial class FrmLogin : Form
     {
-        #region ATTRIBUTES
         public FrmLogin()
         {
             InitializeComponent();
         }
-        #endregion
-
-        private void ActivateForm(Form form)
-        {
-            form.ShowDialog();
-        }
-        #region EVENT METHODS
         private void FrmLogin_Load(object sender, EventArgs e)
         {
             this.btn_Autocomplete.ImageIndex = 0;
@@ -73,6 +65,5 @@ namespace UI_APP
                 this.txb_Password.Text = frmAutocomplete.Password;
             }
         }
-        #endregion
     }
 }

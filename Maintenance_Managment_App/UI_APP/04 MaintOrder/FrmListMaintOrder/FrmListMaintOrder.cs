@@ -15,7 +15,6 @@ namespace UI_APP
 {
     public partial class FrmListMaintOrder : Form
     {
-        #region ATTRIBUTES
         private User activeUser;
         private Form activeForm;
         int flagCreationDateSort = 0;
@@ -23,9 +22,6 @@ namespace UI_APP
         int flagMachineSort = 0;
         int flagPrioritySort = 0;
 
-        #endregion
-
-        #region CONSTRUCTOR
         private FrmListMaintOrder()
         {
             InitializeComponent();
@@ -34,16 +30,11 @@ namespace UI_APP
         {
             this.activeUser = inputUser;
         }
-        #endregion
-
-        #region PROPERTIES
         private User User
         {
             get { return this.activeUser; }
         }
-        #endregion
 
-        #region METHODS
         private void HideForm()
         {
             if (activeForm is not null)
@@ -132,9 +123,6 @@ namespace UI_APP
                 inputDtg.Columns[9].HeaderText = "FINALIZADA";
             }
         }
-        #endregion
-
-        #region EVENT METHODS
         private void FrmListMaintenanceOrder_Load(object sender, EventArgs e)
         {
             this.btn_ImportDb.ImageIndex = 6;
@@ -290,7 +278,5 @@ namespace UI_APP
                 this.flagPrioritySort = 0;
             }
         }
-        #endregion
-
     }
 }

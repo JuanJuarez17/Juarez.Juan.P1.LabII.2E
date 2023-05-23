@@ -16,7 +16,6 @@ namespace UI_APP
     public partial class FrmHome : Form
     {
         private User activeUser;
-
         private FrmHome()
         {
             InitializeComponent();

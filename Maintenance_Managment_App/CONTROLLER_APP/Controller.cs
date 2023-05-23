@@ -9,11 +9,7 @@ namespace CONTROLLER_APP
 {
     public static class Controller
     {
-        #region ATTRIBUTES
         private static Database appDb;
-        #endregion
-
-        #region READONLY PROPERTIES
         public static List<MaintenanceOrder> MaintOrderDb
         {
             get { return appDb.MaintOrderDb; }
@@ -38,27 +34,18 @@ namespace CONTROLLER_APP
         {
             get {  return appDb.MaintOrderDbLoaded; }
         }
-        #endregion
-
-        #region CONSTRUCTOR
         static Controller()
         {
             appDb = new Database();
         }
-        #endregion
-
-        #region USER METHODS
         public static int User_CheckExist(string inputUsername, string inputPassword)
         {
             return appDb.User_CheckExist(inputUsername, inputPassword);
-        }
-        // TODO: Se puede agregar una sobrecarga de ReturnUser que reciba un int legajo operario (Se puede hacer tambien con nombre y apellido)
-        
+        }        
         public static bool User_CheckFileNumberAvailable(int inputFileNumber)
         {
             return appDb.User_CheckFileNumberAvailable(inputFileNumber);
         }
-        
         public static User User_Return(string inputUsername)
         {
             return appDb.User_Return(inputUsername);
@@ -99,9 +86,6 @@ namespace CONTROLLER_APP
         {
             return appDb.MaintOrder_SaveDbAsText();
         }
-        #endregion
-
-        #region MAINT ORDER METHODS
         public static int MaintOrder_ReturnFinished()
         {
             return appDb.NumberCompletedOrders;
@@ -142,6 +126,5 @@ namespace CONTROLLER_APP
         {
             appDb.MaintOrder_Sort();
         }
-        #endregion
     }
 }
