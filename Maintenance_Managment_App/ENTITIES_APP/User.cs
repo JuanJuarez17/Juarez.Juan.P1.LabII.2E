@@ -157,6 +157,22 @@ namespace ENTITIES_APP
             }
             return true;
         }
+        public virtual string WriteAsText()
+        {
+            string[] attributes = new string[9];
+
+            attributes[0] = this.Active.ToString();
+            attributes[1] = this.FileNumber.ToString();
+            attributes[2] = this.Username;
+            attributes[3] = this.Password;
+            attributes[4] = this.Admin.ToString();
+            attributes[5] = this.Name;
+            attributes[6] = this.Surname;
+            attributes[7] = this.Age.ToString();
+            attributes[8] = this.EntryDate.ToString("yyyy/MM/dd");
+
+            return $"{attributes[0]},{attributes[1]},{attributes[2]},{attributes[3]},{attributes[4]},{attributes[5]},{attributes[6]},{attributes[7]},{attributes[8]}";
+        }
         public static User ReadFromText(string inputLine)
         {
             User auxUser = new Operator(0, null, null);
@@ -202,22 +218,6 @@ namespace ENTITIES_APP
                 }
             }
             return auxUser;
-        }
-        public virtual string WriteAsText()
-        {
-            string[] attributes = new string[9];
-
-            attributes[0] = this.Active.ToString();
-            attributes[1] = this.FileNumber.ToString();
-            attributes[2] = this.Username;
-            attributes[3] = this.Password;
-            attributes[4] = this.Admin.ToString();
-            attributes[5] = this.Name;
-            attributes[6] = this.Surname;
-            attributes[7] = this.Age.ToString();
-            attributes[8] = this.EntryDate.ToString("yyyy/MM/dd");
-
-            return $"{attributes[0]},{attributes[1]},{attributes[2]},{attributes[3]},{attributes[4]},{attributes[5]},{attributes[6]},{attributes[7]},{attributes[8]}";
         }
         #endregion
     }

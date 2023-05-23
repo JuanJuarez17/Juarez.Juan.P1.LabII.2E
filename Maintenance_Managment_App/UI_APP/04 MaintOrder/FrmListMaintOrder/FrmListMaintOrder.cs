@@ -68,9 +68,10 @@ namespace UI_APP
             // Datagridview Permissions
             if (Controller.MaintOrderDbLoaded)
             {
+                this.btn_ImportDb.Enabled = false;
                 this.dtg_MaintOrderDb.Visible = true;
                 this.lbl_MaintOrderDb.Visible = false;
-                this.btn_ImportDb.Enabled = false;
+                this.btn_SaveDb.Enabled = true;
                 this.btn_AddMaintOrder.Enabled = true;
                 this.btn_InfoMaintOrder.Enabled = true;
                 this.btn_EditMaintOrder.Enabled = true;
@@ -92,6 +93,7 @@ namespace UI_APP
                 this.dtg_MaintOrderDb.Visible = false;
                 this.lbl_MaintOrderDb.Visible = true;
                 this.btn_ImportDb.Enabled = true;
+                this.btn_SaveDb.Enabled = false;
                 this.btn_AddMaintOrder.Enabled = false;
                 this.btn_InfoMaintOrder.Enabled = false;
                 this.btn_EditMaintOrder.Enabled = false;
@@ -136,6 +138,7 @@ namespace UI_APP
         private void FrmListMaintenanceOrder_Load(object sender, EventArgs e)
         {
             this.btn_ImportDb.ImageIndex = 6;
+            this.btn_SaveDb.ImageIndex = 12;
             this.btn_AddMaintOrder.ImageIndex = 0;
             this.btn_InfoMaintOrder.ImageIndex = 5;
             this.btn_EditMaintOrder.ImageIndex = 1;
@@ -276,5 +279,17 @@ namespace UI_APP
             }
         }
         #endregion
+
+        private void btn_SaveMaintOrderDb_Click(object sender, EventArgs e)
+        {
+            if (Controller.MaintOrder_SaveDbAsText())
+            {
+                MessageBox.Show("Base de datos guardada con exito!", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else
+            {
+                MessageBox.Show("No se pudo guardar la base de datos!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

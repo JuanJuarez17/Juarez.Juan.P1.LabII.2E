@@ -229,7 +229,6 @@ namespace DATABASE_APP
         {
             return this.UserDb[inputIndex];
         }
-
         public bool User_Add(int inputFileNumber, string inputUsername, string inputPassword, bool isAdmin)
         {
             bool rtn = false;
@@ -285,6 +284,9 @@ namespace DATABASE_APP
             }
             return rtn;
         }
+
+
+
         public bool User_WriteDbAsText(out string text)
         {
             bool rtn = false;
@@ -310,6 +312,38 @@ namespace DATABASE_APP
                 }
             }
             text = sb.ToString();
+            return rtn;
+        }
+
+        public bool MaintOrder_WriteDbAsText(out string text)
+        {
+            bool rtn = false;
+            StringBuilder sb = new StringBuilder();
+            if (this.MaintOrderDb != null && this.MaintOrderDb.Count > 0)
+            {
+                sb.AppendLine("active,user,section,machine,urgency,description,creationDate,completed,endDate");
+                foreach (MaintenanceOrder item in this.MaintOrderDb)
+                {
+                    sb.AppendLine(item.WriteAsText());
+                    rtn = true;
+                }
+            }
+            text = sb.ToString();
+            return rtn;
+        }
+        public bool MaintOrder_SaveDbAsText()
+        {
+            bool rtn = false;
+            string route = Path.Combine(Path.GetFullPath("."), "MaintOrderDb.txt");
+            if (File.Exists(route))
+            {
+                File.Delete(route);
+            }
+            if (MaintOrder_WriteDbAsText(out string text))
+            {
+                File.WriteAllText(route, text);
+                rtn = true;
+            }
             return rtn;
         }
         public bool User_LoadDbFromText()
@@ -454,7 +488,7 @@ namespace DATABASE_APP
                     break;
             }
         }
-        
+
         // Generic Method
         public static bool MaintOrder_Parse(string inputDescription)
         {

@@ -1,0 +1,12 @@
+active,user,section,machine,urgency,description,creationDate,completed,endDate
+True,ETolosa,Otro,Agujereadora,Normal,,2022/08/13,True,2023/05/23
+False,JPerez,Mecanizado,Autoelevador,Programable,,2022/08/22,False,0001/01/01
+True,PRodriguez,Ensamble,Otro,Urgente,,2022/09/09,True,2023/05/23
+True,JPerez,Otro,GrabadoraLaser,Normal,,2022/10/18,True,2023/05/23
+False,JPerez,Ensamble,CentroCNC,Programable,,2022/10/30,False,0001/01/01
+True,PRodriguez,Matriceria,CentroCNC,Normal,,2022/11/09,False,0001/01/01
+False,JJuarez,Almacen,Brochadora,Urgente,,2022/11/20,False,0001/01/01
+True,PRodriguez,Mecanizado,Otro,Programable,,2022/11/25,False,0001/01/01
+True,ETolosa,Almacen,CentroCNC,Normal,,2023/01/13,True,2023/05/23
+True,JJuarez,Ensamble,Otro,Urgente,,2023/01/17,False,0001/01/01
+True,Supervisor,Matriceria,CentroCNC,Programable,Cacasitasasdasd,2023/05/23,False,0001/01/01

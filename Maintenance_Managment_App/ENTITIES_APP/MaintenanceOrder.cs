@@ -9,16 +9,15 @@ namespace ENTITIES_APP
     public class MaintenanceOrder
     {
         #region ATTRIBUTES
-
         private static int lastId;
-
         private readonly int id;
+
+        private bool active;
         private User maker;
         private Machine faultyUnit;
         private Section faultyUnitSection;
         private Urgency failureUrgency;
         private string description;
-        private bool active;
         private DateTime creationDate;
         private bool completed;
         private DateTime endDate;
@@ -37,6 +36,7 @@ namespace ENTITIES_APP
         public User User
         {
             get { return this.maker; }
+            set { this.maker = value; }
         }
         public string Username
         {
@@ -100,8 +100,8 @@ namespace ENTITIES_APP
         }
         private MaintenanceOrder()
         {
-            this.active = true;
             this.id = lastId++;
+            this.active = true;
             this.creationDate = DateTime.Now;
             this.completed = false;
         }
@@ -127,7 +127,6 @@ namespace ENTITIES_APP
         }
         #endregion
 
-        #region METHOD W/ EXCEPTION
         public static bool SetDescription(string inputDescription)
         {
             bool rtn = false;
@@ -137,7 +136,46 @@ namespace ENTITIES_APP
             }
             return rtn;
         }
-        #endregion
+        public virtual string WriteAsText()
+        {
+            string[] attributes = new string[9];
+
+            attributes[0] = this.Active.ToString();
+            attributes[1] = this.Username;
+            attributes[2] = this.Section.ToString();
+            attributes[3] = this.Machine.ToString();
+            attributes[4] = this.Urgency.ToString();
+            attributes[5] = this.Description;
+            attributes[6] = this.CreationDate.ToString("yyyy/MM/dd");
+            attributes[7] = this.Completed.ToString();
+            attributes[8] = this.EndDate.ToString("yyyy/MM/dd");
+
+            return $"{attributes[0]},{attributes[1]},{attributes[2]},{attributes[3]},{attributes[4]},{attributes[5]},{attributes[6]},{attributes[7]},{attributes[8]}";
+        }
+        public static MaintenanceOrder ReadFromText(string inputLine)
+        {
+            MaintenanceOrder auxMaintOrder = new MaintenanceOrder();
+            if (!string.IsNullOrEmpty(inputLine))
+            {
+                string[] buffer = inputLine.Split(',');
+
+                bool.TryParse(buffer[0], out bool inputActive);
+                string inputUser = buffer[1];
+                Enum.TryParse(buffer[2], out Section inputSection);
+                Enum.TryParse(buffer[3], out Machine inputMachine);
+                Enum.TryParse(buffer[4], out Urgency inputUrgency);
+                string inputDescription = buffer[5];
+                DateTime.TryParse(buffer[6], out DateTime inputCreationDate);
+                bool.TryParse(buffer[7], out bool inputCompleted);
+                DateTime.TryParse(buffer[8], out DateTime inputEndDate);
+
+                auxMaintOrder.Active = inputActive;
+
+
+                return auxMaintOrder;
+            }
+            return auxMaintOrder;
+        }
 
     }
 }

@@ -218,7 +218,7 @@
             iml_AccountDetails.Images.SetKeyName(5, "lupa.png");
             iml_AccountDetails.Images.SetKeyName(6, "base-de-datos.png");
             iml_AccountDetails.Images.SetKeyName(7, "sincronizar.png");
-            iml_AccountDetails.Images.SetKeyName(8, "guardar-datos (1).png");
+            iml_AccountDetails.Images.SetKeyName(8, "exportar.png");
             // 
             // gpb_ControlPanel
             // 
@@ -421,7 +421,7 @@
             btn_Accept.UseVisualStyleBackColor=true;
             btn_Accept.Click+=btn_Accept_Click;
             // 
-            // FrmAccountDetails
+            // FrmListUser
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode=System.Windows.Forms.AutoScaleMode.Font;
@@ -435,7 +435,7 @@
             FormBorderStyle=System.Windows.Forms.FormBorderStyle.None;
             MaximizeBox=false;
             MinimizeBox=false;
-            Name="FrmAccountDetails";
+            Name="FrmListUser";
             StartPosition=System.Windows.Forms.FormStartPosition.CenterParent;
             Text="FrmAccountDetails";
             Load+=FrmAccountDetails_Load;

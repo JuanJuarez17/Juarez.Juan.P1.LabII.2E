@@ -109,6 +109,7 @@
             txb_Password.Font=new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txb_Password.Location=new System.Drawing.Point(162, 85);
             txb_Password.Name="txb_Password";
+            txb_Password.PasswordChar='*';
             txb_Password.ShortcutsEnabled=false;
             txb_Password.Size=new System.Drawing.Size(130, 25);
             txb_Password.TabIndex=30;
@@ -128,6 +129,7 @@
             txb_RepeatPassword.Font=new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txb_RepeatPassword.Location=new System.Drawing.Point(162, 124);
             txb_RepeatPassword.Name="txb_RepeatPassword";
+            txb_RepeatPassword.PasswordChar='*';
             txb_RepeatPassword.ShortcutsEnabled=false;
             txb_RepeatPassword.Size=new System.Drawing.Size(130, 25);
             txb_RepeatPassword.TabIndex=32;

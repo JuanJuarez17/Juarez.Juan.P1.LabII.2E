@@ -51,6 +51,7 @@
             rdb_UncompletedMaintOrders=new System.Windows.Forms.RadioButton();
             rdb_CompletedMaintOrders=new System.Windows.Forms.RadioButton();
             rdb_ActiveMaintOrders=new System.Windows.Forms.RadioButton();
+            btn_SaveDb=new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)dtg_MaintOrderDb).BeginInit();
             gpb_ShowMaintOrders.SuspendLayout();
             SuspendLayout();
@@ -72,6 +73,7 @@
             iml_ListMaintOrder.Images.SetKeyName(9, "ajustes-de-engranajes.png");
             iml_ListMaintOrder.Images.SetKeyName(10, "calendario.png");
             iml_ListMaintOrder.Images.SetKeyName(11, "sincronizar.png");
+            iml_ListMaintOrder.Images.SetKeyName(12, "exportar.png");
             // 
             // dtg_MaintOrderDb
             // 
@@ -123,7 +125,7 @@
             // 
             btn_AddMaintOrder.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btn_AddMaintOrder.ImageList=iml_ListMaintOrder;
-            btn_AddMaintOrder.Location=new System.Drawing.Point(18, 78);
+            btn_AddMaintOrder.Location=new System.Drawing.Point(18, 144);
             btn_AddMaintOrder.Name="btn_AddMaintOrder";
             btn_AddMaintOrder.Size=new System.Drawing.Size(50, 50);
             btn_AddMaintOrder.TabIndex=3;
@@ -135,7 +137,7 @@
             // 
             btn_DeleteMaintOrder.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btn_DeleteMaintOrder.ImageList=iml_ListMaintOrder;
-            btn_DeleteMaintOrder.Location=new System.Drawing.Point(18, 276);
+            btn_DeleteMaintOrder.Location=new System.Drawing.Point(18, 342);
             btn_DeleteMaintOrder.Name="btn_DeleteMaintOrder";
             btn_DeleteMaintOrder.Size=new System.Drawing.Size(50, 50);
             btn_DeleteMaintOrder.TabIndex=4;
@@ -146,7 +148,7 @@
             // 
             btn_EditMaintOrder.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btn_EditMaintOrder.ImageList=iml_ListMaintOrder;
-            btn_EditMaintOrder.Location=new System.Drawing.Point(18, 210);
+            btn_EditMaintOrder.Location=new System.Drawing.Point(18, 276);
             btn_EditMaintOrder.Name="btn_EditMaintOrder";
             btn_EditMaintOrder.Size=new System.Drawing.Size(50, 50);
             btn_EditMaintOrder.TabIndex=5;
@@ -157,7 +159,7 @@
             // 
             btn_InfoMaintOrder.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btn_InfoMaintOrder.ImageList=iml_ListMaintOrder;
-            btn_InfoMaintOrder.Location=new System.Drawing.Point(18, 144);
+            btn_InfoMaintOrder.Location=new System.Drawing.Point(18, 210);
             btn_InfoMaintOrder.Name="btn_InfoMaintOrder";
             btn_InfoMaintOrder.Size=new System.Drawing.Size(50, 50);
             btn_InfoMaintOrder.TabIndex=6;
@@ -291,11 +293,23 @@
             rdb_ActiveMaintOrders.Text="Todas";
             rdb_ActiveMaintOrders.UseVisualStyleBackColor=true;
             // 
+            // btn_SaveDb
+            // 
+            btn_SaveDb.Font=new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btn_SaveDb.ImageList=iml_ListMaintOrder;
+            btn_SaveDb.Location=new System.Drawing.Point(18, 78);
+            btn_SaveDb.Name="btn_SaveDb";
+            btn_SaveDb.Size=new System.Drawing.Size(50, 50);
+            btn_SaveDb.TabIndex=15;
+            btn_SaveDb.UseVisualStyleBackColor=true;
+            btn_SaveDb.Click+=btn_SaveMaintOrderDb_Click;
+            // 
             // FrmListMaintOrder
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode=System.Windows.Forms.AutoScaleMode.Font;
             ClientSize=new System.Drawing.Size(950, 550);
+            Controls.Add(btn_SaveDb);
             Controls.Add(gpb_ShowMaintOrders);
             Controls.Add(btn_SortByUrgency);
             Controls.Add(btn_SortByMachine);
@@ -340,5 +354,6 @@
         private System.Windows.Forms.RadioButton rdb_CompletedMaintOrders;
         private System.Windows.Forms.RadioButton rdb_ActiveMaintOrders;
         private System.Windows.Forms.Button btn_ShowMaintOrders;
+        private System.Windows.Forms.Button btn_SaveDb;
     }
 }

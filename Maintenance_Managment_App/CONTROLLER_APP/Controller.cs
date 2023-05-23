@@ -91,6 +91,11 @@ namespace CONTROLLER_APP
         {
             return appDb.User_SaveDbAsText();
         }
+
+        public static bool MaintOrder_SaveDbAsText()
+        {
+            return appDb.MaintOrder_SaveDbAsText();
+        }
         #endregion
 
         #region MAINT ORDER METHODS
