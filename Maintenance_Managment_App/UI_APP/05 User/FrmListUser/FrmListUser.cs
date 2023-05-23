@@ -103,6 +103,7 @@ namespace UI_APP
             if (inputUser.Admin) { this.gpb_PositionDetails.Visible = false; }
             else { this.gpb_PositionDetails.Visible = true; }
 
+            this.cbb_UsernameList.DataSource = Controller.User_LoadUsernameList();
             this.gpb_UserDetails.Text = $"Detalles del usuario {inputUser.Username}";
             this.gpb_PositionDetails.Text = $"Detalles del puesto de {inputUser.Username}";
 
@@ -259,7 +260,5 @@ namespace UI_APP
             }
         }
         #endregion
-
-
     }
 }

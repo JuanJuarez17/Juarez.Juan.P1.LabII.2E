@@ -114,6 +114,14 @@ namespace ENTITIES_APP
             }
             return true;
         }
+        public static bool ValidateEntries(string inputName)
+        {
+            if (!ValidateName(inputName))
+            {
+                return false;
+            }
+            return true;
+        }
         private static bool ValidateDate(string inputDate)
         {
             if (DateTime.TryParse(inputDate, out DateTime auxDate))
@@ -149,7 +157,6 @@ namespace ENTITIES_APP
             }
             return true;
         }
-
         public static User ReadFromText(string inputLine)
         {
             User auxUser = new Operator(0, null, null);
@@ -196,7 +203,6 @@ namespace ENTITIES_APP
             }
             return auxUser;
         }
-
         public virtual string WriteAsText()
         {
             string[] attributes = new string[9];

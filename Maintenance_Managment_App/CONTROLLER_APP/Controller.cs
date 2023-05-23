@@ -79,6 +79,10 @@ namespace CONTROLLER_APP
         {
             return appDb.User_GetActiveUsernameList();
         }
+        public static bool User_Add(int inputFileNumber, string inputUsername, string inputPassword, bool isAdmin)
+        {
+            return appDb.User_Add(inputFileNumber, inputUsername, inputPassword, isAdmin);
+        }
         public static bool User_LoadDbFromText()
         {
             return appDb.User_LoadDbFromText();

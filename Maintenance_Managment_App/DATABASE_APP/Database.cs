@@ -229,6 +229,27 @@ namespace DATABASE_APP
         {
             return this.UserDb[inputIndex];
         }
+
+        public bool User_Add(int inputFileNumber, string inputUsername, string inputPassword, bool isAdmin)
+        {
+            bool rtn = false;
+            if (this.UserDb.Count <= 100)
+            {
+                if (isAdmin)
+                {
+                    Supervisor auxUser = new Supervisor(inputFileNumber, inputUsername, inputPassword);
+                    this.UserDb.Add(auxUser);
+                    rtn = true;
+                }
+                else
+                {
+                    Operator auxUser = new Operator(inputFileNumber, inputUsername, inputPassword);
+                    this.UserDb.Add(auxUser);
+                    rtn = true;
+                }
+            }
+            return rtn;
+        }
         public List<string> User_GetActiveUsernameList()
         {
             List<string> usernamesList = new List<string>();

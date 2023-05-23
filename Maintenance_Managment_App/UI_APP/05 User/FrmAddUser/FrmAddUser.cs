@@ -1,4 +1,5 @@
 ﻿using CONTROLLER_APP;
+using ENTITIES_APP;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +19,6 @@ namespace UI_APP
         {
             InitializeComponent();
         }
-
         private void FrmAddUser_Load(object sender, EventArgs e)
         {
             this.btn_Add.ImageIndex = 3;
@@ -28,6 +28,7 @@ namespace UI_APP
             this.txb_UserName.MaxLength = 20;
             this.txb_Password.MaxLength = 6;
             this.txb_RepeatPassword.MaxLength = 6;
+            this.rdb_Operator.Checked = true;
         }
         private void txb_FileNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -69,11 +70,47 @@ namespace UI_APP
         }
         private void btn_Add_Click(object sender, EventArgs e)
         {
-            //if (!fileNumberAvailable && )
-            //{
+            string inputUsername = this.txb_UserName.Text;
+            string inputPassword = this.txb_Password.Text;
+            string inputRepeatPassword = this.txb_RepeatPassword.Text;
+            bool validatePassword = false;
+            if (!string.IsNullOrWhiteSpace(inputPassword) && inputPassword == inputRepeatPassword)
+            {
+                validatePassword = true;
+            }
+            if (fileNumberAvailable && User.ValidateEntries(inputUsername) && validatePassword)
+            {
+                int.TryParse(this.txb_FileNumber.Text, out int inputFileNumber);
+                if (this.rdb_Operator.Checked == true)
+                {
+                    if (Controller.User_Add(inputFileNumber, inputUsername, inputPassword, false))
+                    {
+                        MessageBox.Show("Usuario creado con exito!", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo agregar el usuario a la base de datos", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    if (Controller.User_Add(inputFileNumber, inputUsername, inputPassword, true))
+                    {
+                        MessageBox.Show("Usuario creado con exito!", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo agregar el usuario a la base de datos", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Datos incorrectos", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
 
-            //}
-            bool isInt = int.TryParse(this.txb_FileNumber.Text, out int inputFileNumber);
         }
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
