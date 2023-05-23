@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -119,17 +120,16 @@ namespace UI_APP
                     inputDtg.DataSource = Controller.UncompletedMaintOrders;
                 }
                 inputDtg.Columns["Active"].Visible = false;
-                inputDtg.Columns["User"].Visible = false;
                 inputDtg.Columns["Description"].Visible = false;
                 inputDtg.Columns["Antiquity"].Visible = false;
                 inputDtg.Columns[0].HeaderText = "ID ORDEN";
-                inputDtg.Columns[3].HeaderText = "GENERÓ";
-                inputDtg.Columns[4].HeaderText = "SECCCIÓN";
-                inputDtg.Columns[5].HeaderText = "UNIDAD";
-                inputDtg.Columns[6].HeaderText = "URGENCIA";
-                inputDtg.Columns[7].HeaderText = "INGRESO";
-                inputDtg.Columns[9].HeaderText = "COMPLETADA";
-                inputDtg.Columns[10].HeaderText = "FINALIZADA";
+                inputDtg.Columns[2].HeaderText = "GENERÓ";
+                inputDtg.Columns[3].HeaderText = "SECCCIÓN";
+                inputDtg.Columns[4].HeaderText = "UNIDAD";
+                inputDtg.Columns[5].HeaderText = "URGENCIA";
+                inputDtg.Columns[6].HeaderText = "INGRESO";
+                inputDtg.Columns[8].HeaderText = "COMPLETADA";
+                inputDtg.Columns[9].HeaderText = "FINALIZADA";
             }
         }
         #endregion
@@ -161,7 +161,7 @@ namespace UI_APP
         }
         private void btn_ImportDb_Click(object sender, EventArgs e)
         {
-            if (Controller.MaintOrder_HardcodeDb())
+            if (Controller.MaintOrder_LoadDbFromText())
             {
                 FrmListMaintenanceOrder_AvailableFunctions();
                 FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
@@ -170,6 +170,18 @@ namespace UI_APP
             else
             {
                 MessageBox.Show("Error al importar la base de datos.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+        private void btn_SaveMaintOrderDb_Click(object sender, EventArgs e)
+        {
+            Controller.MaintOrder_Sort();
+            if (Controller.MaintOrder_SaveDbAsText())
+            {
+                MessageBox.Show("Base de datos guardada con exito!", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else
+            {
+                MessageBox.Show("No se pudo guardar la base de datos!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btn_AddMaintOrder_Click(object sender, EventArgs e)
@@ -280,16 +292,5 @@ namespace UI_APP
         }
         #endregion
 
-        private void btn_SaveMaintOrderDb_Click(object sender, EventArgs e)
-        {
-            if (Controller.MaintOrder_SaveDbAsText())
-            {
-                MessageBox.Show("Base de datos guardada con exito!", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-            else
-            {
-                MessageBox.Show("No se pudo guardar la base de datos!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
     }
 }

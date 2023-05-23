@@ -57,9 +57,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lbl_MaintOrderDb.Text" xml:space="preserve">
-    <value>La base de datos de ordenes de mantenimiento se encuentra vacia.
-Dirijase a la pestaña "Orden de mantenimiento" y seleccione "Importar" para traer una base de datos o "Agregar" para ingresar una nueva orden.
-</value>
-  </data>
 </root>

@@ -243,7 +243,7 @@
             Name="FrmInfoMaintOrder";
             SizeGripStyle=System.Windows.Forms.SizeGripStyle.Show;
             StartPosition=System.Windows.Forms.FormStartPosition.CenterParent;
-            Text="FrmInfoMaintOrder";
+            Text="Informacion Orden de Mantenimiento";
             Load+=FrmInfoMaintOrder_Load;
             ResumeLayout(false);
             PerformLayout();

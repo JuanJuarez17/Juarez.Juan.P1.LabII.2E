@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\beverage-factory-conveyor-belt-juice-bottles-industrial-interior-blue-color-food-drink-production-line-process-187810100.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CONTROLLER_APP\CONTROLLER_APP.csproj" />
   </ItemGroup>
 

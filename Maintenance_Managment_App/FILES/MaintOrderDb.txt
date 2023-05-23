@@ -1,0 +1,23 @@
+active,user,section,machine,urgency,description,creationDate,completed,endDate
+True,JJuarez,Almacen,Agujereadora,Normal,Orden de prueba para test del soft,2022/08/04,True,2022/08/05
+True,JPerez,Otro,CentroCNC,Normal,,2022/08/13,True,2022/08/14
+False,ETolosa,Mecanizado,Agujereadora,Programable,,2022/08/15,True,2022/08/15
+True,PRodriguez,Ensamble,Brochadora,Urgente,Falla en el sensor de pieza,2022/08/15,False,0001/01/01
+True,ETolosa,Mecanizado,Otro,Normal,,2022/08/16,True,2022/08/21
+False,JPerez,Mecanizado,CentroCNC,Programable,,2022/08/22,True,2022/08/25
+False,ETolosa,Otro,Agujereadora,Urgente,,2022/08/28,True,2022/08/28
+True,ETolosa,Matriceria,Otro,Urgente,Rotura cabezal torno,2022/09/09,True,2022/09/14
+True,ETolosa,Almacen,Autoelevador,Normal,Cambio de aceite,2022/09/13,True,2022/09/13
+True,JPerez,Ensamble,Otro,Normal,Limpieza por derrame aceite,2022/09/15,True,2022/09/15
+True,PRodriguez,Ensamble,Otro,Programable,Reparacion martillo neumatico,2022/09/20,True,2022/09/24
+True,JPerez,Almacen,Otro,Normal,Reparacion estanteria,2022/10/04,True,2023/10/07
+True,JJuarez,Almacen,Otro,Programable,Reparacion tomacorrientes PC,2022/10/18,True,2023/10/18
+False,PRodriguez,Ensamble,GrabadoraLaser,Normal,,2022/10/21,True,2023/10/22
+True,ETolosa,Mecanizado,CentroCNC,Programable,Rotura sistema refrigeracion,2022/10/30,False,0001/01/01
+True,PRodriguez,Matriceria,Otro,Urgente,Rotura fresadora,2022/11/09,True,2022/11/14
+False,JPerez,Mecanizado,Brochadora,Programable,Rotura dispositivo sujecion,2022/11/20,False,0001/01/01
+True,PRodriguez,Mecanizado,Otro,Programable,Limpieza batea viruta,2022/11/25,True,2022/11/27
+True,ETolosa,Almacen,Autoelevador,Normal,Cambio filtro de acite,2023/01/13,True,2023/01/24
+True,ETolosa,Ensamble,GrabadoraLaser,Normal,Falla repentina,2023/01/16,True,2023/01/16
+True,PRodriguez,Mecanizado,Otro,Programable,Reparacion cono de herramientas,2023/01/17,False,0001/01/01
+

@@ -42,9 +42,9 @@
             // btn_Access
             // 
             btn_Access.Anchor=System.Windows.Forms.AnchorStyles.Bottom|System.Windows.Forms.AnchorStyles.Left|System.Windows.Forms.AnchorStyles.Right;
-            btn_Access.Location=new System.Drawing.Point(211, 169);
+            btn_Access.Location=new System.Drawing.Point(211, 168);
             btn_Access.Name="btn_Access";
-            btn_Access.Size=new System.Drawing.Size(75, 25);
+            btn_Access.Size=new System.Drawing.Size(81, 25);
             btn_Access.TabIndex=0;
             btn_Access.Text="Ingresar";
             btn_Access.UseVisualStyleBackColor=true;
@@ -53,9 +53,9 @@
             // btn_Cancel
             // 
             btn_Cancel.Anchor=System.Windows.Forms.AnchorStyles.Bottom|System.Windows.Forms.AnchorStyles.Left|System.Windows.Forms.AnchorStyles.Right;
-            btn_Cancel.Location=new System.Drawing.Point(292, 169);
+            btn_Cancel.Location=new System.Drawing.Point(292, 168);
             btn_Cancel.Name="btn_Cancel";
-            btn_Cancel.Size=new System.Drawing.Size(75, 25);
+            btn_Cancel.Size=new System.Drawing.Size(81, 25);
             btn_Cancel.TabIndex=1;
             btn_Cancel.Text="Cancelar";
             btn_Cancel.UseVisualStyleBackColor=true;
@@ -81,10 +81,12 @@
             // lbl_Title
             // 
             lbl_Title.Anchor=System.Windows.Forms.AnchorStyles.Top|System.Windows.Forms.AnchorStyles.Left|System.Windows.Forms.AnchorStyles.Right;
-            lbl_Title.Font=new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            lbl_Title.BackColor=System.Drawing.Color.Transparent;
+            lbl_Title.Font=new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            lbl_Title.ForeColor=System.Drawing.SystemColors.Desktop;
             lbl_Title.Location=new System.Drawing.Point(17, 11);
             lbl_Title.Name="lbl_Title";
-            lbl_Title.Size=new System.Drawing.Size(350, 60);
+            lbl_Title.Size=new System.Drawing.Size(356, 60);
             lbl_Title.TabIndex=4;
             lbl_Title.Text="Maintenance Management Assistant";
             lbl_Title.TextAlign=System.Drawing.ContentAlignment.MiddleCenter;
@@ -110,19 +112,22 @@
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode=System.Windows.Forms.AutoScaleMode.Font;
-            BackColor=System.Drawing.SystemColors.ControlDarkDark;
-            ClientSize=new System.Drawing.Size(384, 211);
-            Opacity = 0.9;
+            BackColor=System.Drawing.SystemColors.Control;
+            BackgroundImage=Properties.Resources.FrmLoginBackgroundImage;
+            BackgroundImageLayout=System.Windows.Forms.ImageLayout.Stretch;
+            ClientSize=new System.Drawing.Size(390, 210);
             Controls.Add(btn_Autocomplete);
             Controls.Add(lbl_Title);
             Controls.Add(txb_Password);
             Controls.Add(txb_Username);
             Controls.Add(btn_Cancel);
             Controls.Add(btn_Access);
+            DoubleBuffered=true;
             FormBorderStyle=System.Windows.Forms.FormBorderStyle.None;
             MaximizeBox=false;
             MinimizeBox=false;
             Name="FrmLogin";
+            Opacity=0.8D;
             StartPosition=System.Windows.Forms.FormStartPosition.CenterScreen;
             Text="Login";
             Load+=FrmLogin_Load;
@@ -139,5 +144,6 @@
         private System.Windows.Forms.Label lbl_Title;
         private System.Windows.Forms.Button btn_Autocomplete;
         private System.Windows.Forms.ImageList iml_Login;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

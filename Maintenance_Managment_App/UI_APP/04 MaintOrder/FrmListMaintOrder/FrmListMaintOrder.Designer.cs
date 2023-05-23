@@ -168,6 +168,7 @@
             // 
             // lbl_MaintOrderDb
             // 
+            lbl_MaintOrderDb.Anchor=System.Windows.Forms.AnchorStyles.Top|System.Windows.Forms.AnchorStyles.Bottom|System.Windows.Forms.AnchorStyles.Left|System.Windows.Forms.AnchorStyles.Right;
             lbl_MaintOrderDb.Font=new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             lbl_MaintOrderDb.Location=new System.Drawing.Point(308, 187);
             lbl_MaintOrderDb.Name="lbl_MaintOrderDb";
@@ -308,6 +309,8 @@
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode=System.Windows.Forms.AutoScaleMode.Font;
+            BackColor=System.Drawing.Color.RoyalBlue;
+            BackgroundImageLayout=System.Windows.Forms.ImageLayout.None;
             ClientSize=new System.Drawing.Size(950, 550);
             Controls.Add(btn_SaveDb);
             Controls.Add(gpb_ShowMaintOrders);

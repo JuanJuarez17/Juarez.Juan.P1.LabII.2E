@@ -176,7 +176,7 @@
             MinimizeBox=false;
             Name="FrmAddMaintOrder";
             StartPosition=System.Windows.Forms.FormStartPosition.CenterParent;
-            Text="FrmAddMaintenanceOrder";
+            Text="Alta Orden de Mantenimiento";
             Load+=FrmAddMaintenanceOrder_Load;
             ResumeLayout(false);
             PerformLayout();

@@ -72,8 +72,9 @@
             // 
             // pcb_UserImage
             // 
+            pcb_UserImage.Anchor=System.Windows.Forms.AnchorStyles.Top;
             pcb_UserImage.Image=Properties.Resources.usuario;
-            pcb_UserImage.Location=new System.Drawing.Point(12, 12);
+            pcb_UserImage.Location=new System.Drawing.Point(375, 12);
             pcb_UserImage.Name="pcb_UserImage";
             pcb_UserImage.Size=new System.Drawing.Size(200, 200);
             pcb_UserImage.SizeMode=System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -99,6 +100,7 @@
             // 
             // gpb_UserDetails
             // 
+            gpb_UserDetails.Anchor=System.Windows.Forms.AnchorStyles.Top;
             gpb_UserDetails.Controls.Add(txb_EntryDate);
             gpb_UserDetails.Controls.Add(lbl_EntryDate);
             gpb_UserDetails.Controls.Add(txb_UserFileNumber);
@@ -109,7 +111,7 @@
             gpb_UserDetails.Controls.Add(lbl_Surname);
             gpb_UserDetails.Controls.Add(txb_UserName);
             gpb_UserDetails.Controls.Add(lbl_Name);
-            gpb_UserDetails.Location=new System.Drawing.Point(238, 78);
+            gpb_UserDetails.Location=new System.Drawing.Point(122, 304);
             gpb_UserDetails.Name="gpb_UserDetails";
             gpb_UserDetails.Size=new System.Drawing.Size(345, 180);
             gpb_UserDetails.TabIndex=27;
@@ -222,7 +224,7 @@
             // 
             // gpb_ControlPanel
             // 
-            gpb_ControlPanel.Anchor=System.Windows.Forms.AnchorStyles.Top|System.Windows.Forms.AnchorStyles.Left|System.Windows.Forms.AnchorStyles.Right;
+            gpb_ControlPanel.Anchor=System.Windows.Forms.AnchorStyles.Top;
             gpb_ControlPanel.Controls.Add(btn_SaveUserDb);
             gpb_ControlPanel.Controls.Add(cbb_UsernameList);
             gpb_ControlPanel.Controls.Add(btn_DeleteUser);
@@ -230,7 +232,7 @@
             gpb_ControlPanel.Controls.Add(btn_AddUser);
             gpb_ControlPanel.Controls.Add(btn_SearchUser);
             gpb_ControlPanel.Controls.Add(lbl_SearchFileNumber);
-            gpb_ControlPanel.Location=new System.Drawing.Point(238, 12);
+            gpb_ControlPanel.Location=new System.Drawing.Point(125, 228);
             gpb_ControlPanel.Name="gpb_ControlPanel";
             gpb_ControlPanel.Size=new System.Drawing.Size(700, 60);
             gpb_ControlPanel.TabIndex=31;
@@ -291,7 +293,7 @@
             // 
             // gpb_PositionDetails
             // 
-            gpb_PositionDetails.Anchor=System.Windows.Forms.AnchorStyles.Top|System.Windows.Forms.AnchorStyles.Right;
+            gpb_PositionDetails.Anchor=System.Windows.Forms.AnchorStyles.Top;
             gpb_PositionDetails.Controls.Add(cbb_UserCategory);
             gpb_PositionDetails.Controls.Add(cbb_UserShift);
             gpb_PositionDetails.Controls.Add(cbb_UserDivision);
@@ -302,7 +304,7 @@
             gpb_PositionDetails.Controls.Add(lbl_Antiquity);
             gpb_PositionDetails.Controls.Add(lbl_Shift);
             gpb_PositionDetails.Controls.Add(lbl_Divison);
-            gpb_PositionDetails.Location=new System.Drawing.Point(593, 78);
+            gpb_PositionDetails.Location=new System.Drawing.Point(484, 304);
             gpb_PositionDetails.Name="gpb_PositionDetails";
             gpb_PositionDetails.Size=new System.Drawing.Size(345, 180);
             gpb_PositionDetails.TabIndex=32;
@@ -401,9 +403,9 @@
             // 
             // btn_Cancel
             // 
-            btn_Cancel.Anchor=System.Windows.Forms.AnchorStyles.Top|System.Windows.Forms.AnchorStyles.Right;
+            btn_Cancel.Anchor=System.Windows.Forms.AnchorStyles.Top;
             btn_Cancel.ImageList=iml_AccountDetails;
-            btn_Cancel.Location=new System.Drawing.Point(892, 274);
+            btn_Cancel.Location=new System.Drawing.Point(779, 498);
             btn_Cancel.Name="btn_Cancel";
             btn_Cancel.Size=new System.Drawing.Size(40, 40);
             btn_Cancel.TabIndex=33;
@@ -412,9 +414,9 @@
             // 
             // btn_Accept
             // 
-            btn_Accept.Anchor=System.Windows.Forms.AnchorStyles.Top|System.Windows.Forms.AnchorStyles.Right;
+            btn_Accept.Anchor=System.Windows.Forms.AnchorStyles.Top;
             btn_Accept.ImageList=iml_AccountDetails;
-            btn_Accept.Location=new System.Drawing.Point(846, 274);
+            btn_Accept.Location=new System.Drawing.Point(733, 498);
             btn_Accept.Name="btn_Accept";
             btn_Accept.Size=new System.Drawing.Size(40, 40);
             btn_Accept.TabIndex=34;
@@ -425,6 +427,7 @@
             // 
             AutoScaleDimensions=new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode=System.Windows.Forms.AutoScaleMode.Font;
+            BackColor=System.Drawing.Color.RoyalBlue;
             ClientSize=new System.Drawing.Size(950, 550);
             Controls.Add(btn_Accept);
             Controls.Add(btn_Cancel);

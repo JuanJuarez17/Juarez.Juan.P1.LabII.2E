@@ -46,7 +46,7 @@ namespace UI_APP
             string inputDescription = this.rtb_Description.Text;
             if (Controller.MaintOrder_Parse(inputDescription))
             {
-                if (Controller.MaintOrder_Add(this.activeUser, inputMachine, inputSection, inputUrgency, inputDescription, out int idAdded))
+                if (Controller.MaintOrder_Add(this.activeUser.Username, inputMachine, inputSection, inputUrgency, inputDescription, out int idAdded))
                 {
                     MessageBox.Show($"Orden de mantenimiento {idAdded} creada.", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();

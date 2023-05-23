@@ -13,7 +13,7 @@ namespace ENTITIES_APP
         private readonly int id;
 
         private bool active;
-        private User maker;
+        private string maker;
         private Machine faultyUnit;
         private Section faultyUnitSection;
         private Urgency failureUrgency;
@@ -33,14 +33,10 @@ namespace ENTITIES_APP
             get { return this.active; }
             set { this.active = value; }
         }
-        public User User
+        public string Username
         {
             get { return this.maker; }
             set { this.maker = value; }
-        }
-        public string Username
-        {
-            get { return this.maker.Username; }
         }
         public Section Section
         {
@@ -60,6 +56,7 @@ namespace ENTITIES_APP
         public DateTime CreationDate
         {
             get { return this.creationDate.Date; }
+            set { this.creationDate = value; }
         }
         public string Description
         {
@@ -105,7 +102,7 @@ namespace ENTITIES_APP
             this.creationDate = DateTime.Now;
             this.completed = false;
         }
-        public MaintenanceOrder(User inputMaker, Section inputSection, Machine inputMachine, Urgency inputUrgency, string inputDescription)
+        public MaintenanceOrder(string inputMaker, Section inputSection, Machine inputMachine, Urgency inputUrgency, string inputDescription)
                  : this()
         {
             this.maker = inputMaker;
@@ -114,7 +111,7 @@ namespace ENTITIES_APP
             this.failureUrgency = inputUrgency;
             this.description = inputDescription;
         }
-        public MaintenanceOrder(User inputMaker, Section inputSection, Machine inputMachine, Urgency inputUrgency, string inputDescription, bool inputStatus, DateTime inputCreation, bool inputCompleted)
+        public MaintenanceOrder(string inputMaker, Section inputSection, Machine inputMachine, Urgency inputUrgency, string inputDescription, bool inputStatus, DateTime inputCreation, bool inputCompleted)
                  : this(inputMaker, inputSection, inputMachine, inputUrgency, inputDescription) // Solo para uso en hardcodeo
         {
             this.active = inputStatus;
@@ -130,7 +127,7 @@ namespace ENTITIES_APP
         public static bool SetDescription(string inputDescription)
         {
             bool rtn = false;
-            if (inputDescription.Length == 0 || (inputDescription.Length >= 10 && inputDescription.Length <= 50))
+            if (inputDescription.Length == 0 || (inputDescription.Length >= 5 && inputDescription.Length <= 200))
             {
                 rtn = true;
             }
@@ -170,13 +167,19 @@ namespace ENTITIES_APP
                 DateTime.TryParse(buffer[8], out DateTime inputEndDate);
 
                 auxMaintOrder.Active = inputActive;
-
+                auxMaintOrder.Username = inputUser;
+                auxMaintOrder.Section = inputSection;
+                auxMaintOrder.Machine = inputMachine;
+                auxMaintOrder.Urgency = inputUrgency;
+                auxMaintOrder.Description = inputDescription;
+                auxMaintOrder.CreationDate = inputCreationDate;
+                auxMaintOrder.Completed = inputCompleted;
+                auxMaintOrder.EndDate = inputEndDate;
 
                 return auxMaintOrder;
             }
             return auxMaintOrder;
         }
-
     }
 }
 

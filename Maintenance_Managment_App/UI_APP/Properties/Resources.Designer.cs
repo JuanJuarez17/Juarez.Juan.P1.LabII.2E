@@ -63,6 +63,37 @@ namespace UI_APP.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap beverage_factory_conveyor_belt_juice_bottles_industrial_interior_blue_color_food_drink_production_line_process_187810100 {
+            get {
+                object obj = ResourceManager.GetObject("beverage-factory-conveyor-belt-juice-bottles-industrial-interior-blue-color-food-" +
+                        "drink-production-line-process-187810100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FrmHomeBackgroundImage {
+            get {
+                object obj = ResourceManager.GetObject("FrmHomeBackgroundImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FrmLoginBackgroundImage {
+            get {
+                object obj = ResourceManager.GetObject("FrmLoginBackgroundImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap usuario {
             get {
                 object obj = ResourceManager.GetObject("usuario", resourceCulture);

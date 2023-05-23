@@ -179,7 +179,7 @@
             // 
             rdb_Supervisor.AutoSize=true;
             rdb_Supervisor.Font=new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            rdb_Supervisor.Location=new System.Drawing.Point(17, 22);
+            rdb_Supervisor.Location=new System.Drawing.Point(17, 25);
             rdb_Supervisor.Name="rdb_Supervisor";
             rdb_Supervisor.Size=new System.Drawing.Size(88, 21);
             rdb_Supervisor.TabIndex=36;
@@ -191,7 +191,7 @@
             // 
             rdb_Operator.AutoSize=true;
             rdb_Operator.Font=new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            rdb_Operator.Location=new System.Drawing.Point(17, 51);
+            rdb_Operator.Location=new System.Drawing.Point(17, 54);
             rdb_Operator.Name="rdb_Operator";
             rdb_Operator.Size=new System.Drawing.Size(79, 21);
             rdb_Operator.TabIndex=37;

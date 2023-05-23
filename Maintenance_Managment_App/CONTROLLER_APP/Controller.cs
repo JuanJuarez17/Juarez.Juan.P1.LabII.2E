@@ -91,7 +91,10 @@ namespace CONTROLLER_APP
         {
             return appDb.User_SaveDbAsText();
         }
-
+        public static bool MaintOrder_LoadDbFromText()
+        {
+            return appDb.MaintOrder_LoadDbFromText();
+        }
         public static bool MaintOrder_SaveDbAsText()
         {
             return appDb.MaintOrder_SaveDbAsText();
@@ -107,15 +110,11 @@ namespace CONTROLLER_APP
         {
             return appDb.NumberUncompletedOrders;
         }
-        public static bool MaintOrder_HardcodeDb()
-        {
-            return appDb.MaintOrder_HardcodeDb();
-        }
         public static bool MaintOrder_Parse(string inputDescription)
         {
             return Database.MaintOrder_Parse(inputDescription);
         }
-        public static bool MaintOrder_Add(User activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, out int idAdded)
+        public static bool MaintOrder_Add(string activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, out int idAdded)
         {
             return appDb.MaintOrder_Add(activeUser, inputMachine, inputSection, inputUrgency, inputDescription, out idAdded);
         }
@@ -138,6 +137,10 @@ namespace CONTROLLER_APP
         public static void MaintOrder_Sort(string parameter, int inputOrder)
         {
             appDb.MaintOrder_Sort(parameter, inputOrder);
+        }
+        public static void MaintOrder_Sort()
+        {
+            appDb.MaintOrder_Sort();
         }
         #endregion
     }

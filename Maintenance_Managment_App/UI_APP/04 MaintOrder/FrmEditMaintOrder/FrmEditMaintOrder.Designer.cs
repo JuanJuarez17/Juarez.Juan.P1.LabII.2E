@@ -233,7 +233,7 @@
             Name="FrmEditMaintOrder";
             SizeGripStyle=System.Windows.Forms.SizeGripStyle.Show;
             StartPosition=System.Windows.Forms.FormStartPosition.CenterParent;
-            Text="FrmEditMaintOrder";
+            Text="Editar Orden de Mantenimiento";
             Load+=FrmEditMaintOrder_Load;
             ResumeLayout(false);
             PerformLayout();

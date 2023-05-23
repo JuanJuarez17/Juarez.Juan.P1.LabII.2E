@@ -111,31 +111,8 @@ namespace DATABASE_APP
         }
         #endregion
 
-        #region HARDCODE METHODS
-        public bool MaintOrder_HardcodeDb()
-        {
-            bool rtn = false;
-            if (this.maintOrdersDb.Count <= 100)
-            {
-                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("ETolosa"), Section.Otro, Machine.Agujereadora, Urgency.Normal, null, true, new DateTime(2022, 08, 13), true));
-                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("JPerez"), Section.Mecanizado, Machine.Autoelevador, Urgency.Programable, null, false, new DateTime(2022, 08, 22), false));
-                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("PRodriguez"), Section.Ensamble, Machine.Otro, Urgency.Urgente, null, true, new DateTime(2022, 09, 09), true));
-                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("JPerez"), Section.Otro, Machine.GrabadoraLaser, Urgency.Normal, null, true, new DateTime(2022, 10, 18), true));
-                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("JPerez"), Section.Ensamble, Machine.CentroCNC, Urgency.Programable, null, false, new DateTime(2022, 10, 30), false));
-                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("PRodriguez"), Section.Matriceria, Machine.CentroCNC, Urgency.Normal, null, true, new DateTime(2022, 11, 09), false));
-                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("JJuarez"), Section.Almacen, Machine.Brochadora, Urgency.Urgente, null, false, new DateTime(2022, 11, 20), false));
-                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("PRodriguez"), Section.Mecanizado, Machine.Otro, Urgency.Programable, null, true, new DateTime(2022, 11, 25), false));
-                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("ETolosa"), Section.Almacen, Machine.CentroCNC, Urgency.Normal, null, true, new DateTime(2023, 01, 13), true));
-                this.maintOrdersDb.Add(new MaintenanceOrder(User_Return("JJuarez"), Section.Ensamble, Machine.Otro, Urgency.Urgente, null, true, new DateTime(2023, 01, 17), false));
-                this.maintOrderDbLoaded = true;
-                rtn = true;
-            }
-            return rtn;
-        }
-        #endregion
 
         #region USER DB METHODS
-
         // Aplication Run
         private void User_LoadGenericUsers()
         {
@@ -284,9 +261,6 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-
-
-
         public bool User_WriteDbAsText(out string text)
         {
             bool rtn = false;
@@ -314,43 +288,11 @@ namespace DATABASE_APP
             text = sb.ToString();
             return rtn;
         }
-
-        public bool MaintOrder_WriteDbAsText(out string text)
-        {
-            bool rtn = false;
-            StringBuilder sb = new StringBuilder();
-            if (this.MaintOrderDb != null && this.MaintOrderDb.Count > 0)
-            {
-                sb.AppendLine("active,user,section,machine,urgency,description,creationDate,completed,endDate");
-                foreach (MaintenanceOrder item in this.MaintOrderDb)
-                {
-                    sb.AppendLine(item.WriteAsText());
-                    rtn = true;
-                }
-            }
-            text = sb.ToString();
-            return rtn;
-        }
-        public bool MaintOrder_SaveDbAsText()
-        {
-            bool rtn = false;
-            string route = Path.Combine(Path.GetFullPath("."), "MaintOrderDb.txt");
-            if (File.Exists(route))
-            {
-                File.Delete(route);
-            }
-            if (MaintOrder_WriteDbAsText(out string text))
-            {
-                File.WriteAllText(route, text);
-                rtn = true;
-            }
-            return rtn;
-        }
         public bool User_LoadDbFromText()
         {
             bool rtn = false;
             //string route = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Test", "OperatorDb.txt");
-            string route = Path.Combine(Path.GetFullPath("."), "OperatorDb.txt");
+            string route = Path.GetFullPath(".\\..\\..\\..\\..\\FILES\\UserDb.txt");
             if (File.Exists(route))
             {
                 StringBuilder sb = new StringBuilder();
@@ -381,7 +323,7 @@ namespace DATABASE_APP
             }
             route = Path.Combine(route, "OperatorDb.txt");
             */
-            string route = Path.Combine(Path.GetFullPath("."), "OperatorDb.txt");
+            string route = Path.GetFullPath(".\\..\\..\\..\\..\\FILES\\UserDb.txt");
             if (File.Exists(route))
             {
                 File.Delete(route);
@@ -397,7 +339,7 @@ namespace DATABASE_APP
 
         #region MAINT ORDER DB METHODS
         // MaintOrderDb Methods
-        public bool MaintOrder_Add(User activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, out int idAdded)
+        public bool MaintOrder_Add(string activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, out int idAdded)
         {
             // MaintOrder_Add no es static pues necesita de una instancia de clase Database para ejecutar su logica
             bool rtn = false;
@@ -459,6 +401,10 @@ namespace DATABASE_APP
                 return true;
             }
             return rtn;
+        }
+        public void MaintOrder_Sort()
+        {
+            this.MaintOrderDb.Sort(IdCreasing);
         }
         public void MaintOrder_Sort(string parameter, int inputOrder)
         {
@@ -528,6 +474,83 @@ namespace DATABASE_APP
                 default:
                     return string.Empty;
             }
+        }
+
+        // Write & Read Methods
+        public bool MaintOrder_ReadBdFromText(string inputFile)
+        {
+            bool rtn = false;
+            if (!string.IsNullOrEmpty(inputFile))
+            {
+                string[] line = inputFile.Split(Environment.NewLine);
+                foreach (string item in line)
+                {
+                    if (!string.IsNullOrEmpty(item))
+                    {
+                        this.MaintOrderDb.Add(MaintenanceOrder.ReadFromText(item));
+                        rtn = true;
+                    }
+                }
+            }
+            return rtn;
+        }
+        public bool MaintOrder_LoadDbFromText()
+        {
+            bool rtn = false;
+            string route = Path.GetFullPath(".\\..\\..\\..\\..\\FILES\\MaintOrderDb.txt");
+            if (File.Exists(route))
+            {
+                StringBuilder sb = new StringBuilder();
+                string[] readFile = File.ReadAllLines(route);
+                for (int i = 0; i < readFile.Length; i++)
+                {
+                    if (i != 0)
+                    {
+                        sb.AppendLine(readFile[i]);
+                    }
+                }
+                if (MaintOrder_ReadBdFromText(sb.ToString()))
+                {
+                    rtn = true;
+                    this.maintOrderDbLoaded = true;
+                }
+            }
+            else
+            {
+                throw new Exception("Error al cargar la base de datos.");
+            }
+            return rtn;
+        }
+        public bool MaintOrder_WriteDbAsText(out string text)
+        {
+            bool rtn = false;
+            StringBuilder sb = new StringBuilder();
+            if (this.MaintOrderDb != null && this.MaintOrderDb.Count > 0)
+            {
+                sb.AppendLine("active,user,section,machine,urgency,description,creationDate,completed,endDate");
+                foreach (MaintenanceOrder item in this.MaintOrderDb)
+                {
+                    sb.AppendLine(item.WriteAsText());
+                    rtn = true;
+                }
+            }
+            text = sb.ToString();
+            return rtn;
+        }
+        public bool MaintOrder_SaveDbAsText()
+        {
+            bool rtn = false;
+            string route = Path.GetFullPath(".\\..\\..\\..\\..\\FILES\\MaintOrderDb.txt");
+            if (File.Exists(route))
+            {
+                File.Delete(route);
+            }
+            if (MaintOrder_WriteDbAsText(out string text))
+            {
+                File.WriteAllText(route, text);
+                rtn = true;
+            }
+            return rtn;
         }
         #endregion
 
