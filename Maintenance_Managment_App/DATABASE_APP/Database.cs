@@ -144,7 +144,7 @@ namespace DATABASE_APP
         }
 
         // UserDb Methods
-        public int User_Check(string inputUsername, string inputPassword)
+        public int User_CheckExist(string inputUsername, string inputPassword)
         {
             if (string.IsNullOrEmpty(inputUsername) || string.IsNullOrEmpty(inputPassword))
             {
@@ -165,6 +165,21 @@ namespace DATABASE_APP
                 return 0;
             }
         } // Usado en Login
+        public bool User_CheckFileNumberAvailable(int inputFileNumber)
+        {
+            bool rtn = true;
+            if (inputFileNumber >= 100 && inputFileNumber <= 999)
+            {
+                foreach (User item in this.UserDb)
+                {
+                    if (item.FileNumber == inputFileNumber)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return rtn;
+        }
         public bool User_FindInDb(int inputFileNumber, out int findedIndex)
         {
             bool rtn = false;

@@ -48,11 +48,17 @@ namespace CONTROLLER_APP
         #endregion
 
         #region USER METHODS
-        public static int User_Check(string inputUsername, string inputPassword)
+        public static int User_CheckExist(string inputUsername, string inputPassword)
         {
-            return appDb.User_Check(inputUsername, inputPassword);
+            return appDb.User_CheckExist(inputUsername, inputPassword);
         }
         // TODO: Se puede agregar una sobrecarga de ReturnUser que reciba un int legajo operario (Se puede hacer tambien con nombre y apellido)
+        
+        public static bool User_CheckFileNumberAvailable(int inputFileNumber)
+        {
+            return appDb.User_CheckFileNumberAvailable(inputFileNumber);
+        }
+        
         public static User User_Return(string inputUsername)
         {
             return appDb.User_Return(inputUsername);

@@ -70,6 +70,7 @@
             btn_Add.Size=new System.Drawing.Size(50, 50);
             btn_Add.TabIndex=13;
             btn_Add.UseVisualStyleBackColor=true;
+            btn_Add.Click+=btn_Add_Click;
             // 
             // btn_Cancel
             // 
@@ -88,8 +89,10 @@
             txb_UserName.Font=new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txb_UserName.Location=new System.Drawing.Point(162, 46);
             txb_UserName.Name="txb_UserName";
+            txb_UserName.ShortcutsEnabled=false;
             txb_UserName.Size=new System.Drawing.Size(130, 25);
             txb_UserName.TabIndex=28;
+            txb_UserName.KeyPress+=txb_UserName_KeyPress;
             // 
             // lbl_Username
             // 
@@ -106,6 +109,7 @@
             txb_Password.Font=new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txb_Password.Location=new System.Drawing.Point(162, 85);
             txb_Password.Name="txb_Password";
+            txb_Password.ShortcutsEnabled=false;
             txb_Password.Size=new System.Drawing.Size(130, 25);
             txb_Password.TabIndex=30;
             // 
@@ -124,6 +128,7 @@
             txb_RepeatPassword.Font=new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txb_RepeatPassword.Location=new System.Drawing.Point(162, 124);
             txb_RepeatPassword.Name="txb_RepeatPassword";
+            txb_RepeatPassword.ShortcutsEnabled=false;
             txb_RepeatPassword.Size=new System.Drawing.Size(130, 25);
             txb_RepeatPassword.TabIndex=32;
             // 
@@ -142,8 +147,10 @@
             txb_FileNumber.Font=new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txb_FileNumber.Location=new System.Drawing.Point(162, 7);
             txb_FileNumber.Name="txb_FileNumber";
+            txb_FileNumber.ShortcutsEnabled=false;
             txb_FileNumber.Size=new System.Drawing.Size(50, 25);
             txb_FileNumber.TabIndex=34;
+            txb_FileNumber.KeyPress+=txb_FileNumber_KeyPress;
             // 
             // lbl_fileNumber
             // 
@@ -164,6 +171,7 @@
             btn_VerifyFileNumber.TabIndex=35;
             btn_VerifyFileNumber.Text="Verificar";
             btn_VerifyFileNumber.UseVisualStyleBackColor=true;
+            btn_VerifyFileNumber.Click+=btn_VerifyFileNumber_Click;
             // 
             // rdb_Supervisor
             // 
