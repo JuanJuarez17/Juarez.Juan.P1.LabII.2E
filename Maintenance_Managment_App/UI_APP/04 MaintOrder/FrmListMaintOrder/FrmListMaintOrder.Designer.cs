@@ -303,7 +303,6 @@
             btn_SaveDb.Size=new System.Drawing.Size(50, 50);
             btn_SaveDb.TabIndex=15;
             btn_SaveDb.UseVisualStyleBackColor=true;
-            btn_SaveDb.Click+=btn_SaveMaintOrderDb_Click;
             // 
             // FrmListMaintOrder
             // 

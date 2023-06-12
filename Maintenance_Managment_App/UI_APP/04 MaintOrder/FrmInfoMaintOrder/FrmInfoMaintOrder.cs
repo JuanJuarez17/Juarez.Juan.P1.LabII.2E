@@ -1,4 +1,5 @@
 ﻿using CONTROLLER_APP;
+using DATABASE_APP;
 using ENTITIES_APP;
 using System;
 using System.Collections.Generic;
@@ -26,12 +27,12 @@ namespace UI_APP
         private void FrmInfoMaintOrder_Load(object sender, EventArgs e)
         {
             this.btn_Cancel.ImageIndex = 4;
-            this.txb_MaintOrderId.Text = Controller.MaintOrder_PrintParameter("ID", this.maintOrderId);
-            this.txb_MaintOrderUser.Text = Controller.MaintOrder_PrintParameter("USERNAME", this.maintOrderId);
-            this.txb_MaintOrderSector.Text = Controller.MaintOrder_PrintParameter("SECTION", this.maintOrderId);
-            this.txb_MaintOrderMachine.Text = Controller.MaintOrder_PrintParameter("MACHINE", this.maintOrderId);
-            this.txb_MaintOrderUrgency.Text = Controller.MaintOrder_PrintParameter("URGENCY", this.maintOrderId);
-            string message = Controller.MaintOrder_PrintParameter("DESCRIPTION", this.maintOrderId);
+            this.txb_MaintOrderId.Text = SqlServerConnection.PrintParameter(this.maintOrderId, "ID");
+            this.txb_MaintOrderUser.Text = SqlServerConnection.PrintParameter(this.maintOrderId, "USERNAME");
+            this.txb_MaintOrderSector.Text = SqlServerConnection.PrintParameter(this.maintOrderId, "SECTION");
+            this.txb_MaintOrderMachine.Text = SqlServerConnection.PrintParameter(this.maintOrderId, "MACHINE");
+            this.txb_MaintOrderUrgency.Text = SqlServerConnection.PrintParameter(this.maintOrderId, "URGENCY");
+            string message = SqlServerConnection.PrintParameter(this.maintOrderId, "DESCRIPTION");
             if (message == string.Empty)
             {
                 this.rtb_MaintOrderDesc.Text = "No se agrego descripcion.";
@@ -40,8 +41,8 @@ namespace UI_APP
             {
                 this.rtb_MaintOrderDesc.Text = message;
             }
-            this.txb_MaintOrderAntiq.Text = Controller.MaintOrder_PrintParameter("ANTIQUITY", this.maintOrderId);
-            if (Controller.MaintOrder_GetStatus(this.maintOrderId))
+            this.txb_MaintOrderAntiq.Text = SqlServerConnection.PrintParameter(this.maintOrderId, "ANTIQUITY");
+            if (SqlServerConnection.PrintParameter(this.maintOrderId, "STATUS") == "True")
             {
                 this.lbl_Antiquity.Visible = false;
                 this.lbl_Days.Visible = false;

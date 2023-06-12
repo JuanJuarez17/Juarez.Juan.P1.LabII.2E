@@ -1,4 +1,5 @@
 ﻿using CONTROLLER_APP;
+using DATABASE_APP;
 using ENTITIES_APP;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace UI_APP
 {
     public partial class FrmListMaintOrder : Form
     {
+        #region ATTRIBUTES
         private User activeUser;
         private Form activeForm;
         int flagCreationDateSort = 0;
@@ -22,6 +24,9 @@ namespace UI_APP
         int flagMachineSort = 0;
         int flagPrioritySort = 0;
 
+        #endregion
+
+        #region CONSTRUCTOR
         private FrmListMaintOrder()
         {
             InitializeComponent();
@@ -30,11 +35,16 @@ namespace UI_APP
         {
             this.activeUser = inputUser;
         }
+        #endregion
+
+        #region PROPERTIES
         private User User
         {
             get { return this.activeUser; }
         }
+        #endregion
 
+        #region METHODS
         private void HideForm()
         {
             if (activeForm is not null)
@@ -58,7 +68,7 @@ namespace UI_APP
                 this.btn_DeleteMaintOrder.Visible = false;
             }
             // Datagridview Permissions
-            if (Controller.MaintOrderDbLoaded)
+            if (SqlServerConnection.ImportedDbFlag)
             {
                 this.btn_ImportDb.Enabled = false;
                 this.dtg_MaintOrderDb.Visible = true;
@@ -70,7 +80,7 @@ namespace UI_APP
                 this.btn_DeleteMaintOrder.Enabled = true;
                 this.gpb_ShowMaintOrders.Enabled = true;
                 this.rdb_ActiveMaintOrders.Checked = true;
-                if (Controller.ActiveMaintOrders.Count == 0)
+                if (SqlServerConnection.Count("ACTIVE") == 0)
                 {
                     this.dtg_MaintOrderDb.Visible = false;
                     this.lbl_MaintOrderDb.Visible = true;
@@ -95,21 +105,21 @@ namespace UI_APP
         }
         public void FrmListMaintenanceOrder_LoadDataGrid(DataGridView inputDtg)
         {
-            if (Controller.MaintOrderDb.Count > 0)
+            if (SqlServerConnection.ImportedDbFlag && SqlServerConnection.Count("ACTIVE") > 0)
             {
                 inputDtg.DataSource = null;
                 if (this.rdb_ActiveMaintOrders.Checked)
                 {
-                    inputDtg.DataSource = Controller.ActiveMaintOrders;
+                    inputDtg.DataSource = SqlServerConnection.ImportDb("ACTIVE");
                 }
                 else if (this.rdb_CompletedMaintOrders.Checked)
                 {
-                    inputDtg.DataSource = Controller.CompletedMaintOrders;
+                    inputDtg.DataSource = SqlServerConnection.ImportDb("COMPLETED");
                 }
                 else if (this.rdb_UncompletedMaintOrders.Checked)
                 {
-                    inputDtg.DataSource = Controller.UncompletedMaintOrders;
-                }
+                    inputDtg.DataSource = SqlServerConnection.ImportDb("UNCOMPLETED");
+                }                
                 inputDtg.Columns["Active"].Visible = false;
                 inputDtg.Columns["Description"].Visible = false;
                 inputDtg.Columns["Antiquity"].Visible = false;
@@ -123,6 +133,9 @@ namespace UI_APP
                 inputDtg.Columns[9].HeaderText = "FINALIZADA";
             }
         }
+        #endregion
+
+        #region EVENT METHODS
         private void FrmListMaintenanceOrder_Load(object sender, EventArgs e)
         {
             this.btn_ImportDb.ImageIndex = 6;
@@ -149,27 +162,17 @@ namespace UI_APP
         }
         private void btn_ImportDb_Click(object sender, EventArgs e)
         {
-            if (Controller.MaintOrder_LoadDbFromText())
+            try
             {
+                // TODO: Estoy repitiendo codigo, estafuncion solo deberia ejecutarse en Load datagrid
+                this.dtg_MaintOrderDb.DataSource = SqlServerConnection.ImportDb("ACTIVE");
                 FrmListMaintenanceOrder_AvailableFunctions();
                 FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
                 MessageBox.Show("Base de datos importada con exito.", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else
+            catch (Exception)
             {
                 MessageBox.Show("Error al importar la base de datos.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
-        private void btn_SaveMaintOrderDb_Click(object sender, EventArgs e)
-        {
-            Controller.MaintOrder_Sort();
-            if (Controller.MaintOrder_SaveDbAsText())
-            {
-                MessageBox.Show("Base de datos guardada con exito!", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-            else
-            {
-                MessageBox.Show("No se pudo guardar la base de datos!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btn_AddMaintOrder_Click(object sender, EventArgs e)
@@ -209,26 +212,31 @@ namespace UI_APP
             DialogResult respuesta = MessageBox.Show($"¿Eliminar OM {selectedId}?\nEsta accion es inrreversible", "Eliminar Orden de Mantenimiento", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
             if (respuesta == DialogResult.Yes)
             {
-                Controller.MaintOrder_Remove(selectedId);
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                SqlServerConnection.Delete(selectedId);
                 FrmListMaintenanceOrder_AvailableFunctions();
+                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
             }
         }
+
         private void btn_ShowMaintOrders_Click(object sender, EventArgs e)
         {
             FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
         }
+
+
+
+
         private void btn_SortByDate_Click(object sender, EventArgs e)
         {
             if (this.flagCreationDateSort == 0)
             {
-                Controller.MaintOrder_Sort("DATE", this.flagCreationDateSort);
+                this.dtg_MaintOrderDb.DataSource = SqlServerConnection.Sort();
                 FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
                 this.flagCreationDateSort = 1;
             }
             else
             {
-                Controller.MaintOrder_Sort("DATE", this.flagCreationDateSort);
+                SqlServerConnection.Sort();
                 FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
                 this.flagCreationDateSort = 0;
             }
@@ -278,5 +286,7 @@ namespace UI_APP
                 this.flagPrioritySort = 0;
             }
         }
+        #endregion
+
     }
 }

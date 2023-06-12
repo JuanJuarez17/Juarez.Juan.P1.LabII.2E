@@ -9,7 +9,11 @@ namespace CONTROLLER_APP
 {
     public static class Controller
     {
+        #region ATTRIBUTES
         private static Database appDb;
+        #endregion
+
+        #region READONLY PROPERTIES
         public static List<MaintenanceOrder> MaintOrderDb
         {
             get { return appDb.MaintOrderDb; }
@@ -34,18 +38,27 @@ namespace CONTROLLER_APP
         {
             get {  return appDb.MaintOrderDbLoaded; }
         }
+        #endregion
+
+        #region CONSTRUCTOR
         static Controller()
         {
             appDb = new Database();
         }
+        #endregion
+
+        #region USER METHODS
         public static int User_CheckExist(string inputUsername, string inputPassword)
         {
             return appDb.User_CheckExist(inputUsername, inputPassword);
-        }        
+        }
+        // TODO: Se puede agregar una sobrecarga de ReturnUser que reciba un int legajo operario (Se puede hacer tambien con nombre y apellido)
+        
         public static bool User_CheckFileNumberAvailable(int inputFileNumber)
         {
             return appDb.User_CheckFileNumberAvailable(inputFileNumber);
         }
+        
         public static User User_Return(string inputUsername)
         {
             return appDb.User_Return(inputUsername);
@@ -78,53 +91,18 @@ namespace CONTROLLER_APP
         {
             return appDb.User_SaveDbAsText();
         }
-        public static bool MaintOrder_LoadDbFromText()
-        {
-            return appDb.MaintOrder_LoadDbFromText();
-        }
-        public static bool MaintOrder_SaveDbAsText()
-        {
-            return appDb.MaintOrder_SaveDbAsText();
-        }
-        public static int MaintOrder_ReturnFinished()
-        {
-            return appDb.NumberCompletedOrders;
-        }
-        public static int MaintOrder_ReturnUnfinished()
-        {
-            return appDb.NumberUncompletedOrders;
-        }
+        #endregion
+
+        #region MAINT ORDER METHODS
         public static bool MaintOrder_Parse(string inputDescription)
         {
-            return Database.MaintOrder_Parse(inputDescription);
-        }
-        public static bool MaintOrder_Add(string activeUser, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, out int idAdded)
-        {
-            return appDb.MaintOrder_Add(activeUser, inputMachine, inputSection, inputUrgency, inputDescription, out idAdded);
-        }
-        public static bool MaintOrder_Edit(int id, Machine inputMachine, Section inputSection, Urgency inputUrgency, string inputDescription, bool inputStatus)
-        {
-            return appDb.MaintOrder_Edit(id, inputMachine, inputSection, inputUrgency, inputDescription, inputStatus);
-        }
-        public static bool MaintOrder_Remove(int id)
-        {
-            return appDb.MaintOrder_Remove(id);
-        }
-        public static bool MaintOrder_GetStatus(int inputId)
-        {
-            return appDb.MaintOrder_GetStatus(inputId);
-        }
-        public static string MaintOrder_PrintParameter(string inputParameter, int inputId)
-        {
-            return appDb.MaintOrder_PrintParameter(inputParameter, inputId);
+            return Database.MaintOrder_ValidateEntries(inputDescription);
         }
         public static void MaintOrder_Sort(string parameter, int inputOrder)
         {
             appDb.MaintOrder_Sort(parameter, inputOrder);
         }
-        public static void MaintOrder_Sort()
-        {
-            appDb.MaintOrder_Sort();
-        }
+        #endregion
+
     }
 }

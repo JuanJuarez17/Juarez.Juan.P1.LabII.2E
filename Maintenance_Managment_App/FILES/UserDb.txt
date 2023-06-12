@@ -3,4 +3,7 @@ False,207,ETolosa,asd456,False,Eduardo,Tolosa,60,1990/12/01,Mecanica,Maniana,Ofi
 True,209,PRodriguez,zxc789,False,Pedro,Rodriguez,53,1997/05/23,Electricidad,Maniana,OperarioCalificado
 True,217,RFernandez,rte645,False,Ruben,Fernandez,36,2004/06/17,Mecanica,Tarde,OperarioCalificado
 True,206,JJuarez,rty000,True,,,0,0001/01/01
-True,203,JPerez,qwe123,False,Jorge,Perez,25,2019/10/01,Limpieza,Noche,Indefinido
+True,203,JPerez,qwe123,False,Jorge,Perez,24,2019/10/01,Limpieza,Noche,Indefinido
+
+
+

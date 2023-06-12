@@ -14,14 +14,19 @@ namespace UI_APP
 {
     public partial class FrmMainMenu : Form
     {
+        #region ATTRIBUTES
         private User activeUser;
         private Form activeForm;
+        #endregion
 
+        #region PROPERTIES
         private User User
         {
             get { return this.activeUser; }
         }
+        #endregion
 
+        #region CONSTRUCTOR
         private FrmMainMenu()
         {
             InitializeComponent();
@@ -30,6 +35,9 @@ namespace UI_APP
         {
             this.activeUser = inputUser;
         }
+        #endregion
+
+        #region METHODS
         private void HideForm()
         {
             if (activeForm is not null)
@@ -79,9 +87,17 @@ namespace UI_APP
             lblInfoTxt.Append("v4.05");
             tss_Status.Text = lblInfoTxt.ToString();
         }
+        private void FrmMainMenu_AvailableFunctions()
+        {
+
+        }
+        #endregion
+
+        #region EVENT METHODS
         private void FrmMainMenu_Load(object sender, EventArgs e)
         {
             FrmMainMenu_Info();
+            FrmMainMenu_AvailableFunctions();
             ActivateForm(new FrmHome(this.User));
         }
         private void smi_Home_Click(object sender, EventArgs e)
@@ -100,5 +116,6 @@ namespace UI_APP
         {
             Application.Exit();
         }
+        #endregion
     }
 }

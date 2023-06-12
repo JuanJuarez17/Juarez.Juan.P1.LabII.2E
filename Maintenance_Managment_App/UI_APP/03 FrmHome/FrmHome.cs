@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CONTROLLER_APP;
+using DATABASE_APP;
 using ENTITIES_APP;
 
 namespace UI_APP
@@ -16,6 +17,7 @@ namespace UI_APP
     public partial class FrmHome : Form
     {
         private User activeUser;
+
         private FrmHome()
         {
             InitializeComponent();
@@ -27,7 +29,7 @@ namespace UI_APP
         private void FrmHome_Load(object sender, EventArgs e)
         {
             this.lbl_Welcome.Text = $"Bienvenido {this.activeUser.Username}.";
-            if (Controller.MaintOrderDbLoaded == false)
+            if (!SqlServerConnection.ImportedDbFlag)
             {
                 string messsage = "La base de datos de ordenes de mantenimiento se encuentra vacia.\r\nDirijase a la pestaña \"Orden de mantenimiento\" y seleccione \"Importar\" para traer una base de datos.\r\n";
                 this.lbl_MaintOrderDb.Text = messsage;
@@ -40,8 +42,9 @@ namespace UI_APP
             else
             {
                 this.lbl_MaintOrderDb.Visible = false;
-                this.txb_FinishedOrders.Text = Controller.MaintOrder_ReturnFinished().ToString();
-                this.txb_UnfinishedOrders.Text = Controller.MaintOrder_ReturnUnfinished().ToString();
+                // TODO: Estos se pueden reemplazar con el count en sql
+                this.txb_FinishedOrders.Text = SqlServerConnection.Count("COMPLETED").ToString();
+                this.txb_UnfinishedOrders.Text = SqlServerConnection.Count("UNCOMPLETED").ToString();
             }
         }
     }

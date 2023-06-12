@@ -6,6 +6,7 @@ namespace ENTITIES_APP
 {
     public abstract class User
     {
+        #region USED ATTRIBUTES
         private bool active;
         protected int fileNumber;
         protected string username;
@@ -15,7 +16,9 @@ namespace ENTITIES_APP
         protected string surname;
         protected int age;
         protected DateTime entryDate;
+        #endregion
 
+        #region CONSTRUCTOR
         protected User(int inputFileNumber, string inputUser, string inputPassword, bool inputAdmin)
         {
             this.active = true;
@@ -24,7 +27,11 @@ namespace ENTITIES_APP
             this.password = inputPassword;
             this.admin = inputAdmin;
         }
+        #endregion
 
+        #region READONLY PROPERTIES
+
+        // No sobreescribo el get porque son atributos con los que creo un usuario "siempre van a estar bien"
         public bool Active
         {
             get { return active; }
@@ -50,6 +57,8 @@ namespace ENTITIES_APP
             get { return this.admin; }
             set { this.admin = value; }
         }
+
+        // Estos atributos "pueden no estar bien"
         public string Name
         {
             get
@@ -85,6 +94,9 @@ namespace ENTITIES_APP
             set { this.entryDate = value; }
         }
 
+        #endregion
+
+        #region METHODS
         public bool CheckUsername(string inputUsername)
         {
             return Username.Equals(inputUsername);
@@ -93,18 +105,19 @@ namespace ENTITIES_APP
         {
             return Password.Equals(inputPassword);
         }
-        public static bool ValidateEntries(string inputName, string inputSurname, string inputAge, string inputDate)
+
+        public static bool ValidateEntries(string inputName)
         {
-            bool isInt = int.TryParse(inputAge, out int value);
-            if (!ValidateName(inputName) || !ValidateName(inputSurname) || !isInt || !ValidateDate(inputDate))
+            if (!ValidateName(inputName))
             {
                 return false;
             }
             return true;
         }
-        public static bool ValidateEntries(string inputName)
+        public static bool ValidateEntries(string inputName, string inputSurname, string inputAge, string inputDate)
         {
-            if (!ValidateName(inputName))
+            bool isInt = int.TryParse(inputAge, out int value);
+            if (!ValidateName(inputName) || !ValidateName(inputSurname) || !isInt || !ValidateDate(inputDate))
             {
                 return false;
             }
@@ -207,5 +220,6 @@ namespace ENTITIES_APP
             }
             return auxUser;
         }
+        #endregion
     }
 }

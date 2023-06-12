@@ -54,19 +54,10 @@ namespace ENTITIES_APP
                 return 0;
             }
         }
+        public Operator(int inputFileNumber, string inputUsername, string inputPassword) 
+                 : base(inputFileNumber, inputUsername, inputPassword, false) { }
 
-        public Operator(int inputFileNumber, string inputUsername, string inputPassword) : base(inputFileNumber, inputUsername, inputPassword, false) { }
-       
-        public override string WriteAsText()
-        {
-            string baseParse = base.WriteAsText();
-            string[] attributes = new string[3];
-            attributes[0] = this.Division.ToString();
-            attributes[1] = this.Shift.ToString();
-            attributes[2] = this.Category.ToString();
-            return baseParse + $",{attributes[0]},{attributes[1]},{attributes[2]}";
-        }
-
+        // Operador de conversion para pasar de un objeto a un text (No usado)
         public static explicit operator string(Operator inputOperator)
         {
             string[] attributes = new string[9];
@@ -82,6 +73,16 @@ namespace ENTITIES_APP
             attributes[8] = inputOperator.EntryDate.ToString("yyyy/MM/dd");
 
             return $"{attributes[0]},{attributes[1]},{attributes[2]},{attributes[3]},{attributes[4]},{attributes[5]},{attributes[6]},{attributes[7]},{attributes[8]}";
+        }
+
+        public override string WriteAsText()
+        {
+            string baseParse = base.WriteAsText();
+            string[] attributes = new string[3];
+            attributes[0] = this.Division.ToString();
+            attributes[1] = this.Shift.ToString();
+            attributes[2] = this.Category.ToString();
+            return baseParse + $",{attributes[0]},{attributes[1]},{attributes[2]}";
         }
     }
 }

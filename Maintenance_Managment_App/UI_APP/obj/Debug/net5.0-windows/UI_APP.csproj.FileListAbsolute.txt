@@ -33,3 +33,9 @@ C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\re
 C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.pdb
 C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\UI_APP.genruntimeconfig.cache
 C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\obj\Debug\net5.0-windows\ref\UI_APP.dll
+C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\bin\Debug\net5.0-windows\System.Data.SqlClient.dll
+C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\bin\Debug\net5.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\bin\Debug\net5.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\bin\Debug\net5.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\PC\Desktop\Maintenance_Managment_App\UI_APP\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll

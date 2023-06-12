@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ENTITIES_APP
 {
+    // Enum para Operator
     public enum Division
     {
         Indefinido,
@@ -30,6 +31,8 @@ namespace ENTITIES_APP
         Oficial,
         OficialMultiple,
     }
+
+    // Enum para MaintenanceOrder
     public enum Machine
     {
         CentroCNC,
@@ -47,10 +50,12 @@ namespace ENTITIES_APP
         Almacen,
         Otro,
     }
+
     public enum Urgency
     {
         Programable,
         Normal,
         Urgente
     }
+
 }

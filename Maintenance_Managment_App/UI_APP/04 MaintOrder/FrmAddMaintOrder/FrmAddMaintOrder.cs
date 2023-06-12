@@ -1,4 +1,5 @@
 ﻿using CONTROLLER_APP;
+using DATABASE_APP;
 using ENTITIES_APP;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,11 @@ namespace UI_APP
 {
     public partial class FrmAddMaintOrder : Form
     {
+        #region ATTRIBUTES
         private User activeUser;
+        #endregion
+
+        #region CONSTRUCTOR
         private FrmAddMaintOrder()
         {
             InitializeComponent();
@@ -23,6 +28,9 @@ namespace UI_APP
         {
             this.activeUser = inputUser;
         }
+        #endregion
+
+        #region EVENT METHODS
         private void FrmAddMaintenanceOrder_Load(object sender, EventArgs e)
         {
             this.cbb_Section.DataSource = Enum.GetValues(typeof(Section));
@@ -37,15 +45,18 @@ namespace UI_APP
             Machine inputMachine = (Machine)this.cbb_Machine.SelectedItem;
             Urgency inputUrgency = (Urgency)this.cbb_Urgency.SelectedItem;
             string inputDescription = this.rtb_Description.Text;
+            // TODO: Reemplaza Controller.MaintOrder_Parse por otro metodo llamado desde otro lado
             if (Controller.MaintOrder_Parse(inputDescription))
             {
-                if (Controller.MaintOrder_Add(this.activeUser.Username, inputMachine, inputSection, inputUrgency, inputDescription, out int idAdded))
+                try
                 {
+                    SqlServerConnection.Create(this.activeUser.Username, inputMachine, inputSection, inputUrgency, inputDescription);
+                    int idAdded = SqlServerConnection.GetLastId();
                     MessageBox.Show($"Orden de mantenimiento {idAdded} creada.", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                     this.DialogResult= DialogResult.OK;
                 }
-                else
+                catch (Exception)
                 {
                     MessageBox.Show("No se pudo agregar la orden a la base de datos!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -59,5 +70,6 @@ namespace UI_APP
         {
             this.DialogResult = DialogResult.Cancel;
         }
+        #endregion
     }
 }

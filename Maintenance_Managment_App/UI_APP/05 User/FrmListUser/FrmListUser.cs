@@ -28,6 +28,8 @@ namespace UI_APP
         {
             this.activeUser = inputUser;
         }
+
+        #region METHODS
         private void HideForm()
         {
             if (activeForm is not null)
@@ -155,6 +157,9 @@ namespace UI_APP
                 this.btn_Cancel.Visible = false;
             }
         }
+        #endregion
+
+        #region EVENT METHODS
         private void FrmAccountDetails_Load(object sender, EventArgs e)
         {
             this.cbb_UsernameList.DataSource = Controller.User_LoadUsernameList();
@@ -255,5 +260,6 @@ namespace UI_APP
                 MessageBox.Show("No se pudo guardar la base de datos!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
     }
 }

@@ -1,22 +1,51 @@
 active,user,section,machine,urgency,description,creationDate,completed,endDate
-True,JJuarez,Almacen,Agujereadora,Normal,Orden de prueba para test del soft,2022/08/04,True,2022/08/05
-True,JPerez,Otro,CentroCNC,Normal,,2022/08/13,True,2022/08/14
-False,ETolosa,Mecanizado,Agujereadora,Programable,,2022/08/15,True,2022/08/15
-True,PRodriguez,Ensamble,Brochadora,Urgente,Falla en el sensor de pieza,2022/08/15,False,0001/01/01
-True,ETolosa,Mecanizado,Otro,Normal,,2022/08/16,True,2022/08/21
-False,JPerez,Mecanizado,CentroCNC,Programable,,2022/08/22,True,2022/08/25
-False,ETolosa,Otro,Agujereadora,Urgente,,2022/08/28,True,2022/08/28
-True,ETolosa,Matriceria,Otro,Urgente,Rotura cabezal torno,2022/09/09,True,2022/09/14
-True,ETolosa,Almacen,Autoelevador,Normal,Cambio de aceite,2022/09/13,True,2022/09/13
-True,JPerez,Ensamble,Otro,Normal,Limpieza por derrame aceite,2022/09/15,True,2022/09/15
-True,PRodriguez,Ensamble,Otro,Programable,Reparacion martillo neumatico,2022/09/20,True,2022/09/24
-True,JPerez,Almacen,Otro,Normal,Reparacion estanteria,2022/10/04,True,2023/10/07
-True,JJuarez,Almacen,Otro,Programable,Reparacion tomacorrientes PC,2022/10/18,True,2023/10/18
-False,PRodriguez,Ensamble,GrabadoraLaser,Normal,,2022/10/21,True,2023/10/22
-True,ETolosa,Mecanizado,CentroCNC,Programable,Rotura sistema refrigeracion,2022/10/30,False,0001/01/01
-True,PRodriguez,Matriceria,Otro,Urgente,Rotura fresadora,2022/11/09,True,2022/11/14
-False,JPerez,Mecanizado,Brochadora,Programable,Rotura dispositivo sujecion,2022/11/20,False,0001/01/01
-True,PRodriguez,Mecanizado,Otro,Programable,Limpieza batea viruta,2022/11/25,True,2022/11/27
-True,ETolosa,Almacen,Autoelevador,Normal,Cambio filtro de acite,2023/01/13,True,2023/01/24
-True,ETolosa,Ensamble,GrabadoraLaser,Normal,Falla repentina,2023/01/16,True,2023/01/16
-True,PRodriguez,Mecanizado,Otro,Programable,Reparacion cono de herramientas,2023/01/17,False,0001/01/01
+True,JJuarez,Almacen,Agujereadora,Normal,Orden de prueba para test del soft,4/8/2022,True,5/8/2022
+True,JPerez,Otro,Otro,Normal,Reparacion porton de entrada,13/8/2022,True,14/8/2022
+False,ETolosa,Mecanizado,Agujereadora,Programable,,15/8/2022,True,15/8/2022
+True,PRodriguez,Ensamble,GrabadoraLaser,Urgente,No enciente,15/8/2022,True,17/8/2022
+True,ETolosa,Mecanizado,Otro,Normal,Limpieza por derrame refrigerante,16/8/2022,True,21/8/2022
+False,JPerez,Mecanizado,CentroCNC,Programable,,22/8/2022,True,25/8/2022
+False,ETolosa,Otro,Agujereadora,Urgente,,28/8/2022,True,28/8/2022
+True,JPerez,Almacen,Otro,Programable,Reparacion tomacorrientes,2/9/2022,True,3/9/2022
+True,JPerez,Matriceria,Otro,Normal,Reparacion luminaria,4/9/2022,True,13/1/2023
+True,ETolosa,Matriceria,Otro,Urgente,Rotura cabezal torno,9/9/2022,True,14/9/2022
+False,JPerez,Mecanizado,Otro,Programable,Limpieza deposito de viruta,10/9/2022,True,12/9/2022
+True,ETolosa,Almacen,Autoelevador,Normal,Cambio de aceite,13/9/2022,True,13/9/2022
+True,JPerez,Ensamble,Otro,Normal,Limpieza por derrame aceite,15/9/2022,True,15/9/2022
+True,ETolosa,Otro,Otro,Normal,Reparacion portero electrico,19/9/2022,True,21/9/2022
+True,PRodriguez,Ensamble,Otro,Programable,Reparacion martillo neumatico,20/9/2022,True,24/9/2022
+True,JPerez,Almacen,Otro,Normal,Reparacion estanteria,4/10/2022,True,7/10/2023
+True,PRodriguez,Ensamble,Otro,Programable,Reemplazo de luminaria,5/10/2022,False,0001/01/01
+True,PRodriguez,Mecanizado,CentroCNC,Urgente,Alarma sensor de temperatura,7/10/2022,True,7/10/2022
+False,ETolosa,Otro,Otro,Normal,,8/10/2022,,
+True,PRodriguez,Ensamble,Otro,Normal,Cambio vidrio de ventana,12/10/2022,True,14/10/2022
+True,JJuarez,Almacen,Otro,Programable,Reparacion tomacorrientes PC,18/10/2022,True,18/10/2023
+False,PRodriguez,Ensamble,GrabadoraLaser,Urgente,Falla repentina,21/10/2022,True,22/10/2023
+True,JJuarez,Mecanizado,Brochadora,Urgente,Falla en sensor,28/10/2022,True,28/10/2022
+True,ETolosa,Mecanizado,CentroCNC,Programable,Rotura sistema refrigeracion,30/10/2022,False,0001/01/01
+True,PRodriguez,Matriceria,Otro,Urgente,Rotura fresadora,9/11/2022,True,14/11/2022
+True,ETolosa,Otro,Otro,Normal,Cambio luminaria baño visitantes,13/11/2022,True,16/11/2022
+True,ETolosa,Otro,Otro,Normal,Reparacion tomacorrientes poteria,15/11/2022,True,17/11/2022
+False,JPerez,Almacen,Otro,Programable,Reparacion puerta de oficina,15/11/2022,False,0001/01/01
+True,ETolosa,Matriceria,Otro,Urgente,Ruido en torno durante funcionamiento,19/11/2022,True,21/11/2022
+False,JPerez,Mecanizado,Brochadora,Programable,Rotura dispositivo sujecion,20/11/2022,False,0001/01/01
+True,PRodriguez,Mecanizado,Otro,Programable,Limpieza batea viruta,25/11/2022,True,27/11/2022
+True,PRodriguez,Otro,Otro,Normal,Anadir tomacorrientes en comedor,6/1/2023,True,2/2/2023
+True,JPerez,Otro,Otro,Normal,Cambio luminaria baño operarios,10/1/2023,False,0001/01/01
+True,ETolosa,Almacen,Autoelevador,Normal,Cambio filtro de acite,13/1/2023,True,24/1/2023
+True,ETolosa,Ensamble,Otro,Normal,Reparacion de estanteria,16/1/2023,False,0001/01/01
+True,PRodriguez,Mecanizado,Otro,Programable,Reparacion cono de herramientas,17/1/2023,False,0001/01/01
+True,JPerez,Ensamble,GrabadoraLaser,Urgente,Falla repentina,19/1/2023,True,21/1/2023
+True,JJuarez,Almacen,Autoelevador,Normal,Desgaste en uñas,20/1/2023,False,0001/01/01
+True,PRodriguez,Mecanizado,Otro,Urgente,Limpieza por derrame refrigerante,22/1/2023,True,22/1/2023
+True,JPerez,Mecanizado,Brochadora,Urgente,Falla en sensor,23/1/2023,True,24/1/2023
+True,ETolosa,Ensamble,Otro,Normal,Limpieza por derrame aceite,25/1/2023,True,25/1/2023
+True,JPerez,Ensamble,Otro,Normal,Reparacion banco de trabajo,2/2/2023,False,0001/01/01
+False,JJuarez,Almacen,Agujereadora,Programable,No enciende,5/2/2023,True,9/2/2023
+True,PRodriguez,Mecanizado,CentroCNC,Urgente,Maquina trabada en cambio,6/2/2023,True,6/2/2023
+True,JPerez,Mecanizado,Otro,Urgente,Limpieza por derrame refrigerante,10/2/2023,True,10/2/2023
+True,ETolosa,Ensamble,Otro,Normal,Limpieza por derrame aceite,13/2/2023,True,13/2/2023
+False,PRodriguez,Almacen,Autoelevador,Urgente,Cambio de bateria,13/2/2023,True,23/2/2023
+True,PRodriguez,Otro,Otro,Urgente,Reparacion porton de entrada,13/2/2023,True,13/2/2023
+True,JPerez,Mecanizado,CentroCNC,Urgente,Falla sistema de lubricacion,23/2/2023,True,23/2/2023
+True,PRodriguez,Otro,Otro,Normal,Re acondicionamiento fachada,27/2/2023,False,0001/01/01

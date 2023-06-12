@@ -8,21 +8,24 @@ namespace ENTITIES_APP
 {
     public class MaintenanceOrder
     {
-        private static int lastId;
-        private readonly int id;
+        #region ATTRIBUTES
+        private int id;
         private bool active;
         private string maker;
-        private Machine faultyUnit;
         private Section faultyUnitSection;
+        private Machine faultyUnit;
         private Urgency failureUrgency;
         private string description;
         private DateTime creationDate;
         private bool completed;
         private DateTime endDate;
+        #endregion
 
+        #region PROPERTIES
         public int Id
         {
             get { return this.id; }
+            set { this.id = value; }
         }
         public bool Active
         {
@@ -84,17 +87,15 @@ namespace ENTITIES_APP
                 return (DateTime.Now - this.creationDate).Days;
             }
         }
+        #endregion
 
-        static MaintenanceOrder()
+        #region CONSTRUCTOR
+        public MaintenanceOrder()
         {
-            lastId = 100;
-        }
-        private MaintenanceOrder()
-        {
-            this.id = lastId++;
             this.active = true;
             this.creationDate = DateTime.Now;
             this.completed = false;
+            this.endDate = new DateTime(1753,1,1);
         }
         public MaintenanceOrder(string inputMaker, Section inputSection, Machine inputMachine, Urgency inputUrgency, string inputDescription)
                  : this()
@@ -105,19 +106,9 @@ namespace ENTITIES_APP
             this.failureUrgency = inputUrgency;
             this.description = inputDescription;
         }
-        public MaintenanceOrder(string inputMaker, Section inputSection, Machine inputMachine, Urgency inputUrgency, string inputDescription, bool inputStatus, DateTime inputCreation, bool inputCompleted)
-                 : this(inputMaker, inputSection, inputMachine, inputUrgency, inputDescription) // Solo para uso en hardcodeo
-        {
-            this.active = inputStatus;
-            this.creationDate = inputCreation;
-            this.completed = inputCompleted;
-            if (inputCompleted)
-            {
-                this.endDate = DateTime.Now;
-            }
-        }
-        
-        public static bool SetDescription(string inputDescription)
+        #endregion
+
+        public static bool ValidateDescription(string inputDescription)
         {
             bool rtn = false;
             if (inputDescription.Length == 0 || (inputDescription.Length >= 5 && inputDescription.Length <= 200))
@@ -126,6 +117,16 @@ namespace ENTITIES_APP
             }
             return rtn;
         }
+
+        public static bool ValidateEntries(string inputName)
+        {
+            if (!ValidateDescription(inputName))
+            {
+                return false;
+            }
+            return true;
+        }
+
         public virtual string WriteAsText()
         {
             string[] attributes = new string[9];
