@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using ENTITIES_APP;
+using System.Windows.Input;
 
 namespace DATABASE_APP
 {
@@ -13,7 +14,9 @@ namespace DATABASE_APP
         private static string connectionString;
         private static SqlCommand command;
         private static SqlConnection connection;
+
         private static bool importedDbFlag = false;
+        private static string sqlSelectQuery = "SELECT * FROM";
 
         public static bool ImportedDbFlag
         {
@@ -36,17 +39,17 @@ namespace DATABASE_APP
             {
                 command.Parameters.Clear();
                 connection.Open();
-                if (inputCriteria == "ACTIVE")
+                switch (inputCriteria)
                 {
-                    command.CommandText = "SELECT * FROM MAINTORDER WHERE ACTIVE = 1";
-                }
-                if (inputCriteria == "COMPLETED")
-                {
-                    command.CommandText = "SELECT * FROM MAINTORDER WHERE ACTIVE = 1 AND COMPLETED = 1";
-                }
-                if (inputCriteria == "UNCOMPLETED")
-                {
-                    command.CommandText = "SELECT * FROM MAINTORDER WHERE ACTIVE = 1 AND COMPLETED = 0";
+                    case "COMPLETED":
+                        command.CommandText = sqlSelectQuery + " MAINTORDER" + " WHERE ACTIVE = 1 AND COMPLETED = 1";
+                        break;
+                    case "UNCOMPLETED":
+                        command.CommandText = sqlSelectQuery + " MAINTORDER" + " WHERE ACTIVE = 1 AND COMPLETED = 0";
+                        break;
+                    default:
+                        command.CommandText = sqlSelectQuery + " MAINTORDER" + " WHERE ACTIVE = 1";
+                        break;
                 }
                 SqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())
@@ -254,17 +257,17 @@ namespace DATABASE_APP
             {
                 command.Parameters.Clear();
                 connection.Open();
-                if (inputCriteria == "ACTIVE")
+                switch (inputCriteria)
                 {
-                    command.CommandText = $"SELECT ID FROM MAINTORDER WHERE ACTIVE = 1";
-                }
-                if (inputCriteria == "COMPLETED")
-                {
-                    command.CommandText = $"SELECT ID FROM MAINTORDER WHERE ACTIVE = 1 AND COMPLETED = 1";
-                }
-                if (inputCriteria == "UNCOMPLETED")
-                {
-                    command.CommandText = $"SELECT ID FROM MAINTORDER WHERE ACTIVE = 1 AND COMPLETED = 0";
+                    case "COMPLETED":
+                        command.CommandText = $"SELECT ID FROM MAINTORDER WHERE ACTIVE = 1 AND COMPLETED = 1";
+                        break;
+                    case "UNCOMPLETED":
+                        command.CommandText = $"SELECT ID FROM MAINTORDER WHERE ACTIVE = 1 AND COMPLETED = 0";
+                        break;
+                    default:
+                        command.CommandText = $"SELECT ID FROM MAINTORDER WHERE ACTIVE = 1";
+                        break;
                 }
                 SqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())
@@ -291,21 +294,29 @@ namespace DATABASE_APP
                 switch (inputParameter)
                 {
                     case "ID":
-                        return auxMaintOrder.Id.ToString();
+                        rtn =  auxMaintOrder.Id.ToString();
+                        break;
                     case "USERNAME":
-                        return auxMaintOrder.Username.ToString();
+                        rtn = auxMaintOrder.Username.ToString();
+                        break;
                     case "SECTION":
-                        return auxMaintOrder.Section.ToString();
+                        rtn = auxMaintOrder.Section.ToString();
+                        break;
                     case "MACHINE":
-                        return auxMaintOrder.Machine.ToString();
+                        rtn = auxMaintOrder.Machine.ToString();
+                        break;
                     case "URGENCY":
-                        return auxMaintOrder.Urgency.ToString();
+                        rtn = auxMaintOrder.Urgency.ToString();
+                        break;
                     case "ANTIQUITY":
-                        return auxMaintOrder.Antiquity.ToString();
+                        rtn = auxMaintOrder.Antiquity.ToString();
+                        break;
                     case "DESCRIPTION":
-                        return auxMaintOrder.Description.ToString();
+                        rtn = auxMaintOrder.Description.ToString();
+                        break;
                     case "STATUS":
-                        return auxMaintOrder.Completed.ToString();
+                        rtn = auxMaintOrder.Completed.ToString();
+                        break;
                     default:
                         break;
                 }
@@ -316,15 +327,30 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-
-        public static List<MaintenanceOrder> Sort()
+        public static List<MaintenanceOrder> Sort(string inputOrder)
         {
             List<MaintenanceOrder> maintOrders = new List<MaintenanceOrder>();
             try
             {
                 command.Parameters.Clear();
                 connection.Open();
-                command.CommandText = $"SELECT * FROM MAINTORDER ORDER BY ID DESC;";
+                switch (inputOrder)
+                {
+                    case "DATE":
+                        command.CommandText = $"SELECT * FROM MAINTORDER WHERE ACTIVE = 1 ORDER BY CREATION_DATE DESC;";
+                        break;
+                    case "SECTION":
+                        command.CommandText = $"SELECT * FROM MAINTORDER WHERE ACTIVE = 1 ORDER BY SECTION DESC;";
+                        break;
+                    case "MACHINE":
+                        command.CommandText = $"SELECT * FROM MAINTORDER WHERE ACTIVE = 1 ORDER BY MACHINE DESC;";
+                        break;
+                    case "URGENCY":
+                        command.CommandText = $"SELECT * FROM MAINTORDER WHERE ACTIVE = 1 ORDER BY URGENCY DESC;";
+                        break;
+                    default:
+                        break;
+                }
                 SqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {

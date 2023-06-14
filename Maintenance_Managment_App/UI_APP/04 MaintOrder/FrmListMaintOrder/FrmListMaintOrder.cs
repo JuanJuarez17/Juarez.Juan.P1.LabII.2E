@@ -103,34 +103,23 @@ namespace UI_APP
                 this.gpb_ShowMaintOrders.Enabled = false;
             }
         }
-        public void FrmListMaintenanceOrder_LoadDataGrid(DataGridView inputDtg)
+        public void FrmListMaintenanceOrder_LoadDataGrid<T>(List<T> inputDataSource) where T : class
         {
             if (SqlServerConnection.ImportedDbFlag && SqlServerConnection.Count("ACTIVE") > 0)
             {
-                inputDtg.DataSource = null;
-                if (this.rdb_ActiveMaintOrders.Checked)
-                {
-                    inputDtg.DataSource = SqlServerConnection.ImportDb("ACTIVE");
-                }
-                else if (this.rdb_CompletedMaintOrders.Checked)
-                {
-                    inputDtg.DataSource = SqlServerConnection.ImportDb("COMPLETED");
-                }
-                else if (this.rdb_UncompletedMaintOrders.Checked)
-                {
-                    inputDtg.DataSource = SqlServerConnection.ImportDb("UNCOMPLETED");
-                }                
-                inputDtg.Columns["Active"].Visible = false;
-                inputDtg.Columns["Description"].Visible = false;
-                inputDtg.Columns["Antiquity"].Visible = false;
-                inputDtg.Columns[0].HeaderText = "ID ORDEN";
-                inputDtg.Columns[2].HeaderText = "GENERÓ";
-                inputDtg.Columns[3].HeaderText = "SECCCIÓN";
-                inputDtg.Columns[4].HeaderText = "UNIDAD";
-                inputDtg.Columns[5].HeaderText = "URGENCIA";
-                inputDtg.Columns[6].HeaderText = "INGRESO";
-                inputDtg.Columns[8].HeaderText = "COMPLETADA";
-                inputDtg.Columns[9].HeaderText = "FINALIZADA";
+                this.dtg_MaintOrderDb.DataSource = null;
+                this.dtg_MaintOrderDb.DataSource = inputDataSource;
+                this.dtg_MaintOrderDb.Columns["Active"].Visible = false;
+                this.dtg_MaintOrderDb.Columns["Description"].Visible = false;
+                this.dtg_MaintOrderDb.Columns["Antiquity"].Visible = false;
+                this.dtg_MaintOrderDb.Columns[0].HeaderText = "ID ORDEN";
+                this.dtg_MaintOrderDb.Columns[2].HeaderText = "GENERÓ";
+                this.dtg_MaintOrderDb.Columns[3].HeaderText = "SECCCIÓN";
+                this.dtg_MaintOrderDb.Columns[4].HeaderText = "UNIDAD";
+                this.dtg_MaintOrderDb.Columns[5].HeaderText = "URGENCIA";
+                this.dtg_MaintOrderDb.Columns[6].HeaderText = "INGRESO";
+                this.dtg_MaintOrderDb.Columns[8].HeaderText = "COMPLETADA";
+                this.dtg_MaintOrderDb.Columns[9].HeaderText = "FINALIZADA";
             }
         }
         #endregion
@@ -150,7 +139,22 @@ namespace UI_APP
             this.btn_SortByUrgency.ImageIndex = 8;
             this.btn_ShowMaintOrders.ImageIndex = 11;
             FrmListMaintenanceOrder_AvailableFunctions();
-            FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+            if (!SqlServerConnection.ImportedDbFlag)
+            {
+                FrmListMaintenanceOrder_LoadDataGrid(new List<object>());
+            }
+            else
+            {
+                try
+                {
+                    FrmListMaintenanceOrder_LoadDataGrid(SqlServerConnection.ImportDb("ACTIVE"));
+                    FrmListMaintenanceOrder_AvailableFunctions();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al importar la base de datos.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
         }
         private void btn_ImportDb_MouseHover(object sender, EventArgs e)
         {
@@ -164,10 +168,8 @@ namespace UI_APP
         {
             try
             {
-                // TODO: Estoy repitiendo codigo, estafuncion solo deberia ejecutarse en Load datagrid
-                this.dtg_MaintOrderDb.DataSource = SqlServerConnection.ImportDb("ACTIVE");
+                FrmListMaintenanceOrder_LoadDataGrid(SqlServerConnection.ImportDb("ACTIVE"));
                 FrmListMaintenanceOrder_AvailableFunctions();
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
                 MessageBox.Show("Base de datos importada con exito.", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
@@ -180,8 +182,8 @@ namespace UI_APP
             ActivateForm(new FrmAddMaintOrder(this.User), out DialogResult result);
             if (result == DialogResult.OK)
             {
+                FrmListMaintenanceOrder_LoadDataGrid(SqlServerConnection.ImportDb("ACTIVE"));
                 FrmListMaintenanceOrder_AvailableFunctions();
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
             }
             else
             {
@@ -199,7 +201,7 @@ namespace UI_APP
             ActivateForm(new FrmEditMaintOrder(selectedId), out DialogResult result);
             if (result == DialogResult.OK)
             {
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                FrmListMaintenanceOrder_LoadDataGrid(SqlServerConnection.ImportDb("ACTIVE"));
             }
             else
             {
@@ -213,14 +215,26 @@ namespace UI_APP
             if (respuesta == DialogResult.Yes)
             {
                 SqlServerConnection.Delete(selectedId);
+                FrmListMaintenanceOrder_LoadDataGrid(SqlServerConnection.ImportDb("ACTIVE"));
                 FrmListMaintenanceOrder_AvailableFunctions();
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
             }
         }
 
         private void btn_ShowMaintOrders_Click(object sender, EventArgs e)
         {
-            FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+            if (this.rdb_ActiveMaintOrders.Checked)
+            {
+                FrmListMaintenanceOrder_LoadDataGrid(SqlServerConnection.ImportDb("ACTIVE"));
+            }
+            else if (this.rdb_CompletedMaintOrders.Checked)
+            {
+                FrmListMaintenanceOrder_LoadDataGrid(SqlServerConnection.ImportDb("COMPLETED"));
+            }
+            else if (this.rdb_UncompletedMaintOrders.Checked)
+            {
+                FrmListMaintenanceOrder_LoadDataGrid(SqlServerConnection.ImportDb("UNCOMPLETED"));
+            }
+
         }
 
 
@@ -230,14 +244,12 @@ namespace UI_APP
         {
             if (this.flagCreationDateSort == 0)
             {
-                this.dtg_MaintOrderDb.DataSource = SqlServerConnection.Sort();
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                FrmListMaintenanceOrder_LoadDataGrid(SqlServerConnection.Sort("DATE"));
                 this.flagCreationDateSort = 1;
             }
             else
             {
-                SqlServerConnection.Sort();
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                FrmListMaintenanceOrder_LoadDataGrid(SqlServerConnection.Sort("DATE"));
                 this.flagCreationDateSort = 0;
             }
         }
@@ -245,14 +257,12 @@ namespace UI_APP
         {
             if (this.flagSectionSort == 0)
             {
-                Controller.MaintOrder_Sort("SECTION", this.flagSectionSort);
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                FrmListMaintenanceOrder_LoadDataGrid(SqlServerConnection.Sort("SECTION"));
                 this.flagSectionSort = 1;
             }
             else
             {
-                Controller.MaintOrder_Sort("SECTION", this.flagSectionSort);
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                FrmListMaintenanceOrder_LoadDataGrid(SqlServerConnection.Sort("SECTION"));
                 this.flagSectionSort = 0;
             }
         }
@@ -260,14 +270,12 @@ namespace UI_APP
         {
             if (this.flagMachineSort == 0)
             {
-                Controller.MaintOrder_Sort("MACHINE", this.flagMachineSort);
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                FrmListMaintenanceOrder_LoadDataGrid(SqlServerConnection.Sort("MACHINE"));
                 this.flagMachineSort = 1;
             }
             else
             {
-                Controller.MaintOrder_Sort("MACHINE", this.flagMachineSort);
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                FrmListMaintenanceOrder_LoadDataGrid(SqlServerConnection.Sort("MACHINE"));
                 this.flagMachineSort = 0;
             }
         }
@@ -275,14 +283,12 @@ namespace UI_APP
         {
             if (this.flagPrioritySort == 0)
             {
-                Controller.MaintOrder_Sort("PRIORITY", this.flagPrioritySort);
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                FrmListMaintenanceOrder_LoadDataGrid(SqlServerConnection.Sort("URGENCY"));
                 this.flagPrioritySort = 1;
             }
             else
             {
-                Controller.MaintOrder_Sort("PRIORITY", this.flagPrioritySort);
-                FrmListMaintenanceOrder_LoadDataGrid(this.dtg_MaintOrderDb);
+                FrmListMaintenanceOrder_LoadDataGrid(SqlServerConnection.Sort("URGENCY"));
                 this.flagPrioritySort = 0;
             }
         }
