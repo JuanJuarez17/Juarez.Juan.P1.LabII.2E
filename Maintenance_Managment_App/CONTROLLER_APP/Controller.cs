@@ -98,10 +98,6 @@ namespace CONTROLLER_APP
         {
             return Database.MaintOrder_ValidateEntries(inputDescription);
         }
-        public static void MaintOrder_Sort(string parameter, int inputOrder)
-        {
-            appDb.MaintOrder_Sort(parameter, inputOrder);
-        }
         #endregion
 
     }

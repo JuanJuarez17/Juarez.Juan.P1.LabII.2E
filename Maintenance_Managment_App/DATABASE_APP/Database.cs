@@ -337,35 +337,6 @@ namespace DATABASE_APP
         #endregion
 
         #region MAINT ORDER DB METHODS
-        // MaintOrderDb Methods
-        public void MaintOrder_Sort(string parameter, int inputOrder)
-        {
-            switch (parameter)
-            {
-                case "ID":
-                    if (inputOrder == 0) { this.maintOrdersDb.Sort(IdDecreasing); }
-                    else { this.MaintOrderDb.Sort(IdCreasing); }
-                    break;
-                case "DATE":
-                    if (inputOrder == 0) { this.maintOrdersDb.Sort(CreationDateDecreasing); }
-                    else { this.MaintOrderDb.Sort(CreationDateCreasing); }
-                    break;
-                case "SECTION":
-                    if (inputOrder == 0) { this.maintOrdersDb.Sort(SectionDecreasing); }
-                    else { this.MaintOrderDb.Sort(SectionCreasing); }
-                    break;
-                case "MACHINE":
-                    if (inputOrder == 0) { this.maintOrdersDb.Sort(MachineDecreasing); }
-                    else { this.MaintOrderDb.Sort(MachineCreasing); }
-                    break;
-                case "PRIORITY":
-                    if (inputOrder == 0) { this.maintOrdersDb.Sort(PriorityDecreasing); }
-                    else { this.MaintOrderDb.Sort(PriorityCreasing); }
-                    break;
-                default:
-                    break;
-            }
-        }
 
         // Generic Method
         public static bool MaintOrder_ValidateEntries(string inputDescription)
@@ -381,47 +352,5 @@ namespace DATABASE_APP
         }
         #endregion
 
-        #region MAINT ORDER SORT METHODS
-        public static int IdDecreasing(MaintenanceOrder input1, MaintenanceOrder input2)
-        {
-            return input2.Id - input1.Id;
-        }
-        public static int IdCreasing(MaintenanceOrder input1, MaintenanceOrder input2)
-        {
-            return -IdDecreasing(input1, input2);
-        }
-        public static int CreationDateDecreasing(MaintenanceOrder input1, MaintenanceOrder input2)
-        {
-            return input2.Antiquity - input1.Antiquity;
-        }
-        public static int CreationDateCreasing(MaintenanceOrder input1, MaintenanceOrder input2)
-        {
-            return -CreationDateDecreasing(input1, input2);
-        }
-        public static int SectionDecreasing(MaintenanceOrder input1, MaintenanceOrder input2)
-        {
-            return string.Compare(input2.Section.ToString(), input1.Section.ToString());
-        }
-        public static int SectionCreasing(MaintenanceOrder input1, MaintenanceOrder input2)
-        {
-            return -SectionDecreasing(input1, input2);
-        }
-        public static int MachineDecreasing(MaintenanceOrder input1, MaintenanceOrder input2)
-        {
-            return string.Compare(input2.Machine.ToString(), input1.Machine.ToString());
-        }
-        public static int MachineCreasing(MaintenanceOrder input1, MaintenanceOrder input2)
-        {
-            return -MachineDecreasing(input1, input2);
-        }
-        public static int PriorityDecreasing(MaintenanceOrder input1, MaintenanceOrder input2)
-        {
-            return string.Compare(input2.Urgency.ToString(), input1.Urgency.ToString());
-        }
-        public static int PriorityCreasing(MaintenanceOrder input1, MaintenanceOrder input2)
-        {
-            return -PriorityDecreasing(input1, input2);
-        }
-        #endregion
     }
 }

@@ -26,38 +26,52 @@ namespace UI_APP
         }
         private void FrmEditMaintOrder_Load(object sender, EventArgs e)
         {
+            DbMaintOrder dbMaintOrder = new DbMaintOrder();
+            MaintenanceOrder auxMaintOrder = dbMaintOrder.Read(this.maintOrderId);
             this.btn_Accept.ImageIndex = 3;
             this.btn_Cancel.ImageIndex = 4;
-            this.txb_MaintOrderId.Text = SqlServerConnection.PrintParameter(this.maintOrderId, "ID");
-            this.txb_MaintOrderUser.Text = SqlServerConnection.PrintParameter(this.maintOrderId, "USERNAME");
+            this.txb_MaintOrderId.Text = auxMaintOrder.Id.ToString();
+            this.txb_MaintOrderUser.Text = auxMaintOrder.Username.ToString();
             this.cbb_Section.DataSource = Enum.GetValues(typeof(Section));
             this.cbb_Machine.DataSource = Enum.GetValues(typeof(Machine));
             this.cbb_Urgency.DataSource = Enum.GetValues(typeof(Urgency));
-            this.cbb_Section.Text = SqlServerConnection.PrintParameter(this.maintOrderId, "SECTION");
-            this.cbb_Machine.Text = SqlServerConnection.PrintParameter(this.maintOrderId, "MACHINE");
-            this.cbb_Urgency.Text = SqlServerConnection.PrintParameter(this.maintOrderId, "URGENCY");
-            this.rtb_MaintOrderDesc.Text =SqlServerConnection.PrintParameter(this.maintOrderId, "DESCRIPTION");
-            if (SqlServerConnection.PrintParameter(this.maintOrderId, "STATUS") == "True")
+            this.cbb_Section.Text = auxMaintOrder.Section.ToString();
+            this.cbb_Machine.Text = auxMaintOrder.Machine.ToString();
+            this.cbb_Urgency.Text = auxMaintOrder.Urgency.ToString();
+            this.rtb_MaintOrderDesc.Text = auxMaintOrder.Description.ToString();
+            if (auxMaintOrder.Completed.ToString() == "True")
             {
                 this.chb_Completed.Checked = true;
             }
         }
         private void btn_Accept_Click(object sender, EventArgs e)
         {
-            Section inputSection = (Section)this.cbb_Section.SelectedItem;
-            Machine inputMachine = (Machine)this.cbb_Machine.SelectedItem;
-            Urgency inputUrgency = (Urgency)this.cbb_Urgency.SelectedItem;
+            string inputSection = ((Section)this.cbb_Section.SelectedItem).ToString();
+            string inputMachine = ((Machine)this.cbb_Machine.SelectedItem).ToString();
+            string inputUrgency = ((Urgency)this.cbb_Urgency.SelectedItem).ToString();
             string inputDescription = this.rtb_MaintOrderDesc.Text;
-            bool inputStatus = false;
+            bool inputStatus;
             if (this.chb_Completed.Checked) { inputStatus = true; }
             else { inputStatus = false; }
             // TODO: Reemplaza Controller.MaintOrder_Parse por otro metodo llamado desde otro lado
             if (Controller.MaintOrder_Parse(inputDescription))
             {
-                //if (Controller.MaintOrder_Edit(this.maintOrderId, inputMachine, inputSection, inputUrgency, inputDescription, inputStatus))
                 try
                 {
-                    SqlServerConnection.Update(this.maintOrderId, inputSection, inputMachine, inputUrgency, inputDescription, inputStatus);
+                    DbMaintOrder dbMaintOrder = new DbMaintOrder();
+                    dbMaintOrder.Update(this.maintOrderId, "SECTION", inputSection);
+                    dbMaintOrder.Update(this.maintOrderId, "MACHINE", inputMachine);
+                    dbMaintOrder.Update(this.maintOrderId, "URGENCY", inputUrgency);
+                    dbMaintOrder.Update(this.maintOrderId, "DESCR", inputDescription);
+                    dbMaintOrder.Update(this.maintOrderId, "COMPLETED", inputStatus.ToString());
+                    if (inputStatus)
+                    {
+                        dbMaintOrder.Update(this.maintOrderId, "END_DATE", DateTime.Now.ToString("yyyy-MM-dd"));
+                    }
+                    else
+                    {
+                        dbMaintOrder.Update(this.maintOrderId, "END_DATE", new DateTime(1753,01,01).ToString("yyyy-MM-dd"));
+                    }
                     MessageBox.Show($"Orden de mantenimiento {this.maintOrderId} modificada.", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                     this.DialogResult = DialogResult.OK;

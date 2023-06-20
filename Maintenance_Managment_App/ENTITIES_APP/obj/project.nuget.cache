@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "LOcrzqlzyi0S0qXH+DNviYFfBDWfQe4PhizwE7yddZtNk6JSLW0e7hkBJegTqqvr0Uo5shYcgnNF7TfQAwIfgA==",
+  "dgSpecHash": "JaV6cUklF56Bcm1kfQebZE2RUWn5s4zFKuqO3Np6V/Dsh2iu/Y+VMtdaRavQbAeWZsUAQaUDhamloRpc8/OWjg==",
   "success": true,
   "projectFilePath": "C:\\Users\\PC\\Desktop\\Maintenance_Managment_App\\ENTITIES_APP\\ENTITIES_APP.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\PC\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

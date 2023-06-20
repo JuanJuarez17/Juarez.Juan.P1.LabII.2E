@@ -48,13 +48,15 @@ namespace UI_APP
             // TODO: Reemplaza Controller.MaintOrder_Parse por otro metodo llamado desde otro lado
             if (Controller.MaintOrder_Parse(inputDescription))
             {
+                MaintenanceOrder auxMaintOrder = new MaintenanceOrder(this.activeUser.Username, inputSection, inputMachine, inputUrgency, inputDescription);
                 try
                 {
-                    SqlServerConnection.Create(this.activeUser.Username, inputMachine, inputSection, inputUrgency, inputDescription);
-                    int idAdded = SqlServerConnection.GetLastId();
+                    DbMaintOrder auxDbMaintOrder = new DbMaintOrder();
+                    auxDbMaintOrder.Create(auxMaintOrder);
+                    string idAdded = auxDbMaintOrder.GetLast("ID");
                     MessageBox.Show($"Orden de mantenimiento {idAdded} creada.", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
-                    this.DialogResult= DialogResult.OK;
+                    this.DialogResult = DialogResult.OK;
                 }
                 catch (Exception)
                 {

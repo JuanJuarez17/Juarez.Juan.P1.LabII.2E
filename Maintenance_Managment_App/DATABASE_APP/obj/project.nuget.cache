@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "O07MhOD05qRBrjfsS9h1vSjL7rQXVfBdjqjY8P8M66lrIdzh+Qb7xjO4BmwIyEMrHIOW8QZT2NSmqjNhrU6PCQ==",
+  "dgSpecHash": "9IvefCjnMmexlHpvcfBBraOHIv8M8CymxvMR/CGscM9Uelta6aVR2oSPkBE8z3GdSz/7chCotzIYgvb9dTORfg==",
   "success": true,
   "projectFilePath": "C:\\Users\\PC\\Desktop\\Maintenance_Managment_App\\DATABASE_APP\\DATABASE_APP.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

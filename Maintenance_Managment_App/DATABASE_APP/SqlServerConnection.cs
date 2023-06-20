@@ -12,26 +12,22 @@ namespace DATABASE_APP
     public static class SqlServerConnection
     {
         private static string connectionString;
-        private static SqlCommand command;
         private static SqlConnection connection;
-
+        private static SqlCommand command;
         private static bool importedDbFlag = false;
         private static string sqlSelectQuery = "SELECT * FROM";
-
         public static bool ImportedDbFlag
         {
             get { return importedDbFlag; }
         }
-
         static SqlServerConnection()
         {
             connectionString = @"Data Source=localhost;Initial Catalog=MAINTMANAG_DB;Integrated Security=True";
-            command = new SqlCommand();
             connection = new SqlConnection(connectionString);
+            command = new SqlCommand();
             command.Connection = connection;
             command.CommandType = System.Data.CommandType.Text;
         }
-
         public static List<MaintenanceOrder> ImportDb(string inputCriteria)
         {
             List<MaintenanceOrder> maintOrders = new List<MaintenanceOrder>();
@@ -42,7 +38,7 @@ namespace DATABASE_APP
                 switch (inputCriteria)
                 {
                     case "COMPLETED":
-                        command.CommandText = sqlSelectQuery + " MAINTORDER" + " WHERE ACTIVE = 1 AND COMPLETED = 1";
+                        command.CommandText = "SELECT * FROM MAINTORDER WHERE ACTIVE = 1 AND COMPLETED = 1";
                         break;
                     case "UNCOMPLETED":
                         command.CommandText = sqlSelectQuery + " MAINTORDER" + " WHERE ACTIVE = 1 AND COMPLETED = 0";
@@ -223,7 +219,6 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-
         public static int GetLastId()
         {
             int rtn = -1;
@@ -393,3 +388,4 @@ namespace DATABASE_APP
         }
     }
 }
+

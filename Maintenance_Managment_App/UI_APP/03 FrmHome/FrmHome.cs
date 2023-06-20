@@ -17,6 +17,7 @@ namespace UI_APP
     public partial class FrmHome : Form
     {
         private User activeUser;
+        private DbMaintOrder dbMaintOrder;
 
         private FrmHome()
         {
@@ -29,9 +30,17 @@ namespace UI_APP
         private void FrmHome_Load(object sender, EventArgs e)
         {
             this.lbl_Welcome.Text = $"Bienvenido {this.activeUser.Username}.";
-            if (!SqlServerConnection.ImportedDbFlag)
+            try
             {
-                string messsage = "La base de datos de ordenes de mantenimiento se encuentra vacia.\r\nDirijase a la pestaña \"Orden de mantenimiento\" y seleccione \"Importar\" para traer una base de datos.\r\n";
+                this.dbMaintOrder = new DbMaintOrder();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al importar la base de datos.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            if (this.dbMaintOrder.Count() == 0)
+            {
+                string messsage = "No hay ordenes de mantenimiento activas.";
                 this.lbl_MaintOrderDb.Text = messsage;
                 this.lbl_MaintOrderDb.Visible = true;
                 this.lbl_FinishedOrders.Visible = false;
@@ -42,9 +51,8 @@ namespace UI_APP
             else
             {
                 this.lbl_MaintOrderDb.Visible = false;
-                // TODO: Estos se pueden reemplazar con el count en sql
-                this.txb_FinishedOrders.Text = SqlServerConnection.Count("COMPLETED").ToString();
-                this.txb_UnfinishedOrders.Text = SqlServerConnection.Count("UNCOMPLETED").ToString();
+                this.txb_FinishedOrders.Text = this.dbMaintOrder.Count("COMPLETED", 1).ToString();
+                this.txb_UnfinishedOrders.Text = this.dbMaintOrder.Count("COMPLETED", 0).ToString();
             }
         }
     }
