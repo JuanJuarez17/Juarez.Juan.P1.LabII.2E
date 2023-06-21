@@ -1,5 +1,4 @@
-﻿using CONTROLLER_APP;
-using DATABASE_APP;
+﻿using DATABASE_APP;
 using ENTITIES_APP;
 using System;
 using System.Collections.Generic;
@@ -27,7 +26,7 @@ namespace UI_APP
         private void FrmInfoMaintOrder_Load(object sender, EventArgs e)
         {
             DbMaintOrder dbMaintOrder = new DbMaintOrder();
-            MaintenanceOrder auxMaintOrder = dbMaintOrder.Read(this.maintOrderId);
+            MaintenanceOrder auxMaintOrder = dbMaintOrder.Read(this.maintOrderId.ToString());
             this.btn_Cancel.ImageIndex = 4; 
             this.txb_MaintOrderId.Text = auxMaintOrder.Id.ToString();
             this.txb_MaintOrderUser.Text = auxMaintOrder.Username.ToString();

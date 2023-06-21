@@ -1,5 +1,4 @@
-﻿using CONTROLLER_APP;
-using DATABASE_APP;
+﻿using DATABASE_APP;
 using ENTITIES_APP;
 using System;
 using System.Collections.Generic;
@@ -46,7 +45,7 @@ namespace UI_APP
             Urgency inputUrgency = (Urgency)this.cbb_Urgency.SelectedItem;
             string inputDescription = this.rtb_Description.Text;
             // TODO: Reemplaza Controller.MaintOrder_Parse por otro metodo llamado desde otro lado
-            if (Controller.MaintOrder_Parse(inputDescription))
+            if (MaintenanceOrder.ValidateEntries(inputDescription))
             {
                 MaintenanceOrder auxMaintOrder = new MaintenanceOrder(this.activeUser.Username, inputSection, inputMachine, inputUrgency, inputDescription);
                 try

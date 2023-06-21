@@ -1,5 +1,4 @@
-﻿using CONTROLLER_APP;
-using DATABASE_APP;
+﻿using DATABASE_APP;
 using ENTITIES_APP;
 using System;
 using System.Collections.Generic;
@@ -27,7 +26,7 @@ namespace UI_APP
         private void FrmEditMaintOrder_Load(object sender, EventArgs e)
         {
             DbMaintOrder dbMaintOrder = new DbMaintOrder();
-            MaintenanceOrder auxMaintOrder = dbMaintOrder.Read(this.maintOrderId);
+            MaintenanceOrder auxMaintOrder = dbMaintOrder.Read(this.maintOrderId.ToString());
             this.btn_Accept.ImageIndex = 3;
             this.btn_Cancel.ImageIndex = 4;
             this.txb_MaintOrderId.Text = auxMaintOrder.Id.ToString();
@@ -54,23 +53,23 @@ namespace UI_APP
             if (this.chb_Completed.Checked) { inputStatus = true; }
             else { inputStatus = false; }
             // TODO: Reemplaza Controller.MaintOrder_Parse por otro metodo llamado desde otro lado
-            if (Controller.MaintOrder_Parse(inputDescription))
+            if (MaintenanceOrder.ValidateEntries(inputDescription))
             {
                 try
                 {
                     DbMaintOrder dbMaintOrder = new DbMaintOrder();
-                    dbMaintOrder.Update(this.maintOrderId, "SECTION", inputSection);
-                    dbMaintOrder.Update(this.maintOrderId, "MACHINE", inputMachine);
-                    dbMaintOrder.Update(this.maintOrderId, "URGENCY", inputUrgency);
-                    dbMaintOrder.Update(this.maintOrderId, "DESCR", inputDescription);
-                    dbMaintOrder.Update(this.maintOrderId, "COMPLETED", inputStatus.ToString());
+                    dbMaintOrder.Update(this.maintOrderId.ToString(), "SECTION", inputSection);
+                    dbMaintOrder.Update(this.maintOrderId.ToString(), "MACHINE", inputMachine);
+                    dbMaintOrder.Update(this.maintOrderId.ToString(), "URGENCY", inputUrgency);
+                    dbMaintOrder.Update(this.maintOrderId.ToString(), "DESCR", inputDescription);
+                    dbMaintOrder.Update(this.maintOrderId.ToString(), "COMPLETED", inputStatus.ToString());
                     if (inputStatus)
                     {
-                        dbMaintOrder.Update(this.maintOrderId, "END_DATE", DateTime.Now.ToString("yyyy-MM-dd"));
+                        dbMaintOrder.Update(this.maintOrderId.ToString(), "END_DATE", DateTime.Now.ToString("yyyy-MM-dd"));
                     }
                     else
                     {
-                        dbMaintOrder.Update(this.maintOrderId, "END_DATE", new DateTime(1753,01,01).ToString("yyyy-MM-dd"));
+                        dbMaintOrder.Update(this.maintOrderId.ToString(), "END_DATE", new DateTime(1753,01,01).ToString("yyyy-MM-dd"));
                     }
                     MessageBox.Show($"Orden de mantenimiento {this.maintOrderId} modificada.", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();

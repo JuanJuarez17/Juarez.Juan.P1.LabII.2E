@@ -114,7 +114,7 @@ namespace ENTITIES_APP
         }
         #endregion
 
-        public static bool ValidateDescription(string inputDescription)
+        private static bool ValidateDescription(string inputDescription)
         {
             bool rtn = false;
             if (inputDescription.Length == 0 || (inputDescription.Length >= 5 && inputDescription.Length <= 200))

@@ -1,4 +1,4 @@
-﻿using CONTROLLER_APP;
+﻿using DATABASE_APP;
 using ENTITIES_APP;
 using System;
 using System.Collections.Generic;
@@ -15,6 +15,7 @@ namespace UI_APP
     public partial class FrmAddUser : Form
     {
         private bool fileNumberAvailable = false;
+        private DbUser dbUser;
         public FrmAddUser()
         {
             InitializeComponent();
@@ -23,7 +24,6 @@ namespace UI_APP
         {
             this.btn_Add.ImageIndex = 3;
             this.btn_Cancel.ImageIndex = 4;
-            // TODO: Esta propiedad puede ser util en el alta o mod de MaintOrder
             this.txb_FileNumber.MaxLength = 3;
             this.txb_UserName.MaxLength = 20;
             this.txb_Password.MaxLength = 6;
@@ -56,7 +56,18 @@ namespace UI_APP
             }
             else
             {
-                if (Controller.User_CheckFileNumberAvailable(inputFileNumber))
+                List<User> importedList = new List<User>();
+                try
+                {
+                    this.dbUser = new DbUser();
+                    importedList = this.dbUser.Import();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al importar la base de datos.\nReintentar.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    this.Close();
+                }
+                if (User.CheckFileNumberAvailable(importedList, inputFileNumber))
                 {
                     this.txb_FileNumber.BackColor = Color.GreenYellow;
                     this.txb_FileNumber.ReadOnly = true;
@@ -78,29 +89,35 @@ namespace UI_APP
             {
                 validatePassword = true;
             }
-            if (fileNumberAvailable && User.ValidateEntries(inputUsername) && validatePassword)
+            if (this.fileNumberAvailable && User.ValidateEntries(inputUsername) && validatePassword)
             {
                 int.TryParse(this.txb_FileNumber.Text, out int inputFileNumber);
                 if (this.rdb_Operator.Checked == true)
                 {
-                    if (Controller.User_Add(inputFileNumber, inputUsername, inputPassword, false))
+                    User auxOperator = new Operator(inputFileNumber, inputUsername, inputPassword);
+                    try
                     {
+                        this.dbUser = new DbUser();
+                        this.dbUser.Create(auxOperator);
                         MessageBox.Show("Usuario creado con exito!", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.DialogResult = DialogResult.OK;
                     }
-                    else
+                    catch (Exception)
                     {
                         MessageBox.Show("No se pudo agregar el usuario a la base de datos", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 else
                 {
-                    if (Controller.User_Add(inputFileNumber, inputUsername, inputPassword, true))
+                    User auxSupervisor = new Supervisor(inputFileNumber, inputUsername, inputPassword);
+                    try
                     {
+                        this.dbUser = new DbUser();
+                        this.dbUser.Create(auxSupervisor);
                         MessageBox.Show("Usuario creado con exito!", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.DialogResult = DialogResult.OK;
                     }
-                    else
+                    catch (Exception)
                     {
                         MessageBox.Show("No se pudo agregar el usuario a la base de datos", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
@@ -110,13 +127,10 @@ namespace UI_APP
             {
                 MessageBox.Show("Datos incorrectos", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-
         }
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
         }
-
-
     }
 }

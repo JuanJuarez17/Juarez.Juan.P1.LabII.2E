@@ -160,19 +160,6 @@
           }
         }
       },
-      "CONTROLLER_APP/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "DATABASE_APP": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/CONTROLLER_APP.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/CONTROLLER_APP.dll": {}
-        }
-      },
       "DATABASE_APP/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -546,11 +533,6 @@
         "version.txt"
       ]
     },
-    "CONTROLLER_APP/1.0.0": {
-      "type": "project",
-      "path": "../CONTROLLER_APP/CONTROLLER_APP.csproj",
-      "msbuildProject": "../CONTROLLER_APP/CONTROLLER_APP.csproj"
-    },
     "DATABASE_APP/1.0.0": {
       "type": "project",
       "path": "../DATABASE_APP/DATABASE_APP.csproj",
@@ -564,7 +546,8 @@
   },
   "projectFileDependencyGroups": {
     "net5.0-windows7.0": [
-      "CONTROLLER_APP >= 1.0.0"
+      "DATABASE_APP >= 1.0.0",
+      "ENTITIES_APP >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -594,8 +577,11 @@
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
           "projectReferences": {
-            "C:\\Users\\PC\\Desktop\\Maintenance_Managment_App\\CONTROLLER_APP\\CONTROLLER_APP.csproj": {
-              "projectPath": "C:\\Users\\PC\\Desktop\\Maintenance_Managment_App\\CONTROLLER_APP\\CONTROLLER_APP.csproj"
+            "C:\\Users\\PC\\Desktop\\Maintenance_Managment_App\\DATABASE_APP\\DATABASE_APP.csproj": {
+              "projectPath": "C:\\Users\\PC\\Desktop\\Maintenance_Managment_App\\DATABASE_APP\\DATABASE_APP.csproj"
+            },
+            "C:\\Users\\PC\\Desktop\\Maintenance_Managment_App\\ENTITIES_APP\\ENTITIES_APP.csproj": {
+              "projectPath": "C:\\Users\\PC\\Desktop\\Maintenance_Managment_App\\ENTITIES_APP\\ENTITIES_APP.csproj"
             }
           }
         }

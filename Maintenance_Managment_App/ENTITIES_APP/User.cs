@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -99,13 +100,24 @@ namespace ENTITIES_APP
         #region METHODS
         public bool CheckUsername(string inputUsername)
         {
-            return Username.Equals(inputUsername);
+            return this.Username.Equals(inputUsername);
         }
         public bool CheckPassword(string inputPassword)
         {
-            return Password.Equals(inputPassword);
+            return this.Password.Equals(inputPassword);
         }
-
+        public static bool CheckFileNumberAvailable(List<User> inputList, int inputFileNumber)
+        {
+            bool rtn = true;
+            foreach (User item in inputList)
+            {
+                if (item.FileNumber == inputFileNumber)
+                {
+                    return false;
+                }
+            }
+            return rtn;
+        }
         public static bool ValidateEntries(string inputName)
         {
             if (!ValidateName(inputName))
@@ -173,52 +185,6 @@ namespace ENTITIES_APP
             attributes[8] = this.EntryDate.ToString("yyyy/MM/dd");
 
             return $"{attributes[0]},{attributes[1]},{attributes[2]},{attributes[3]},{attributes[4]},{attributes[5]},{attributes[6]},{attributes[7]},{attributes[8]}";
-        }
-        public static User ReadFromText(string inputLine)
-        {
-            User auxUser = new Operator(0, null, null);
-            if (!string.IsNullOrEmpty(inputLine))
-            {
-                string[] buffer = inputLine.Split(',');
-
-                bool.TryParse(buffer[0], out bool inputActive);
-                int.TryParse(buffer[1], out int inputFileNumber);
-                string inputUsername = buffer[2];
-                string inputPassword = buffer[3];
-                bool.TryParse(buffer[4], out bool inputAdmin);
-                string inputName = buffer[5];
-                string inputSurname = buffer[6];
-                int.TryParse(buffer[7], out int inputAge);
-                DateTime.TryParse(buffer[8], out DateTime inputEntryDate);
-
-                if (inputAdmin)
-                {
-                    auxUser = new Supervisor(inputFileNumber, inputUsername, inputPassword);
-                    auxUser.Active = inputActive;
-                    auxUser.Name = inputName;
-                    auxUser.Surname = inputSurname;
-                    auxUser.Age = inputAge;
-                    auxUser.EntryDate = inputEntryDate;
-                    return auxUser;
-                }
-                else
-                {
-                    Enum.TryParse(buffer[9], out Division inputDivision);
-                    Enum.TryParse(buffer[10], out Shift inputShift);
-                    Enum.TryParse(buffer[11], out Category inputCategory);
-                    auxUser = new Operator(inputFileNumber, inputUsername, inputPassword);
-                    auxUser.Active = inputActive;
-                    auxUser.Name = inputName;
-                    auxUser.Surname = inputSurname;
-                    auxUser.Age = inputAge;
-                    auxUser.EntryDate = inputEntryDate;
-                    ((Operator)auxUser).Division = inputDivision;
-                    ((Operator)auxUser).Shift = inputShift;
-                    ((Operator)auxUser).Category = inputCategory;
-                    return auxUser;
-                }
-            }
-            return auxUser;
         }
         #endregion
     }

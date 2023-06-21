@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v5.0": {
       "UI_APP/1.0.0": {
         "dependencies": {
-          "CONTROLLER_APP": "1.0.0"
+          "DATABASE_APP": "1.0.0",
+          "ENTITIES_APP": "1.0.0"
         },
         "runtime": {
           "UI_APP.dll": {}
@@ -97,14 +98,6 @@
         }
       },
       "System.Security.Principal.Windows/4.7.0": {},
-      "CONTROLLER_APP/1.0.0": {
-        "dependencies": {
-          "DATABASE_APP": "1.0.0"
-        },
-        "runtime": {
-          "CONTROLLER_APP.dll": {}
-        }
-      },
       "DATABASE_APP/1.0.0": {
         "dependencies": {
           "ENTITIES_APP": "1.0.0",
@@ -199,11 +192,6 @@
       "sha512": "sha512-ojD0PX0XhneCsUbAZVKdb7h/70vyYMDYs85lwEI+LngEONe/17A0cFaRFqZU+sOEidcVswYWikYOQ9PPfjlbtQ==",
       "path": "system.security.principal.windows/4.7.0",
       "hashPath": "system.security.principal.windows.4.7.0.nupkg.sha512"
-    },
-    "CONTROLLER_APP/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
     },
     "DATABASE_APP/1.0.0": {
       "type": "project",

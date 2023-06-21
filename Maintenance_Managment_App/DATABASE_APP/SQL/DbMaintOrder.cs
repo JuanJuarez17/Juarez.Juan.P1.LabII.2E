@@ -70,19 +70,19 @@ namespace DATABASE_APP
             string commandQuery = QueryCommands.InsertQuery("MAINTORDER", attributes, ArrayProperties(inputInstance));
             ExecuteNonQuery(commandQuery);
         }
-        public void Update(int id, string attribute, string value)
+        public void Update(string id, string attribute, string value)
         {
-            ExecuteNonQuery(QueryCommands.UpdateQuery("MAINTORDER", attribute, value) + QueryCommands.ConditionWhere("ID", "=", id.ToString()));
+            ExecuteNonQuery(QueryCommands.UpdateQuery("MAINTORDER", attribute, value) + QueryCommands.ConditionWhere("ID", "=", id));
         }
-        public MaintenanceOrder Read(int id)
+        public MaintenanceOrder Read(string id)
         {
-            DataTable dataTable = ExecuteReader(QueryCommands.SelectQuery("*", "MAINTORDER") + QueryCommands.ConditionWhere("ID", "=", id.ToString()));
+            DataTable dataTable = ExecuteReader(QueryCommands.SelectQuery("*", "MAINTORDER") + QueryCommands.ConditionWhere("ID", "=", id));
             MaintenanceOrder rtn = ParseRow(dataTable.Rows[0]);
             return rtn;
         }
-        public void Delete(int id)
+        public void Delete(string id)
         {
-            ExecuteNonQuery(QueryCommands.UpdateQuery("MAINTORDER", "ACTIVE", "0") + QueryCommands.ConditionWhere("ID", "=", id.ToString()));
+            ExecuteNonQuery(QueryCommands.UpdateQuery("MAINTORDER", "ACTIVE", "0") + QueryCommands.ConditionWhere("ID", "=", id));
         }
         public int Count()
         {
@@ -97,9 +97,9 @@ namespace DATABASE_APP
         {
             return ExecuteScalar(QueryCommands.SelectQuery("TOP (1)" + parameter, "MAINTORDER") + QueryCommands.ConditionWhere("ACTIVE", "=", "1") + QueryCommands.OrderQuery("ID", "DESC")).ToString();
         }
-        public string PrintParameter(int id, string parameter)
+        public string PrintParameter(string id, string parameter)
         {
-            return ExecuteScalar(QueryCommands.SelectQuery(parameter, "MAINTORDER") + QueryCommands.ConditionWhere("ID", "=", id.ToString())).ToString();
+            return ExecuteScalar(QueryCommands.SelectQuery(parameter, "MAINTORDER") + QueryCommands.ConditionWhere("ID", "=", id)).ToString();
         }
         public List<MaintenanceOrder> Sort(string parameter, string criteria)
         {
@@ -111,7 +111,5 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-
-
     }
 }

@@ -1,5 +1,5 @@
 ﻿using ENTITIES_APP;
-using CONTROLLER_APP;
+using DATABASE_APP;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +15,7 @@ namespace UI_APP
     public partial class FrmAutocomplete : Form
     {
         private User selectedUser;
+        private DbUser dbUser;
         public FrmAutocomplete()
         {
             InitializeComponent();
@@ -30,13 +31,31 @@ namespace UI_APP
 
         private void btn_Operator_Click(object sender, EventArgs e)
         {
-            this.selectedUser = Controller.User_Return("Operario");
+            try
+            {
+                this.dbUser = new DbUser();
+                this.selectedUser = this.dbUser.Read("Operario");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al conectar la base de datos.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.DialogResult = DialogResult.Cancel;
+            }
             this.DialogResult = DialogResult.OK;
         }
 
         private void btn_Supervisor_Click(object sender, EventArgs e)
         {
-            this.selectedUser = Controller.User_Return("Supervisor");
+            try
+            {
+                this.dbUser = new DbUser();
+                this.selectedUser = this.dbUser.Read("Operario");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al conectar la base de datos.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.DialogResult = DialogResult.Cancel;
+            }
             this.DialogResult = DialogResult.OK;
         }
     }

@@ -14,12 +14,12 @@ namespace DATABASE_APP
         public T ParseRow(DataRow inputRow);
         public List<T> Import();
         public void Create(T inputInstance);
-        public T Read(int id);
-        public void Update(int id, string attribute, string value);
-        public void Delete(int id);
+        public T Read(string primaryKey);
+        public void Update(string primaryKey, string attribute, string value);
+        public void Delete(string primaryKey);
         public int Count();
         public string GetLast(string parameter);
-        public string PrintParameter(int id, string parameter);
+        public string PrintParameter(string primaryKey, string parameter);
         public List<T> Sort(string parameter, string criteria);
     }
 }

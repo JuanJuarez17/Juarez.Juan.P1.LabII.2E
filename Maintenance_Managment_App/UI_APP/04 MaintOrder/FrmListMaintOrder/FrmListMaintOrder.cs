@@ -110,11 +110,6 @@ namespace UI_APP
         #endregion
 
         #region EVENT METHODS
-        private void btn_AddMaintOrder_MouseHover(object sender, EventArgs e)
-        {
-            this.tlt_Help.Show("Crear Orden Mantenimiento", this.btn_AddMaintOrder);
-        }
-
         private void FrmListMaintenanceOrder_Load(object sender, EventArgs e)
         {
             this.btn_AddMaintOrder.ImageIndex = 0;
@@ -138,6 +133,10 @@ namespace UI_APP
             {
                 MessageBox.Show("Error al importar la base de datos.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+        private void btn_AddMaintOrder_MouseHover(object sender, EventArgs e)
+        {
+            this.tlt_Help.Show("Crear Orden Mantenimiento", this.btn_AddMaintOrder);
         }
         private void btn_AddMaintOrder_Click(object sender, EventArgs e)
         {
@@ -188,7 +187,7 @@ namespace UI_APP
                 try
                 {
                     this.dbMaintOrder = new DbMaintOrder();
-                    this.dbMaintOrder.Delete(selectedId);
+                    this.dbMaintOrder.Delete(selectedId.ToString());
                     FrmListMaintenanceOrder_LoadDataGrid(this.dbMaintOrder.Import());
                     FrmListMaintenanceOrder_AvailableFunctions();
                 }

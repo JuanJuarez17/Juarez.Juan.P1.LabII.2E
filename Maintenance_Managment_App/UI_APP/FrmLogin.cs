@@ -1,13 +1,6 @@
-﻿using CONTROLLER_APP;
+﻿using DATABASE_APP;
+using ENTITIES_APP;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UI_APP
@@ -15,15 +8,12 @@ namespace UI_APP
     public partial class FrmLogin : Form
     {
         #region ATTRIBUTES
+        private DbUser dbUser;
+        #endregion
+
         public FrmLogin()
         {
             InitializeComponent();
-        }
-        #endregion
-
-        private void ActivateForm(Form form)
-        {
-            form.ShowDialog();
         }
         #region EVENT METHODS
         private void FrmLogin_Load(object sender, EventArgs e)
@@ -31,12 +21,12 @@ namespace UI_APP
             this.btn_Autocomplete.ImageIndex = 0;
             try
             {
-                Controller.User_LoadDbFromText();
+                this.dbUser = new DbUser();
+                this.dbUser.Count();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                string message = ex.Message + "\nReinicie la aplicacion.";
-                MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al importar la base de datos.\nReinicie la aplicacion.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Application.Exit();
             }
         }
@@ -44,19 +34,35 @@ namespace UI_APP
         {
             string inputUsername = txb_Username.Text;
             string inputPassword = txb_Password.Text;
-            if (Controller.User_CheckExist(inputUsername, inputPassword) == 1)
+            if (string.IsNullOrWhiteSpace(txb_Username.Text) || string.IsNullOrWhiteSpace(txb_Password.Text))
             {
-                FrmMainMenu frmMainMenu = new FrmMainMenu(Controller.User_Return(inputUsername));
-                frmMainMenu.Show();
-                this.Hide();
-            }
-            else if (Controller.User_CheckExist(inputUsername, inputPassword) == 0)
-            {
-                MessageBox.Show("Usuario y/o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ingrese usuario y contrasenia.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                MessageBox.Show("Ingrese usuario y contraseña", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                try
+                {
+                    this.dbUser = new DbUser();
+                    User inputUser = this.dbUser.Read(inputUsername);
+                    if (inputUser.CheckPassword(inputPassword))
+                    {
+                        FrmMainMenu frmMainMenu = new FrmMainMenu(inputUser);
+                        frmMainMenu.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Contraseña incorrecta!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    MessageBox.Show("Usuario incorrecto!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al importar la base de datos.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
         }
         private void btn_Cancel_Click(object sender, EventArgs e)

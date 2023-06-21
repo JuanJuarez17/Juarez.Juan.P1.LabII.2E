@@ -1,4 +1,5 @@
 ﻿using DATABASE_APP;
+using DATABASE_APP.SQL;
 using ENTITIES_APP;
 using System;
 using System.Collections.Generic;
@@ -11,13 +12,14 @@ namespace TEST_APP
         {
             try
             {
-                List<MaintenanceOrder> list = new List<MaintenanceOrder>();
-                DbMaintOrder db = new DbMaintOrder();
-                list = db.Import();
-                foreach (MaintenanceOrder item in list)
-                {
-                    Console.WriteLine($"ID: {item.Id} ACTIVE : {item.Active}  GENERO {item.Username}");
-                }
+                #region TEST MAINT ORDER SQL
+                //List<MaintenanceOrder> list = new List<MaintenanceOrder>();
+                //DbMaintOrder db = new DbMaintOrder();
+                //list = db.Import();
+                //foreach (MaintenanceOrder item in list)
+                //{
+                //    Console.WriteLine($"ID: {item.Id} ACTIVE : {item.Active}  GENERO {item.Username}");
+                //}
 
                 //MaintenanceOrder auxMaintOrder = db.Read(124);
                 //Console.WriteLine($"ID: {auxMaintOrder.Id} ACTIVE : {auxMaintOrder.Active} GENERO {auxMaintOrder.Username}");
@@ -39,16 +41,16 @@ namespace TEST_APP
 
 
 
-                // PRUEBA CREATE
-                MaintenanceOrder maintOrd2 = new MaintenanceOrder("ETolosa", Section.Otro, Machine.Autoelevador, Urgency.Programable, "testing");
-                db.Create(maintOrd2);
-                List<MaintenanceOrder> listAdd = db.Import();
-                foreach (MaintenanceOrder item in listAdd)
-                {
-                    Console.WriteLine($"ID: {item.Id} ACTIVE : {item.Active}  GENERO {item.Username}");
-                }
+                //// PRUEBA CREATE
+                //MaintenanceOrder maintOrd2 = new MaintenanceOrder("ETolosa", Section.Otro, Machine.Autoelevador, Urgency.Programable, "testing");
+                //db.Create(maintOrd2);
+                //List<MaintenanceOrder> listAdd = db.Import();
+                //foreach (MaintenanceOrder item in listAdd)
+                //{
+                //    Console.WriteLine($"ID: {item.Id} ACTIVE : {item.Active}  GENERO {item.Username}");
+                //}
 
-                Console.WriteLine($" TEST ID: {(db.Read(126)).Id} ACTIVE : {(db.Read(126)).Active}  GENERO {(db.Read(126)).Username}");
+                //Console.WriteLine($" TEST ID: {(db.Read(126)).Id} ACTIVE : {(db.Read(126)).Active}  GENERO {(db.Read(126)).Username}");
 
 
 
@@ -59,13 +61,37 @@ namespace TEST_APP
                 //foreach (MaintenanceOrder item in listUpd)
                 //{
                 //    Console.WriteLine($"ID: {item.Id} ACTIVE : {item.Active}  GENERO {item.Username}");
-                //}
+                //} 
+                #endregion
+
+                #region TEST USER SQL
+                //DbUser userDb = new DbUser();
+                ////User auxUser = userDb.Read("PPerez");
+                ////Console.WriteLine(auxUser.WriteAsText());
+
+                //List<User> users = userDb.Import();
+
+                //foreach (User item in users) 
+                //{ 
+                //    Console.WriteLine(item.WriteAsText());
+                //} 
+                #endregion
+
+
+                Console.WriteLine("Dentro del try");
+
+
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Se atrapo la excepcion");
             }
+            finally
+            {
+                Console.WriteLine("Esto se ejecuto");
+            }
+
         }
     }
 }

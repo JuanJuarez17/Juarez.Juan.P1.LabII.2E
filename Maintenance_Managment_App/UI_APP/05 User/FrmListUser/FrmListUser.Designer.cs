@@ -46,7 +46,6 @@
             btn_SearchUser=new System.Windows.Forms.Button();
             iml_AccountDetails=new System.Windows.Forms.ImageList(components);
             gpb_ControlPanel=new System.Windows.Forms.GroupBox();
-            btn_SaveUserDb=new System.Windows.Forms.Button();
             cbb_UsernameList=new System.Windows.Forms.ComboBox();
             btn_DeleteUser=new System.Windows.Forms.Button();
             btn_ModifyUser=new System.Windows.Forms.Button();
@@ -225,7 +224,6 @@
             // gpb_ControlPanel
             // 
             gpb_ControlPanel.Anchor=System.Windows.Forms.AnchorStyles.Top;
-            gpb_ControlPanel.Controls.Add(btn_SaveUserDb);
             gpb_ControlPanel.Controls.Add(cbb_UsernameList);
             gpb_ControlPanel.Controls.Add(btn_DeleteUser);
             gpb_ControlPanel.Controls.Add(btn_ModifyUser);
@@ -239,17 +237,6 @@
             gpb_ControlPanel.TabStop=false;
             gpb_ControlPanel.Text="Panel de control";
             // 
-            // btn_SaveUserDb
-            // 
-            btn_SaveUserDb.Anchor=System.Windows.Forms.AnchorStyles.Top|System.Windows.Forms.AnchorStyles.Right;
-            btn_SaveUserDb.ImageList=iml_AccountDetails;
-            btn_SaveUserDb.Location=new System.Drawing.Point(654, 14);
-            btn_SaveUserDb.Name="btn_SaveUserDb";
-            btn_SaveUserDb.Size=new System.Drawing.Size(40, 40);
-            btn_SaveUserDb.TabIndex=35;
-            btn_SaveUserDb.UseVisualStyleBackColor=true;
-            btn_SaveUserDb.Click+=btn_SaveOperatorDb_Click;
-            // 
             // cbb_UsernameList
             // 
             cbb_UsernameList.FormattingEnabled=true;
@@ -262,7 +249,7 @@
             // 
             btn_DeleteUser.Anchor=System.Windows.Forms.AnchorStyles.Top|System.Windows.Forms.AnchorStyles.Right;
             btn_DeleteUser.ImageList=iml_AccountDetails;
-            btn_DeleteUser.Location=new System.Drawing.Point(608, 14);
+            btn_DeleteUser.Location=new System.Drawing.Point(654, 14);
             btn_DeleteUser.Name="btn_DeleteUser";
             btn_DeleteUser.Size=new System.Drawing.Size(40, 40);
             btn_DeleteUser.TabIndex=32;
@@ -273,7 +260,7 @@
             // 
             btn_ModifyUser.Anchor=System.Windows.Forms.AnchorStyles.Top|System.Windows.Forms.AnchorStyles.Right;
             btn_ModifyUser.ImageList=iml_AccountDetails;
-            btn_ModifyUser.Location=new System.Drawing.Point(562, 14);
+            btn_ModifyUser.Location=new System.Drawing.Point(608, 14);
             btn_ModifyUser.Name="btn_ModifyUser";
             btn_ModifyUser.Size=new System.Drawing.Size(40, 40);
             btn_ModifyUser.TabIndex=32;
@@ -284,7 +271,7 @@
             // 
             btn_AddUser.Anchor=System.Windows.Forms.AnchorStyles.Top|System.Windows.Forms.AnchorStyles.Right;
             btn_AddUser.ImageList=iml_AccountDetails;
-            btn_AddUser.Location=new System.Drawing.Point(516, 14);
+            btn_AddUser.Location=new System.Drawing.Point(562, 14);
             btn_AddUser.Name="btn_AddUser";
             btn_AddUser.Size=new System.Drawing.Size(40, 40);
             btn_AddUser.TabIndex=31;
@@ -487,6 +474,5 @@
         private System.Windows.Forms.ComboBox cbb_UserCategory;
         private System.Windows.Forms.ComboBox cbb_UserShift;
         private System.Windows.Forms.ComboBox cbb_UserDivision;
-        private System.Windows.Forms.Button btn_SaveUserDb;
     }
 }

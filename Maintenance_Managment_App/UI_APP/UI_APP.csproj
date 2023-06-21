@@ -12,7 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CONTROLLER_APP\CONTROLLER_APP.csproj" />
+    <ProjectReference Include="..\DATABASE_APP\DATABASE_APP.csproj" />
+    <ProjectReference Include="..\ENTITIES_APP\ENTITIES_APP.csproj" />
   </ItemGroup>
 
   <ItemGroup>

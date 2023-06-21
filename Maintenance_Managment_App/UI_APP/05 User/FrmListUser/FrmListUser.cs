@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ENTITIES_APP;
-using CONTROLLER_APP;
-using System.IO;
+using DATABASE_APP;
+using System.Collections.Generic;
 
 namespace UI_APP
 {
@@ -17,7 +10,9 @@ namespace UI_APP
     {
         private User activeUser;
         private User auxUser;
+        private DbUser dbUser;
         private Form activeForm;
+
         private bool modifyModeEnable = false;
         private bool userSearchedEnable = false;
         private FrmListUser()
@@ -65,7 +60,6 @@ namespace UI_APP
                 this.btn_SearchUser.Enabled = false;
                 this.btn_AddUser.Enabled = false;
                 this.btn_DeleteUser.Enabled = false;
-                this.btn_SaveUserDb.Enabled = false;
 
                 this.btn_Accept.Visible = true;
                 this.btn_Cancel.Visible = true;
@@ -77,14 +71,12 @@ namespace UI_APP
                 this.cbb_UserDivision.Enabled = true;
                 this.cbb_UserShift.Enabled = true;
                 this.cbb_UserCategory.Enabled = true;
-
             }
             else
             {
                 this.cbb_UsernameList.Enabled = true;
                 this.btn_SearchUser.Enabled = true;
                 this.btn_AddUser.Enabled = true;
-                this.btn_SaveUserDb.Enabled = true;
 
                 this.btn_Accept.Visible = false;
                 this.btn_Cancel.Visible = false;
@@ -102,7 +94,6 @@ namespace UI_APP
         {
             if (inputUser.Admin) { this.gpb_PositionDetails.Visible = false; }
             else { this.gpb_PositionDetails.Visible = true; }
-
 
             this.gpb_UserDetails.Text = $"Detalles del usuario {inputUser.Username}";
             this.gpb_PositionDetails.Text = $"Detalles del puesto de {inputUser.Username}";
@@ -162,7 +153,6 @@ namespace UI_APP
         #region EVENT METHODS
         private void FrmAccountDetails_Load(object sender, EventArgs e)
         {
-            this.cbb_UsernameList.DataSource = Controller.User_LoadUsernameList();
             this.cbb_UserDivision.DataSource = Enum.GetValues(typeof(Division));
             this.cbb_UserShift.DataSource = Enum.GetValues(typeof(Shift));
             this.cbb_UserCategory.DataSource = Enum.GetValues(typeof(Category));
@@ -172,16 +162,26 @@ namespace UI_APP
             this.btn_DeleteUser.ImageIndex = 2;
             this.btn_Accept.ImageIndex = 4;
             this.btn_Cancel.ImageIndex = 3;
-            this.btn_SaveUserDb.ImageIndex = 8;
             FrmAccountDetails_AvailableFunctions();
             FrmAccountDetails_LoadDetails(this.activeUser);
+
+            try
+            {
+                this.dbUser = new DbUser();
+                this.cbb_UsernameList.DataSource = this.dbUser.ImportUsernames();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al importar la base de datos.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
         private void btn_SearchUser_Click(object sender, EventArgs e)
         {
             this.userSearchedEnable = true;
             string selectedUsername = this.cbb_UsernameList.SelectedItem.ToString();
-            Controller.User_FindInDb(selectedUsername, out int findedIndex);
-            this.auxUser = Controller.User_Return(findedIndex);
+
+            this.auxUser = this.dbUser.Read(selectedUsername);
+
             FrmAccountDetails_AvailableFunctions();
             FrmAccountDetails_LoadDetails(this.auxUser);
         }
@@ -190,9 +190,17 @@ namespace UI_APP
             ActivateForm(new FrmAddUser(), out DialogResult result);
             if (result == DialogResult.OK)
             {
-                this.cbb_UsernameList.DataSource = Controller.User_LoadUsernameList();
-                FrmAccountDetails_AvailableFunctions();
-                FrmAccountDetails_LoadDetails(this.activeUser);
+                try
+                {
+                    this.dbUser = new DbUser();
+                    this.cbb_UsernameList.DataSource = this.dbUser.ImportUsernames();
+                    FrmAccountDetails_AvailableFunctions();
+                    FrmAccountDetails_LoadDetails(this.activeUser);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al conectar la base de datos.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
             else
             {
@@ -210,8 +218,9 @@ namespace UI_APP
             DialogResult respuesta = MessageBox.Show($"¿Eliminar Usuario {this.auxUser.Username}?\nEsta accion es inrreversible", "Eliminar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
             if (respuesta == DialogResult.Yes)
             {
-                this.auxUser.Active = false;
-                this.cbb_UsernameList.DataSource = Controller.User_LoadUsernameList();
+                this.dbUser = new DbUser();
+                this.dbUser.Delete(this.auxUser.Username);
+                this.cbb_UsernameList.DataSource = this.dbUser.ImportUsernames();
                 FrmAccountDetails_AvailableFunctions();
                 FrmAccountDetails_LoadDetails(this.activeUser);
             }
@@ -225,17 +234,24 @@ namespace UI_APP
 
             if (User.ValidateEntries(inputName, inputSurname, inputAge, inputDate))
             {
-                auxUser.Name = inputName;
-                auxUser.Surname = inputSurname;
-                auxUser.Age = int.Parse(inputAge);
-                auxUser.EntryDate = DateTime.Parse(inputDate);
-                ((Operator)auxUser).Division = (Division)this.cbb_UserDivision.SelectedItem;
-                ((Operator)auxUser).Shift = (Shift)this.cbb_UserShift.SelectedItem;
-                ((Operator)auxUser).Category = (Category)this.cbb_UserCategory.SelectedItem;
-
-                this.modifyModeEnable = false;
-                FrmAccountDetails_AvailableFunctions();
-                FrmAccountDetails_LoadDetails(this.auxUser);
+                try
+                {
+                    this.dbUser = new DbUser();
+                    this.dbUser.Update(this.auxUser.Username, "NAME", $"{inputName}");
+                    this.dbUser.Update(this.auxUser.Username, "SURNAME", $"{inputSurname}");
+                    this.dbUser.Update(this.auxUser.Username, "AGE", $"{inputAge}");
+                    this.dbUser.Update(this.auxUser.Username, "ENTRY_DATE", $"{inputDate}");
+                    this.dbUser.Update(this.auxUser.Username, "DIVISION", $"{this.cbb_UserDivision.SelectedItem}");
+                    this.dbUser.Update(this.auxUser.Username, "SHIFT", $"{this.cbb_UserShift.SelectedItem}");
+                    this.dbUser.Update(this.auxUser.Username, "CATEGORY", $"{this.cbb_UserCategory.SelectedItem}");
+                    this.modifyModeEnable = false;
+                    FrmAccountDetails_AvailableFunctions();
+                    FrmAccountDetails_LoadDetails(this.dbUser.Read(this.auxUser.Username));
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al conectar la base de datos.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
             else
             {
@@ -248,17 +264,6 @@ namespace UI_APP
             this.modifyModeEnable = false;
             FrmAccountDetails_AvailableFunctions();
             FrmAccountDetails_LoadDetails(this.auxUser);
-        }
-        private void btn_SaveOperatorDb_Click(object sender, EventArgs e)
-        {
-            if (Controller.User_SaveDbAsText())
-            {
-                MessageBox.Show("Base de datos guardada con exito!", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-            else
-            {
-                MessageBox.Show("No se pudo guardar la base de datos!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
         #endregion
     }
