@@ -16,6 +16,7 @@ namespace UI_APP
     {
         #region ATTRIBUTES
         private User activeUser;
+        private string idAdded;
         #endregion
 
         #region CONSTRUCTOR
@@ -28,6 +29,8 @@ namespace UI_APP
             this.activeUser = inputUser;
         }
         #endregion
+
+        public string IdAdded { get { return idAdded; } set {  idAdded = value; } }
 
         #region EVENT METHODS
         private void FrmAddMaintenanceOrder_Load(object sender, EventArgs e)
@@ -52,8 +55,8 @@ namespace UI_APP
                 {
                     DbMaintOrder auxDbMaintOrder = new DbMaintOrder();
                     auxDbMaintOrder.Create(auxMaintOrder);
-                    string idAdded = auxDbMaintOrder.GetLast("ID");
-                    MessageBox.Show($"Orden de mantenimiento {idAdded} creada.", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.IdAdded = auxDbMaintOrder.GetLast("ID");
+                    MessageBox.Show($"Orden de mantenimiento {IdAdded} creada.", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                     this.DialogResult = DialogResult.OK;
                 }

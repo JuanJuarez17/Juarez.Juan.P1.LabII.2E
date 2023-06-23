@@ -49,7 +49,7 @@ namespace UI_APP
             try
             {
                 this.dbUser = new DbUser();
-                this.selectedUser = this.dbUser.Read("Operario");
+                this.selectedUser = this.dbUser.Read("Supervisor");
             }
             catch (Exception)
             {

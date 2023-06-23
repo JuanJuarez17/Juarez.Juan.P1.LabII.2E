@@ -16,6 +16,8 @@ namespace UI_APP
         #region ATTRIBUTES
         private User activeUser;
         private Form activeForm;
+        private Logs logsRecord;
+        private event Action<string, string> LogsNotification;
         #endregion
 
         #region PROPERTIES
@@ -86,17 +88,18 @@ namespace UI_APP
             lblInfoTxt.Append("v4.05");
             tss_Status.Text = lblInfoTxt.ToString();
         }
-        private void FrmMainMenu_AvailableFunctions()
-        {
-
-        }
         #endregion
 
         #region EVENT METHODS
         private void FrmMainMenu_Load(object sender, EventArgs e)
         {
+            this.logsRecord = new Logs();
+            LogsNotification += this.logsRecord.GenerateLog;
+            if (LogsNotification is not null)
+            {
+                LogsNotification.Invoke(this.activeUser.Username, "Ingreso a la aplicacion.");
+            }
             FrmMainMenu_Info();
-            FrmMainMenu_AvailableFunctions();
             ActivateForm(new FrmHome(this.User));
         }
         private void smi_Home_Click(object sender, EventArgs e)
@@ -111,10 +114,17 @@ namespace UI_APP
         {
             ActivateForm(new FrmListUser(this.User));
         }
-        private void FrmMainMenu_FormClosing(object sender, FormClosingEventArgs e)
+        private void FrmMainMenu_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+            if (LogsNotification is not null)
+            {
+                LogsNotification.Invoke(this.activeUser.Username, "Salio de la aplicacion.");
+            }
         }
+
         #endregion
+
+
     }
 }

@@ -104,7 +104,7 @@
             Name="FrmMainMenu";
             StartPosition=System.Windows.Forms.FormStartPosition.CenterScreen;
             Text="Maintenance Management Assistant";
-            FormClosing+=FrmMainMenu_FormClosing;
+            FormClosed+=FrmMainMenu_FormClosed;
             Load+=FrmMainMenu_Load;
             mst_MainMenuOpt.ResumeLayout(false);
             mst_MainMenuOpt.PerformLayout();

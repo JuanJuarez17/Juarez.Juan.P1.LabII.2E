@@ -16,6 +16,8 @@ namespace UI_APP
         private int flagSectionSort = 0;
         private int flagMachineSort = 0;
         private int flagUrgencySort = 0;
+        private Logs logsRecord;
+        private event Action<string, string> LogsNotification;
 
         #endregion
 
@@ -112,6 +114,8 @@ namespace UI_APP
         #region EVENT METHODS
         private void FrmListMaintenanceOrder_Load(object sender, EventArgs e)
         {
+            this.logsRecord = new Logs();
+            LogsNotification += this.logsRecord.GenerateLog;
             this.btn_AddMaintOrder.ImageIndex = 0;
             this.btn_InfoMaintOrder.ImageIndex = 5;
             this.btn_EditMaintOrder.ImageIndex = 1;
@@ -145,9 +149,14 @@ namespace UI_APP
             {
                 try
                 {
-                    this.dbMaintOrder = new DbMaintOrder(); // VER XQ NECESITO ASIGNARLA DEVUELTA                   
+                    this.dbMaintOrder = new DbMaintOrder(); // VER XQ NECESITO ASIGNARLA DEVUELTA                  
+                    string idAdded = this.dbMaintOrder.GetLast("ID");
                     FrmListMaintenanceOrder_LoadDataGrid(dbMaintOrder.Import());
                     FrmListMaintenanceOrder_AvailableFunctions();
+                    if (LogsNotification is not null)
+                    {
+                        LogsNotification.Invoke(this.activeUser.Username, $"Agrego Orden de Mantenimiento ID {idAdded}");
+                    }
                 }
                 catch (Exception)
                 {
@@ -170,8 +179,20 @@ namespace UI_APP
             ActivateForm(new FrmEditMaintOrder(selectedId), out DialogResult result);
             if (result == DialogResult.OK)
             {
-                this.dbMaintOrder = new DbMaintOrder();
-                FrmListMaintenanceOrder_LoadDataGrid(dbMaintOrder.Import());
+                try
+                {
+                    this.dbMaintOrder = new DbMaintOrder();
+                    FrmListMaintenanceOrder_LoadDataGrid(dbMaintOrder.Import());
+                    if (LogsNotification is not null)
+                    {
+                        LogsNotification.Invoke(this.activeUser.Username, $"Modifico Orden de Mantenimiento ID {selectedId}");
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al importar la base de datos.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                
             }
             else
             {
@@ -190,6 +211,10 @@ namespace UI_APP
                     this.dbMaintOrder.Delete(selectedId.ToString());
                     FrmListMaintenanceOrder_LoadDataGrid(this.dbMaintOrder.Import());
                     FrmListMaintenanceOrder_AvailableFunctions();
+                    if (LogsNotification is not null)
+                    {
+                        LogsNotification.Invoke(this.activeUser.Username, $"Elimino Orden de Mantenimiento ID {selectedId}");
+                    }
                 }
                 catch (Exception)
                 {

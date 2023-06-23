@@ -18,6 +18,7 @@ namespace UI_APP
         #region EVENT METHODS
         private void FrmLogin_Load(object sender, EventArgs e)
         {
+
             this.btn_Autocomplete.ImageIndex = 0;
             try
             {
