@@ -113,11 +113,6 @@ namespace TEST_APP
             //Console.WriteLine(condWhere);
 
 
-            MySqlCommand cmd = new MySqlCommand();
-            cmd.Select("MAINTORDER", "MAKER");
-
-            Console.WriteLine(cmd);
-
         }
 
         public static List<object> ArrayObject(MaintenanceOrder input)

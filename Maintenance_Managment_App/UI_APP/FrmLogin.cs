@@ -8,7 +8,7 @@ namespace UI_APP
     public partial class FrmLogin : Form
     {
         #region ATTRIBUTES
-        private DbUser dbUser;
+        private DbEntityUser dbUser;
         #endregion
 
         public FrmLogin()
@@ -22,8 +22,8 @@ namespace UI_APP
             this.btn_Autocomplete.ImageIndex = 0;
             try
             {
-                this.dbUser = new DbUser();
-                this.dbUser.Count();
+                this.dbUser = new DbEntityUser();
+                this.dbUser.Count("ACTIVE", "1");
             }
             catch (Exception)
             {
@@ -43,7 +43,7 @@ namespace UI_APP
             {
                 try
                 {
-                    this.dbUser = new DbUser();
+                    this.dbUser = new DbEntityUser();
                     User inputUser = this.dbUser.Read(inputUsername);
                     if (inputUser.CheckPassword(inputPassword))
                     {

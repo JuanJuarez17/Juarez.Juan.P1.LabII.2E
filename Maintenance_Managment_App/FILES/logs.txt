@@ -171,3 +171,19 @@
 2023/06/24 02:58:59 - Supervisor      - Ingreso a la aplicacion.
 2023/06/24 02:59:05 - Supervisor      - Agrego Orden de Mantenimiento ID 117
 2023/06/24 02:59:16 - Supervisor      - Salio de la aplicacion.
+2023/06/24 12:11:58 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 12:17:52 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 12:18:44 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 12:22:09 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 12:25:11 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 12:29:23 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 12:32:58 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 12:39:59 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 12:40:25 - Supervisor      - Salio de la aplicacion.
+2023/06/24 12:42:13 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 12:47:46 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 12:48:33 - Supervisor      - Salio de la aplicacion.
+2023/06/24 12:49:35 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 12:49:54 - Supervisor      - Salio de la aplicacion.
+2023/06/24 12:50:41 - STest           - Ingreso a la aplicacion.
+2023/06/24 12:50:49 - STest           - Salio de la aplicacion.

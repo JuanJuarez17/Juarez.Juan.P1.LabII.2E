@@ -27,6 +27,7 @@ namespace ENTITIES_APP
             this.username = inputUser;
             this.password = inputPassword;
             this.admin = inputAdmin;
+            this.entryDate = new DateTime(1753, 1, 1);
         }
         #endregion
 
@@ -58,21 +59,16 @@ namespace ENTITIES_APP
             get { return this.admin; }
             set { this.admin = value; }
         }
-
-        // Estos atributos "pueden no estar bien"
         public string Name
         {
             get
-            {
-                /* En caso de que no hubiese que devolver null por algun motivo
+            {                
                 string rtn = this.name;
                 if (rtn == null)
                 {
                     rtn = string.Empty;
                 }
-                return rtn;
-                */
-                return this.name;
+                return rtn;                
             }
             set
             {
@@ -81,7 +77,15 @@ namespace ENTITIES_APP
         }
         public string Surname
         {
-            get { return this.surname; }
+            get 
+            {
+                string rtn = this.surname;
+                if (rtn == null)
+                {
+                    rtn = string.Empty;
+                }
+                return rtn;
+            }
             set { this.surname = value; }
         }
         public int Age
@@ -105,6 +109,18 @@ namespace ENTITIES_APP
         public bool CheckPassword(string inputPassword)
         {
             return this.Password.Equals(inputPassword);
+        }
+        public static List<string> ImportUsernames(List<User> inputList)
+        {
+            List<string> rtn = new List<string>();
+            foreach (User item in inputList)
+            {
+                if (!item.Admin && item.Username != "Operario")
+                {
+                    rtn.Add(item.Username);
+                }
+            }
+            return rtn;
         }
         public static bool CheckFileNumberAvailable(List<User> inputList, int inputFileNumber)
         {

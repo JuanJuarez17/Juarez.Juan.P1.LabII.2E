@@ -25,7 +25,7 @@ namespace UI_APP
         }
         private void FrmInfoMaintOrder_Load(object sender, EventArgs e)
         {
-            DbMaintOrder dbMaintOrder = new DbMaintOrder();
+            DbEntityMaintOrder dbMaintOrder = new DbEntityMaintOrder();
             MaintenanceOrder auxMaintOrder = dbMaintOrder.Read(this.maintOrderId.ToString());
             this.btn_Cancel.ImageIndex = 4; 
             this.txb_MaintOrderId.Text = auxMaintOrder.Id.ToString();

@@ -16,7 +16,7 @@ namespace UI_APP
     public partial class FrmHome : Form
     {
         private User activeUser;
-        private DbMaintOrder dbMaintOrder;
+        private DbEntityMaintOrder dbMaintOrder;
 
         private FrmHome()
         {
@@ -31,7 +31,7 @@ namespace UI_APP
             this.lbl_Welcome.Text = $"Bienvenido {this.activeUser.Username}.";
             try
             {
-                this.dbMaintOrder = new DbMaintOrder();
+                this.dbMaintOrder = new DbEntityMaintOrder();
             }
             catch (Exception)
             {

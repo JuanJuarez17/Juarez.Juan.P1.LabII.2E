@@ -10,7 +10,7 @@ namespace UI_APP
     {
         private User activeUser;
         private User auxUser;
-        private DbUser dbUser;
+        private DbEntityUser dbUser;
         private Form activeForm;
 
         private bool modifyModeEnable = false;
@@ -163,14 +163,12 @@ namespace UI_APP
             this.btn_Accept.ImageIndex = 4;
             this.btn_Cancel.ImageIndex = 3;
             FrmAccountDetails_AvailableFunctions();
-            FrmAccountDetails_LoadDetails(this.activeUser);
-            
-
+            FrmAccountDetails_LoadDetails(this.activeUser);        
 
             try
             {
-                this.dbUser = new DbUser();
-                this.cbb_UsernameList.DataSource = this.dbUser.ImportUsernames();
+                this.dbUser = new DbEntityUser();
+                this.cbb_UsernameList.DataSource = User.ImportUsernames(this.dbUser.Import());
             }
             catch (Exception)
             {
@@ -194,8 +192,7 @@ namespace UI_APP
             {
                 try
                 {
-                    this.dbUser = new DbUser();
-                    this.cbb_UsernameList.DataSource = this.dbUser.ImportUsernames();
+                    this.cbb_UsernameList.DataSource = User.ImportUsernames(this.dbUser.Import());
                     FrmAccountDetails_AvailableFunctions();
                     FrmAccountDetails_LoadDetails(this.activeUser);
                 }
@@ -220,9 +217,8 @@ namespace UI_APP
             DialogResult respuesta = MessageBox.Show($"¿Eliminar Usuario {this.auxUser.Username}?\nEsta accion es inrreversible", "Eliminar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
             if (respuesta == DialogResult.Yes)
             {
-                this.dbUser = new DbUser();
                 this.dbUser.Delete(this.auxUser.Username);
-                this.cbb_UsernameList.DataSource = this.dbUser.ImportUsernames();
+                this.cbb_UsernameList.DataSource = User.ImportUsernames(this.dbUser.Import());
                 FrmAccountDetails_AvailableFunctions();
                 FrmAccountDetails_LoadDetails(this.activeUser);
             }
@@ -236,16 +232,17 @@ namespace UI_APP
 
             if (User.ValidateEntries(inputName, inputSurname, inputAge, inputDate))
             {
+                User auxUser = new Operator();
+                auxUser.Name = inputName;
+                auxUser.Surname = inputSurname;
+                auxUser.Age = Convert.ToInt32(inputAge);
+                auxUser.EntryDate = Convert.ToDateTime(inputDate);
+                ((Operator)auxUser).Division = (Division)this.cbb_UserDivision.SelectedItem;
+                ((Operator)auxUser).Shift = (Shift)this.cbb_UserShift.SelectedItem;
+                ((Operator)auxUser).Category = (Category)this.cbb_UserCategory.SelectedItem;
                 try
                 {
-                    this.dbUser = new DbUser();
-                    this.dbUser.Update(this.auxUser.Username, "NAME", $"{inputName}");
-                    this.dbUser.Update(this.auxUser.Username, "SURNAME", $"{inputSurname}");
-                    this.dbUser.Update(this.auxUser.Username, "AGE", $"{inputAge}");
-                    this.dbUser.Update(this.auxUser.Username, "ENTRY_DATE", $"{inputDate}");
-                    this.dbUser.Update(this.auxUser.Username, "DIVISION", $"{this.cbb_UserDivision.SelectedItem}");
-                    this.dbUser.Update(this.auxUser.Username, "SHIFT", $"{this.cbb_UserShift.SelectedItem}");
-                    this.dbUser.Update(this.auxUser.Username, "CATEGORY", $"{this.cbb_UserCategory.SelectedItem}");
+                    this.dbUser.Update(auxUser, this.auxUser.Username);
                     this.modifyModeEnable = false;
                     FrmAccountDetails_AvailableFunctions();
                     FrmAccountDetails_LoadDetails(this.dbUser.Read(this.auxUser.Username));

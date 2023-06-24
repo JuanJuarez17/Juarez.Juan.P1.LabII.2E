@@ -15,7 +15,7 @@ namespace UI_APP
     public partial class FrmAddUser : Form
     {
         private bool fileNumberAvailable = false;
-        private DbUser dbUser;
+        private DbEntityUser dbUser;
         public FrmAddUser()
         {
             InitializeComponent();
@@ -29,6 +29,14 @@ namespace UI_APP
             this.txb_Password.MaxLength = 6;
             this.txb_RepeatPassword.MaxLength = 6;
             this.rdb_Operator.Checked = true;
+            try
+            {
+                this.dbUser = new DbEntityUser();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al importar la base de datos.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
         private void txb_FileNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -59,7 +67,6 @@ namespace UI_APP
                 List<User> importedList = new List<User>();
                 try
                 {
-                    this.dbUser = new DbUser();
                     importedList = this.dbUser.Import();
                 }
                 catch (Exception)
@@ -97,7 +104,6 @@ namespace UI_APP
                     User auxOperator = new Operator(inputFileNumber, inputUsername, inputPassword);
                     try
                     {
-                        this.dbUser = new DbUser();
                         this.dbUser.Create(auxOperator);
                         MessageBox.Show("Usuario creado con exito!", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.DialogResult = DialogResult.OK;
@@ -112,7 +118,6 @@ namespace UI_APP
                     User auxSupervisor = new Supervisor(inputFileNumber, inputUsername, inputPassword);
                     try
                     {
-                        this.dbUser = new DbUser();
                         this.dbUser.Create(auxSupervisor);
                         MessageBox.Show("Usuario creado con exito!", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.DialogResult = DialogResult.OK;

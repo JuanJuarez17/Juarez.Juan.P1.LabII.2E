@@ -12,17 +12,17 @@ namespace ENTITIES_APP
         private Shift shift;
         private Category category;
 
-        public Division Division 
-        { 
-            get { return division; } 
+        public Division Division
+        {
+            get { return division; }
             set { this.division = value; }
         }
-        public Shift Shift 
-        { 
+        public Shift Shift
+        {
             get { return shift; }
             set { this.shift = value; }
         }
-        public Category Category 
+        public Category Category
         {
             get { return category; }
             set { this.category = value; }
@@ -54,7 +54,13 @@ namespace ENTITIES_APP
                 return 0;
             }
         }
-        public Operator(int inputFileNumber, string inputUsername, string inputPassword) 
+
+        public Operator() : base(0, null, null, false)
+        {
+
+        }
+
+        public Operator(int inputFileNumber, string inputUsername, string inputPassword)
                  : base(inputFileNumber, inputUsername, inputPassword, false) { }
 
         // Operador de conversion para pasar de un objeto a un text (No usado)

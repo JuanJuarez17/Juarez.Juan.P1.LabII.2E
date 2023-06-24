@@ -15,7 +15,7 @@ namespace UI_APP
     public partial class FrmAutocomplete : Form
     {
         private User selectedUser;
-        private DbUser dbUser;
+        private DbEntityUser dbUser;
         public FrmAutocomplete()
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace UI_APP
         {
             try
             {
-                this.dbUser = new DbUser();
+                this.dbUser = new DbEntityUser();
                 this.selectedUser = this.dbUser.Read("Operario");
             }
             catch (Exception)
@@ -48,7 +48,7 @@ namespace UI_APP
         {
             try
             {
-                this.dbUser = new DbUser();
+                this.dbUser = new DbEntityUser();
                 this.selectedUser = this.dbUser.Read("Supervisor");
             }
             catch (Exception)

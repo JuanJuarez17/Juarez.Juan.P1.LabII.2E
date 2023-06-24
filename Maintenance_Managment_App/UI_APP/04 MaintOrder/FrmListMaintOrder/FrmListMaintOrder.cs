@@ -11,7 +11,7 @@ namespace UI_APP
         #region ATTRIBUTES
         private User activeUser;
         private Form activeForm;
-        private DbMaintOrder dbMaintOrder;
+        private DbEntityMaintOrder dbMaintOrder;
         private int flagCreationDateSort = 0;
         private int flagSectionSort = 0;
         private int flagMachineSort = 0;
@@ -129,7 +129,7 @@ namespace UI_APP
             this.btn_ShowMaintOrders.ImageIndex = 11;
             try
             {
-                this.dbMaintOrder = new DbMaintOrder();
+                this.dbMaintOrder = new DbEntityMaintOrder();
                 FrmListMaintenanceOrder_LoadDataGrid(this.dbMaintOrder.Import());
                 FrmListMaintenanceOrder_AvailableFunctions();
             }

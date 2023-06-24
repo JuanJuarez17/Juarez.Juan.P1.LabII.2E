@@ -53,7 +53,7 @@ namespace UI_APP
                 MaintenanceOrder auxMaintOrder = new MaintenanceOrder(this.activeUser.Username, inputSection, inputMachine, inputUrgency, inputDescription);
                 try
                 {
-                    DbMaintOrder auxDbMaintOrder = new DbMaintOrder();
+                    DbEntityMaintOrder auxDbMaintOrder = new DbEntityMaintOrder();
                     auxDbMaintOrder.Create(auxMaintOrder);
                     this.IdAdded = auxDbMaintOrder.GetLast("ID");
                     MessageBox.Show($"Orden de mantenimiento {IdAdded} creada.", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);

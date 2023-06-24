@@ -25,7 +25,7 @@ namespace UI_APP
         }
         private void FrmEditMaintOrder_Load(object sender, EventArgs e)
         {
-            DbMaintOrder dbMaintOrder = new DbMaintOrder();
+            DbEntityMaintOrder dbMaintOrder = new DbEntityMaintOrder();
             MaintenanceOrder auxMaintOrder = dbMaintOrder.Read(this.maintOrderId.ToString());
             this.btn_Accept.ImageIndex = 3;
             this.btn_Cancel.ImageIndex = 4;
@@ -62,17 +62,17 @@ namespace UI_APP
                 auxMaintOrder.Completed = inputStatus;
                 try
                 {
-                    DbMaintOrder dbMaintOrder = new DbMaintOrder();
-                    dbMaintOrder.Update2(auxMaintOrder, this.maintOrderId.ToString());
+                    DbEntityMaintOrder dbMaintOrder = new DbEntityMaintOrder();
+                    dbMaintOrder.Update(auxMaintOrder, this.maintOrderId.ToString());
                     if (inputStatus)
                     {
-                        DbMaintOrder dbMaintOrder2 = new DbMaintOrder();
-                        dbMaintOrder2.Update2("END_DATE", DateTime.Now.ToString("yyyy-MM-dd"), this.maintOrderId.ToString());
+                        DbEntityMaintOrder dbMaintOrder2 = new DbEntityMaintOrder();
+                        dbMaintOrder2.Update("END_DATE", DateTime.Now.ToString("yyyy-MM-dd"), this.maintOrderId.ToString());
                     }
                     else
                     {
-                        DbMaintOrder dbMaintOrder2 = new DbMaintOrder();
-                        dbMaintOrder2.Update2("END_DATE", new DateTime(1753, 01, 01).ToString("yyyy-MM-dd"), this.maintOrderId.ToString());
+                        DbEntityMaintOrder dbMaintOrder2 = new DbEntityMaintOrder();
+                        dbMaintOrder2.Update("END_DATE", new DateTime(1753, 01, 01).ToString("yyyy-MM-dd"), this.maintOrderId.ToString());
                     }
                     MessageBox.Show($"Orden de mantenimiento {this.maintOrderId} modificada.", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
