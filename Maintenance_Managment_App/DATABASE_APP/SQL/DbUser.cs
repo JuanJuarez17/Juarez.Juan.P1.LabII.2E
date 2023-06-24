@@ -10,7 +10,7 @@ namespace DATABASE_APP
 {
     public class DbUser : DbQuery, IDbManipulation<User>
     {
-        public string[] ArrayProperties(User inputInstance)
+        public string[] ParametersArray(User inputInstance)
         {
             if (inputInstance is Operator auxOperator)
             {
@@ -23,29 +23,6 @@ namespace DATABASE_APP
                 return rtn;
             }
         }
-
-        public int Count()
-        {
-            return (int)ExecuteScalar(QueryCommands.SelectQuery("COUNT(USERNAME)", "[USER]") + QueryCommands.ConditionWhere("ACTIVE", "=", "1"));
-        }
-
-        public void Create(User inputInstance)
-        {
-            string[] attributes = { "ACTIVE", "FILE_NUMBER", "USERNAME", "PASSWORD", "ADMIN", "NAME", "SURNAME", "AGE", "ENTRY_DATE", "DIVISION", "SHIFT", "CATEGORY" };
-            string commandQuery = QueryCommands.InsertQuery("[USER]", attributes, ArrayProperties(inputInstance));
-            ExecuteNonQuery(commandQuery);
-        }
-
-        public void Delete(string username)
-        {
-            ExecuteNonQuery(QueryCommands.UpdateQuery("[USER]", "ACTIVE", "0") + QueryCommands.ConditionWhere("USERNAME", "=", $"'{username}'"));
-        }
-
-        public string GetLast(string parameter)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<User> Import()
         {
             List<User> rtn = new List<User>();
@@ -56,6 +33,38 @@ namespace DATABASE_APP
             }
             return rtn;
         }
+        public void Create(User inputInstance)
+        {
+            string[] attributes = { "ACTIVE", "FILE_NUMBER", "USERNAME", "PASSWORD", "ADMIN", "NAME", "SURNAME", "AGE", "ENTRY_DATE", "DIVISION", "SHIFT", "CATEGORY" };
+            string commandQuery = QueryCommands.InsertQuery("[USER]", attributes, ParametersArray(inputInstance));
+            ExecuteNonQuery(commandQuery);
+        }
+        public User Read(string username)
+        {
+            DataTable dataTable = ExecuteReader(QueryCommands.SelectQuery("*", "[USER]") + QueryCommands.ConditionWhere("ACTIVE", "=", "1") + $"AND USERNAME = '{username}'");
+            User rtn = ParseRow(dataTable.Rows[0]);
+            return rtn;
+        }
+        public void Update(string username, string attribute, string value)
+        {
+            ExecuteNonQuery(QueryCommands.UpdateQuery("[USER]", attribute, value) + QueryCommands.ConditionWhere("USERNAME", "=", $"'{username}'"));
+        }
+        public void Delete(string username)
+        {
+            ExecuteNonQuery(QueryCommands.UpdateQuery("[USER]", "ACTIVE", "0") + QueryCommands.ConditionWhere("USERNAME", "=", $"'{username}'"));
+        }
+
+        public int Count()
+        {
+            return (int)ExecuteScalar(QueryCommands.SelectQuery("COUNT(USERNAME)", "[USER]") + QueryCommands.ConditionWhere("ACTIVE", "=", "1"));
+        }
+
+
+
+
+
+
+
         public List<string> ImportUsernames()
         {
             List<User> list = Import();
@@ -109,26 +118,16 @@ namespace DATABASE_APP
             return rtn;
         }
 
-        public string PrintParameter(string primaryKey, string parameter)
+
+
+
+
+
+
+
+        public string GetLast(string parameter)
         {
             throw new NotImplementedException();
-        }
-
-        public User Read(string username)
-        {
-            DataTable dataTable = ExecuteReader(QueryCommands.SelectQuery("*", "[USER]") + QueryCommands.ConditionWhere("ACTIVE", "=", "1") + $"AND USERNAME = '{username}'");
-            User rtn = ParseRow(dataTable.Rows[0]);
-            return rtn;
-        }
-
-        public List<User> Sort(string parameter, string criteria)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(string username, string attribute, string value)
-        {
-            ExecuteNonQuery(QueryCommands.UpdateQuery("[USER]", attribute, value) + QueryCommands.ConditionWhere("USERNAME", "=", $"'{username}'"));
         }
     }
 }

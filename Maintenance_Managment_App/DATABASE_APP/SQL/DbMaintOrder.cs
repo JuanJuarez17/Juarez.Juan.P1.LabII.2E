@@ -1,9 +1,14 @@
-﻿using ENTITIES_APP;
+﻿using DATABASE_APP.SQL;
+using ENTITIES_APP;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -13,11 +18,6 @@ namespace DATABASE_APP
 {
     public class DbMaintOrder : DbQuery, IDbManipulation<MaintenanceOrder>
     {
-        public string[] ArrayProperties(MaintenanceOrder input)
-        {
-            string[] rtn = { $"'{input.Active}'", $"'{input.Username}'", $"'{input.Section}'", $"'{input.Machine}'", $"'{input.Urgency}'", $"'{input.Description}'", $"'{input.CreationDate:yyyy-MM-dd}'", $"'{input.Completed}'", $"'{input.EndDate:yyyy-MM-dd}'", };
-            return rtn;
-        }
         public MaintenanceOrder ParseRow(DataRow inputRow)
         {
             MaintenanceOrder rtn = new MaintenanceOrder();
@@ -43,73 +43,130 @@ namespace DATABASE_APP
             rtn.EndDate = inputEndDate;
             return rtn;
         }
+
+        // ExecuteReader
+
         public List<MaintenanceOrder> Import()
         {
+            string[] attributes = { "ACTIVE" };
+            object[] instanceProperties = { 1 };
+            QueryCommands command = new QueryCommands();
+            command.Select("*", "MAINTORDER");
+            command.WhereCondition(attributes[attributes.Length - 1]);
             List<MaintenanceOrder> rtn = new List<MaintenanceOrder>();
-            DataTable dataTable = ExecuteReader(QueryCommands.SelectQuery("*", "MAINTORDER") + QueryCommands.ConditionWhere("ACTIVE", "=", "1"));
+            DataTable dataTable = ExecuteReader2(command.CommandString, attributes, instanceProperties);
             foreach (DataRow row in dataTable.Rows)
             {
                 rtn.Add(ParseRow(row));
             }
             return rtn;
         }
-        public List<MaintenanceOrder> Import(string atribute, int value)
+        public List<MaintenanceOrder> Import(string parameter, string parameterValue)
         {
+            string[] attributes = { "ACTIVE", parameter};
+            object[] instanceProperties = { 1, parameterValue };
+            QueryCommands command = new QueryCommands();
+            command.Select("*", "MAINTORDER");
+            command.WhereCondition(attributes[attributes.Length - 2]);
+            command.AndCondition(attributes[attributes.Length - 1]);
             List<MaintenanceOrder> rtn = new List<MaintenanceOrder>();
-            DataTable dataTable = ExecuteReader(QueryCommands.SelectQuery("*", "MAINTORDER") + QueryCommands.ConditionWhere("ACTIVE", "=", "1")
-                                    + " AND " + $"{atribute} = {value}");
+            DataTable dataTable = ExecuteReader2(command.CommandString, attributes, instanceProperties);
             foreach (DataRow row in dataTable.Rows)
             {
                 rtn.Add(ParseRow(row));
             }
             return rtn;
         }
-        public void Create(MaintenanceOrder inputInstance)
+        public MaintenanceOrder Read(string conditionValue)
+        {
+            string[] attributes = { "ID" };
+            object[] instanceProperties = { conditionValue };
+            QueryCommands command = new QueryCommands();
+            command.Select("*", "MAINTORDER");
+            command.WhereCondition(attributes[attributes.Length - 1]);
+            DataTable dataTable = ExecuteReader2(command.CommandString, attributes, instanceProperties);
+            MaintenanceOrder rtn = ParseRow(dataTable.Rows[0]);
+            return rtn;
+        }
+
+        // ExecuteNonQuery
+        public void Create(MaintenanceOrder input)
         {
             string[] attributes = { "ACTIVE", "MAKER", "SECTION", "MACHINE", "URGENCY", "DESCR", "CREATION_DATE", "COMPLETED", "END_DATE" };
-            string commandQuery = QueryCommands.InsertQuery("MAINTORDER", attributes, ArrayProperties(inputInstance));
-            ExecuteNonQuery(commandQuery);
+            object[] instanceProperties = { input.Active, input.Username, input.Section.ToString(), input.Machine.ToString(), input.Urgency.ToString(), input.Description, input.CreationDate, input.Completed, input.EndDate };
+            QueryCommands command = new QueryCommands();
+            command.Insert("MAINTORDER");
+            command.InsertAddAttributes(attributes);
+            ExecuteNonQuery2(command.CommandString, attributes, instanceProperties);
         }
         public void Update(string id, string attribute, string value)
         {
             ExecuteNonQuery(QueryCommands.UpdateQuery("MAINTORDER", attribute, value) + QueryCommands.ConditionWhere("ID", "=", id));
         }
-        public MaintenanceOrder Read(string id)
+        public void Update2(string updateAttribute, string updateValue, string conditionValue)
         {
-            DataTable dataTable = ExecuteReader(QueryCommands.SelectQuery("*", "MAINTORDER") + QueryCommands.ConditionWhere("ID", "=", id));
-            MaintenanceOrder rtn = ParseRow(dataTable.Rows[0]);
-            return rtn;
+            string[] attributes = { updateAttribute, "ID" };
+            object[] instanceProperties = { updateValue, conditionValue };
+            QueryCommands command = new QueryCommands();
+            command.Update("MAINTORDER");
+            command.UpdateAddAttributes(attributes);
+            command.WhereCondition(attributes[attributes.Length - 1]);
+            ExecuteNonQuery2(command.CommandString, attributes, instanceProperties);
         }
-        public void Delete(string id)
+        public void Update2(MaintenanceOrder input, string conditionValue)
         {
-            ExecuteNonQuery(QueryCommands.UpdateQuery("MAINTORDER", "ACTIVE", "0") + QueryCommands.ConditionWhere("ID", "=", id));
+            string[] attributes = { "SECTION", "MACHINE", "URGENCY", "DESCR", "COMPLETED", "ID"};
+            object[] instanceProperties = { input.Section.ToString(), input.Machine.ToString(), input.Urgency.ToString(), input.Description, input.Completed, conditionValue };
+            QueryCommands command = new QueryCommands();
+            command.Update("MAINTORDER");
+            command.UpdateAddAttributes(attributes);
+            command.WhereCondition(attributes[attributes.Length - 1]);
+            ExecuteNonQuery2(command.CommandString, attributes, instanceProperties);
         }
+        public void Delete(string conditionValue)
+        {
+            string[] attributes = { "ACTIVE", "ID" };
+            object[] instanceProperties = { 0, conditionValue };
+            QueryCommands command = new QueryCommands();
+            command.Update("MAINTORDER");
+            command.UpdateAddAttributes(attributes);
+            command.WhereCondition(attributes[attributes.Length - 1]);
+            ExecuteNonQuery2(command.CommandString, attributes, instanceProperties);
+        }
+
+        // ExecuteScalar
         public int Count()
         {
-            return (int)ExecuteScalar(QueryCommands.SelectQuery("COUNT(ID)", "MAINTORDER") + QueryCommands.ConditionWhere("ACTIVE", "=", "1"));
+            return 1;
         }
-        public int Count(string parameter, int value)
+        public int Count(string parameter, string parameterValue)
         {
-            return (int)ExecuteScalar(QueryCommands.SelectQuery("COUNT(ID)", "MAINTORDER") + QueryCommands.ConditionWhere("ACTIVE", "=", "1")
-                + $"AND {parameter} = {value}");
+            string[] attributes = { parameter };
+            object[] instanceProperties = { parameterValue };
+            QueryCommands command = new QueryCommands();
+            command.SelectCount("ID", "MAINTORDER");
+            command.WhereCondition(attributes[attributes.Length - 1]);
+            return (int)ExecuteScalar2(command.CommandString, attributes, instanceProperties);
+        }
+        public int Count(string parameter, string parameterValue, string sndParameter, string sndParameterValue)
+        {
+            string[] attributes = { parameter, sndParameter };
+            object[] instanceProperties = { parameterValue, sndParameterValue };
+            QueryCommands command = new QueryCommands();
+            command.SelectCount("ID", "MAINTORDER");
+            command.WhereCondition(attributes[attributes.Length - 2]);
+            command.AndCondition(attributes[attributes.Length - 1]);
+            return (int)ExecuteScalar2(command.CommandString, attributes, instanceProperties);
         }
         public string GetLast(string parameter)
         {
-            return ExecuteScalar(QueryCommands.SelectQuery("TOP (1)" + parameter, "MAINTORDER") + QueryCommands.ConditionWhere("ACTIVE", "=", "1") + QueryCommands.OrderQuery("ID", "DESC")).ToString();
-        }
-        public string PrintParameter(string id, string parameter)
-        {
-            return ExecuteScalar(QueryCommands.SelectQuery(parameter, "MAINTORDER") + QueryCommands.ConditionWhere("ID", "=", id)).ToString();
-        }
-        public List<MaintenanceOrder> Sort(string parameter, string criteria)
-        {
-            List<MaintenanceOrder> rtn = new List<MaintenanceOrder>();
-            DataTable dataTable = ExecuteReader(QueryCommands.SelectQuery("*", "MAINTORDER") + QueryCommands.ConditionWhere("ACTIVE", "=", "1") + QueryCommands.OrderQuery(parameter, criteria));
-            foreach (DataRow row in dataTable.Rows)
-            {
-                rtn.Add(ParseRow(row));
-            }
-            return rtn;
+            string[] attributes = { "ACTIVE" };
+            object[] instanceProperties = { 1 };
+            QueryCommands command = new QueryCommands();
+            command.SelectTop(parameter, "MAINTORDER");
+            command.WhereCondition(attributes[attributes.Length - 1]);
+            command.OrderCondition(parameter, "DESC");
+            return (ExecuteScalar2(command.CommandString, attributes, instanceProperties)).ToString();
         }
     }
 }

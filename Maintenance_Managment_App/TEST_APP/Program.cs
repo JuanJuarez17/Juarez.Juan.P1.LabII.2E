@@ -10,6 +10,8 @@ namespace TEST_APP
     {
         static void Main(string[] args)
         {
+            /*
+ 
             try
             {
                 #region TEST MAINT ORDER SQL
@@ -79,9 +81,6 @@ namespace TEST_APP
 
 
                 Console.WriteLine("Dentro del try");
-
-
-
             }
             catch (Exception)
             {
@@ -91,7 +90,49 @@ namespace TEST_APP
             {
                 Console.WriteLine("Esto se ejecuto");
             }
+                        */
 
+            //MaintenanceOrder aux = new MaintenanceOrder("ETolosa", Section.Almacen, Machine.Brochadora, Urgency.Normal, "testeando");
+
+            //List<object> list = ArrayObject(aux);
+
+            //foreach (object item in list)
+            //{
+            //    Console.WriteLine(item.ToString());
+            //}
+
+
+            //string[] attributes = { "ACTIVE", "MAKER", "SECTION", "MACHINE", "URGENCY", "DESCR", "CREATION_DATE", "COMPLETED", "END_DATE" };
+            //string selectQuery = QueryCommands.SelectQuery("*", "MAINTORDER");
+            //string insertQuery = QueryCommandds.InsertQuery2("MAINTORDER", attributes);
+            //string updateQuery = QueryCommands.UpdateQuery2("MAINTORDER", "ID");
+            //string condWhere = QueryCommands.ConditionWhere2("USERMANE", "=");
+            //string orderQeury = QueryCommands.OrderQuery("ID", "DESC");
+            //Console.WriteLine(insertQuery);
+            //Console.WriteLine(updateQuery);
+            //Console.WriteLine(condWhere);
+
+
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Select("MAINTORDER", "MAKER");
+
+            Console.WriteLine(cmd);
+
+        }
+
+        public static List<object> ArrayObject(MaintenanceOrder input)
+        {
+            List<object> rtn = new List<object>();
+            rtn.Add(input.Active);
+            rtn.Add(input.Username);
+            rtn.Add(input.Section);
+            rtn.Add(input.Machine);
+            rtn.Add(input.Urgency);
+            rtn.Add(input.Description);
+            rtn.Add(input.CreationDate);
+            rtn.Add(input.Completed);
+            rtn.Add(input.EndDate);
+            return rtn;
         }
     }
 }

@@ -56,7 +56,7 @@ namespace UI_APP
                 this.btn_DeleteMaintOrder.Visible = false;
             }
             // Datagridview Permissions
-            if (this.dbMaintOrder.Count() > 0)
+            if (this.dbMaintOrder.Count("ACTIVE", "1") > 0)
             {
                 this.dtg_MaintOrderDb.Visible = true;
                 this.lbl_MaintOrderDb.Visible = false;
@@ -148,8 +148,7 @@ namespace UI_APP
             if (result == DialogResult.OK)
             {
                 try
-                {
-                    this.dbMaintOrder = new DbMaintOrder(); // VER XQ NECESITO ASIGNARLA DEVUELTA                  
+                {             
                     string idAdded = this.dbMaintOrder.GetLast("ID");
                     FrmListMaintenanceOrder_LoadDataGrid(dbMaintOrder.Import());
                     FrmListMaintenanceOrder_AvailableFunctions();
@@ -181,8 +180,7 @@ namespace UI_APP
             {
                 try
                 {
-                    this.dbMaintOrder = new DbMaintOrder();
-                    FrmListMaintenanceOrder_LoadDataGrid(dbMaintOrder.Import());
+                    FrmListMaintenanceOrder_LoadDataGrid(this.dbMaintOrder.Import());
                     if (LogsNotification is not null)
                     {
                         LogsNotification.Invoke(this.activeUser.Username, $"Modifico Orden de Mantenimiento ID {selectedId}");
@@ -207,7 +205,6 @@ namespace UI_APP
             {
                 try
                 {
-                    this.dbMaintOrder = new DbMaintOrder();
                     this.dbMaintOrder.Delete(selectedId.ToString());
                     FrmListMaintenanceOrder_LoadDataGrid(this.dbMaintOrder.Import());
                     FrmListMaintenanceOrder_AvailableFunctions();
@@ -226,18 +223,15 @@ namespace UI_APP
         {
             if (this.rdb_ActiveMaintOrders.Checked)
             {
-                this.dbMaintOrder = new DbMaintOrder();
                 FrmListMaintenanceOrder_LoadDataGrid(this.dbMaintOrder.Import());
             }
             else if (this.rdb_CompletedMaintOrders.Checked)
             {
-                this.dbMaintOrder = new DbMaintOrder();
-                FrmListMaintenanceOrder_LoadDataGrid(this.dbMaintOrder.Import("COMPLETED", 1));
+                FrmListMaintenanceOrder_LoadDataGrid(this.dbMaintOrder.Import("COMPLETED", "1"));
             }
             else if (this.rdb_UncompletedMaintOrders.Checked)
             {
-                this.dbMaintOrder = new DbMaintOrder();
-                FrmListMaintenanceOrder_LoadDataGrid(this.dbMaintOrder.Import("COMPLETED", 0));
+                FrmListMaintenanceOrder_LoadDataGrid(this.dbMaintOrder.Import("COMPLETED", "0"));
             }
 
         }

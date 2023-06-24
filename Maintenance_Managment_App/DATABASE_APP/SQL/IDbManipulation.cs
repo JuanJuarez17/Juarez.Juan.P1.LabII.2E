@@ -10,7 +10,6 @@ namespace DATABASE_APP
 {
     public interface IDbManipulation<T> where T : class
     {
-        public string[] ArrayProperties(T inputInstance);
         public T ParseRow(DataRow inputRow);
         public List<T> Import();
         public void Create(T inputInstance);
@@ -19,7 +18,5 @@ namespace DATABASE_APP
         public void Delete(string primaryKey);
         public int Count();
         public string GetLast(string parameter);
-        public string PrintParameter(string primaryKey, string parameter);
-        public List<T> Sort(string parameter, string criteria);
     }
 }

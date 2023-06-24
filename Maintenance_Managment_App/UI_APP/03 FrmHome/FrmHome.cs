@@ -37,7 +37,7 @@ namespace UI_APP
             {
                 MessageBox.Show("Error al importar la base de datos.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            if (this.dbMaintOrder.Count() == 0)
+            if (this.dbMaintOrder.Count("ACTIVE", "1") == 0)
             {
                 string messsage = "No hay ordenes de mantenimiento activas.";
                 this.lbl_MaintOrderDb.Text = messsage;
@@ -50,8 +50,8 @@ namespace UI_APP
             else
             {
                 this.lbl_MaintOrderDb.Visible = false;
-                this.txb_FinishedOrders.Text = this.dbMaintOrder.Count("COMPLETED", 1).ToString();
-                this.txb_UnfinishedOrders.Text = this.dbMaintOrder.Count("COMPLETED", 0).ToString();
+                this.txb_FinishedOrders.Text = this.dbMaintOrder.Count("ACTIVE", "1", "COMPLETED", "1").ToString();
+                this.txb_UnfinishedOrders.Text = this.dbMaintOrder.Count("ACTIVE", "1", "COMPLETED", "0").ToString();
             }
         }
     }

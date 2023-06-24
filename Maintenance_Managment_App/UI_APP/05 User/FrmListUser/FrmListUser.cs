@@ -164,6 +164,8 @@ namespace UI_APP
             this.btn_Cancel.ImageIndex = 3;
             FrmAccountDetails_AvailableFunctions();
             FrmAccountDetails_LoadDetails(this.activeUser);
+            
+
 
             try
             {
