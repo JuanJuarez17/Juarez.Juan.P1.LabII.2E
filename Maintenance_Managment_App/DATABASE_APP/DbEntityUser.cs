@@ -83,7 +83,7 @@ namespace DATABASE_APP
             object[] instanceProperties;
             if (input is Operator inputOp)
             {
-                instanceProperties = new object[] { inputOp.Active, inputOp.FileNumber, inputOp.Username, inputOp.Password, inputOp.Admin, inputOp.Name, inputOp.Surname, inputOp.Age, inputOp.EntryDate, inputOp.Division, inputOp.Shift, inputOp.Category };
+                instanceProperties = new object[] { inputOp.Active, inputOp.FileNumber, inputOp.Username, inputOp.Password, inputOp.Admin, inputOp.Name, inputOp.Surname, inputOp.Age, inputOp.EntryDate, inputOp.Division.ToString(), inputOp.Shift.ToString(), inputOp.Category.ToString() };
             }
             else
             {

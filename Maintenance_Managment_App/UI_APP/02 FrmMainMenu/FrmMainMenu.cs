@@ -83,8 +83,6 @@ namespace UI_APP
             StringBuilder lblInfoTxt = new StringBuilder();
             lblInfoTxt.Append(DateTime.Now.ToString("dd/MM/yyyy"));
             lblInfoTxt.Append(" / ");
-            lblInfoTxt.Append(DateTime.Now.ToString("HH:mm"));
-            lblInfoTxt.Append(" / ");
             lblInfoTxt.Append("v4.05");
             tss_Status.Text = lblInfoTxt.ToString();
         }
@@ -124,7 +122,6 @@ namespace UI_APP
         }
 
         #endregion
-
 
     }
 }

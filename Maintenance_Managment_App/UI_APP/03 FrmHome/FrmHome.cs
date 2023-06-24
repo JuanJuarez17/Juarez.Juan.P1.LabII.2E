@@ -35,7 +35,8 @@ namespace UI_APP
             }
             catch (Exception)
             {
-                MessageBox.Show("Error al importar la base de datos.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Error al importar la base de datos.\nReinicie la aplicacion.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Application.Exit();
             }
             if (this.dbMaintOrder.Count("ACTIVE", "1") == 0)
             {
@@ -52,7 +53,23 @@ namespace UI_APP
                 this.lbl_MaintOrderDb.Visible = false;
                 this.txb_FinishedOrders.Text = this.dbMaintOrder.Count("ACTIVE", "1", "COMPLETED", "1").ToString();
                 this.txb_UnfinishedOrders.Text = this.dbMaintOrder.Count("ACTIVE", "1", "COMPLETED", "0").ToString();
+                int rushUncompleteMaintOrders = this.dbMaintOrder.Count("ACTIVE", "1", "COMPLETED", "0", "URGENCY", "Urgente");
+                if (rushUncompleteMaintOrders != 0)
+                {
+                    this.txb_RushOrders.Text = rushUncompleteMaintOrders.ToString();
+                    this.txb_IdRushOrders.Text = MaintenanceOrder.GetMaintOrderId(this.dbMaintOrder.Import("ACTIVE", "1", "COMPLETED", "0", "URGENCY", "Urgente"));
+                }
+                else
+                {
+                    this.txb_RushOrders.Text = "-";
+                    this.txb_IdRushOrders.Text = "-";
+                }
             }
+        }
+
+        private void tmr_FrmHome_Tick(object sender, EventArgs e)
+        {
+            this.lbl_DateTime.Text = DateTime.Now.ToString("dddd dd/MM/yyyy HH:mm:ss");
         }
     }
 }

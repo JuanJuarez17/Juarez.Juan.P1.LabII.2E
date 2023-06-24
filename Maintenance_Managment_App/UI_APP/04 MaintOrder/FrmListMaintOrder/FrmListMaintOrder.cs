@@ -227,11 +227,11 @@ namespace UI_APP
             }
             else if (this.rdb_CompletedMaintOrders.Checked)
             {
-                FrmListMaintenanceOrder_LoadDataGrid(this.dbMaintOrder.Import("COMPLETED", "1"));
+                FrmListMaintenanceOrder_LoadDataGrid(this.dbMaintOrder.Import("ACTIVE", "1", "COMPLETED", "1"));
             }
             else if (this.rdb_UncompletedMaintOrders.Checked)
             {
-                FrmListMaintenanceOrder_LoadDataGrid(this.dbMaintOrder.Import("COMPLETED", "0"));
+                FrmListMaintenanceOrder_LoadDataGrid(this.dbMaintOrder.Import("ACTIVE", "1", "COMPLETED", "0"));
             }
 
         }

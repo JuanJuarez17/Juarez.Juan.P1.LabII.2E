@@ -187,3 +187,89 @@
 2023/06/24 12:49:54 - Supervisor      - Salio de la aplicacion.
 2023/06/24 12:50:41 - STest           - Ingreso a la aplicacion.
 2023/06/24 12:50:49 - STest           - Salio de la aplicacion.
+2023/06/24 02:54:06 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 02:54:23 - Supervisor      - Salio de la aplicacion.
+2023/06/24 02:54:28 - Operario        - Ingreso a la aplicacion.
+2023/06/24 02:55:20 - Operario        - Salio de la aplicacion.
+2023/06/24 02:59:54 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 03:00:54 - Supervisor      - Salio de la aplicacion.
+2023/06/24 03:01:51 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 03:04:32 - Supervisor      - Salio de la aplicacion.
+2023/06/24 05:51:10 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 05:53:20 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 05:53:40 - Supervisor      - Salio de la aplicacion.
+2023/06/24 05:56:20 - JJuarez         - Ingreso a la aplicacion.
+2023/06/24 05:56:36 - JJuarez         - Salio de la aplicacion.
+2023/06/24 06:18:22 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 06:18:28 - Supervisor      - Salio de la aplicacion.
+2023/06/24 06:18:41 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 06:19:29 - Supervisor      - Modifico Orden de Mantenimiento ID 108
+2023/06/24 06:20:03 - Supervisor      - Modifico Orden de Mantenimiento ID 101
+2023/06/24 06:21:11 - Supervisor      - Salio de la aplicacion.
+2023/06/24 06:25:22 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 06:25:50 - Supervisor      - Salio de la aplicacion.
+2023/06/24 06:25:59 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 06:26:13 - Supervisor      - Modifico Orden de Mantenimiento ID 108
+2023/06/24 06:26:51 - Supervisor      - Salio de la aplicacion.
+2023/06/24 06:31:19 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 06:31:30 - Supervisor      - Modifico Orden de Mantenimiento ID 101
+2023/06/24 06:31:41 - Supervisor      - Modifico Orden de Mantenimiento ID 104
+2023/06/24 06:31:49 - Supervisor      - Modifico Orden de Mantenimiento ID 112
+2023/06/24 06:32:13 - Supervisor      - Modifico Orden de Mantenimiento ID 109
+2023/06/24 06:32:29 - Supervisor      - Salio de la aplicacion.
+2023/06/24 06:38:17 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 06:38:31 - Supervisor      - Modifico Orden de Mantenimiento ID 105
+2023/06/24 06:38:38 - Supervisor      - Salio de la aplicacion.
+2023/06/24 06:46:24 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 06:46:43 - Supervisor      - Modifico Orden de Mantenimiento ID 112
+2023/06/24 06:46:56 - Supervisor      - Salio de la aplicacion.
+2023/06/24 06:47:15 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 06:47:30 - Supervisor      - Modifico Orden de Mantenimiento ID 108
+2023/06/24 06:47:45 - Supervisor      - Modifico Orden de Mantenimiento ID 108
+2023/06/24 06:47:51 - Supervisor      - Modifico Orden de Mantenimiento ID 109
+2023/06/24 06:48:00 - Supervisor      - Elimino Orden de Mantenimiento ID 112
+2023/06/24 06:48:06 - Supervisor      - Salio de la aplicacion.
+2023/06/24 06:49:29 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 06:50:03 - Supervisor      - Modifico Orden de Mantenimiento ID 104
+2023/06/24 06:50:45 - Supervisor      - Modifico Orden de Mantenimiento ID 108
+2023/06/24 06:50:59 - Supervisor      - Salio de la aplicacion.
+2023/06/24 06:51:51 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 06:52:18 - Supervisor      - Salio de la aplicacion.
+2023/06/24 06:52:49 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 06:52:54 - Supervisor      - Salio de la aplicacion.
+2023/06/24 06:53:04 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 06:53:15 - Supervisor      - Salio de la aplicacion.
+2023/06/24 06:53:20 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 06:53:27 - Supervisor      - Salio de la aplicacion.
+2023/06/24 06:53:40 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 06:53:56 - Supervisor      - Salio de la aplicacion.
+2023/06/24 06:54:45 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 06:55:09 - Supervisor      - Salio de la aplicacion.
+2023/06/24 06:56:14 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 06:56:48 - Supervisor      - Salio de la aplicacion.
+2023/06/24 06:58:35 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 06:59:16 - Supervisor      - Modifico Orden de Mantenimiento ID 110
+2023/06/24 07:01:25 - Supervisor      - Salio de la aplicacion.
+2023/06/24 07:17:22 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 07:17:26 - Supervisor      - Salio de la aplicacion.
+2023/06/24 07:18:24 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 07:18:27 - Supervisor      - Salio de la aplicacion.
+2023/06/24 07:18:42 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 07:18:46 - Supervisor      - Salio de la aplicacion.
+2023/06/24 07:19:17 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 07:19:32 - Supervisor      - Salio de la aplicacion.
+2023/06/24 07:20:07 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 07:20:16 - Supervisor      - Salio de la aplicacion.
+2023/06/24 07:20:52 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 07:21:13 - Supervisor      - Salio de la aplicacion.
+2023/06/24 07:21:41 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 07:21:48 - Supervisor      - Salio de la aplicacion.
+2023/06/24 07:22:15 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 07:22:35 - Supervisor      - Modifico Orden de Mantenimiento ID 105
+2023/06/24 07:23:13 - Supervisor      - Salio de la aplicacion.
+2023/06/24 07:28:10 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 07:28:23 - Supervisor      - Salio de la aplicacion.
+2023/06/24 07:28:36 - Supervisor      - Ingreso a la aplicacion.
+2023/06/24 07:28:42 - Supervisor      - Salio de la aplicacion.
+2023/06/24 07:28:50 - JJuarez         - Ingreso a la aplicacion.
+2023/06/24 07:28:58 - JJuarez         - Salio de la aplicacion.

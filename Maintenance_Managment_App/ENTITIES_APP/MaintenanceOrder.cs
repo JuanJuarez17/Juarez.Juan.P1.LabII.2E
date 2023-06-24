@@ -197,6 +197,17 @@ namespace ENTITIES_APP
             return rtn;
         }
 
+
+        public static string GetMaintOrderId(List<MaintenanceOrder> inputList)
+        {
+            string rtn = string.Empty;
+            foreach (MaintenanceOrder item in inputList)
+            {
+                rtn += $"{item.Id} - ";
+            }
+            return rtn;
+        }
+
         // SORT
         public static List<MaintenanceOrder> Sort(List<MaintenanceOrder> inputList, string parameter, int inputOrder)
         {

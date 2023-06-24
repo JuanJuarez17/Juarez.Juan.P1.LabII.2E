@@ -49,10 +49,10 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-        public List<MaintenanceOrder> Import(string parameter, string parameterValue)
+        public List<MaintenanceOrder> Import(string parameter, string parameterValue, string sndParameter, string sndParameterValue)
         {
-            string[] attributes = { "ACTIVE", parameter};
-            object[] instanceProperties = { 1, parameterValue };
+            string[] attributes = { parameter, sndParameter};
+            object[] instanceProperties = { parameterValue, sndParameterValue };
             QueryCommands command = new QueryCommands();
             command.Select("*", "MAINTORDER");
             command.WhereCondition(attributes[attributes.Length - 2]);
@@ -65,6 +65,27 @@ namespace DATABASE_APP
             }
             return rtn;
         }
+
+        public List<MaintenanceOrder> Import(string parameter, string parameterValue, string sndParameter, string sndParameterValue, string thdParameter, string thdParameterValue)
+        {
+            string[] attributes = { parameter, sndParameter, thdParameter };
+            object[] instanceProperties = { parameterValue, sndParameterValue, thdParameterValue };
+            QueryCommands command = new QueryCommands();
+            command.Select("*", "MAINTORDER");
+            command.WhereCondition(attributes[attributes.Length - 3]);
+            command.AndCondition(attributes[attributes.Length - 2]);
+            command.AndCondition(attributes[attributes.Length - 1]);
+            List<MaintenanceOrder> rtn = new List<MaintenanceOrder>();
+            DataTable dataTable = ExecuteReader(command.CommandString, attributes, instanceProperties);
+            foreach (DataRow row in dataTable.Rows)
+            {
+                rtn.Add(ParseRow(row));
+            }
+            return rtn;
+        }
+
+
+
         public MaintenanceOrder Read(string conditionValue)
         {
             string[] attributes = { "ID" };
@@ -135,6 +156,17 @@ namespace DATABASE_APP
             QueryCommands command = new QueryCommands();
             command.SelectCount("ID", "MAINTORDER");
             command.WhereCondition(attributes[attributes.Length - 2]);
+            command.AndCondition(attributes[attributes.Length - 1]);
+            return (int)ExecuteScalar(command.CommandString, attributes, instanceProperties);
+        }
+        public int Count(string parameter, string parameterValue, string sndParameter, string sndParameterValue, string thdParameter, string thdParameterValue)
+        {
+            string[] attributes = { parameter, sndParameter, thdParameter };
+            object[] instanceProperties = { parameterValue, sndParameterValue, thdParameterValue };
+            QueryCommands command = new QueryCommands();
+            command.SelectCount("ID", "MAINTORDER");
+            command.WhereCondition(attributes[attributes.Length - 3]);
+            command.AndCondition(attributes[attributes.Length - 2]);
             command.AndCondition(attributes[attributes.Length - 1]);
             return (int)ExecuteScalar(command.CommandString, attributes, instanceProperties);
         }
