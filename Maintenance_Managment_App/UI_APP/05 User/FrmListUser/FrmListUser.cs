@@ -11,6 +11,7 @@ namespace UI_APP
         private User activeUser;
         private User auxUser;
         private DbEntityUser dbUser;
+        private DbEntityMaintOrder dbMaintOrder;
         private Form activeForm;
 
         private bool modifyModeEnable = false;
@@ -39,7 +40,7 @@ namespace UI_APP
             activeForm.BringToFront();
             result = activeForm.ShowDialog();
         }
-        private void FrmAccountDetails_AvailableFunctions()
+        private void FrmListUser_AvailableFunctions()
         {
             if (!this.activeUser.Admin) { gpb_ControlPanel.Visible = false; }
 
@@ -47,11 +48,15 @@ namespace UI_APP
             {
                 this.btn_ModifyUser.Enabled = true;
                 this.btn_DeleteUser.Enabled = true;
+                this.dtg_UserMaintOrder.Visible = true;
+                this.lbl_Datagrid.Visible = false;
             }
             else
             {
                 this.btn_ModifyUser.Enabled = false;
                 this.btn_DeleteUser.Enabled = false;
+                this.dtg_UserMaintOrder.Visible = false;
+                this.lbl_Datagrid.Visible = true;
             }
 
             if (this.modifyModeEnable)
@@ -90,10 +95,17 @@ namespace UI_APP
                 this.cbb_UserCategory.Enabled = false;
             }
         }
-        private void FrmAccountDetails_LoadDetails(User inputUser)
+        private void FrmListUser_LoadDetails(User inputUser)
         {
-            if (inputUser.Admin) { this.gpb_PositionDetails.Visible = false; }
-            else { this.gpb_PositionDetails.Visible = true; }
+            if (inputUser.Admin)
+            {
+                this.gpb_PositionDetails.Visible = false;
+            }
+            else
+            {
+                this.gpb_PositionDetails.Visible = true;
+                this.lbl_Datagrid.Text = "No se pueden mostrar las ordenes.";
+            }
 
             this.gpb_UserDetails.Text = $"Detalles del usuario {inputUser.Username}";
             this.gpb_PositionDetails.Text = $"Detalles del puesto de {inputUser.Username}";
@@ -129,7 +141,7 @@ namespace UI_APP
                 if (string.IsNullOrWhiteSpace(txb_UserName.Text)) { this.txb_UserName.Text = "No ingresado"; }
                 if (string.IsNullOrWhiteSpace(txb_UserSurname.Text)) { this.txb_UserSurname.Text = "No ingresado"; }
                 if (txb_UserAge.Text == "0") { this.txb_UserAge.Text = "No ingresado"; }
-                if (txb_EntryDate.Text == "1/1/0001") { this.txb_EntryDate.Text = "No ingresado"; }
+                if (txb_EntryDate.Text == "1753/01/01") { this.txb_EntryDate.Text = "No ingresado"; }
 
                 if (this.gpb_PositionDetails.Visible == true)
                 {
@@ -148,6 +160,25 @@ namespace UI_APP
                 this.btn_Cancel.Visible = false;
             }
         }
+        public void FrmListUser_LoadDataGrid<T>(List<T> inputDataSource) where T : class
+        {
+            this.dtg_UserMaintOrder.DataSource = null;
+            this.dtg_UserMaintOrder.DataSource = inputDataSource;
+            this.dtg_UserMaintOrder.Columns["Active"].Visible = false;
+            this.dtg_UserMaintOrder.Columns["Username"].Visible = false;
+            this.dtg_UserMaintOrder.Columns["Description"].Visible = false;
+            this.dtg_UserMaintOrder.Columns["EndDate"].Visible = false;
+            this.dtg_UserMaintOrder.Columns["Antiquity"].Visible = false;
+            this.dtg_UserMaintOrder.Columns[0].HeaderText = "ID ORDEN";
+            this.dtg_UserMaintOrder.Columns[2].HeaderText = "GENERÓ";
+            this.dtg_UserMaintOrder.Columns[3].HeaderText = "SECCCIÓN";
+            this.dtg_UserMaintOrder.Columns[4].HeaderText = "UNIDAD";
+            this.dtg_UserMaintOrder.Columns[5].HeaderText = "URGENCIA";
+            this.dtg_UserMaintOrder.Columns[6].HeaderText = "INGRESO";
+            this.dtg_UserMaintOrder.Columns[8].HeaderText = "COMPLETADA";
+            this.dtg_UserMaintOrder.Columns[9].HeaderText = "FINALIZADA";
+        }
+
         #endregion
 
         #region EVENT METHODS
@@ -162,13 +193,15 @@ namespace UI_APP
             this.btn_DeleteUser.ImageIndex = 2;
             this.btn_Accept.ImageIndex = 4;
             this.btn_Cancel.ImageIndex = 3;
-            FrmAccountDetails_AvailableFunctions();
-            FrmAccountDetails_LoadDetails(this.activeUser);        
+            this.lbl_Datagrid.Text = "Seleccione un operario para ver las ordenes generadas.";
+            FrmListUser_AvailableFunctions();
+            FrmListUser_LoadDetails(this.activeUser);
 
             try
             {
                 this.dbUser = new DbEntityUser();
                 this.cbb_UsernameList.DataSource = User.ImportUsernames(this.dbUser.Import());
+                this.dbMaintOrder = new DbEntityMaintOrder();
             }
             catch (Exception)
             {
@@ -179,11 +212,11 @@ namespace UI_APP
         {
             this.userSearchedEnable = true;
             string selectedUsername = this.cbb_UsernameList.SelectedItem.ToString();
-
             this.auxUser = this.dbUser.Read(selectedUsername);
-
-            FrmAccountDetails_AvailableFunctions();
-            FrmAccountDetails_LoadDetails(this.auxUser);
+            FrmListUser_AvailableFunctions();
+            FrmListUser_LoadDetails(this.auxUser);
+            List<MaintenanceOrder> maintORderDb = this.dbMaintOrder.Import();
+            FrmListUser_LoadDataGrid(maintORderDb.Filtrar(MaintenanceOrder.CompareUsername, this.auxUser.Username));
         }
         private void btn_AddUser_Click(object sender, EventArgs e)
         {
@@ -193,8 +226,8 @@ namespace UI_APP
                 try
                 {
                     this.cbb_UsernameList.DataSource = User.ImportUsernames(this.dbUser.Import());
-                    FrmAccountDetails_AvailableFunctions();
-                    FrmAccountDetails_LoadDetails(this.activeUser);
+                    FrmListUser_AvailableFunctions();
+                    FrmListUser_LoadDetails(this.activeUser);
                 }
                 catch (Exception)
                 {
@@ -209,8 +242,8 @@ namespace UI_APP
         private void btn_ModifyUser_Click(object sender, EventArgs e)
         {
             this.modifyModeEnable = true;
-            FrmAccountDetails_AvailableFunctions();
-            FrmAccountDetails_LoadDetails(auxUser);
+            FrmListUser_AvailableFunctions();
+            FrmListUser_LoadDetails(auxUser);
         }
         private void btn_DeleteUser_Click(object sender, EventArgs e)
         {
@@ -219,8 +252,8 @@ namespace UI_APP
             {
                 this.dbUser.Delete(this.auxUser.Username);
                 this.cbb_UsernameList.DataSource = User.ImportUsernames(this.dbUser.Import());
-                FrmAccountDetails_AvailableFunctions();
-                FrmAccountDetails_LoadDetails(this.activeUser);
+                FrmListUser_AvailableFunctions();
+                FrmListUser_LoadDetails(this.activeUser);
             }
         }
         private void btn_Accept_Click(object sender, EventArgs e)
@@ -244,8 +277,8 @@ namespace UI_APP
                 {
                     this.dbUser.Update(auxUser, this.auxUser.Username);
                     this.modifyModeEnable = false;
-                    FrmAccountDetails_AvailableFunctions();
-                    FrmAccountDetails_LoadDetails(this.dbUser.Read(this.auxUser.Username));
+                    FrmListUser_AvailableFunctions();
+                    FrmListUser_LoadDetails(this.dbUser.Read(this.auxUser.Username));
                 }
                 catch (Exception)
                 {
@@ -261,8 +294,8 @@ namespace UI_APP
         {
             MessageBox.Show("Modificacion de usuario cancelada!", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             this.modifyModeEnable = false;
-            FrmAccountDetails_AvailableFunctions();
-            FrmAccountDetails_LoadDetails(this.auxUser);
+            FrmListUser_AvailableFunctions();
+            FrmListUser_LoadDetails(this.auxUser);
         }
         #endregion
     }

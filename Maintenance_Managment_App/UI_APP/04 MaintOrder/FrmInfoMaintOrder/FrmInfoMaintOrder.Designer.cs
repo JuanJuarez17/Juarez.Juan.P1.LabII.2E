@@ -57,7 +57,7 @@
             btn_Cancel.Location=new System.Drawing.Point(572, 149);
             btn_Cancel.Name="btn_Cancel";
             btn_Cancel.Size=new System.Drawing.Size(50, 50);
-            btn_Cancel.TabIndex=3;
+            btn_Cancel.TabIndex=1;
             btn_Cancel.UseVisualStyleBackColor=true;
             btn_Cancel.Click+=btn_Cancel_Click;
             // 
@@ -80,7 +80,7 @@
             rtb_MaintOrderDesc.Name="rtb_MaintOrderDesc";
             rtb_MaintOrderDesc.ReadOnly=true;
             rtb_MaintOrderDesc.Size=new System.Drawing.Size(400, 101);
-            rtb_MaintOrderDesc.TabIndex=14;
+            rtb_MaintOrderDesc.TabIndex=7;
             rtb_MaintOrderDesc.Text="";
             // 
             // lbl_Section
@@ -90,7 +90,7 @@
             lbl_Section.Location=new System.Drawing.Point(12, 94);
             lbl_Section.Name="lbl_Section";
             lbl_Section.Size=new System.Drawing.Size(45, 17);
-            lbl_Section.TabIndex=15;
+            lbl_Section.TabIndex=0;
             lbl_Section.Text="Sector";
             // 
             // lbl_Machine
@@ -101,7 +101,7 @@
             lbl_Machine.Location=new System.Drawing.Point(12, 130);
             lbl_Machine.Name="lbl_Machine";
             lbl_Machine.Size=new System.Drawing.Size(59, 17);
-            lbl_Machine.TabIndex=16;
+            lbl_Machine.TabIndex=0;
             lbl_Machine.Text="Maquina";
             // 
             // lbl_Urgency
@@ -112,7 +112,7 @@
             lbl_Urgency.Location=new System.Drawing.Point(12, 169);
             lbl_Urgency.Name="lbl_Urgency";
             lbl_Urgency.Size=new System.Drawing.Size(60, 17);
-            lbl_Urgency.TabIndex=17;
+            lbl_Urgency.TabIndex=0;
             lbl_Urgency.Text="Urgencia";
             // 
             // lbl_Description
@@ -122,7 +122,7 @@
             lbl_Description.Location=new System.Drawing.Point(223, 13);
             lbl_Description.Name="lbl_Description";
             lbl_Description.Size=new System.Drawing.Size(220, 17);
-            lbl_Description.TabIndex=18;
+            lbl_Description.TabIndex=0;
             lbl_Description.Text="Descripcion (Maximo 200 Carateres)";
             // 
             // txb_MaintOrderMachine
@@ -131,7 +131,7 @@
             txb_MaintOrderMachine.Name="txb_MaintOrderMachine";
             txb_MaintOrderMachine.ReadOnly=true;
             txb_MaintOrderMachine.Size=new System.Drawing.Size(130, 23);
-            txb_MaintOrderMachine.TabIndex=20;
+            txb_MaintOrderMachine.TabIndex=5;
             // 
             // txb_MaintOrderUrgency
             // 
@@ -139,7 +139,7 @@
             txb_MaintOrderUrgency.Name="txb_MaintOrderUrgency";
             txb_MaintOrderUrgency.ReadOnly=true;
             txb_MaintOrderUrgency.Size=new System.Drawing.Size(130, 23);
-            txb_MaintOrderUrgency.TabIndex=21;
+            txb_MaintOrderUrgency.TabIndex=6;
             // 
             // lbl_Username
             // 
@@ -149,7 +149,7 @@
             lbl_Username.Location=new System.Drawing.Point(12, 56);
             lbl_Username.Name="lbl_Username";
             lbl_Username.Size=new System.Drawing.Size(53, 17);
-            lbl_Username.TabIndex=23;
+            lbl_Username.TabIndex=0;
             lbl_Username.Text="Usuario";
             // 
             // lbl_Id
@@ -159,7 +159,7 @@
             lbl_Id.Location=new System.Drawing.Point(12, 18);
             lbl_Id.Name="lbl_Id";
             lbl_Id.Size=new System.Drawing.Size(20, 17);
-            lbl_Id.TabIndex=22;
+            lbl_Id.TabIndex=0;
             lbl_Id.Text="ID";
             // 
             // txb_MaintOrderSector
@@ -168,7 +168,7 @@
             txb_MaintOrderSector.Name="txb_MaintOrderSector";
             txb_MaintOrderSector.ReadOnly=true;
             txb_MaintOrderSector.Size=new System.Drawing.Size(130, 23);
-            txb_MaintOrderSector.TabIndex=19;
+            txb_MaintOrderSector.TabIndex=4;
             // 
             // txb_MaintOrderUser
             // 
@@ -176,7 +176,7 @@
             txb_MaintOrderUser.Name="txb_MaintOrderUser";
             txb_MaintOrderUser.ReadOnly=true;
             txb_MaintOrderUser.Size=new System.Drawing.Size(130, 23);
-            txb_MaintOrderUser.TabIndex=25;
+            txb_MaintOrderUser.TabIndex=3;
             // 
             // txb_MaintOrderId
             // 
@@ -184,7 +184,7 @@
             txb_MaintOrderId.Name="txb_MaintOrderId";
             txb_MaintOrderId.ReadOnly=true;
             txb_MaintOrderId.Size=new System.Drawing.Size(130, 23);
-            txb_MaintOrderId.TabIndex=24;
+            txb_MaintOrderId.TabIndex=2;
             // 
             // txb_MaintOrderAntiq
             // 
@@ -192,7 +192,7 @@
             txb_MaintOrderAntiq.Name="txb_MaintOrderAntiq";
             txb_MaintOrderAntiq.ReadOnly=true;
             txb_MaintOrderAntiq.Size=new System.Drawing.Size(50, 23);
-            txb_MaintOrderAntiq.TabIndex=27;
+            txb_MaintOrderAntiq.TabIndex=8;
             // 
             // lbl_Antiquity
             // 
@@ -202,7 +202,7 @@
             lbl_Antiquity.Location=new System.Drawing.Point(223, 169);
             lbl_Antiquity.Name="lbl_Antiquity";
             lbl_Antiquity.Size=new System.Drawing.Size(75, 17);
-            lbl_Antiquity.TabIndex=26;
+            lbl_Antiquity.TabIndex=0;
             lbl_Antiquity.Text="Antiguedad";
             // 
             // lbl_Days
@@ -213,7 +213,7 @@
             lbl_Days.Location=new System.Drawing.Point(356, 169);
             lbl_Days.Name="lbl_Days";
             lbl_Days.Size=new System.Drawing.Size(33, 17);
-            lbl_Days.TabIndex=28;
+            lbl_Days.TabIndex=0;
             lbl_Days.Text="Dias";
             // 
             // FrmInfoMaintOrder

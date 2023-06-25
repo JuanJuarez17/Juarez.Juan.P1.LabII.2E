@@ -68,7 +68,7 @@
             btn_Add.Location=new System.Drawing.Point(186, 199);
             btn_Add.Name="btn_Add";
             btn_Add.Size=new System.Drawing.Size(50, 50);
-            btn_Add.TabIndex=13;
+            btn_Add.TabIndex=7;
             btn_Add.UseVisualStyleBackColor=true;
             btn_Add.Click+=btn_Add_Click;
             // 
@@ -80,7 +80,7 @@
             btn_Cancel.Location=new System.Drawing.Point(242, 199);
             btn_Cancel.Name="btn_Cancel";
             btn_Cancel.Size=new System.Drawing.Size(50, 50);
-            btn_Cancel.TabIndex=12;
+            btn_Cancel.TabIndex=8;
             btn_Cancel.UseVisualStyleBackColor=true;
             btn_Cancel.Click+=btn_Cancel_Click;
             // 
@@ -91,7 +91,7 @@
             txb_UserName.Name="txb_UserName";
             txb_UserName.ShortcutsEnabled=false;
             txb_UserName.Size=new System.Drawing.Size(130, 25);
-            txb_UserName.TabIndex=28;
+            txb_UserName.TabIndex=3;
             txb_UserName.KeyPress+=txb_UserName_KeyPress;
             // 
             // lbl_Username
@@ -101,7 +101,7 @@
             lbl_Username.Location=new System.Drawing.Point(16, 54);
             lbl_Username.Name="lbl_Username";
             lbl_Username.Size=new System.Drawing.Size(53, 17);
-            lbl_Username.TabIndex=27;
+            lbl_Username.TabIndex=0;
             lbl_Username.Text="Usuario";
             // 
             // txb_Password
@@ -112,7 +112,7 @@
             txb_Password.PasswordChar='*';
             txb_Password.ShortcutsEnabled=false;
             txb_Password.Size=new System.Drawing.Size(130, 25);
-            txb_Password.TabIndex=30;
+            txb_Password.TabIndex=4;
             // 
             // lbl_Password
             // 
@@ -121,7 +121,7 @@
             lbl_Password.Location=new System.Drawing.Point(16, 93);
             lbl_Password.Name="lbl_Password";
             lbl_Password.Size=new System.Drawing.Size(74, 17);
-            lbl_Password.TabIndex=29;
+            lbl_Password.TabIndex=0;
             lbl_Password.Text="Contraseña";
             // 
             // txb_RepeatPassword
@@ -132,7 +132,7 @@
             txb_RepeatPassword.PasswordChar='*';
             txb_RepeatPassword.ShortcutsEnabled=false;
             txb_RepeatPassword.Size=new System.Drawing.Size(130, 25);
-            txb_RepeatPassword.TabIndex=32;
+            txb_RepeatPassword.TabIndex=5;
             // 
             // lbl_RepeatPassword
             // 
@@ -141,7 +141,7 @@
             lbl_RepeatPassword.Location=new System.Drawing.Point(16, 132);
             lbl_RepeatPassword.Name="lbl_RepeatPassword";
             lbl_RepeatPassword.Size=new System.Drawing.Size(118, 17);
-            lbl_RepeatPassword.TabIndex=31;
+            lbl_RepeatPassword.TabIndex=0;
             lbl_RepeatPassword.Text="Repetir contraseña";
             // 
             // txb_FileNumber
@@ -151,7 +151,7 @@
             txb_FileNumber.Name="txb_FileNumber";
             txb_FileNumber.ShortcutsEnabled=false;
             txb_FileNumber.Size=new System.Drawing.Size(50, 25);
-            txb_FileNumber.TabIndex=34;
+            txb_FileNumber.TabIndex=1;
             txb_FileNumber.KeyPress+=txb_FileNumber_KeyPress;
             // 
             // lbl_fileNumber
@@ -161,7 +161,7 @@
             lbl_fileNumber.Location=new System.Drawing.Point(16, 15);
             lbl_fileNumber.Name="lbl_fileNumber";
             lbl_fileNumber.Size=new System.Drawing.Size(47, 17);
-            lbl_fileNumber.TabIndex=33;
+            lbl_fileNumber.TabIndex=0;
             lbl_fileNumber.Text="Legajo";
             // 
             // btn_VerifyFileNumber
@@ -170,7 +170,7 @@
             btn_VerifyFileNumber.Location=new System.Drawing.Point(218, 7);
             btn_VerifyFileNumber.Name="btn_VerifyFileNumber";
             btn_VerifyFileNumber.Size=new System.Drawing.Size(74, 25);
-            btn_VerifyFileNumber.TabIndex=35;
+            btn_VerifyFileNumber.TabIndex=2;
             btn_VerifyFileNumber.Text="Verificar";
             btn_VerifyFileNumber.UseVisualStyleBackColor=true;
             btn_VerifyFileNumber.Click+=btn_VerifyFileNumber_Click;
@@ -182,7 +182,7 @@
             rdb_Supervisor.Location=new System.Drawing.Point(17, 25);
             rdb_Supervisor.Name="rdb_Supervisor";
             rdb_Supervisor.Size=new System.Drawing.Size(88, 21);
-            rdb_Supervisor.TabIndex=36;
+            rdb_Supervisor.TabIndex=1;
             rdb_Supervisor.TabStop=true;
             rdb_Supervisor.Text="Supervisor";
             rdb_Supervisor.UseVisualStyleBackColor=true;
@@ -194,7 +194,7 @@
             rdb_Operator.Location=new System.Drawing.Point(17, 54);
             rdb_Operator.Name="rdb_Operator";
             rdb_Operator.Size=new System.Drawing.Size(79, 21);
-            rdb_Operator.TabIndex=37;
+            rdb_Operator.TabIndex=2;
             rdb_Operator.TabStop=true;
             rdb_Operator.Text="Operario";
             rdb_Operator.UseVisualStyleBackColor=true;
@@ -207,7 +207,7 @@
             gpb_UserType.Location=new System.Drawing.Point(10, 164);
             gpb_UserType.Name="gpb_UserType";
             gpb_UserType.Size=new System.Drawing.Size(150, 85);
-            gpb_UserType.TabIndex=38;
+            gpb_UserType.TabIndex=6;
             gpb_UserType.TabStop=false;
             gpb_UserType.Text="Tipo de Usuario";
             // 

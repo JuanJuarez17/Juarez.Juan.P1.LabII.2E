@@ -30,7 +30,7 @@ namespace UI_APP
         }
         #endregion
 
-        public string IdAdded { get { return idAdded; } set {  idAdded = value; } }
+        public string IdAdded { get { return idAdded; } set { idAdded = value; } }
 
         #region EVENT METHODS
         private void FrmAddMaintenanceOrder_Load(object sender, EventArgs e)

@@ -52,7 +52,7 @@
             txb_FinishedOrders.Name="txb_FinishedOrders";
             txb_FinishedOrders.ReadOnly=true;
             txb_FinishedOrders.Size=new System.Drawing.Size(100, 23);
-            txb_FinishedOrders.TabIndex=26;
+            txb_FinishedOrders.TabIndex=1;
             txb_FinishedOrders.TextAlign=System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbl_FinishedOrders
@@ -64,7 +64,7 @@
             lbl_FinishedOrders.Location=new System.Drawing.Point(304, 256);
             lbl_FinishedOrders.Name="lbl_FinishedOrders";
             lbl_FinishedOrders.Size=new System.Drawing.Size(127, 17);
-            lbl_FinishedOrders.TabIndex=25;
+            lbl_FinishedOrders.TabIndex=0;
             lbl_FinishedOrders.Text="Ordenes terminadas";
             // 
             // txb_UnfinishedOrders
@@ -74,7 +74,7 @@
             txb_UnfinishedOrders.Name="txb_UnfinishedOrders";
             txb_UnfinishedOrders.ReadOnly=true;
             txb_UnfinishedOrders.Size=new System.Drawing.Size(100, 23);
-            txb_UnfinishedOrders.TabIndex=28;
+            txb_UnfinishedOrders.TabIndex=2;
             txb_UnfinishedOrders.TextAlign=System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbl_UnfinishedOrders
@@ -86,7 +86,7 @@
             lbl_UnfinishedOrders.Location=new System.Drawing.Point(304, 285);
             lbl_UnfinishedOrders.Name="lbl_UnfinishedOrders";
             lbl_UnfinishedOrders.Size=new System.Drawing.Size(136, 17);
-            lbl_UnfinishedOrders.TabIndex=27;
+            lbl_UnfinishedOrders.TabIndex=0;
             lbl_UnfinishedOrders.Text="Ordenes por terminar";
             // 
             // lbl_MaintOrderDb
@@ -97,7 +97,7 @@
             lbl_MaintOrderDb.Location=new System.Drawing.Point(285, 222);
             lbl_MaintOrderDb.Name="lbl_MaintOrderDb";
             lbl_MaintOrderDb.Size=new System.Drawing.Size(380, 150);
-            lbl_MaintOrderDb.TabIndex=29;
+            lbl_MaintOrderDb.TabIndex=0;
             lbl_MaintOrderDb.Text="\r\nlbl_MaintOrderDb";
             lbl_MaintOrderDb.TextAlign=System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -109,7 +109,7 @@
             lbl_Welcome.Location=new System.Drawing.Point(285, 136);
             lbl_Welcome.Name="lbl_Welcome";
             lbl_Welcome.Size=new System.Drawing.Size(380, 40);
-            lbl_Welcome.TabIndex=30;
+            lbl_Welcome.TabIndex=0;
             lbl_Welcome.Text="lbl_Welcome";
             lbl_Welcome.TextAlign=System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -130,7 +130,7 @@
             txb_RushOrders.Name="txb_RushOrders";
             txb_RushOrders.ReadOnly=true;
             txb_RushOrders.Size=new System.Drawing.Size(100, 23);
-            txb_RushOrders.TabIndex=33;
+            txb_RushOrders.TabIndex=3;
             txb_RushOrders.TextAlign=System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbl_RushOrders
@@ -142,7 +142,7 @@
             lbl_RushOrders.Location=new System.Drawing.Point(304, 314);
             lbl_RushOrders.Name="lbl_RushOrders";
             lbl_RushOrders.Size=new System.Drawing.Size(202, 17);
-            lbl_RushOrders.TabIndex=32;
+            lbl_RushOrders.TabIndex=0;
             lbl_RushOrders.Text="Ordenes por terminar - Urgentes";
             // 
             // txb_IdRushOrders
@@ -152,7 +152,7 @@
             txb_IdRushOrders.Name="txb_IdRushOrders";
             txb_IdRushOrders.ReadOnly=true;
             txb_IdRushOrders.Size=new System.Drawing.Size(100, 23);
-            txb_IdRushOrders.TabIndex=35;
+            txb_IdRushOrders.TabIndex=4;
             txb_IdRushOrders.TextAlign=System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbl_IdRushOrders
@@ -164,7 +164,7 @@
             lbl_IdRushOrders.Location=new System.Drawing.Point(304, 343);
             lbl_IdRushOrders.Name="lbl_IdRushOrders";
             lbl_IdRushOrders.Size=new System.Drawing.Size(227, 17);
-            lbl_IdRushOrders.TabIndex=34;
+            lbl_IdRushOrders.TabIndex=0;
             lbl_IdRushOrders.Text="Ordenes por terminar - Urgentes - ID";
             // 
             // lbl_DateTime
@@ -175,7 +175,7 @@
             lbl_DateTime.Location=new System.Drawing.Point(285, 176);
             lbl_DateTime.Name="lbl_DateTime";
             lbl_DateTime.Size=new System.Drawing.Size(380, 40);
-            lbl_DateTime.TabIndex=36;
+            lbl_DateTime.TabIndex=0;
             lbl_DateTime.Text="lbl_DateTime";
             lbl_DateTime.TextAlign=System.Drawing.ContentAlignment.MiddleCenter;
             // 

@@ -27,7 +27,7 @@ namespace UI_APP
         {
             DbEntityMaintOrder dbMaintOrder = new DbEntityMaintOrder();
             MaintenanceOrder auxMaintOrder = dbMaintOrder.Read(this.maintOrderId.ToString());
-            this.btn_Cancel.ImageIndex = 4; 
+            this.btn_Cancel.ImageIndex = 4;
             this.txb_MaintOrderId.Text = auxMaintOrder.Id.ToString();
             this.txb_MaintOrderUser.Text = auxMaintOrder.Username.ToString();
             this.txb_MaintOrderSector.Text = auxMaintOrder.Section.ToString();

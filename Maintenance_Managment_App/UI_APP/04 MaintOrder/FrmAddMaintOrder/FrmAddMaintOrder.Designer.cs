@@ -51,7 +51,7 @@
             btn_Cancel.Location=new System.Drawing.Point(573, 149);
             btn_Cancel.Name="btn_Cancel";
             btn_Cancel.Size=new System.Drawing.Size(50, 50);
-            btn_Cancel.TabIndex=2;
+            btn_Cancel.TabIndex=6;
             btn_Cancel.UseVisualStyleBackColor=true;
             btn_Cancel.Click+=btn_Close_Click;
             // 
@@ -74,7 +74,7 @@
             cbb_Machine.Location=new System.Drawing.Point(77, 73);
             cbb_Machine.Name="cbb_Machine";
             cbb_Machine.Size=new System.Drawing.Size(130, 23);
-            cbb_Machine.TabIndex=3;
+            cbb_Machine.TabIndex=2;
             // 
             // cbb_Section
             // 
@@ -82,7 +82,7 @@
             cbb_Section.Location=new System.Drawing.Point(77, 34);
             cbb_Section.Name="cbb_Section";
             cbb_Section.Size=new System.Drawing.Size(130, 23);
-            cbb_Section.TabIndex=4;
+            cbb_Section.TabIndex=1;
             // 
             // cbb_Urgency
             // 
@@ -91,7 +91,7 @@
             cbb_Urgency.Location=new System.Drawing.Point(77, 112);
             cbb_Urgency.Name="cbb_Urgency";
             cbb_Urgency.Size=new System.Drawing.Size(130, 23);
-            cbb_Urgency.TabIndex=5;
+            cbb_Urgency.TabIndex=3;
             // 
             // rtb_Description
             // 
@@ -99,7 +99,7 @@
             rtb_Description.Location=new System.Drawing.Point(223, 34);
             rtb_Description.Name="rtb_Description";
             rtb_Description.Size=new System.Drawing.Size(400, 101);
-            rtb_Description.TabIndex=6;
+            rtb_Description.TabIndex=4;
             rtb_Description.Text="";
             // 
             // lbl_Section
@@ -109,7 +109,7 @@
             lbl_Section.Location=new System.Drawing.Point(12, 37);
             lbl_Section.Name="lbl_Section";
             lbl_Section.Size=new System.Drawing.Size(45, 17);
-            lbl_Section.TabIndex=7;
+            lbl_Section.TabIndex=0;
             lbl_Section.Text="Sector";
             // 
             // lbl_Machine
@@ -120,7 +120,7 @@
             lbl_Machine.Location=new System.Drawing.Point(12, 76);
             lbl_Machine.Name="lbl_Machine";
             lbl_Machine.Size=new System.Drawing.Size(59, 17);
-            lbl_Machine.TabIndex=8;
+            lbl_Machine.TabIndex=0;
             lbl_Machine.Text="Maquina";
             // 
             // lbl_Urgency
@@ -131,7 +131,7 @@
             lbl_Urgency.Location=new System.Drawing.Point(12, 115);
             lbl_Urgency.Name="lbl_Urgency";
             lbl_Urgency.Size=new System.Drawing.Size(60, 17);
-            lbl_Urgency.TabIndex=9;
+            lbl_Urgency.TabIndex=0;
             lbl_Urgency.Text="Urgencia";
             // 
             // lbl_Description
@@ -141,7 +141,7 @@
             lbl_Description.Location=new System.Drawing.Point(223, 14);
             lbl_Description.Name="lbl_Description";
             lbl_Description.Size=new System.Drawing.Size(220, 17);
-            lbl_Description.TabIndex=10;
+            lbl_Description.TabIndex=0;
             lbl_Description.Text="Descripcion (Maximo 200 Carateres)";
             // 
             // btn_Add
@@ -152,7 +152,7 @@
             btn_Add.Location=new System.Drawing.Point(517, 149);
             btn_Add.Name="btn_Add";
             btn_Add.Size=new System.Drawing.Size(50, 50);
-            btn_Add.TabIndex=11;
+            btn_Add.TabIndex=5;
             btn_Add.UseVisualStyleBackColor=true;
             btn_Add.Click+=btn_Add_Click;
             // 

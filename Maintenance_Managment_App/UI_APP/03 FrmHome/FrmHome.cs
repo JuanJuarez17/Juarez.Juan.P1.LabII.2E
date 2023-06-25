@@ -45,8 +45,12 @@ namespace UI_APP
                 this.lbl_MaintOrderDb.Visible = true;
                 this.lbl_FinishedOrders.Visible = false;
                 this.lbl_UnfinishedOrders.Visible = false;
+                this.lbl_RushOrders.Visible = false;
+                this.lbl_IdRushOrders.Visible = false;
                 this.txb_FinishedOrders.Visible = false;
                 this.txb_UnfinishedOrders.Visible = false;
+                this.txb_RushOrders.Visible = false;
+                this.txb_IdRushOrders.Visible = false;
             }
             else
             {

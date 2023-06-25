@@ -99,6 +99,12 @@ namespace DATABASE_APP
         {
             this.commandString += $"WHERE {condition} = @{condition.ToLower()} ";
         }
+
+        public void WhereConditionInner(string condition)
+        {
+            this.commandString += $"WHERE {condition[0].ToString().ToLower()}.{condition} = @{condition.ToLower()} ";
+        }
+
         public void AndCondition(string condition)
         {
             this.commandString += $"AND {condition} = @{condition.ToLower()} ";
@@ -108,6 +114,13 @@ namespace DATABASE_APP
         public void OrderCondition(string attribute, string orderCriteria)
         {
             this.commandString += $"ORDER BY {attribute} {orderCriteria} ";
+        }
+
+
+
+        public void InnerJoin(string primaryTable, string sndTable, string primaryKey, string foreignKey)
+        {
+            this.commandString += $"INNER JOIN {sndTable} m ON {primaryTable[0].ToString().ToLower()}.{primaryKey} = {sndTable[0].ToString().ToLower()}.{foreignKey} ";
         }
     }
 }

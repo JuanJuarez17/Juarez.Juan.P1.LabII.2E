@@ -148,7 +148,7 @@ namespace UI_APP
             if (result == DialogResult.OK)
             {
                 try
-                {             
+                {
                     string idAdded = this.dbMaintOrder.GetLast("ID");
                     FrmListMaintenanceOrder_LoadDataGrid(dbMaintOrder.Import());
                     FrmListMaintenanceOrder_AvailableFunctions();
@@ -190,7 +190,7 @@ namespace UI_APP
                 {
                     MessageBox.Show("Error al importar la base de datos.", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                
+
             }
             else
             {
@@ -247,7 +247,7 @@ namespace UI_APP
             }
         }
         private void btn_ExportJson_Click(object sender, EventArgs e)
-        {          
+        {
             if (MaintenanceOrder.SerializeToJson(GetDataGridElements()))
             {
                 MessageBox.Show("Informe JSON exportado con exito!", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);

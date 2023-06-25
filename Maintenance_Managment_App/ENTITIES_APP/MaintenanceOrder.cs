@@ -196,8 +196,6 @@ namespace ENTITIES_APP
             }
             return rtn;
         }
-
-
         public static string GetMaintOrderId(List<MaintenanceOrder> inputList)
         {
             string rtn = string.Empty;
@@ -209,6 +207,15 @@ namespace ENTITIES_APP
         }
 
         // SORT
+
+
+
+        public static bool CompareUsername(MaintenanceOrder inputItem, string valueFilter)
+        {
+            return inputItem.Username == valueFilter;
+        }
+
+
         public static List<MaintenanceOrder> Sort(List<MaintenanceOrder> inputList, string parameter, int inputOrder)
         {
             List<MaintenanceOrder> rtn = inputList;

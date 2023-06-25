@@ -46,7 +46,7 @@ namespace UI_APP
         private void btn_Accept_Click(object sender, EventArgs e)
         {
             string inputDescription = this.rtb_MaintOrderDesc.Text;
-            
+
 
             // TODO: Reemplaza Controller.MaintOrder_Parse por otro metodo llamado desde otro lado
             if (MaintenanceOrder.ValidateEntries(inputDescription))
@@ -58,7 +58,7 @@ namespace UI_APP
                 auxMaintOrder.Section = (Section)this.cbb_Section.SelectedItem;
                 auxMaintOrder.Machine = (Machine)this.cbb_Machine.SelectedItem;
                 auxMaintOrder.Urgency = (Urgency)this.cbb_Urgency.SelectedItem;
-                auxMaintOrder.Description = inputDescription; 
+                auxMaintOrder.Description = inputDescription;
                 auxMaintOrder.Completed = inputStatus;
                 try
                 {

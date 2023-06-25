@@ -123,7 +123,7 @@
             dtg_MaintOrderDb.RowTemplate.Height=25;
             dtg_MaintOrderDb.SelectionMode=System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             dtg_MaintOrderDb.Size=new System.Drawing.Size(850, 450);
-            dtg_MaintOrderDb.TabIndex=2;
+            dtg_MaintOrderDb.TabIndex=0;
             dtg_MaintOrderDb.TabStop=false;
             dtg_MaintOrderDb.VirtualMode=true;
             // 
@@ -134,7 +134,7 @@
             btn_AddMaintOrder.Location=new System.Drawing.Point(18, 14);
             btn_AddMaintOrder.Name="btn_AddMaintOrder";
             btn_AddMaintOrder.Size=new System.Drawing.Size(50, 50);
-            btn_AddMaintOrder.TabIndex=3;
+            btn_AddMaintOrder.TabIndex=1;
             btn_AddMaintOrder.UseVisualStyleBackColor=true;
             btn_AddMaintOrder.Click+=btn_AddMaintOrder_Click;
             btn_AddMaintOrder.MouseHover+=btn_AddMaintOrder_MouseHover;
@@ -157,7 +157,7 @@
             btn_EditMaintOrder.Location=new System.Drawing.Point(18, 146);
             btn_EditMaintOrder.Name="btn_EditMaintOrder";
             btn_EditMaintOrder.Size=new System.Drawing.Size(50, 50);
-            btn_EditMaintOrder.TabIndex=5;
+            btn_EditMaintOrder.TabIndex=3;
             btn_EditMaintOrder.UseVisualStyleBackColor=true;
             btn_EditMaintOrder.Click+=btn_EditMaintOrder_Click;
             // 
@@ -168,7 +168,7 @@
             btn_InfoMaintOrder.Location=new System.Drawing.Point(18, 80);
             btn_InfoMaintOrder.Name="btn_InfoMaintOrder";
             btn_InfoMaintOrder.Size=new System.Drawing.Size(50, 50);
-            btn_InfoMaintOrder.TabIndex=6;
+            btn_InfoMaintOrder.TabIndex=2;
             btn_InfoMaintOrder.UseVisualStyleBackColor=true;
             btn_InfoMaintOrder.Click+=btn_InfoMaintOrder_Click;
             // 
@@ -179,7 +179,7 @@
             lbl_MaintOrderDb.Location=new System.Drawing.Point(308, 187);
             lbl_MaintOrderDb.Name="lbl_MaintOrderDb";
             lbl_MaintOrderDb.Size=new System.Drawing.Size(400, 100);
-            lbl_MaintOrderDb.TabIndex=7;
+            lbl_MaintOrderDb.TabIndex=0;
             lbl_MaintOrderDb.Text="lbl_MaintOrderDb";
             lbl_MaintOrderDb.TextAlign=System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -191,7 +191,7 @@
             btn_SortByDate.Location=new System.Drawing.Point(17, 19);
             btn_SortByDate.Name="btn_SortByDate";
             btn_SortByDate.Size=new System.Drawing.Size(50, 50);
-            btn_SortByDate.TabIndex=10;
+            btn_SortByDate.TabIndex=1;
             btn_SortByDate.UseVisualStyleBackColor=true;
             btn_SortByDate.Click+=btn_SortByDate_Click;
             // 
@@ -203,7 +203,7 @@
             btn_SortBySector.Location=new System.Drawing.Point(83, 19);
             btn_SortBySector.Name="btn_SortBySector";
             btn_SortBySector.Size=new System.Drawing.Size(50, 50);
-            btn_SortBySector.TabIndex=11;
+            btn_SortBySector.TabIndex=2;
             btn_SortBySector.UseVisualStyleBackColor=true;
             btn_SortBySector.Click+=btn_SortBySector_Click;
             // 
@@ -215,7 +215,7 @@
             btn_SortByMachine.Location=new System.Drawing.Point(149, 19);
             btn_SortByMachine.Name="btn_SortByMachine";
             btn_SortByMachine.Size=new System.Drawing.Size(50, 50);
-            btn_SortByMachine.TabIndex=12;
+            btn_SortByMachine.TabIndex=3;
             btn_SortByMachine.UseVisualStyleBackColor=true;
             btn_SortByMachine.Click+=btn_SortByMachine_Click;
             // 
@@ -227,7 +227,7 @@
             btn_SortByUrgency.Location=new System.Drawing.Point(215, 19);
             btn_SortByUrgency.Name="btn_SortByUrgency";
             btn_SortByUrgency.Size=new System.Drawing.Size(50, 50);
-            btn_SortByUrgency.TabIndex=13;
+            btn_SortByUrgency.TabIndex=4;
             btn_SortByUrgency.UseVisualStyleBackColor=true;
             btn_SortByUrgency.Click+=btn_SortByUrgency_Click;
             // 
@@ -241,7 +241,7 @@
             gpb_ShowMaintOrders.Location=new System.Drawing.Point(82, 467);
             gpb_ShowMaintOrders.Name="gpb_ShowMaintOrders";
             gpb_ShowMaintOrders.Size=new System.Drawing.Size(360, 75);
-            gpb_ShowMaintOrders.TabIndex=14;
+            gpb_ShowMaintOrders.TabIndex=5;
             gpb_ShowMaintOrders.TabStop=false;
             gpb_ShowMaintOrders.Text="Mostrar";
             // 
@@ -251,7 +251,7 @@
             btn_ShowMaintOrders.Location=new System.Drawing.Point(296, 16);
             btn_ShowMaintOrders.Name="btn_ShowMaintOrders";
             btn_ShowMaintOrders.Size=new System.Drawing.Size(50, 50);
-            btn_ShowMaintOrders.TabIndex=17;
+            btn_ShowMaintOrders.TabIndex=1;
             btn_ShowMaintOrders.UseVisualStyleBackColor=true;
             btn_ShowMaintOrders.Click+=btn_ShowMaintOrders_Click;
             // 
@@ -261,7 +261,7 @@
             rdb_UncompletedMaintOrders.Location=new System.Drawing.Point(190, 31);
             rdb_UncompletedMaintOrders.Name="rdb_UncompletedMaintOrders";
             rdb_UncompletedMaintOrders.Size=new System.Drawing.Size(90, 19);
-            rdb_UncompletedMaintOrders.TabIndex=16;
+            rdb_UncompletedMaintOrders.TabIndex=0;
             rdb_UncompletedMaintOrders.TabStop=true;
             rdb_UncompletedMaintOrders.Text="Incompletas";
             rdb_UncompletedMaintOrders.UseVisualStyleBackColor=true;
@@ -272,7 +272,7 @@
             rdb_CompletedMaintOrders.Location=new System.Drawing.Point(92, 31);
             rdb_CompletedMaintOrders.Name="rdb_CompletedMaintOrders";
             rdb_CompletedMaintOrders.Size=new System.Drawing.Size(82, 19);
-            rdb_CompletedMaintOrders.TabIndex=15;
+            rdb_CompletedMaintOrders.TabIndex=0;
             rdb_CompletedMaintOrders.TabStop=true;
             rdb_CompletedMaintOrders.Text="Completas";
             rdb_CompletedMaintOrders.UseVisualStyleBackColor=true;
@@ -298,7 +298,7 @@
             gpb_ListOrder.Location=new System.Drawing.Point(466, 467);
             gpb_ListOrder.Name="gpb_ListOrder";
             gpb_ListOrder.Size=new System.Drawing.Size(280, 75);
-            gpb_ListOrder.TabIndex=15;
+            gpb_ListOrder.TabIndex=6;
             gpb_ListOrder.TabStop=false;
             gpb_ListOrder.Text="Ordenar";
             // 
@@ -308,7 +308,7 @@
             btn_ExportCsv.Location=new System.Drawing.Point(19, 19);
             btn_ExportCsv.Name="btn_ExportCsv";
             btn_ExportCsv.Size=new System.Drawing.Size(50, 50);
-            btn_ExportCsv.TabIndex=16;
+            btn_ExportCsv.TabIndex=1;
             btn_ExportCsv.UseVisualStyleBackColor=true;
             btn_ExportCsv.Click+=bnt_ExportCsv_Click;
             // 
@@ -318,7 +318,7 @@
             btn_ExportJson.Location=new System.Drawing.Point(85, 19);
             btn_ExportJson.Name="btn_ExportJson";
             btn_ExportJson.Size=new System.Drawing.Size(50, 50);
-            btn_ExportJson.TabIndex=17;
+            btn_ExportJson.TabIndex=2;
             btn_ExportJson.UseVisualStyleBackColor=true;
             btn_ExportJson.Click+=btn_ExportJson_Click;
             // 
@@ -330,7 +330,7 @@
             gpb_Reports.Location=new System.Drawing.Point(783, 468);
             gpb_Reports.Name="gpb_Reports";
             gpb_Reports.Size=new System.Drawing.Size(150, 75);
-            gpb_Reports.TabIndex=18;
+            gpb_Reports.TabIndex=7;
             gpb_Reports.TabStop=false;
             gpb_Reports.Text="Informes";
             // 

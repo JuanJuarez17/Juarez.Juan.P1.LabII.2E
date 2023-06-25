@@ -38,7 +38,7 @@
             btn_Operator.Location=new System.Drawing.Point(47, 76);
             btn_Operator.Name="btn_Operator";
             btn_Operator.Size=new System.Drawing.Size(75, 25);
-            btn_Operator.TabIndex=0;
+            btn_Operator.TabIndex=1;
             btn_Operator.Text="Operario";
             btn_Operator.UseVisualStyleBackColor=true;
             btn_Operator.Click+=btn_Operator_Click;
@@ -48,7 +48,7 @@
             btn_Supervisor.Location=new System.Drawing.Point(162, 76);
             btn_Supervisor.Name="btn_Supervisor";
             btn_Supervisor.Size=new System.Drawing.Size(75, 25);
-            btn_Supervisor.TabIndex=1;
+            btn_Supervisor.TabIndex=2;
             btn_Supervisor.Text="Supervisor";
             btn_Supervisor.UseVisualStyleBackColor=true;
             btn_Supervisor.Click+=btn_Supervisor_Click;
@@ -59,7 +59,7 @@
             lbl_Info.Location=new System.Drawing.Point(30, 9);
             lbl_Info.Name="lbl_Info";
             lbl_Info.Size=new System.Drawing.Size(225, 51);
-            lbl_Info.TabIndex=2;
+            lbl_Info.TabIndex=0;
             lbl_Info.Text="¿Con que tipo de usuario desea ingresar a la aplicacion?";
             lbl_Info.TextAlign=System.Drawing.ContentAlignment.MiddleCenter;
             // 

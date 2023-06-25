@@ -202,6 +202,9 @@ namespace ENTITIES_APP
 
             return $"{attributes[0]},{attributes[1]},{attributes[2]},{attributes[3]},{attributes[4]},{attributes[5]},{attributes[6]},{attributes[7]},{attributes[8]}";
         }
+
+
+
         #endregion
     }
 }

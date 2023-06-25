@@ -45,7 +45,7 @@
             btn_Access.Location=new System.Drawing.Point(211, 168);
             btn_Access.Name="btn_Access";
             btn_Access.Size=new System.Drawing.Size(81, 25);
-            btn_Access.TabIndex=0;
+            btn_Access.TabIndex=3;
             btn_Access.Text="Ingresar";
             btn_Access.UseVisualStyleBackColor=true;
             btn_Access.Click+=btn_Access_Click;
@@ -56,7 +56,7 @@
             btn_Cancel.Location=new System.Drawing.Point(292, 168);
             btn_Cancel.Name="btn_Cancel";
             btn_Cancel.Size=new System.Drawing.Size(81, 25);
-            btn_Cancel.TabIndex=1;
+            btn_Cancel.TabIndex=4;
             btn_Cancel.Text="Cancelar";
             btn_Cancel.UseVisualStyleBackColor=true;
             btn_Cancel.Click+=btn_Cancel_Click;
@@ -67,7 +67,7 @@
             txb_Username.Name="txb_Username";
             txb_Username.PlaceholderText="Ingrese Usuario";
             txb_Username.Size=new System.Drawing.Size(350, 23);
-            txb_Username.TabIndex=2;
+            txb_Username.TabIndex=1;
             // 
             // txb_Password
             // 
@@ -76,7 +76,7 @@
             txb_Password.PasswordChar='*';
             txb_Password.PlaceholderText="Ingrese Contraseña";
             txb_Password.Size=new System.Drawing.Size(350, 23);
-            txb_Password.TabIndex=3;
+            txb_Password.TabIndex=2;
             // 
             // lbl_Title
             // 
@@ -87,7 +87,7 @@
             lbl_Title.Location=new System.Drawing.Point(17, 11);
             lbl_Title.Name="lbl_Title";
             lbl_Title.Size=new System.Drawing.Size(356, 60);
-            lbl_Title.TabIndex=4;
+            lbl_Title.TabIndex=0;
             lbl_Title.Text="Maintenance Management Assistant";
             lbl_Title.TextAlign=System.Drawing.ContentAlignment.MiddleCenter;
             // 
