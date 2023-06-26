@@ -178,7 +178,6 @@ namespace UI_APP
             this.dtg_UserMaintOrder.Columns[8].HeaderText = "COMPLETADA";
             this.dtg_UserMaintOrder.Columns[9].HeaderText = "FINALIZADA";
         }
-
         #endregion
 
         #region EVENT METHODS

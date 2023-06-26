@@ -7,7 +7,7 @@ namespace ENTITIES_APP
 {
     public abstract class User
     {
-        #region USED ATTRIBUTES
+        #region ATTRIBUTES
         private bool active;
         protected int fileNumber;
         protected string username;
@@ -31,9 +31,7 @@ namespace ENTITIES_APP
         }
         #endregion
 
-        #region READONLY PROPERTIES
-
-        // No sobreescribo el get porque son atributos con los que creo un usuario "siempre van a estar bien"
+        #region PROPERTIES
         public bool Active
         {
             get { return active; }
@@ -98,18 +96,9 @@ namespace ENTITIES_APP
             get { return entryDate; }
             set { this.entryDate = value; }
         }
-
         #endregion
 
         #region METHODS
-        public bool CheckUsername(string inputUsername)
-        {
-            return this.Username.Equals(inputUsername);
-        }
-        public bool CheckPassword(string inputPassword)
-        {
-            return this.Password.Equals(inputPassword);
-        }
         public static List<string> ImportUsernames(List<User> inputList)
         {
             List<string> rtn = new List<string>();
@@ -122,14 +111,29 @@ namespace ENTITIES_APP
             }
             return rtn;
         }
+        public bool CheckUsername(string inputUsername)
+        {
+            return this.Username.Equals(inputUsername);
+        }
+        public bool CheckPassword(string inputPassword)
+        {
+            return this.Password.Equals(inputPassword);
+        }
         public static bool CheckFileNumberAvailable(List<User> inputList, int inputFileNumber)
         {
             bool rtn = true;
-            foreach (User item in inputList)
+            if (inputList.Count == 0)
             {
-                if (item.FileNumber == inputFileNumber)
+                rtn = false;
+            }
+            else
+            {
+                foreach (User item in inputList)
                 {
-                    return false;
+                    if (item.FileNumber == inputFileNumber)
+                    {
+                        return false;
+                    }
                 }
             }
             return rtn;
@@ -186,25 +190,6 @@ namespace ENTITIES_APP
             }
             return true;
         }
-        public virtual string WriteAsText()
-        {
-            string[] attributes = new string[9];
-
-            attributes[0] = this.Active.ToString();
-            attributes[1] = this.FileNumber.ToString();
-            attributes[2] = this.Username;
-            attributes[3] = this.Password;
-            attributes[4] = this.Admin.ToString();
-            attributes[5] = this.Name;
-            attributes[6] = this.Surname;
-            attributes[7] = this.Age.ToString();
-            attributes[8] = this.EntryDate.ToString("yyyy/MM/dd");
-
-            return $"{attributes[0]},{attributes[1]},{attributes[2]},{attributes[3]},{attributes[4]},{attributes[5]},{attributes[6]},{attributes[7]},{attributes[8]}";
-        }
-
-
-
         #endregion
     }
 }

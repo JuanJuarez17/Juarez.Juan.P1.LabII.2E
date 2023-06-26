@@ -65,7 +65,6 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-
         public List<MaintenanceOrder> Import(string parameter, string parameterValue, string sndParameter, string sndParameterValue, string thdParameter, string thdParameterValue)
         {
             string[] attributes = { parameter, sndParameter, thdParameter };
@@ -83,10 +82,6 @@ namespace DATABASE_APP
             }
             return rtn;
         }
-
-
-
-
         public MaintenanceOrder Read(string conditionValue)
         {
             string[] attributes = { "ID" };

@@ -411,3 +411,5 @@
 2023/06/25 06:23:37 - Supervisor      - Salio de la aplicacion.
 2023/06/25 06:23:55 - Supervisor      - Ingreso a la aplicacion.
 2023/06/25 06:23:59 - Supervisor      - Salio de la aplicacion.
+2023/06/25 11:09:08 - Supervisor      - Ingreso a la aplicacion.
+2023/06/25 11:10:05 - Supervisor      - Salio de la aplicacion.

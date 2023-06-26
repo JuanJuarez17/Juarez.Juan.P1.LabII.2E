@@ -310,8 +310,5 @@ namespace UI_APP
             }
         }
         #endregion
-
-
-
     }
 }

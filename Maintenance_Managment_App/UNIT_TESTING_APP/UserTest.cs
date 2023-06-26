@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ENTITIES_APP;
+using System.Collections.Generic;
 
 namespace UNIT_TESTING_APP
 {
@@ -123,6 +124,46 @@ namespace UNIT_TESTING_APP
             bool actual = User.ValidateEntries(inputName, inputSurname, inputAge, inputDate);
             // Assert
             Assert.IsTrue(actual);
+        }
+        [TestMethod]
+        public void CheckFileNumberAvailable_CuandoElLegajoEstaEnUso_DeberiaRetornarFalse()
+        {
+            // Arrange
+            List<User> list = new List<User>()
+            {
+                new Operator(200, "ETolosa", "asd123"),
+                new Supervisor(300, "PPerez", "qwe456"),
+                new Operator(400, "JPerez", "zxc789"),
+            };
+            // Act
+            bool actual = User.CheckFileNumberAvailable(list, 200);
+            // Assert
+            Assert.IsFalse(actual);
+        }
+        [TestMethod]
+        public void CheckFileNumberAvailable_CuandoElLegajoNoEstaEnUso_DeberiaRetornarTrue()
+        {
+            // Arrange
+            List<User> list = new List<User>()
+            {
+                new Operator(200, "ETolosa", "asd123"),
+                new Supervisor(300, "PPerez", "qwe456"),
+                new Operator(400, "JPerez", "zxc789"),
+            };
+            // Act
+            bool actual = User.CheckFileNumberAvailable(list, 500);
+            // Assert
+            Assert.IsTrue(actual);
+        }
+        [TestMethod]
+        public void CheckFileNumberAvailable_CuandoLaListaEstaVacia_DeberiaRetornarFalse()
+        {
+            // Arrange
+            List<User> list = new List<User>();
+            // Act
+            bool actual = User.CheckFileNumberAvailable(list, 500);
+            // Assert
+            Assert.IsFalse(actual);
         }
     }
 }

@@ -14,12 +14,9 @@ namespace UI_APP
 {
     public partial class FrmAddMaintOrder : Form
     {
-        #region ATTRIBUTES
         private User activeUser;
         private string idAdded;
-        #endregion
 
-        #region CONSTRUCTOR
         private FrmAddMaintOrder()
         {
             InitializeComponent();
@@ -28,11 +25,8 @@ namespace UI_APP
         {
             this.activeUser = inputUser;
         }
-        #endregion
-
         public string IdAdded { get { return idAdded; } set { idAdded = value; } }
 
-        #region EVENT METHODS
         private void FrmAddMaintenanceOrder_Load(object sender, EventArgs e)
         {
             this.cbb_Section.DataSource = Enum.GetValues(typeof(Section));
@@ -74,6 +68,5 @@ namespace UI_APP
         {
             this.DialogResult = DialogResult.Cancel;
         }
-        #endregion
     }
 }

@@ -114,6 +114,15 @@ namespace ENTITIES_APP
         }
         #endregion
 
+        #region METHODS
+        public static bool ValidateEntries(string inputName)
+        {
+            if (!ValidateDescription(inputName))
+            {
+                return false;
+            }
+            return true;
+        }
         private static bool ValidateDescription(string inputDescription)
         {
             bool rtn = false;
@@ -123,15 +132,6 @@ namespace ENTITIES_APP
             }
             return rtn;
         }
-        public static bool ValidateEntries(string inputName)
-        {
-            if (!ValidateDescription(inputName))
-            {
-                return false;
-            }
-            return true;
-        }
-
         public override string ToString()
         {
             string[] attributes = new string[10];
@@ -148,6 +148,19 @@ namespace ENTITIES_APP
             attributes[9] = this.EndDate.ToString("yyyy/MM/dd");
 
             return $"{attributes[0]},{attributes[1]},{attributes[2]},{attributes[3]},{attributes[4]},{attributes[5]},{attributes[6]},{attributes[7]},{attributes[8]},{attributes[9]}";
+        }
+        public static string GetMaintOrderId(List<MaintenanceOrder> inputList)
+        {
+            string rtn = string.Empty;
+            foreach (MaintenanceOrder item in inputList)
+            {
+                rtn += $"{item.Id} - ";
+            }
+            return rtn;
+        }
+        public static bool CompareUsername(MaintenanceOrder inputItem, string valueFilter)
+        {
+            return inputItem.Username == valueFilter;
         }
 
         // FILES & SERIALIZATION
@@ -196,26 +209,8 @@ namespace ENTITIES_APP
             }
             return rtn;
         }
-        public static string GetMaintOrderId(List<MaintenanceOrder> inputList)
-        {
-            string rtn = string.Empty;
-            foreach (MaintenanceOrder item in inputList)
-            {
-                rtn += $"{item.Id} - ";
-            }
-            return rtn;
-        }
 
         // SORT
-
-
-
-        public static bool CompareUsername(MaintenanceOrder inputItem, string valueFilter)
-        {
-            return inputItem.Username == valueFilter;
-        }
-
-
         public static List<MaintenanceOrder> Sort(List<MaintenanceOrder> inputList, string parameter, int inputOrder)
         {
             List<MaintenanceOrder> rtn = inputList;
@@ -273,7 +268,8 @@ namespace ENTITIES_APP
         public static int PriorityCreasing(MaintenanceOrder input1, MaintenanceOrder input2)
         {
             return -PriorityDecreasing(input1, input2);
-        }
+        } 
+        #endregion
     }
 }
 
